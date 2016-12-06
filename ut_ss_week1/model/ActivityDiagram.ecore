@@ -2,38 +2,46 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ActivityDiagram" nsURI="www.example.org/activityDiagram" nsPrefix="ad">
   <eClassifiers xsi:type="ecore:EClass" name="Main">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
-        eType="#//Activity"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stream" upperBound="-1"
-        eType="#//Stream"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="streams" upperBound="-1"
+        eType="#//Stream" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="trigger" upperBound="-1"
-        eType="#//Trigger"/>
+        eType="#//Trigger" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
+        eType="#//Instance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instancetypes" upperBound="-1"
+        eType="#//InstanceType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startActivity" lowerBound="1"
+        eType="#//Activity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activities" upperBound="-1"
+        eType="#//Activity" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Activity">
+  <eClassifiers xsi:type="ecore:EClass" name="Activity" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="#//Instance"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="End" eSuperTypes="#//FinalActivity"/>
   <eClassifiers xsi:type="ecore:EClass" name="Exit" eSuperTypes="#//FinalActivity"/>
   <eClassifiers xsi:type="ecore:EClass" name="FinalActivity" abstract="true" eSuperTypes="#//Activity"/>
   <eClassifiers xsi:type="ecore:EClass" name="LinearActivity" abstract="true" eSuperTypes="#//Activity">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nextActivity" lowerBound="1"
         eType="#//Activity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ForkingActivity" abstract="true" eSuperTypes="#//Activity">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nextActivities" lowerBound="1"
         upperBound="-1" eType="#//Activity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Decision" eSuperTypes="#//LinearActivity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="branch" upperBound="-1"
-        eType="#//Branch"/>
+        eType="#//Branch" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Branch">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
-        eType="#//Condition"/>
+        eType="#//Condition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
         eType="#//Activity"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Condition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Condition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Fork" eSuperTypes="#//ForkingActivity">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
@@ -66,5 +74,8 @@
         eType="#//Condition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
         eType="#//Activity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RegularActivity" eSuperTypes="#//LinearActivity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
