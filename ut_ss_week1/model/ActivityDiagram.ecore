@@ -11,10 +11,11 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="BasicModel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="UniqueNames ValidForkJoinUsage1 ValidForkJoinUsage2"/>
+      <details key="constraints" value="UniqueNames1 UniqueNames2 ValidForkJoinUsage1 ValidForkJoinUsage2"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="UniqueNames" value="&#xA;&#x9;&#x9;&#x9;let resourceNames: Bag(String) = SharedResource.allInstances()->collect(r | r.name) in&#xA;&#x9;&#x9;&#x9;let instanceNames: Bag(String) = Instance.allInstances()->collect(i | i.name) in&#xA;&#x9;&#x9;&#x9;let instanceTypeNames: Bag(String) = InstanceType.allInstances()->collect(t | t.name) in&#xA;&#x9;&#x9;&#x9;let activityNames: Bag(String) = NamedActivity.allInstances()->collect(a | a.name) in&#xA;&#x9;&#x9;&#x9;    resourceNames->union(instanceNames->union(instanceTypeNames->union(activityNames->asSet()->asBag())))->isUnique(n | n)"/>
+      <details key="UniqueNames1" value="activities->collect(a | a.name)->isUnique(n | n)"/>
+      <details key="UniqueNames2" value="&#xA;&#x9;&#x9;&#x9;let resourceNames: Bag(String) = SharedResource.allInstances()->collect(r | r.name) in&#xA;&#x9;&#x9;&#x9;let instanceNames: Bag(String) = Instance.allInstances()->collect(i | i.name) in&#xA;&#x9;&#x9;&#x9;let instanceTypeNames: Bag(String) = InstanceType.allInstances()->collect(t | t.name) in&#xA;&#x9;&#x9;&#x9;let activityDescriptions: Bag(String) = DescribedActivity.allInstances()->collect(a | a.description) in&#xA;&#x9;&#x9;&#x9;    resourceNames->union(instanceNames->union(instanceTypeNames->union(activityDescriptions->asSet()->asBag())))->isUnique(n | n)"/>
       <details key="ValidForkJoinUsage1" value="startActivity.JoinsCorrectly()->includesAll(Activity.allInstances())"/>
       <details key="ValidForkJoinUsage2" value="&#xA;&#x9;&#x9;&#x9;let forkThreads: Bag(Thread) = Fork.allInstances()->collect(thread)->asBag() in&#xA;&#x9;&#x9;&#x9;let joinThreads: Bag(Thread) = Join.allInstances()->collect(thread)->asBag() in&#xA;&#x9;&#x9;&#x9;&#x9;forkThreads->intersection(joinThreads) = joinThreads"/>
     </eAnnotations>
@@ -30,6 +31,12 @@
         eType="#//Activity" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Activity" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ProperActivityName"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ProperActivityName" value="name.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
+    </eAnnotations>
     <eOperations name="JoinsCorrectly" ordered="false" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="JoinsCorrectly(Sequence{}, Set{})"/>
@@ -67,6 +74,7 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="#//Instance"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="thread" eType="#//Thread"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="End" eSuperTypes="#//FinalActivity"/>
   <eClassifiers xsi:type="ecore:EClass" name="FinalActivity" abstract="true" eSuperTypes="#//Activity">
@@ -247,15 +255,6 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedActivity" abstract="true" eSuperTypes="#//LinearActivity">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ProperActivityName"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="ProperActivityName" value="name.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sleep" eSuperTypes="#//LinearActivity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="PositiveSleepDuration"/>
@@ -275,14 +274,24 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="daemon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
         eType="#//Activity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Yield" eSuperTypes="#//LinearActivity"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleActivity" eSuperTypes="#//NamedActivity">
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleActivity" eSuperTypes="#//DescribedActivity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sharedResources" upperBound="-1"
         eType="#//SharedResource"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NestedActivity" eSuperTypes="#//NamedActivity">
+  <eClassifiers xsi:type="ecore:EClass" name="NestedActivity" eSuperTypes="#//DescribedActivity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="startActivity" lowerBound="1"
         eType="#//Activity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DescribedActivity" abstract="true" eSuperTypes="#//LinearActivity">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ProperActivityDescription"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ProperActivityDescription" value="description.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
