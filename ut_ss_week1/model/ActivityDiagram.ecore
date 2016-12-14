@@ -11,12 +11,10 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Main">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="UniqueResourceNames UniqueInstanceNames UniqueInstanceTypeNames ValidForkJoinUsage1 ValidForkJoinUsage2"/>
+      <details key="constraints" value="UniqueNames ValidForkJoinUsage1 ValidForkJoinUsage2"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="UniqueResourceNames" value="&#xA;&#x9;&#x9;&#x9;resources->isUnique(r | r.name)"/>
-      <details key="UniqueInstanceNames" value="&#xA;&#x9;&#x9;&#x9;instances->isUnique(i | i.name)"/>
-      <details key="UniqueInstanceTypeNames" value="&#xA;&#x9;&#x9;&#x9;instanceTypes->isUnique(it | it.name)"/>
+      <details key="UniqueNames" value="&#xA;&#x9;&#x9;&#x9;let resourceNames: Bag(String) = SharedResource.allInstances()->collect(r | r.name) in&#xA;&#x9;&#x9;&#x9;let instanceNames: Bag(String) = Instance.allInstances()->collect(i | i.name) in&#xA;&#x9;&#x9;&#x9;let instanceTypeNames: Bag(String) = InstanceType.allInstances()->collect(t | t.name) in&#xA;&#x9;&#x9;&#x9;let activityNames: Bag(String) = RegularActivity.allInstances()->collect(a | a.name) in&#xA;&#x9;&#x9;&#x9;    resourceNames->union(instanceNames->union(instanceTypeNames->union(activityNames->asSet()->asBag())))->isUnique(n | n)"/>
       <details key="ValidForkJoinUsage1" value="startActivity.JoinsCorrectly()->includesAll(Activity.allInstances())"/>
       <details key="ValidForkJoinUsage2" value="&#xA;&#x9;&#x9;&#x9;let forkThreads: Bag(Thread) = Fork.allInstances()->collect(thread)->asBag() in&#xA;&#x9;&#x9;&#x9;let joinThreads: Bag(Thread) = Join.allInstances()->collect(thread)->asBag() in&#xA;&#x9;&#x9;&#x9;&#x9;forkThreads->intersection(joinThreads) = joinThreads"/>
     </eAnnotations>
@@ -190,7 +188,7 @@
       <details key="constraints" value="ValidBranchCondition"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="ValidBranchCondition" value="condition.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
+      <details key="ValidBranchCondition" value="true"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
         eType="#//Activity"/>
