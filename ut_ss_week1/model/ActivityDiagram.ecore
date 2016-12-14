@@ -9,12 +9,24 @@
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="BasicModel">
+  <eClassifiers xsi:type="ecore:EClass" name="Thread" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="UniqueNames2 ValidForkJoinUsage1 ValidForkJoinUsage2"/>
+      <details key="constraints" value="ValidStartActivityThread"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="UniqueNames2" value="&#xA;&#x9;&#x9;&#x9;let resourceNames: Bag(String) = SharedResource.allInstances()->collect(r | r.name) in&#xA;&#x9;&#x9;&#x9;let instanceNames: Bag(String) = Instance.allInstances()->collect(i | i.name) in&#xA;&#x9;&#x9;&#x9;let instanceTypeNames: Bag(String) = InstanceType.allInstances()->collect(t | t.name) in&#xA;&#x9;&#x9;&#x9;let activityDescriptions: Bag(String) = DescribedActivity.allInstances()->collect(a | a.description) in&#xA;&#x9;&#x9;&#x9;    resourceNames->union(instanceNames->union(instanceTypeNames->union(activityDescriptions->asSet()->asBag())))->isUnique(n | n)"/>
+      <details key="ValidStartActivityThread" value="startActivity.thread = self or startActivity.oclIsKindOf(Join) or startActivity.oclIsKindOf(End)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activities" upperBound="-1"
+        eType="#//Activity" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startActivity" lowerBound="1"
+        eType="#//Activity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicModel" eSuperTypes="#//Thread">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="UniqueNames ValidForkJoinUsage1 ValidForkJoinUsage2"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="UniqueNames" value="&#xA;&#x9;&#x9;&#x9;let resourceNames: Bag(String) = SharedResource.allInstances()->collect(r | r.name) in&#xA;&#x9;&#x9;&#x9;let instanceNames: Bag(String) = Instance.allInstances()->collect(i | i.name) in&#xA;&#x9;&#x9;&#x9;let instanceTypeNames: Bag(String) = InstanceType.allInstances()->collect(t | t.name) in&#xA;&#x9;&#x9;&#x9;let activityDescriptions: Bag(String) = DescribedActivity.allInstances()->collect(a | a.description) in&#xA;&#x9;&#x9;&#x9;    resourceNames->union(instanceNames->union(instanceTypeNames->union(activityDescriptions->asSet()->asBag())))->isUnique(n | n)"/>
       <details key="ValidForkJoinUsage1" value="startActivity.JoinsCorrectly()->includesAll(Activity.allInstances())"/>
       <details key="ValidForkJoinUsage2" value="&#xA;&#x9;&#x9;&#x9;let forkThreads: Bag(Thread) = Fork.allInstances()->collect(thread)->asBag() in&#xA;&#x9;&#x9;&#x9;let joinThreads: Bag(Thread) = Join.allInstances()->collect(thread)->asBag() in&#xA;&#x9;&#x9;&#x9;&#x9;forkThreads->intersection(joinThreads) = joinThreads"/>
     </eAnnotations>
@@ -24,18 +36,10 @@
         eType="#//Instance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceTypes" upperBound="-1"
         eType="#//InstanceType" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="startActivity" lowerBound="1"
-        eType="#//Activity"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activities" upperBound="-1"
-        eType="#//Activity" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="threads" upperBound="-1"
+        eType="#//Thread" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Activity" abstract="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ProperActivityName"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="ProperActivityName" value="name.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
-    </eAnnotations>
     <eOperations name="JoinsCorrectly" ordered="false" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="JoinsCorrectly(Sequence{}, Set{})"/>
@@ -71,9 +75,14 @@
       </eAnnotations>
       <eParameters name="a" eType="#//Activity"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="#//Instance"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="thread" eType="#//Thread"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="#//Instance"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thread" eType="#//Thread"
+        volatile="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="let temp: Set(Thread) = Thread.allInstances()->select(t | t.activities->exists(a | a = self))&#xA;&#x9;&#x9;&#x9;            in if temp->size() = 1 then temp->asOrderedSet()->first() else null endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="End" eSuperTypes="#//FinalActivity"/>
   <eClassifiers xsi:type="ecore:EClass" name="FinalActivity" abstract="true" eSuperTypes="#//Activity">
@@ -130,7 +139,7 @@
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="NonNegativeThreadCount" value="threadCount >= 0"/>
-      <details key="ThreadIndependence" value="threads->forAll(t | self.UsesDifferentThread(t.activity))"/>
+      <details key="ThreadIndependence" value="true"/>
     </eAnnotations>
     <eOperations name="JoinsCorrectly" ordered="false" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -142,7 +151,7 @@
     </eOperations>
     <eOperations name="JoinsCorrectly" ordered="false" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->exists(e | e = self) -- Fork has already been checked&#xA;&#x9;&#x9;&#x9;      then beenHere&#xA;&#x9;&#x9;&#x9;      else threads->iterate(t; result: Set(Activity) = Set{} | result->union(t.activity.JoinsCorrectly(fork->append(self), beenHere->including(self))))&#xA;&#x9;&#x9;&#x9;      endif"/>
+        <details key="body" value="if beenHere->exists(e | e = self) -- Fork has already been checked&#xA;&#x9;&#x9;&#x9;      then beenHere&#xA;&#x9;&#x9;&#x9;      else beenHere -- threads->iterate(t; result: Set(Activity) = Set{} | result->union(t.activity.JoinsCorrectly(fork->append(self), beenHere->including(self))))&#xA;&#x9;&#x9;&#x9;      endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
@@ -158,20 +167,20 @@
         </eAnnotations>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="threads" lowerBound="1"
-        upperBound="-1" eType="#//Thread" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forkedThreads" lowerBound="1"
+        upperBound="-1" eType="#//ForkedThread"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Decision" eSuperTypes="#//LinearActivity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="ThreadIndependence"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="ThreadIndependence" value="branches->forAll(b | self.UsesSameThread(b.activity))"/>
+      <details key="ThreadIndependence" value="true"/>
     </eAnnotations>
     <eOperations name="JoinsCorrectly" ordered="false" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then beenHere&#xA;&#x9;&#x9;&#x9;      else let bh: Set(Activity) = beenHere->including(self)&#xA;&#x9;&#x9;&#x9;           in nextActivity.JoinsCorrectly(fork, bh)->union(branches->iterate(b; result: Set(Activity) = Set{} | result->intersection(b.activity.JoinsCorrectly(fork, bh)))) -- Check all branches&#xA;&#x9;&#x9;&#x9;      endif"/>
+        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then beenHere&#xA;&#x9;&#x9;&#x9;      else beenHere --let bh: Set(Activity) = beenHere->including(self)&#xA;&#x9;&#x9;&#x9;           --in nextActivity.JoinsCorrectly(fork, bh)->union(branches->iterate(b; result: Set(Activity) = Set{} | result->intersection(b.activity.JoinsCorrectly(fork, bh)))) -- Check all branches&#xA;&#x9;&#x9;&#x9;      endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
@@ -197,7 +206,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="ValidBranchCondition" value="true"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nextActivity" lowerBound="1"
         eType="#//Activity"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -263,18 +272,6 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Thread">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ThreadIndependence"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="ThreadIndependence" value="activity.thread = self"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
-        eType="#//Activity"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="daemon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Yield" eSuperTypes="#//LinearActivity"/>
   <eClassifiers xsi:type="ecore:EClass" name="SimpleActivity" eSuperTypes="#//DescribedActivity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sharedResources" upperBound="-1"
@@ -292,5 +289,9 @@
       <details key="ProperActivityDescription" value="description.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForkedThread" eSuperTypes="#//Thread">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="daemon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>
