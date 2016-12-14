@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pivot:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot"
+    xsi:schemaLocation="http://www.eclipse.org/ocl/2015/Pivot java://org.eclipse.ocl.pivot.PivotPackage" name="ActivityDiagram.ecore.oclas" externalURI="platform:/resource/ut_ss_week1/model/ActivityDiagram.ecore.oclas">
+  <ownedImports name="ecore" importedNamespace="pivot:Package http://www.eclipse.org/emf/2002/Ecore.oclas#P.ecore"/>
+  <ownedPackages xmi:id="P.ActivityDiagram" name="ActivityDiagram" URI="www.example.org/activityDiagram" nsPrefix="ad">
+    <ownedClasses xmi:id="T.ActivityDiagram.Main" name="Main" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedInvariants xmi:id="ciActivityDiagram.Main.UniqueResourceNames" name="UniqueResourceNames">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;&#x9;&#x9;--resources->forAll(r1 | resources->forAll(r2 | r1 &lt;> r2 or r1.name &lt;> r2.name));&#xA;&#x9;&#x9;&#x9;resources->isUnique(r | r.name)"/>
+      </ownedInvariants>
+      <ownedInvariants xmi:id="ciActivityDiagram.Main.UniqueInstanceNames" name="UniqueInstanceNames">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;&#x9;&#x9;instances->forAll(i1 | instances->forAll(i2 | i1 &lt;> i2 or i1.name &lt;> i2.name))"/>
+      </ownedInvariants>
+      <ownedInvariants xmi:id="ciActivityDiagram.Main.UniqueInstanceTypeNames" name="UniqueInstanceTypeNames">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;&#x9;&#x9;instanceTypes->forAll(it1 | instanceTypes->forAll(it2 | it1 &lt;> it2 or it1.name &lt;> it2.name))"/>
+      </ownedInvariants>
+      <ownedInvariants xmi:id="ciActivityDiagram.Main.MyTestInvariant" name="MyTestInvariant">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="AddAll(Sequence{1..3}, Sequence{4..6}) = Sequence{1..7}"/>
+      </ownedInvariants>
+      <ownedInvariants xmi:id="ciActivityDiagram.Main.Test2" name="Test2">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="startActivity.blaa = Set{startActivity}"/>
+      </ownedInvariants>
+      <ownedOperations xmi:id="o.ActivityDiagram.Main.AddAll..$$.Sequence..$$.Sequence" name="AddAll" type="#//@ownedPackages.1/@ownedClasses.0">
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="l2->iterate(i; result: Sequence(Integer[1]) = l1 | result->append(i))"/>
+        <ownedParameters xmi:id="p0o.ActivityDiagram.Main.AddAll..$$.Sequence..$$.Sequence" name="l1" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p1o.ActivityDiagram.Main.AddAll..$$.Sequence..$$.Sequence" name="l2" type="#//@ownedPackages.1/@ownedClasses.0"/>
+      </ownedOperations>
+      <ownedProperties xmi:id="p.ActivityDiagram.Main.resources" name="resources" type="#//@ownedPackages.1/@ownedClasses.1" isComposite="true"
+          opposite="#p.ActivityDiagram.SharedResource.Main"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Main.instances" name="instances" type="#//@ownedPackages.1/@ownedClasses.2" isComposite="true"
+          opposite="#p.ActivityDiagram.Instance.Main"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Main.instanceTypes" name="instanceTypes" type="#//@ownedPackages.1/@ownedClasses.3" isComposite="true"
+          opposite="#p.ActivityDiagram.InstanceType.Main"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Main.startActivity" name="startActivity" type="#T.ActivityDiagram.Activity" opposite="#//@ownedPackages.0/@ownedClasses.1/@ownedProperties.3"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Main.activities" name="activities" type="#//@ownedPackages.1/@ownedClasses.4" isComposite="true"
+          opposite="#//@ownedPackages.0/@ownedClasses.1/@ownedProperties.2"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.Activity" name="Activity" isAbstract="true" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedOperations xmi:id="o.ActivityDiagram.Activity.HasChild..ActivityDiagram.Activity" name="HasChild" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="true"/>
+        <ownedParameters xmi:id="p0o.ActivityDiagram.Activity.HasChild..ActivityDiagram.Activity" name="a" isRequired="false" type="#T.ActivityDiagram.Activity"/>
+      </ownedOperations>
+      <ownedProperties xmi:id="p.ActivityDiagram.Activity.instance" name="instance" isRequired="false" type="#T.ActivityDiagram.Instance"
+          opposite="#p.ActivityDiagram.Instance.Activity"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Activity.blaa" name="blaa" type="#//@ownedPackages.1/@ownedClasses.5" isDerived="true"
+          isVolatile="true" opposite="#p.ActivityDiagram.Activity.Activity">
+        <ownedExpression xsi:type="pivot:ExpressionInOCL" body="Activity.allInstances()->iterate(a | r: Set(Thread[?]) = Set{} | if a.HasChild(self) then Set{r,Set{a}} else r endif)"/>
+      </ownedProperties>
+      <ownedProperties name="Main" isRequired="false" type="#T.ActivityDiagram.Main" isImplicit="true" opposite="#p.ActivityDiagram.Main.activities"/>
+      <ownedProperties name="Main" type="#//@ownedPackages.1/@ownedClasses.6" isImplicit="true" opposite="#p.ActivityDiagram.Main.startActivity"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Activity.Branch" name="Branch" type="#//@ownedPackages.1/@ownedClasses.7" isImplicit="true"
+          opposite="#p.ActivityDiagram.Branch.activity"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Activity.Activity" name="Activity" type="#//@ownedPackages.1/@ownedClasses.8" isImplicit="true"
+          opposite="#p.ActivityDiagram.Activity.blaa"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Activity.LinearActivity" name="LinearActivity" type="#//@ownedPackages.1/@ownedClasses.9"
+          isImplicit="true" opposite="#p.ActivityDiagram.LinearActivity.nextActivity"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Activity.Thread" name="Thread" type="#//@ownedPackages.1/@ownedClasses.10" isImplicit="true"
+          opposite="#p.ActivityDiagram.Thread.activity"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.End" name="End" superClasses="#T.ActivityDiagram.FinalActivity"/>
+    <ownedClasses xmi:id="T.ActivityDiagram.FinalActivity" name="FinalActivity" isAbstract="true" superClasses="#T.ActivityDiagram.Activity">
+      <ownedOperations xmi:id="o.ActivityDiagram.FinalActivity.ForksCorrectly..$$.Sequence..$$.Sequence..$$.Sequence" name="ForksCorrectly"
+          type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="true"/>
+        <ownedParameters xmi:id="p0o.ActivityDiagram.FinalActivity.ForksCorrectly..$$.Sequence..$$.Sequence..$$.Sequence" name="stack"
+            type="#//@ownedPackages.1/@ownedClasses.11"/>
+        <ownedParameters xmi:id="p1o.ActivityDiagram.FinalActivity.ForksCorrectly..$$.Sequence..$$.Sequence..$$.Sequence" name="activities"
+            type="#//@ownedPackages.1/@ownedClasses.12"/>
+        <ownedParameters xmi:id="p2o.ActivityDiagram.FinalActivity.ForksCorrectly..$$.Sequence..$$.Sequence..$$.Sequence" name="threads"
+            type="#//@ownedPackages.1/@ownedClasses.11"/>
+      </ownedOperations>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.LinearActivity" name="LinearActivity" isAbstract="true" superClasses="#T.ActivityDiagram.Activity">
+      <ownedProperties xmi:id="p.ActivityDiagram.LinearActivity.nextActivity" name="nextActivity" type="#T.ActivityDiagram.Activity" opposite="#p.ActivityDiagram.Activity.LinearActivity"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.Fork" name="Fork" superClasses="#T.ActivityDiagram.Activity">
+      <ownedInvariants xmi:id="ciActivityDiagram.Fork.NonNegativeThreadCount" name="NonNegativeThreadCount">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="threadCount >= 0"/>
+      </ownedInvariants>
+      <ownedProperties xmi:id="p.ActivityDiagram.Fork.threads" name="threads" type="#//@ownedPackages.1/@ownedClasses.13" opposite="#p.ActivityDiagram.Thread.Fork"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Fork.threadCount" name="threadCount" isRequired="false" type="pivot:DataType http://www.eclipse.org/emf/2002/Ecore.oclas#T.ecore.EInt"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.Decision" name="Decision" superClasses="#T.ActivityDiagram.LinearActivity">
+      <ownedProperties xmi:id="p.ActivityDiagram.Decision.branches" name="branches" type="#//@ownedPackages.1/@ownedClasses.14" isComposite="true"
+          opposite="#p.ActivityDiagram.Branch.Decision"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.Branch" name="Branch" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedInvariants xmi:id="ciActivityDiagram.Branch.ValidBranchCondition" name="ValidBranchCondition">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="condition.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
+      </ownedInvariants>
+      <ownedProperties xmi:id="p.ActivityDiagram.Branch.activity" name="activity" type="#T.ActivityDiagram.Activity" opposite="#p.ActivityDiagram.Activity.Branch"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Branch.condition" name="condition" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Branch.Decision" name="Decision" isRequired="false" type="#T.ActivityDiagram.Decision"
+          isImplicit="true" opposite="#p.ActivityDiagram.Decision.branches"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.Join" name="Join" superClasses="#T.ActivityDiagram.LinearActivity"/>
+    <ownedClasses xmi:id="T.ActivityDiagram.SharedResource" name="SharedResource" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedInvariants xmi:id="ciActivityDiagram.SharedResource.ValidSharedResourceName" name="ValidSharedResourceName">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="name.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
+      </ownedInvariants>
+      <ownedProperties xmi:id="p.ActivityDiagram.SharedResource.name" name="name" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.SharedResource.RegularActivity" name="RegularActivity" type="#//@ownedPackages.1/@ownedClasses.15"
+          isImplicit="true" opposite="#p.ActivityDiagram.RegularActivity.sharedResources"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.SharedResource.Main" name="Main" isRequired="false" type="#T.ActivityDiagram.Main" isImplicit="true"
+          opposite="#p.ActivityDiagram.Main.resources"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.Interrupt" name="Interrupt" superClasses="#T.ActivityDiagram.LinearActivity">
+      <ownedProperties xmi:id="p.ActivityDiagram.Interrupt.interruptedThread" name="interruptedThread" type="#T.ActivityDiagram.Thread"
+          opposite="#p.ActivityDiagram.Thread.Interrupt"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.Instance" name="Instance" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedInvariants xmi:id="ciActivityDiagram.Instance.ProperInstanceName" name="ProperInstanceName">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="name.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
+      </ownedInvariants>
+      <ownedProperties xmi:id="p.ActivityDiagram.Instance.name" name="name" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Instance.instanceType" name="instanceType" type="#T.ActivityDiagram.InstanceType" opposite="#p.ActivityDiagram.InstanceType.Instance"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Instance.Main" name="Main" isRequired="false" type="#T.ActivityDiagram.Main" isImplicit="true"
+          opposite="#p.ActivityDiagram.Main.instances"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Instance.Activity" name="Activity" type="#//@ownedPackages.1/@ownedClasses.8" isImplicit="true"
+          opposite="#p.ActivityDiagram.Activity.instance"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.InstanceType" name="InstanceType" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedInvariants xmi:id="ciActivityDiagram.InstanceType.ProperInstanceTypeName" name="ProperInstanceTypeName">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="name.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
+      </ownedInvariants>
+      <ownedProperties xmi:id="p.ActivityDiagram.InstanceType.name" name="name" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.InstanceType.Instance" name="Instance" type="#//@ownedPackages.1/@ownedClasses.16" isImplicit="true"
+          opposite="#p.ActivityDiagram.Instance.instanceType"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.InstanceType.Main" name="Main" isRequired="false" type="#T.ActivityDiagram.Main" isImplicit="true"
+          opposite="#p.ActivityDiagram.Main.instanceTypes"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.RegularActivity" name="RegularActivity" superClasses="#T.ActivityDiagram.LinearActivity">
+      <ownedInvariants xmi:id="ciActivityDiagram.RegularActivity.ProperActivityName" name="ProperActivityName">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="name.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
+      </ownedInvariants>
+      <ownedProperties xmi:id="p.ActivityDiagram.RegularActivity.name" name="name" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.RegularActivity.sharedResources" name="sharedResources" type="#//@ownedPackages.1/@ownedClasses.1"
+          opposite="#p.ActivityDiagram.SharedResource.RegularActivity"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.Sleep" name="Sleep" superClasses="#T.ActivityDiagram.LinearActivity">
+      <ownedInvariants xmi:id="ciActivityDiagram.Sleep.PositiveSleepDuration" name="PositiveSleepDuration">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="duration >= 1"/>
+      </ownedInvariants>
+      <ownedProperties xmi:id="p.ActivityDiagram.Sleep.duration" name="duration" isRequired="false" type="pivot:DataType http://www.eclipse.org/emf/2002/Ecore.oclas#T.ecore.EInt"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.Thread" name="Thread" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedProperties xmi:id="p.ActivityDiagram.Thread.daemon" name="daemon" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Thread.activity" name="activity" type="#T.ActivityDiagram.Activity" opposite="#p.ActivityDiagram.Activity.Thread"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Thread.Fork" name="Fork" type="#//@ownedPackages.1/@ownedClasses.17" isImplicit="true"
+          opposite="#p.ActivityDiagram.Fork.threads"/>
+      <ownedProperties xmi:id="p.ActivityDiagram.Thread.Interrupt" name="Interrupt" type="#//@ownedPackages.1/@ownedClasses.18" isImplicit="true"
+          opposite="#p.ActivityDiagram.Interrupt.interruptedThread"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.ActivityDiagram.Yield" name="Yield" superClasses="#T.ActivityDiagram.LinearActivity"/>
+  </ownedPackages>
+  <ownedPackages xmi:id="P.$$" name="$$" URI="http://www.eclipse.org/ocl/2015/Orphanage" nsPrefix="orphanage">
+    <ownedClasses xsi:type="pivot:SequenceType" name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.19" elementType="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Integer">
+      <ownedBindings>
+        <ownedSubstitutions actual="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Integer" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..SequenceT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.20 #//@ownedPackages.1/@ownedClasses.21"
+        elementType="#T.ActivityDiagram.SharedResource" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.SharedResource" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.22 #//@ownedPackages.1/@ownedClasses.23"
+        elementType="#T.ActivityDiagram.Instance" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Instance" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.24 #//@ownedPackages.1/@ownedClasses.25"
+        elementType="#T.ActivityDiagram.InstanceType" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.InstanceType" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.26 #//@ownedPackages.1/@ownedClasses.27"
+        elementType="#T.ActivityDiagram.Activity" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Activity" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:SetType" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.27" elementType="#T.ActivityDiagram.Activity">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Activity" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..SetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.28" elementType="#T.ActivityDiagram.Main">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Main" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..BagT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.29" elementType="#T.ActivityDiagram.Branch">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Branch" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..BagT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.30" elementType="#T.ActivityDiagram.Activity">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Activity" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..BagT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.31" elementType="#T.ActivityDiagram.LinearActivity">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.LinearActivity" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..BagT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.32" elementType="#T.ActivityDiagram.Thread">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Thread" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..BagT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:SequenceType" name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.33" elementType="#T.ActivityDiagram.Thread">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Thread" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..SequenceT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:SequenceType" name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.26" elementType="#T.ActivityDiagram.Activity">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Activity" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..SequenceT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.33 #//@ownedPackages.1/@ownedClasses.34"
+        elementType="#T.ActivityDiagram.Thread" isNullFree="true" lower="1">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Thread" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.35 #//@ownedPackages.1/@ownedClasses.36"
+        elementType="#T.ActivityDiagram.Branch" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Branch" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.37" elementType="#T.ActivityDiagram.RegularActivity">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.RegularActivity" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..BagT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.38" elementType="#T.ActivityDiagram.Instance">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Instance" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..BagT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.39" elementType="#T.ActivityDiagram.Fork">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Fork" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..BagT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.40" elementType="#T.ActivityDiagram.Interrupt">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Interrupt" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..BagT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.41" elementType="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Integer">
+      <ownedBindings>
+        <ownedSubstitutions actual="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Integer" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.42" elementType="#T.ActivityDiagram.SharedResource">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.SharedResource" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.42" elementType="#T.ActivityDiagram.SharedResource">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.SharedResource" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.38" elementType="#T.ActivityDiagram.Instance">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Instance" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.38" elementType="#T.ActivityDiagram.Instance">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Instance" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.43" elementType="#T.ActivityDiagram.InstanceType">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.InstanceType" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.43" elementType="#T.ActivityDiagram.InstanceType">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.InstanceType" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.30" elementType="#T.ActivityDiagram.Activity">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Activity" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.30" elementType="#T.ActivityDiagram.Activity">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Activity" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.ActivityDiagram.Main">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Main" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.ActivityDiagram.Branch">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Branch" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.ActivityDiagram.Activity">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Activity" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.ActivityDiagram.LinearActivity">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.LinearActivity" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.ActivityDiagram.Thread">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Thread" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.32" elementType="#T.ActivityDiagram.Thread">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Thread" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.32" elementType="#T.ActivityDiagram.Thread">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Thread" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.29" elementType="#T.ActivityDiagram.Branch">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Branch" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.29" elementType="#T.ActivityDiagram.Branch">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Branch" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.ActivityDiagram.RegularActivity">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.RegularActivity" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.ActivityDiagram.Instance">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Instance" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.ActivityDiagram.Fork">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Fork" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.ActivityDiagram.Interrupt">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.Interrupt" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Integer">
+      <ownedBindings>
+        <ownedSubstitutions actual="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Integer" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.ActivityDiagram.SharedResource">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.SharedResource" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.ActivityDiagram.InstanceType">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.ActivityDiagram.InstanceType" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+  </ownedPackages>
+</pivot:Model>

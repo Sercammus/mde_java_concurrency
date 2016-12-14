@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ad:Main xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ad="www.example.org/activityDiagram"
+    xsi:schemaLocation="www.example.org/activityDiagram ActivityDiagram.ecore"
+    startActivity="//@activities.0">
+  <activities
+      xsi:type="ad:Fork">
+    <threads
+        activity="//@activities.1"/>
+    <threads
+        activity="//@activities.2"/>
+  </activities>
+  <activities
+      xsi:type="ad:RegularActivity"
+      thread="//@activities.0/@threads.0"
+      nextActivity="//@activities.3"
+      name="a"/>
+  <activities
+      xsi:type="ad:RegularActivity"
+      thread="//@activities.0/@threads.1"
+      nextActivity="//@activities.3"
+      name="b"/>
+  <activities
+      xsi:type="ad:End"
+      thread="//@activities.0/@threads.0"/>
+</ad:Main>
