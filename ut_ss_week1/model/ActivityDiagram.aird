@@ -977,7 +977,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfKwoMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar SharedResource, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfKwoMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar Reference, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
           <target xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//Activity/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//Activity/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EParameter" href="ActivityDiagram.ecore#//Activity/GetAccessedReferences/beenHere"/>
@@ -1034,7 +1034,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfQQMMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar SharedResource, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfQQMMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar Reference, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
           <target xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//FinalActivity/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//FinalActivity/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EParameter" href="ActivityDiagram.ecore#//FinalActivity/GetAccessedReferences/beenHere"/>
@@ -1072,7 +1072,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfSscMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar SharedResource, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfSscMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar Reference, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
           <target xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//LinearActivity/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//LinearActivity/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EParameter" href="ActivityDiagram.ecore#//LinearActivity/GetAccessedReferences/beenHere"/>
@@ -1132,7 +1132,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfUhoMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar SharedResource, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfUhoMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar Reference, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
           <target xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//Fork/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//Fork/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EParameter" href="ActivityDiagram.ecore#//Fork/GetAccessedReferences/beenHere"/>
@@ -1212,7 +1212,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfVIsMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar SharedResource, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfVIsMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar Reference, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
           <target xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//Decision/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//Decision/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EParameter" href="ActivityDiagram.ecore#//Decision/GetAccessedReferences/beenHere"/>
@@ -1548,7 +1548,7 @@
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfYzEMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar SharedResource, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfYzEMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar Reference, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
           <target xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//SimpleActivity/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//SimpleActivity/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EParameter" href="ActivityDiagram.ecore#//SimpleActivity/GetAccessedReferences/beenHere"/>
@@ -1585,7 +1585,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfZaIMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar SharedResource, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zfZaIMKnEeabYda9J6wWAA" name="GetAccessedReferences(soFar Reference, beenHere Activity) : Reference" visible="false" tooltipText="GetAccessedReferences(soFar, beenHere) : Reference">
           <target xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//NestedActivity/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EOperation" href="ActivityDiagram.ecore#//NestedActivity/GetAccessedReferences"/>
           <semanticElements xmi:type="ecore:EParameter" href="ActivityDiagram.ecore#//NestedActivity/GetAccessedReferences/beenHere"/>
@@ -1605,9 +1605,8 @@
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
         <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
         <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_sAi4YMKmEeabYda9J6wWAA" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_abstract.gif" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="228,228,228">
-          <labelFormat>italic</labelFormat>
-          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@conditionnalStyles.1/@style"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_puSu0MLbEea3cMvZmMlqKA" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
       </ownedDiagramElements>

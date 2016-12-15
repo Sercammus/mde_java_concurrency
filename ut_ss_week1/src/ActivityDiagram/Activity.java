@@ -180,6 +180,6 @@ public interface Activity extends EObject {
 	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 * @generated
 	 */
-	EList<Reference> GetAccessedReferences(EList<SharedResource> soFar, EList<Activity> beenHere);
+	EList<Reference> GetAccessedReferences(EList<Reference> soFar, EList<Activity> beenHere);
 
 } // Activity

@@ -9,7 +9,6 @@ import ActivityDiagram.Decision;
 import ActivityDiagram.Fork;
 import ActivityDiagram.LinearActivity;
 import ActivityDiagram.Reference;
-import ActivityDiagram.SharedResource;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -124,7 +123,7 @@ public class DecisionImpl extends LinearActivityImpl implements Decision {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Reference> GetAccessedReferences(EList<SharedResource> soFar, EList<Activity> beenHere) {
+	public EList<Reference> GetAccessedReferences(EList<Reference> soFar, EList<Activity> beenHere) {
 		try {
 			return (EList<Reference>)GET_ACCESSED_REFERENCES_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{soFar, beenHere}));
 		}
@@ -243,7 +242,7 @@ public class DecisionImpl extends LinearActivityImpl implements Decision {
 			case ActivityDiagramPackage.DECISION___JOINS_CORRECTLY__ELIST_ELIST:
 				return JoinsCorrectly((EList<Fork>)arguments.get(0), (EList<Activity>)arguments.get(1));
 			case ActivityDiagramPackage.DECISION___GET_ACCESSED_REFERENCES__ELIST_ELIST:
-				return GetAccessedReferences((EList<SharedResource>)arguments.get(0), (EList<Activity>)arguments.get(1));
+				return GetAccessedReferences((EList<Reference>)arguments.get(0), (EList<Activity>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

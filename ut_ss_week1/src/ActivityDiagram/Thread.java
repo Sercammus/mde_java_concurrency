@@ -18,8 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see ActivityDiagram.ActivityDiagramPackage#getThread()
- * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidStartActivityThread'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidStartActivityThread'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot ValidStartActivityThread='startActivity.thread = self or startActivity.oclIsKindOf(Join) or startActivity.oclIsKindOf(FinalActivity)'"
  * @generated
  */

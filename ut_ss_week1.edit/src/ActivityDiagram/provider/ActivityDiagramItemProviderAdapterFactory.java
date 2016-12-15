@@ -72,6 +72,29 @@ public class ActivityDiagramItemProviderAdapterFactory extends ActivityDiagramAd
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ActivityDiagram.Thread} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ThreadItemProvider threadItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ActivityDiagram.Thread}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createThreadAdapter() {
+		if (threadItemProvider == null) {
+			threadItemProvider = new ThreadItemProvider(this);
+		}
+
+		return threadItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link ActivityDiagram.BasicModel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -515,6 +538,7 @@ public class ActivityDiagramItemProviderAdapterFactory extends ActivityDiagramAd
 	 * @generated
 	 */
 	public void dispose() {
+		if (threadItemProvider != null) threadItemProvider.dispose();
 		if (basicModelItemProvider != null) basicModelItemProvider.dispose();
 		if (endItemProvider != null) endItemProvider.dispose();
 		if (forkItemProvider != null) forkItemProvider.dispose();

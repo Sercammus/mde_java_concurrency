@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public abstract class ThreadImpl extends ReferenceImpl implements ActivityDiagram.Thread {
+public class ThreadImpl extends ReferenceImpl implements ActivityDiagram.Thread {
 	/**
 	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

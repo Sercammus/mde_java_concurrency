@@ -4,7 +4,6 @@ package ActivityDiagram.tests;
 
 import ActivityDiagram.ActivityDiagramFactory;
 import ActivityDiagram.ActivityDiagramPackage;
-import ActivityDiagram.BasicModel;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,7 +59,7 @@ public class ActivityDiagramExample {
 			System.out.println("Enter a list of file paths or URIs that have content like this:");
 			try {
 				Resource resource = resourceSet.createResource(URI.createURI("http:///My.activitydiagram"));
-				BasicModel root = ActivityDiagramFactory.eINSTANCE.createBasicModel();
+				ActivityDiagram.Thread root = ActivityDiagramFactory.eINSTANCE.createThread();
 				resource.getContents().add(root);
 				resource.save(System.out, null);
 			}

@@ -139,6 +139,11 @@ public class NestedActivityItemProvider extends NamedActivityItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(ActivityDiagramPackage.Literals.NESTED_ACTIVITY__NESTED_THREAD,
+				 ActivityDiagramFactory.eINSTANCE.createThread()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActivityDiagramPackage.Literals.NESTED_ACTIVITY__NESTED_THREAD,
 				 ActivityDiagramFactory.eINSTANCE.createBasicModel()));
 
 		newChildDescriptors.add

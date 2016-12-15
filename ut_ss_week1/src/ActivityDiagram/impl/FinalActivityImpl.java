@@ -7,7 +7,6 @@ import ActivityDiagram.ActivityDiagramPackage;
 import ActivityDiagram.FinalActivity;
 import ActivityDiagram.Fork;
 import ActivityDiagram.Reference;
-import ActivityDiagram.SharedResource;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -86,7 +85,7 @@ public abstract class FinalActivityImpl extends ActivityImpl implements FinalAct
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Reference> GetAccessedReferences(EList<SharedResource> soFar, EList<Activity> beenHere) {
+	public EList<Reference> GetAccessedReferences(EList<Reference> soFar, EList<Activity> beenHere) {
 		try {
 			return (EList<Reference>)GET_ACCESSED_REFERENCES_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{soFar, beenHere}));
 		}
@@ -107,7 +106,7 @@ public abstract class FinalActivityImpl extends ActivityImpl implements FinalAct
 			case ActivityDiagramPackage.FINAL_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST:
 				return JoinsCorrectly((EList<Fork>)arguments.get(0), (EList<Activity>)arguments.get(1));
 			case ActivityDiagramPackage.FINAL_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST:
-				return GetAccessedReferences((EList<SharedResource>)arguments.get(0), (EList<Activity>)arguments.get(1));
+				return GetAccessedReferences((EList<Reference>)arguments.get(0), (EList<Activity>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

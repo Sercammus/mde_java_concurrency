@@ -93,7 +93,7 @@ public class SimpleActivityImpl extends NamedActivityImpl implements SimpleActiv
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Reference> GetAccessedReferences(EList<SharedResource> soFar, EList<Activity> beenHere) {
+	public EList<Reference> GetAccessedReferences(EList<Reference> soFar, EList<Activity> beenHere) {
 		try {
 			return (EList<Reference>)GET_ACCESSED_REFERENCES_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{soFar, beenHere}));
 		}
@@ -194,7 +194,7 @@ public class SimpleActivityImpl extends NamedActivityImpl implements SimpleActiv
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case ActivityDiagramPackage.SIMPLE_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST:
-				return GetAccessedReferences((EList<SharedResource>)arguments.get(0), (EList<Activity>)arguments.get(1));
+				return GetAccessedReferences((EList<Reference>)arguments.get(0), (EList<Activity>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

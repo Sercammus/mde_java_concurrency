@@ -22,6 +22,15 @@ public interface ActivityDiagramFactory extends EFactory {
 	ActivityDiagramFactory eINSTANCE = ActivityDiagram.impl.ActivityDiagramFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Thread</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Thread</em>'.
+	 * @generated
+	 */
+	Thread createThread();
+
+	/**
 	 * Returns a new object of class '<em>Basic Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

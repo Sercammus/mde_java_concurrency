@@ -1017,7 +1017,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		namedActivityEClass.getESuperTypes().add(this.getLinearActivity());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(threadEClass, ActivityDiagram.Thread.class, "Thread", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(threadEClass, ActivityDiagram.Thread.class, "Thread", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getThread_Activities(), this.getActivity(), null, "activities", null, 0, -1, ActivityDiagram.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getThread_StartActivity(), this.getActivity(), null, "startActivity", null, 1, 1, ActivityDiagram.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1049,7 +1049,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		addEParameter(op, this.getActivity(), "a", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getActivity__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(endEClass, End.class, "End", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1061,7 +1061,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getFinalActivity__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(linearActivityEClass, LinearActivity.class, "LinearActivity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1072,7 +1072,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getLinearActivity__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(forkEClass, Fork.class, "Fork", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1089,7 +1089,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getFork__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(decisionEClass, Decision.class, "Decision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1100,7 +1100,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getDecision__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(branchEClass, Branch.class, "Branch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1133,7 +1133,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		initEReference(getSimpleActivity_SharedResources(), this.getSharedResource(), null, "sharedResources", null, 0, -1, SimpleActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		op = initEOperation(getSimpleActivity__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(nestedActivityEClass, NestedActivity.class, "NestedActivity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1144,7 +1144,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getNestedActivity__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(forkedThreadEClass, ForkedThread.class, "ForkedThread", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -7,7 +7,6 @@ import ActivityDiagram.ActivityDiagramPackage;
 import ActivityDiagram.Fork;
 import ActivityDiagram.Instance;
 import ActivityDiagram.Reference;
-import ActivityDiagram.SharedResource;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -323,7 +322,7 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Reference> GetAccessedReferences(EList<SharedResource> soFar, EList<Activity> beenHere) {
+	public EList<Reference> GetAccessedReferences(EList<Reference> soFar, EList<Activity> beenHere) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -441,7 +440,7 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 			case ActivityDiagramPackage.ACTIVITY___USES_SAME_THREAD__ACTIVITY:
 				return UsesSameThread((Activity)arguments.get(0));
 			case ActivityDiagramPackage.ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST:
-				return GetAccessedReferences((EList<SharedResource>)arguments.get(0), (EList<Activity>)arguments.get(1));
+				return GetAccessedReferences((EList<Reference>)arguments.get(0), (EList<Activity>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

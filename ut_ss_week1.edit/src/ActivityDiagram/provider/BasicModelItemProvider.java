@@ -160,6 +160,11 @@ public class BasicModelItemProvider extends ThreadItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(ActivityDiagramPackage.Literals.BASIC_MODEL__THREADS,
+				 ActivityDiagramFactory.eINSTANCE.createThread()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActivityDiagramPackage.Literals.BASIC_MODEL__THREADS,
 				 ActivityDiagramFactory.eINSTANCE.createBasicModel()));
 
 		newChildDescriptors.add

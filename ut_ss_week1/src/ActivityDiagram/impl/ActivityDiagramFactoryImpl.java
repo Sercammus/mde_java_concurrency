@@ -72,6 +72,7 @@ public class ActivityDiagramFactoryImpl extends EFactoryImpl implements Activity
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case ActivityDiagramPackage.THREAD: return createThread();
 			case ActivityDiagramPackage.BASIC_MODEL: return createBasicModel();
 			case ActivityDiagramPackage.END: return createEnd();
 			case ActivityDiagramPackage.FORK: return createFork();
@@ -90,6 +91,16 @@ public class ActivityDiagramFactoryImpl extends EFactoryImpl implements Activity
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActivityDiagram.Thread createThread() {
+		ThreadImpl thread = new ThreadImpl();
+		return thread;
 	}
 
 	/**
