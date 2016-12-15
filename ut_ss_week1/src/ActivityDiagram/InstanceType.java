@@ -17,8 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see ActivityDiagram.ActivityDiagramPackage#getInstanceType()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ProperInstanceTypeName'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot ProperInstanceTypeName='name.matches(\'[A-Za-z_$][A-Za-z0-9_$]*\')'"
+ * @model
  * @generated
  */
 public interface InstanceType extends EObject {

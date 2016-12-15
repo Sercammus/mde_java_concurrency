@@ -60,11 +60,34 @@ public class ActivityItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 			addInstancePropertyDescriptor(object);
 			addThreadPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
+			addAccessedReferencesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Activity_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Activity_name_feature", "_UI_Activity_type"),
+				 ActivityDiagramPackage.Literals.ACTIVITY__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -112,23 +135,23 @@ public class ActivityItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Accessed References feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addAccessedReferencesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Activity_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Activity_name_feature", "_UI_Activity_type"),
-				 ActivityDiagramPackage.Literals.ACTIVITY__NAME,
+				 getString("_UI_Activity_accessedReferences_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Activity_accessedReferences_feature", "_UI_Activity_type"),
+				 ActivityDiagramPackage.Literals.ACTIVITY__ACCESSED_REFERENCES,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

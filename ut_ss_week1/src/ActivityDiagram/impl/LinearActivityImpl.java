@@ -6,6 +6,8 @@ import ActivityDiagram.Activity;
 import ActivityDiagram.ActivityDiagramPackage;
 import ActivityDiagram.Fork;
 import ActivityDiagram.LinearActivity;
+import ActivityDiagram.Reference;
+import ActivityDiagram.SharedResource;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -128,6 +130,31 @@ public abstract class LinearActivityImpl extends ActivityImpl implements LinearA
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate GET_ACCESSED_REFERENCES_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ActivityDiagramPackage.Literals.LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Reference> GetAccessedReferences(EList<SharedResource> soFar, EList<Activity> beenHere) {
+		try {
+			return (EList<Reference>)GET_ACCESSED_REFERENCES_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{soFar, beenHere}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -197,6 +224,8 @@ public abstract class LinearActivityImpl extends ActivityImpl implements LinearA
 		switch (operationID) {
 			case ActivityDiagramPackage.LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST:
 				return JoinsCorrectly((EList<Fork>)arguments.get(0), (EList<Activity>)arguments.get(1));
+			case ActivityDiagramPackage.LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST:
+				return GetAccessedReferences((EList<SharedResource>)arguments.get(0), (EList<Activity>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

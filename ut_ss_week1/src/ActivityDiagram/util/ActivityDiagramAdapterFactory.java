@@ -7,16 +7,18 @@ import ActivityDiagram.ActivityDiagramPackage;
 import ActivityDiagram.BasicModel;
 import ActivityDiagram.Branch;
 import ActivityDiagram.Decision;
-import ActivityDiagram.DescribedActivity;
 import ActivityDiagram.End;
 import ActivityDiagram.FinalActivity;
 import ActivityDiagram.Fork;
+import ActivityDiagram.ForkedThread;
 import ActivityDiagram.Instance;
 import ActivityDiagram.InstanceType;
 import ActivityDiagram.Interrupt;
 import ActivityDiagram.Join;
 import ActivityDiagram.LinearActivity;
+import ActivityDiagram.NamedActivity;
 import ActivityDiagram.NestedActivity;
+import ActivityDiagram.Reference;
 import ActivityDiagram.SharedResource;
 import ActivityDiagram.SimpleActivity;
 import ActivityDiagram.Sleep;
@@ -86,6 +88,10 @@ public class ActivityDiagramAdapterFactory extends AdapterFactoryImpl {
 	protected ActivityDiagramSwitch<Adapter> modelSwitch =
 		new ActivityDiagramSwitch<Adapter>() {
 			@Override
+			public Adapter caseThread(ActivityDiagram.Thread object) {
+				return createThreadAdapter();
+			}
+			@Override
 			public Adapter caseBasicModel(BasicModel object) {
 				return createBasicModelAdapter();
 			}
@@ -142,10 +148,6 @@ public class ActivityDiagramAdapterFactory extends AdapterFactoryImpl {
 				return createSleepAdapter();
 			}
 			@Override
-			public Adapter caseThread(ActivityDiagram.Thread object) {
-				return createThreadAdapter();
-			}
-			@Override
 			public Adapter caseYield(Yield object) {
 				return createYieldAdapter();
 			}
@@ -158,8 +160,16 @@ public class ActivityDiagramAdapterFactory extends AdapterFactoryImpl {
 				return createNestedActivityAdapter();
 			}
 			@Override
-			public Adapter caseDescribedActivity(DescribedActivity object) {
-				return createDescribedActivityAdapter();
+			public Adapter caseForkedThread(ForkedThread object) {
+				return createForkedThreadAdapter();
+			}
+			@Override
+			public Adapter caseNamedActivity(NamedActivity object) {
+				return createNamedActivityAdapter();
+			}
+			@Override
+			public Adapter caseReference(Reference object) {
+				return createReferenceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -180,6 +190,20 @@ public class ActivityDiagramAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ActivityDiagram.Thread <em>Thread</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ActivityDiagram.Thread
+	 * @generated
+	 */
+	public Adapter createThreadAdapter() {
+		return null;
+	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link ActivityDiagram.BasicModel <em>Basic Model</em>}'.
@@ -378,20 +402,6 @@ public class ActivityDiagramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ActivityDiagram.Thread <em>Thread</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ActivityDiagram.Thread
-	 * @generated
-	 */
-	public Adapter createThreadAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link ActivityDiagram.Yield <em>Yield</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -434,16 +444,44 @@ public class ActivityDiagramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ActivityDiagram.DescribedActivity <em>Described Activity</em>}'.
+	 * Creates a new adapter for an object of class '{@link ActivityDiagram.ForkedThread <em>Forked Thread</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ActivityDiagram.DescribedActivity
+	 * @see ActivityDiagram.ForkedThread
 	 * @generated
 	 */
-	public Adapter createDescribedActivityAdapter() {
+	public Adapter createForkedThreadAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ActivityDiagram.NamedActivity <em>Named Activity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ActivityDiagram.NamedActivity
+	 * @generated
+	 */
+	public Adapter createNamedActivityAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ActivityDiagram.Reference <em>Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ActivityDiagram.Reference
+	 * @generated
+	 */
+	public Adapter createReferenceAdapter() {
 		return null;
 	}
 

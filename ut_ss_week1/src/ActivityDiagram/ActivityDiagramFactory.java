@@ -121,15 +121,6 @@ public interface ActivityDiagramFactory extends EFactory {
 	Sleep createSleep();
 
 	/**
-	 * Returns a new object of class '<em>Thread</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Thread</em>'.
-	 * @generated
-	 */
-	Thread createThread();
-
-	/**
 	 * Returns a new object of class '<em>Yield</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,6 +146,15 @@ public interface ActivityDiagramFactory extends EFactory {
 	 * @generated
 	 */
 	NestedActivity createNestedActivity();
+
+	/**
+	 * Returns a new object of class '<em>Forked Thread</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Forked Thread</em>'.
+	 * @generated
+	 */
+	ForkedThread createForkedThread();
 
 	/**
 	 * Returns the package supported by this factory.

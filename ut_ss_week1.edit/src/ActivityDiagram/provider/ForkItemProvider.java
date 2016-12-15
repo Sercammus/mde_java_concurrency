@@ -3,7 +3,6 @@
 package ActivityDiagram.provider;
 
 
-import ActivityDiagram.ActivityDiagramFactory;
 import ActivityDiagram.ActivityDiagramPackage;
 import ActivityDiagram.Fork;
 
@@ -12,8 +11,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -48,25 +45,26 @@ public class ForkItemProvider extends ActivityItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addThreadCountPropertyDescriptor(object);
+			addMaxThreadCountPropertyDescriptor(object);
+			addForkedThreadsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Thread Count feature.
+	 * This adds a property descriptor for the Max Thread Count feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addThreadCountPropertyDescriptor(Object object) {
+	protected void addMaxThreadCountPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Fork_threadCount_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Fork_threadCount_feature", "_UI_Fork_type"),
-				 ActivityDiagramPackage.Literals.FORK__THREAD_COUNT,
+				 getString("_UI_Fork_maxThreadCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Fork_maxThreadCount_feature", "_UI_Fork_type"),
+				 ActivityDiagramPackage.Literals.FORK__MAX_THREAD_COUNT,
 				 true,
 				 false,
 				 false,
@@ -76,33 +74,25 @@ public class ForkItemProvider extends ActivityItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Forked Threads feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(ActivityDiagramPackage.Literals.FORK__THREADS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	protected void addForkedThreadsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Fork_forkedThreads_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Fork_forkedThreads_feature", "_UI_Fork_type"),
+				 ActivityDiagramPackage.Literals.FORK__FORKED_THREADS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -143,11 +133,8 @@ public class ForkItemProvider extends ActivityItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Fork.class)) {
-			case ActivityDiagramPackage.FORK__THREAD_COUNT:
+			case ActivityDiagramPackage.FORK__MAX_THREAD_COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ActivityDiagramPackage.FORK__THREADS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -163,11 +150,6 @@ public class ForkItemProvider extends ActivityItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActivityDiagramPackage.Literals.FORK__THREADS,
-				 ActivityDiagramFactory.eINSTANCE.createThread()));
 	}
 
 }

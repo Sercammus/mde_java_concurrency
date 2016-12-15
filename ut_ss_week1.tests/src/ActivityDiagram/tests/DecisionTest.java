@@ -15,6 +15,7 @@ import junit.textui.TestRunner;
  * The following operations are tested:
  * <ul>
  *   <li>{@link ActivityDiagram.Decision#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}</li>
+ *   <li>{@link ActivityDiagram.Decision#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -81,6 +82,19 @@ public class DecisionTest extends LinearActivityTest {
 	 * @generated
 	 */
 	public void testJoinsCorrectly__EList_EList() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link ActivityDiagram.Decision#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ActivityDiagram.Decision#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	public void testGetAccessedReferences__EList_EList() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

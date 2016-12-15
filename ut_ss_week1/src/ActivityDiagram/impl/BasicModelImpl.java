@@ -2,7 +2,6 @@
  */
 package ActivityDiagram.impl;
 
-import ActivityDiagram.Activity;
 import ActivityDiagram.ActivityDiagramPackage;
 import ActivityDiagram.BasicModel;
 import ActivityDiagram.Instance;
@@ -11,16 +10,12 @@ import ActivityDiagram.SharedResource;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -36,13 +31,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link ActivityDiagram.impl.BasicModelImpl#getResources <em>Resources</em>}</li>
  *   <li>{@link ActivityDiagram.impl.BasicModelImpl#getInstances <em>Instances</em>}</li>
  *   <li>{@link ActivityDiagram.impl.BasicModelImpl#getInstanceTypes <em>Instance Types</em>}</li>
- *   <li>{@link ActivityDiagram.impl.BasicModelImpl#getStartActivity <em>Start Activity</em>}</li>
- *   <li>{@link ActivityDiagram.impl.BasicModelImpl#getActivities <em>Activities</em>}</li>
+ *   <li>{@link ActivityDiagram.impl.BasicModelImpl#getThreads <em>Threads</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BasicModelImpl extends MinimalEObjectImpl.Container implements BasicModel {
+public class BasicModelImpl extends ThreadImpl implements BasicModel {
 	/**
 	 * The cached value of the '{@link #getResources() <em>Resources</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -74,24 +68,14 @@ public class BasicModelImpl extends MinimalEObjectImpl.Container implements Basi
 	protected EList<InstanceType> instanceTypes;
 
 	/**
-	 * The cached value of the '{@link #getStartActivity() <em>Start Activity</em>}' reference.
+	 * The cached value of the '{@link #getThreads() <em>Threads</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStartActivity()
+	 * @see #getThreads()
 	 * @generated
 	 * @ordered
 	 */
-	protected Activity startActivity;
-
-	/**
-	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getActivities()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Activity> activities;
+	protected EList<ActivityDiagram.Thread> threads;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -153,49 +137,11 @@ public class BasicModelImpl extends MinimalEObjectImpl.Container implements Basi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity getStartActivity() {
-		if (startActivity != null && startActivity.eIsProxy()) {
-			InternalEObject oldStartActivity = (InternalEObject)startActivity;
-			startActivity = (Activity)eResolveProxy(oldStartActivity);
-			if (startActivity != oldStartActivity) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivityDiagramPackage.BASIC_MODEL__START_ACTIVITY, oldStartActivity, startActivity));
-			}
+	public EList<ActivityDiagram.Thread> getThreads() {
+		if (threads == null) {
+			threads = new EObjectContainmentEList<ActivityDiagram.Thread>(ActivityDiagram.Thread.class, this, ActivityDiagramPackage.BASIC_MODEL__THREADS);
 		}
-		return startActivity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Activity basicGetStartActivity() {
-		return startActivity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStartActivity(Activity newStartActivity) {
-		Activity oldStartActivity = startActivity;
-		startActivity = newStartActivity;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.BASIC_MODEL__START_ACTIVITY, oldStartActivity, startActivity));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Activity> getActivities() {
-		if (activities == null) {
-			activities = new EObjectContainmentEList<Activity>(Activity.class, this, ActivityDiagramPackage.BASIC_MODEL__ACTIVITIES);
-		}
-		return activities;
+		return threads;
 	}
 
 	/**
@@ -212,8 +158,8 @@ public class BasicModelImpl extends MinimalEObjectImpl.Container implements Basi
 				return ((InternalEList<?>)getInstances()).basicRemove(otherEnd, msgs);
 			case ActivityDiagramPackage.BASIC_MODEL__INSTANCE_TYPES:
 				return ((InternalEList<?>)getInstanceTypes()).basicRemove(otherEnd, msgs);
-			case ActivityDiagramPackage.BASIC_MODEL__ACTIVITIES:
-				return ((InternalEList<?>)getActivities()).basicRemove(otherEnd, msgs);
+			case ActivityDiagramPackage.BASIC_MODEL__THREADS:
+				return ((InternalEList<?>)getThreads()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -232,11 +178,8 @@ public class BasicModelImpl extends MinimalEObjectImpl.Container implements Basi
 				return getInstances();
 			case ActivityDiagramPackage.BASIC_MODEL__INSTANCE_TYPES:
 				return getInstanceTypes();
-			case ActivityDiagramPackage.BASIC_MODEL__START_ACTIVITY:
-				if (resolve) return getStartActivity();
-				return basicGetStartActivity();
-			case ActivityDiagramPackage.BASIC_MODEL__ACTIVITIES:
-				return getActivities();
+			case ActivityDiagramPackage.BASIC_MODEL__THREADS:
+				return getThreads();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -262,12 +205,9 @@ public class BasicModelImpl extends MinimalEObjectImpl.Container implements Basi
 				getInstanceTypes().clear();
 				getInstanceTypes().addAll((Collection<? extends InstanceType>)newValue);
 				return;
-			case ActivityDiagramPackage.BASIC_MODEL__START_ACTIVITY:
-				setStartActivity((Activity)newValue);
-				return;
-			case ActivityDiagramPackage.BASIC_MODEL__ACTIVITIES:
-				getActivities().clear();
-				getActivities().addAll((Collection<? extends Activity>)newValue);
+			case ActivityDiagramPackage.BASIC_MODEL__THREADS:
+				getThreads().clear();
+				getThreads().addAll((Collection<? extends ActivityDiagram.Thread>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -290,11 +230,8 @@ public class BasicModelImpl extends MinimalEObjectImpl.Container implements Basi
 			case ActivityDiagramPackage.BASIC_MODEL__INSTANCE_TYPES:
 				getInstanceTypes().clear();
 				return;
-			case ActivityDiagramPackage.BASIC_MODEL__START_ACTIVITY:
-				setStartActivity((Activity)null);
-				return;
-			case ActivityDiagramPackage.BASIC_MODEL__ACTIVITIES:
-				getActivities().clear();
+			case ActivityDiagramPackage.BASIC_MODEL__THREADS:
+				getThreads().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -314,10 +251,8 @@ public class BasicModelImpl extends MinimalEObjectImpl.Container implements Basi
 				return instances != null && !instances.isEmpty();
 			case ActivityDiagramPackage.BASIC_MODEL__INSTANCE_TYPES:
 				return instanceTypes != null && !instanceTypes.isEmpty();
-			case ActivityDiagramPackage.BASIC_MODEL__START_ACTIVITY:
-				return startActivity != null;
-			case ActivityDiagramPackage.BASIC_MODEL__ACTIVITIES:
-				return activities != null && !activities.isEmpty();
+			case ActivityDiagramPackage.BASIC_MODEL__THREADS:
+				return threads != null && !threads.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

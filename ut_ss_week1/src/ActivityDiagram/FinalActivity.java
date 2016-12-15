@@ -27,4 +27,16 @@ public interface FinalActivity extends Activity {
 	 */
 	EList<Activity> JoinsCorrectly(EList<Fork> fork, EList<Activity> beenHere);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false" soFarMany="true" soFarOrdered="false"
+	 *        soFarAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'" beenHereMany="true" beenHereOrdered="false"
+	 *        beenHereAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='soFar'"
+	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 * @generated
+	 */
+	EList<Reference> GetAccessedReferences(EList<SharedResource> soFar, EList<Activity> beenHere);
+
 } // FinalActivity

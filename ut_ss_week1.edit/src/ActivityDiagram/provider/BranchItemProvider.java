@@ -60,26 +60,26 @@ public class BranchItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addActivityPropertyDescriptor(object);
+			addNextActivityPropertyDescriptor(object);
 			addConditionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Activity feature.
+	 * This adds a property descriptor for the Next Activity feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addActivityPropertyDescriptor(Object object) {
+	protected void addNextActivityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Branch_activity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Branch_activity_feature", "_UI_Branch_type"),
-				 ActivityDiagramPackage.Literals.BRANCH__ACTIVITY,
+				 getString("_UI_Branch_nextActivity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Branch_nextActivity_feature", "_UI_Branch_type"),
+				 ActivityDiagramPackage.Literals.BRANCH__NEXT_ACTIVITY,
 				 true,
 				 false,
 				 true,

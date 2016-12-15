@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ActivityDiagram.Branch#getActivity <em>Activity</em>}</li>
+ *   <li>{@link ActivityDiagram.Branch#getNextActivity <em>Next Activity</em>}</li>
  *   <li>{@link ActivityDiagram.Branch#getCondition <em>Condition</em>}</li>
  * </ul>
  *
@@ -24,30 +24,30 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Branch extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Activity</b></em>' reference.
+	 * Returns the value of the '<em><b>Next Activity</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Activity</em>' reference isn't clear,
+	 * If the meaning of the '<em>Next Activity</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Activity</em>' reference.
-	 * @see #setActivity(Activity)
-	 * @see ActivityDiagram.ActivityDiagramPackage#getBranch_Activity()
+	 * @return the value of the '<em>Next Activity</em>' reference.
+	 * @see #setNextActivity(Activity)
+	 * @see ActivityDiagram.ActivityDiagramPackage#getBranch_NextActivity()
 	 * @model required="true"
 	 * @generated
 	 */
-	Activity getActivity();
+	Activity getNextActivity();
 
 	/**
-	 * Sets the value of the '{@link ActivityDiagram.Branch#getActivity <em>Activity</em>}' reference.
+	 * Sets the value of the '{@link ActivityDiagram.Branch#getNextActivity <em>Next Activity</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Activity</em>' reference.
-	 * @see #getActivity()
+	 * @param value the new value of the '<em>Next Activity</em>' reference.
+	 * @see #getNextActivity()
 	 * @generated
 	 */
-	void setActivity(Activity value);
+	void setNextActivity(Activity value);
 
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' attribute.

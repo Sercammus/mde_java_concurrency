@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ActivityDiagram.impl.BranchImpl#getActivity <em>Activity</em>}</li>
+ *   <li>{@link ActivityDiagram.impl.BranchImpl#getNextActivity <em>Next Activity</em>}</li>
  *   <li>{@link ActivityDiagram.impl.BranchImpl#getCondition <em>Condition</em>}</li>
  * </ul>
  *
@@ -30,14 +30,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class BranchImpl extends MinimalEObjectImpl.Container implements Branch {
 	/**
-	 * The cached value of the '{@link #getActivity() <em>Activity</em>}' reference.
+	 * The cached value of the '{@link #getNextActivity() <em>Next Activity</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getActivity()
+	 * @see #getNextActivity()
 	 * @generated
 	 * @ordered
 	 */
-	protected Activity activity;
+	protected Activity nextActivity;
 
 	/**
 	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute.
@@ -83,16 +83,16 @@ public class BranchImpl extends MinimalEObjectImpl.Container implements Branch {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity getActivity() {
-		if (activity != null && activity.eIsProxy()) {
-			InternalEObject oldActivity = (InternalEObject)activity;
-			activity = (Activity)eResolveProxy(oldActivity);
-			if (activity != oldActivity) {
+	public Activity getNextActivity() {
+		if (nextActivity != null && nextActivity.eIsProxy()) {
+			InternalEObject oldNextActivity = (InternalEObject)nextActivity;
+			nextActivity = (Activity)eResolveProxy(oldNextActivity);
+			if (nextActivity != oldNextActivity) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivityDiagramPackage.BRANCH__ACTIVITY, oldActivity, activity));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivityDiagramPackage.BRANCH__NEXT_ACTIVITY, oldNextActivity, nextActivity));
 			}
 		}
-		return activity;
+		return nextActivity;
 	}
 
 	/**
@@ -100,8 +100,8 @@ public class BranchImpl extends MinimalEObjectImpl.Container implements Branch {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity basicGetActivity() {
-		return activity;
+	public Activity basicGetNextActivity() {
+		return nextActivity;
 	}
 
 	/**
@@ -109,11 +109,11 @@ public class BranchImpl extends MinimalEObjectImpl.Container implements Branch {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActivity(Activity newActivity) {
-		Activity oldActivity = activity;
-		activity = newActivity;
+	public void setNextActivity(Activity newNextActivity) {
+		Activity oldNextActivity = nextActivity;
+		nextActivity = newNextActivity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.BRANCH__ACTIVITY, oldActivity, activity));
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.BRANCH__NEXT_ACTIVITY, oldNextActivity, nextActivity));
 	}
 
 	/**
@@ -145,9 +145,9 @@ public class BranchImpl extends MinimalEObjectImpl.Container implements Branch {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ActivityDiagramPackage.BRANCH__ACTIVITY:
-				if (resolve) return getActivity();
-				return basicGetActivity();
+			case ActivityDiagramPackage.BRANCH__NEXT_ACTIVITY:
+				if (resolve) return getNextActivity();
+				return basicGetNextActivity();
 			case ActivityDiagramPackage.BRANCH__CONDITION:
 				return getCondition();
 		}
@@ -162,8 +162,8 @@ public class BranchImpl extends MinimalEObjectImpl.Container implements Branch {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ActivityDiagramPackage.BRANCH__ACTIVITY:
-				setActivity((Activity)newValue);
+			case ActivityDiagramPackage.BRANCH__NEXT_ACTIVITY:
+				setNextActivity((Activity)newValue);
 				return;
 			case ActivityDiagramPackage.BRANCH__CONDITION:
 				setCondition((String)newValue);
@@ -180,8 +180,8 @@ public class BranchImpl extends MinimalEObjectImpl.Container implements Branch {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ActivityDiagramPackage.BRANCH__ACTIVITY:
-				setActivity((Activity)null);
+			case ActivityDiagramPackage.BRANCH__NEXT_ACTIVITY:
+				setNextActivity((Activity)null);
 				return;
 			case ActivityDiagramPackage.BRANCH__CONDITION:
 				setCondition(CONDITION_EDEFAULT);
@@ -198,8 +198,8 @@ public class BranchImpl extends MinimalEObjectImpl.Container implements Branch {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ActivityDiagramPackage.BRANCH__ACTIVITY:
-				return activity != null;
+			case ActivityDiagramPackage.BRANCH__NEXT_ACTIVITY:
+				return nextActivity != null;
 			case ActivityDiagramPackage.BRANCH__CONDITION:
 				return CONDITION_EDEFAULT == null ? condition != null : !CONDITION_EDEFAULT.equals(condition);
 		}

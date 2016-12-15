@@ -5,13 +5,20 @@ package ActivityDiagram.impl;
 import ActivityDiagram.Activity;
 import ActivityDiagram.ActivityDiagramPackage;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,63 +28,32 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ActivityDiagram.impl.ThreadImpl#isDaemon <em>Daemon</em>}</li>
- *   <li>{@link ActivityDiagram.impl.ThreadImpl#getActivity <em>Activity</em>}</li>
- *   <li>{@link ActivityDiagram.impl.ThreadImpl#getName <em>Name</em>}</li>
+ *   <li>{@link ActivityDiagram.impl.ThreadImpl#getActivities <em>Activities</em>}</li>
+ *   <li>{@link ActivityDiagram.impl.ThreadImpl#getStartActivity <em>Start Activity</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ThreadImpl extends MinimalEObjectImpl.Container implements ActivityDiagram.Thread {
+public abstract class ThreadImpl extends ReferenceImpl implements ActivityDiagram.Thread {
 	/**
-	 * The default value of the '{@link #isDaemon() <em>Daemon</em>}' attribute.
+	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDaemon()
+	 * @see #getActivities()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean DAEMON_EDEFAULT = false;
+	protected EList<Activity> activities;
 
 	/**
-	 * The cached value of the '{@link #isDaemon() <em>Daemon</em>}' attribute.
+	 * The cached value of the '{@link #getStartActivity() <em>Start Activity</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDaemon()
+	 * @see #getStartActivity()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean daemon = DAEMON_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getActivity() <em>Activity</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getActivity()
-	 * @generated
-	 * @ordered
-	 */
-	protected Activity activity;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
+	protected Activity startActivity;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -103,8 +79,11 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDaemon() {
-		return daemon;
+	public EList<Activity> getActivities() {
+		if (activities == null) {
+			activities = new EObjectContainmentEList<Activity>(Activity.class, this, ActivityDiagramPackage.THREAD__ACTIVITIES);
+		}
+		return activities;
 	}
 
 	/**
@@ -112,28 +91,16 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDaemon(boolean newDaemon) {
-		boolean oldDaemon = daemon;
-		daemon = newDaemon;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.THREAD__DAEMON, oldDaemon, daemon));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Activity getActivity() {
-		if (activity != null && activity.eIsProxy()) {
-			InternalEObject oldActivity = (InternalEObject)activity;
-			activity = (Activity)eResolveProxy(oldActivity);
-			if (activity != oldActivity) {
+	public Activity getStartActivity() {
+		if (startActivity != null && startActivity.eIsProxy()) {
+			InternalEObject oldStartActivity = (InternalEObject)startActivity;
+			startActivity = (Activity)eResolveProxy(oldStartActivity);
+			if (startActivity != oldStartActivity) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivityDiagramPackage.THREAD__ACTIVITY, oldActivity, activity));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivityDiagramPackage.THREAD__START_ACTIVITY, oldStartActivity, startActivity));
 			}
 		}
-		return activity;
+		return startActivity;
 	}
 
 	/**
@@ -141,8 +108,8 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity basicGetActivity() {
-		return activity;
+	public Activity basicGetStartActivity() {
+		return startActivity;
 	}
 
 	/**
@@ -150,11 +117,11 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActivity(Activity newActivity) {
-		Activity oldActivity = activity;
-		activity = newActivity;
+	public void setStartActivity(Activity newStartActivity) {
+		Activity oldStartActivity = startActivity;
+		startActivity = newStartActivity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.THREAD__ACTIVITY, oldActivity, activity));
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.THREAD__START_ACTIVITY, oldStartActivity, startActivity));
 	}
 
 	/**
@@ -162,20 +129,13 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.THREAD__NAME, oldName, name));
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ActivityDiagramPackage.THREAD__ACTIVITIES:
+				return ((InternalEList<?>)getActivities()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -186,13 +146,11 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements Activity
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ActivityDiagramPackage.THREAD__DAEMON:
-				return isDaemon();
-			case ActivityDiagramPackage.THREAD__ACTIVITY:
-				if (resolve) return getActivity();
-				return basicGetActivity();
-			case ActivityDiagramPackage.THREAD__NAME:
-				return getName();
+			case ActivityDiagramPackage.THREAD__ACTIVITIES:
+				return getActivities();
+			case ActivityDiagramPackage.THREAD__START_ACTIVITY:
+				if (resolve) return getStartActivity();
+				return basicGetStartActivity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,17 +160,16 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ActivityDiagramPackage.THREAD__DAEMON:
-				setDaemon((Boolean)newValue);
+			case ActivityDiagramPackage.THREAD__ACTIVITIES:
+				getActivities().clear();
+				getActivities().addAll((Collection<? extends Activity>)newValue);
 				return;
-			case ActivityDiagramPackage.THREAD__ACTIVITY:
-				setActivity((Activity)newValue);
-				return;
-			case ActivityDiagramPackage.THREAD__NAME:
-				setName((String)newValue);
+			case ActivityDiagramPackage.THREAD__START_ACTIVITY:
+				setStartActivity((Activity)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -226,14 +183,11 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements Activity
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ActivityDiagramPackage.THREAD__DAEMON:
-				setDaemon(DAEMON_EDEFAULT);
+			case ActivityDiagramPackage.THREAD__ACTIVITIES:
+				getActivities().clear();
 				return;
-			case ActivityDiagramPackage.THREAD__ACTIVITY:
-				setActivity((Activity)null);
-				return;
-			case ActivityDiagramPackage.THREAD__NAME:
-				setName(NAME_EDEFAULT);
+			case ActivityDiagramPackage.THREAD__START_ACTIVITY:
+				setStartActivity((Activity)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -247,32 +201,12 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements Activity
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ActivityDiagramPackage.THREAD__DAEMON:
-				return daemon != DAEMON_EDEFAULT;
-			case ActivityDiagramPackage.THREAD__ACTIVITY:
-				return activity != null;
-			case ActivityDiagramPackage.THREAD__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ActivityDiagramPackage.THREAD__ACTIVITIES:
+				return activities != null && !activities.isEmpty();
+			case ActivityDiagramPackage.THREAD__START_ACTIVITY:
+				return startActivity != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (daemon: ");
-		result.append(daemon);
-		result.append(", name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ThreadImpl

@@ -15,7 +15,9 @@ import junit.textui.TestRunner;
  * The following operations are tested:
  * <ul>
  *   <li>{@link ActivityDiagram.Fork#JoinsCorrectly() <em>Joins Correctly</em>}</li>
+ *   <li>{@link ActivityDiagram.Fork#JoinsCorrectly(org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}</li>
  *   <li>{@link ActivityDiagram.Fork#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}</li>
+ *   <li>{@link ActivityDiagram.Fork#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -88,6 +90,19 @@ public class ForkTest extends ActivityTest {
 	}
 
 	/**
+	 * Tests the '{@link ActivityDiagram.Fork#JoinsCorrectly(org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ActivityDiagram.Fork#JoinsCorrectly(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	public void testJoinsCorrectly__EList() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
 	 * Tests the '{@link ActivityDiagram.Fork#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,6 +110,19 @@ public class ForkTest extends ActivityTest {
 	 * @generated
 	 */
 	public void testJoinsCorrectly__EList_EList() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link ActivityDiagram.Fork#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ActivityDiagram.Fork#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	public void testGetAccessedReferences__EList_EList() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

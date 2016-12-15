@@ -12,6 +12,7 @@ import ActivityDiagram.LinearActivity;
  * The following operations are tested:
  * <ul>
  *   <li>{@link ActivityDiagram.LinearActivity#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}</li>
+ *   <li>{@link ActivityDiagram.LinearActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -47,6 +48,19 @@ public abstract class LinearActivityTest extends ActivityTest {
 	 * @generated
 	 */
 	public void testJoinsCorrectly__EList_EList() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link ActivityDiagram.LinearActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ActivityDiagram.LinearActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	public void testGetAccessedReferences__EList_EList() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

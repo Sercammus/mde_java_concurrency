@@ -12,6 +12,7 @@ import ActivityDiagram.FinalActivity;
  * The following operations are tested:
  * <ul>
  *   <li>{@link ActivityDiagram.FinalActivity#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}</li>
+ *   <li>{@link ActivityDiagram.FinalActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -47,6 +48,19 @@ public abstract class FinalActivityTest extends ActivityTest {
 	 * @generated
 	 */
 	public void testJoinsCorrectly__EList_EList() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link ActivityDiagram.FinalActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ActivityDiagram.FinalActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	public void testGetAccessedReferences__EList_EList() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

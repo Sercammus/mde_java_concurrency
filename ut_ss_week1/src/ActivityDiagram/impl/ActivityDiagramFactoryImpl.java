@@ -9,6 +9,7 @@ import ActivityDiagram.Branch;
 import ActivityDiagram.Decision;
 import ActivityDiagram.End;
 import ActivityDiagram.Fork;
+import ActivityDiagram.ForkedThread;
 import ActivityDiagram.Instance;
 import ActivityDiagram.InstanceType;
 import ActivityDiagram.Interrupt;
@@ -82,10 +83,10 @@ public class ActivityDiagramFactoryImpl extends EFactoryImpl implements Activity
 			case ActivityDiagramPackage.INSTANCE: return createInstance();
 			case ActivityDiagramPackage.INSTANCE_TYPE: return createInstanceType();
 			case ActivityDiagramPackage.SLEEP: return createSleep();
-			case ActivityDiagramPackage.THREAD: return createThread();
 			case ActivityDiagramPackage.YIELD: return createYield();
 			case ActivityDiagramPackage.SIMPLE_ACTIVITY: return createSimpleActivity();
 			case ActivityDiagramPackage.NESTED_ACTIVITY: return createNestedActivity();
+			case ActivityDiagramPackage.FORKED_THREAD: return createForkedThread();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -206,16 +207,6 @@ public class ActivityDiagramFactoryImpl extends EFactoryImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityDiagram.Thread createThread() {
-		ThreadImpl thread = new ThreadImpl();
-		return thread;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Yield createYield() {
 		YieldImpl yield = new YieldImpl();
 		return yield;
@@ -239,6 +230,16 @@ public class ActivityDiagramFactoryImpl extends EFactoryImpl implements Activity
 	public NestedActivity createNestedActivity() {
 		NestedActivityImpl nestedActivity = new NestedActivityImpl();
 		return nestedActivity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ForkedThread createForkedThread() {
+		ForkedThreadImpl forkedThread = new ForkedThreadImpl();
+		return forkedThread;
 	}
 
 	/**

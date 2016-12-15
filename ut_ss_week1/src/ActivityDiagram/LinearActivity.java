@@ -61,4 +61,16 @@ public interface LinearActivity extends Activity {
 	 */
 	EList<Activity> JoinsCorrectly(EList<Fork> fork, EList<Activity> beenHere);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false" soFarMany="true" soFarOrdered="false"
+	 *        soFarAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'" beenHereMany="true" beenHereOrdered="false"
+	 *        beenHereAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else nextActivity.GetAccessedReferences(soFar, beenHere->including(self))\n\t\t\t      endif'"
+	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 * @generated
+	 */
+	EList<Reference> GetAccessedReferences(EList<SharedResource> soFar, EList<Activity> beenHere);
+
 } // LinearActivity

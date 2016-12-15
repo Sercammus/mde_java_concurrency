@@ -5,8 +5,6 @@ package ActivityDiagram.tests;
 import ActivityDiagram.ActivityDiagramFactory;
 import ActivityDiagram.Instance;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 /**
@@ -15,15 +13,7 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InstanceTest extends TestCase {
-
-	/**
-	 * The fixture for this Instance test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Instance fixture = null;
+public class InstanceTest extends ReferenceTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -45,23 +35,14 @@ public class InstanceTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Instance test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(Instance fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Instance test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected Instance getFixture() {
-		return fixture;
+		return (Instance)fixture;
 	}
 
 	/**

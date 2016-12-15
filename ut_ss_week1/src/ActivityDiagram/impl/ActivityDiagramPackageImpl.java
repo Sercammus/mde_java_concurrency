@@ -8,16 +8,18 @@ import ActivityDiagram.ActivityDiagramPackage;
 import ActivityDiagram.BasicModel;
 import ActivityDiagram.Branch;
 import ActivityDiagram.Decision;
-import ActivityDiagram.DescribedActivity;
 import ActivityDiagram.End;
 import ActivityDiagram.FinalActivity;
 import ActivityDiagram.Fork;
+import ActivityDiagram.ForkedThread;
 import ActivityDiagram.Instance;
 import ActivityDiagram.InstanceType;
 import ActivityDiagram.Interrupt;
 import ActivityDiagram.Join;
 import ActivityDiagram.LinearActivity;
+import ActivityDiagram.NamedActivity;
 import ActivityDiagram.NestedActivity;
+import ActivityDiagram.Reference;
 import ActivityDiagram.SharedResource;
 import ActivityDiagram.SimpleActivity;
 import ActivityDiagram.Sleep;
@@ -41,6 +43,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * @generated
  */
 public class ActivityDiagramPackageImpl extends EPackageImpl implements ActivityDiagramPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass threadEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -144,13 +153,6 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass threadEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass yieldEClass = null;
 
 	/**
@@ -172,7 +174,21 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass describedActivityEClass = null;
+	private EClass forkedThreadEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass namedActivityEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass referenceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -249,6 +265,33 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getThread() {
+		return threadEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getThread_Activities() {
+		return (EReference)threadEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getThread_StartActivity() {
+		return (EReference)threadEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBasicModel() {
 		return basicModelEClass;
 	}
@@ -285,17 +328,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBasicModel_StartActivity() {
+	public EReference getBasicModel_Threads() {
 		return (EReference)basicModelEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBasicModel_Activities() {
-		return (EReference)basicModelEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -312,8 +346,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivity_Instance() {
-		return (EReference)activityEClass.getEStructuralFeatures().get(0);
+	public EAttribute getActivity_Name() {
+		return (EAttribute)activityEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -321,7 +355,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivity_Thread() {
+	public EReference getActivity_Instance() {
 		return (EReference)activityEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -330,8 +364,17 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getActivity_Name() {
-		return (EAttribute)activityEClass.getEStructuralFeatures().get(2);
+	public EReference getActivity_Thread() {
+		return (EReference)activityEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActivity_AccessedReferences() {
+		return (EReference)activityEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -348,7 +391,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getActivity__JoinsCorrectly__EList_EList() {
+	public EOperation getActivity__JoinsCorrectly__EList() {
 		return activityEClass.getEOperations().get(1);
 	}
 
@@ -357,7 +400,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getActivity__UsesDifferentThread__Activity() {
+	public EOperation getActivity__JoinsCorrectly__EList_EList() {
 		return activityEClass.getEOperations().get(2);
 	}
 
@@ -366,8 +409,26 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getActivity__UsesSameThread__Activity() {
+	public EOperation getActivity__UsesDifferentThread__Activity() {
 		return activityEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getActivity__UsesSameThread__Activity() {
+		return activityEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getActivity__GetAccessedReferences__EList_EList() {
+		return activityEClass.getEOperations().get(5);
 	}
 
 	/**
@@ -402,6 +463,15 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getFinalActivity__GetAccessedReferences__EList_EList() {
+		return finalActivityEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLinearActivity() {
 		return linearActivityEClass;
 	}
@@ -429,6 +499,15 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getLinearActivity__GetAccessedReferences__EList_EList() {
+		return linearActivityEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFork() {
 		return forkEClass;
 	}
@@ -438,8 +517,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFork_Threads() {
-		return (EReference)forkEClass.getEStructuralFeatures().get(0);
+	public EAttribute getFork_MaxThreadCount() {
+		return (EAttribute)forkEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -447,8 +526,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFork_ThreadCount() {
-		return (EAttribute)forkEClass.getEStructuralFeatures().get(1);
+	public EReference getFork_ForkedThreads() {
+		return (EReference)forkEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -465,8 +544,26 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFork__JoinsCorrectly__EList_EList() {
+	public EOperation getFork__JoinsCorrectly__EList() {
 		return forkEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getFork__JoinsCorrectly__EList_EList() {
+		return forkEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getFork__GetAccessedReferences__EList_EList() {
+		return forkEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -501,6 +598,15 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getDecision__GetAccessedReferences__EList_EList() {
+		return decisionEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBranch() {
 		return branchEClass;
 	}
@@ -510,7 +616,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBranch_Activity() {
+	public EReference getBranch_NextActivity() {
 		return (EReference)branchEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -555,15 +661,6 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSharedResource_Name() {
-		return (EAttribute)sharedResourceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getInterrupt() {
 		return interruptEClass;
 	}
@@ -591,17 +688,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getInstance_Name() {
-		return (EAttribute)instanceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getInstance_InstanceType() {
-		return (EReference)instanceEClass.getEStructuralFeatures().get(1);
+		return (EReference)instanceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -645,42 +733,6 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getThread() {
-		return threadEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getThread_Daemon() {
-		return (EAttribute)threadEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getThread_Activity() {
-		return (EReference)threadEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getThread_Name() {
-		return (EAttribute)threadEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getYield() {
 		return yieldEClass;
 	}
@@ -708,6 +760,15 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getSimpleActivity__GetAccessedReferences__EList_EList() {
+		return simpleActivityEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNestedActivity() {
 		return nestedActivityEClass;
 	}
@@ -717,7 +778,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNestedActivity_StartActivity() {
+	public EReference getNestedActivity_NestedThread() {
 		return (EReference)nestedActivityEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -726,8 +787,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDescribedActivity() {
-		return describedActivityEClass;
+	public EOperation getNestedActivity__JoinsCorrectly__EList_EList() {
+		return nestedActivityEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -735,8 +796,62 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDescribedActivity_Description() {
-		return (EAttribute)describedActivityEClass.getEStructuralFeatures().get(0);
+	public EOperation getNestedActivity__GetAccessedReferences__EList_EList() {
+		return nestedActivityEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getForkedThread() {
+		return forkedThreadEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getForkedThread_Daemon() {
+		return (EAttribute)forkedThreadEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNamedActivity() {
+		return namedActivityEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamedActivity_ActivityName() {
+		return (EAttribute)namedActivityEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getReference() {
+		return referenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getReference_Name() {
+		return (EAttribute)referenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -767,56 +882,65 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		isCreated = true;
 
 		// Create classes and their features
+		threadEClass = createEClass(THREAD);
+		createEReference(threadEClass, THREAD__ACTIVITIES);
+		createEReference(threadEClass, THREAD__START_ACTIVITY);
+
 		basicModelEClass = createEClass(BASIC_MODEL);
 		createEReference(basicModelEClass, BASIC_MODEL__RESOURCES);
 		createEReference(basicModelEClass, BASIC_MODEL__INSTANCES);
 		createEReference(basicModelEClass, BASIC_MODEL__INSTANCE_TYPES);
-		createEReference(basicModelEClass, BASIC_MODEL__START_ACTIVITY);
-		createEReference(basicModelEClass, BASIC_MODEL__ACTIVITIES);
+		createEReference(basicModelEClass, BASIC_MODEL__THREADS);
 
 		activityEClass = createEClass(ACTIVITY);
+		createEAttribute(activityEClass, ACTIVITY__NAME);
 		createEReference(activityEClass, ACTIVITY__INSTANCE);
 		createEReference(activityEClass, ACTIVITY__THREAD);
-		createEAttribute(activityEClass, ACTIVITY__NAME);
+		createEReference(activityEClass, ACTIVITY__ACCESSED_REFERENCES);
 		createEOperation(activityEClass, ACTIVITY___JOINS_CORRECTLY);
+		createEOperation(activityEClass, ACTIVITY___JOINS_CORRECTLY__ELIST);
 		createEOperation(activityEClass, ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST);
 		createEOperation(activityEClass, ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY);
 		createEOperation(activityEClass, ACTIVITY___USES_SAME_THREAD__ACTIVITY);
+		createEOperation(activityEClass, ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST);
 
 		endEClass = createEClass(END);
 
 		finalActivityEClass = createEClass(FINAL_ACTIVITY);
 		createEOperation(finalActivityEClass, FINAL_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST);
+		createEOperation(finalActivityEClass, FINAL_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST);
 
 		linearActivityEClass = createEClass(LINEAR_ACTIVITY);
 		createEReference(linearActivityEClass, LINEAR_ACTIVITY__NEXT_ACTIVITY);
 		createEOperation(linearActivityEClass, LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST);
+		createEOperation(linearActivityEClass, LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST);
 
 		forkEClass = createEClass(FORK);
-		createEReference(forkEClass, FORK__THREADS);
-		createEAttribute(forkEClass, FORK__THREAD_COUNT);
+		createEAttribute(forkEClass, FORK__MAX_THREAD_COUNT);
+		createEReference(forkEClass, FORK__FORKED_THREADS);
 		createEOperation(forkEClass, FORK___JOINS_CORRECTLY);
+		createEOperation(forkEClass, FORK___JOINS_CORRECTLY__ELIST);
 		createEOperation(forkEClass, FORK___JOINS_CORRECTLY__ELIST_ELIST);
+		createEOperation(forkEClass, FORK___GET_ACCESSED_REFERENCES__ELIST_ELIST);
 
 		decisionEClass = createEClass(DECISION);
 		createEReference(decisionEClass, DECISION__BRANCHES);
 		createEOperation(decisionEClass, DECISION___JOINS_CORRECTLY__ELIST_ELIST);
+		createEOperation(decisionEClass, DECISION___GET_ACCESSED_REFERENCES__ELIST_ELIST);
 
 		branchEClass = createEClass(BRANCH);
-		createEReference(branchEClass, BRANCH__ACTIVITY);
+		createEReference(branchEClass, BRANCH__NEXT_ACTIVITY);
 		createEAttribute(branchEClass, BRANCH__CONDITION);
 
 		joinEClass = createEClass(JOIN);
 		createEOperation(joinEClass, JOIN___JOINS_CORRECTLY__ELIST_ELIST);
 
 		sharedResourceEClass = createEClass(SHARED_RESOURCE);
-		createEAttribute(sharedResourceEClass, SHARED_RESOURCE__NAME);
 
 		interruptEClass = createEClass(INTERRUPT);
 		createEReference(interruptEClass, INTERRUPT__INTERRUPTED_THREAD);
 
 		instanceEClass = createEClass(INSTANCE);
-		createEAttribute(instanceEClass, INSTANCE__NAME);
 		createEReference(instanceEClass, INSTANCE__INSTANCE_TYPE);
 
 		instanceTypeEClass = createEClass(INSTANCE_TYPE);
@@ -825,21 +949,25 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		sleepEClass = createEClass(SLEEP);
 		createEAttribute(sleepEClass, SLEEP__DURATION);
 
-		threadEClass = createEClass(THREAD);
-		createEAttribute(threadEClass, THREAD__DAEMON);
-		createEReference(threadEClass, THREAD__ACTIVITY);
-		createEAttribute(threadEClass, THREAD__NAME);
-
 		yieldEClass = createEClass(YIELD);
 
 		simpleActivityEClass = createEClass(SIMPLE_ACTIVITY);
 		createEReference(simpleActivityEClass, SIMPLE_ACTIVITY__SHARED_RESOURCES);
+		createEOperation(simpleActivityEClass, SIMPLE_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST);
 
 		nestedActivityEClass = createEClass(NESTED_ACTIVITY);
-		createEReference(nestedActivityEClass, NESTED_ACTIVITY__START_ACTIVITY);
+		createEReference(nestedActivityEClass, NESTED_ACTIVITY__NESTED_THREAD);
+		createEOperation(nestedActivityEClass, NESTED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST);
+		createEOperation(nestedActivityEClass, NESTED_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST);
 
-		describedActivityEClass = createEClass(DESCRIBED_ACTIVITY);
-		createEAttribute(describedActivityEClass, DESCRIBED_ACTIVITY__DESCRIPTION);
+		forkedThreadEClass = createEClass(FORKED_THREAD);
+		createEAttribute(forkedThreadEClass, FORKED_THREAD__DAEMON);
+
+		namedActivityEClass = createEClass(NAMED_ACTIVITY);
+		createEAttribute(namedActivityEClass, NAMED_ACTIVITY__ACTIVITY_NAME);
+
+		referenceEClass = createEClass(REFERENCE);
+		createEAttribute(referenceEClass, REFERENCE__NAME);
 	}
 
 	/**
@@ -870,35 +998,47 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		threadEClass.getESuperTypes().add(this.getReference());
+		basicModelEClass.getESuperTypes().add(this.getThread());
 		endEClass.getESuperTypes().add(this.getFinalActivity());
 		finalActivityEClass.getESuperTypes().add(this.getActivity());
 		linearActivityEClass.getESuperTypes().add(this.getActivity());
 		forkEClass.getESuperTypes().add(this.getActivity());
 		decisionEClass.getESuperTypes().add(this.getLinearActivity());
 		joinEClass.getESuperTypes().add(this.getLinearActivity());
+		sharedResourceEClass.getESuperTypes().add(this.getReference());
 		interruptEClass.getESuperTypes().add(this.getLinearActivity());
+		instanceEClass.getESuperTypes().add(this.getReference());
 		sleepEClass.getESuperTypes().add(this.getLinearActivity());
 		yieldEClass.getESuperTypes().add(this.getLinearActivity());
-		simpleActivityEClass.getESuperTypes().add(this.getDescribedActivity());
-		nestedActivityEClass.getESuperTypes().add(this.getDescribedActivity());
-		describedActivityEClass.getESuperTypes().add(this.getLinearActivity());
+		simpleActivityEClass.getESuperTypes().add(this.getNamedActivity());
+		nestedActivityEClass.getESuperTypes().add(this.getNamedActivity());
+		forkedThreadEClass.getESuperTypes().add(this.getThread());
+		namedActivityEClass.getESuperTypes().add(this.getLinearActivity());
 
 		// Initialize classes, features, and operations; add parameters
+		initEClass(threadEClass, ActivityDiagram.Thread.class, "Thread", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getThread_Activities(), this.getActivity(), null, "activities", null, 0, -1, ActivityDiagram.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getThread_StartActivity(), this.getActivity(), null, "startActivity", null, 1, 1, ActivityDiagram.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(basicModelEClass, BasicModel.class, "BasicModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBasicModel_Resources(), this.getSharedResource(), null, "resources", null, 0, -1, BasicModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBasicModel_Instances(), this.getInstance(), null, "instances", null, 0, -1, BasicModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBasicModel_InstanceTypes(), this.getInstanceType(), null, "instanceTypes", null, 0, -1, BasicModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBasicModel_StartActivity(), this.getActivity(), null, "startActivity", null, 1, 1, BasicModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBasicModel_Activities(), this.getActivity(), null, "activities", null, 0, -1, BasicModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBasicModel_Threads(), this.getThread(), null, "threads", null, 0, -1, BasicModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(activityEClass, Activity.class, "Activity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActivity_Instance(), this.getInstance(), null, "instance", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getActivity_Thread(), this.getThread(), null, "thread", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getActivity_Name(), ecorePackage.getEString(), "name", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivity_Instance(), this.getInstance(), null, "instance", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivity_Thread(), this.getThread(), null, "thread", null, 0, 1, Activity.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getActivity_AccessedReferences(), this.getReference(), null, "accessedReferences", null, 0, -1, Activity.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEOperation(getActivity__JoinsCorrectly(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		EOperation op = initEOperation(getActivity__JoinsCorrectly__EList_EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		EOperation op = initEOperation(getActivity__JoinsCorrectly__EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getActivity__JoinsCorrectly__EList_EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getFork(), "fork", 0, -1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
@@ -908,12 +1048,20 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		op = initEOperation(getActivity__UsesSameThread__Activity(), ecorePackage.getEBoolean(), "UsesSameThread", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getActivity(), "a", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getActivity__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
 		initEClass(endEClass, End.class, "End", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(finalActivityEClass, FinalActivity.class, "FinalActivity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = initEOperation(getFinalActivity__JoinsCorrectly__EList_EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getFork(), "fork", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getFinalActivity__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(linearActivityEClass, LinearActivity.class, "LinearActivity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -923,14 +1071,25 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		addEParameter(op, this.getFork(), "fork", 0, -1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
+		op = initEOperation(getLinearActivity__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
 		initEClass(forkEClass, Fork.class, "Fork", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFork_Threads(), this.getThread(), null, "threads", null, 1, -1, Fork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFork_ThreadCount(), ecorePackage.getEInt(), "threadCount", null, 0, 1, Fork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFork_MaxThreadCount(), ecorePackage.getEInt(), "maxThreadCount", null, 0, 1, Fork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFork_ForkedThreads(), this.getForkedThread(), null, "forkedThreads", null, 1, -1, Fork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getFork__JoinsCorrectly(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
+		op = initEOperation(getFork__JoinsCorrectly__EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
 		op = initEOperation(getFork__JoinsCorrectly__EList_EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getFork(), "fork", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getFork__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(decisionEClass, Decision.class, "Decision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -940,8 +1099,12 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		addEParameter(op, this.getFork(), "fork", 0, -1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
+		op = initEOperation(getDecision__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
 		initEClass(branchEClass, Branch.class, "Branch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBranch_Activity(), this.getActivity(), null, "activity", null, 1, 1, Branch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBranch_NextActivity(), this.getActivity(), null, "nextActivity", null, 1, 1, Branch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBranch_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, Branch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(joinEClass, Join.class, "Join", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -951,13 +1114,11 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(sharedResourceEClass, SharedResource.class, "SharedResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSharedResource_Name(), ecorePackage.getEString(), "name", null, 0, 1, SharedResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(interruptEClass, Interrupt.class, "Interrupt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInterrupt_InterruptedThread(), this.getThread(), null, "interruptedThread", null, 1, 1, Interrupt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(instanceEClass, Instance.class, "Instance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getInstance_Name(), ecorePackage.getEString(), "name", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInstance_InstanceType(), this.getInstanceType(), null, "instanceType", null, 1, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(instanceTypeEClass, InstanceType.class, "InstanceType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -966,21 +1127,34 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		initEClass(sleepEClass, Sleep.class, "Sleep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSleep_Duration(), ecorePackage.getEInt(), "duration", null, 0, 1, Sleep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(threadEClass, ActivityDiagram.Thread.class, "Thread", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getThread_Daemon(), ecorePackage.getEBoolean(), "daemon", null, 0, 1, ActivityDiagram.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getThread_Activity(), this.getActivity(), null, "activity", null, 1, 1, ActivityDiagram.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getThread_Name(), ecorePackage.getEString(), "name", null, 0, 1, ActivityDiagram.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(yieldEClass, Yield.class, "Yield", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(simpleActivityEClass, SimpleActivity.class, "SimpleActivity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSimpleActivity_SharedResources(), this.getSharedResource(), null, "sharedResources", null, 0, -1, SimpleActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSimpleActivity_SharedResources(), this.getSharedResource(), null, "sharedResources", null, 0, -1, SimpleActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		op = initEOperation(getSimpleActivity__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(nestedActivityEClass, NestedActivity.class, "NestedActivity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNestedActivity_StartActivity(), this.getActivity(), null, "startActivity", null, 1, 1, NestedActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNestedActivity_NestedThread(), this.getThread(), null, "nestedThread", null, 1, 1, NestedActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(describedActivityEClass, DescribedActivity.class, "DescribedActivity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDescribedActivity_Description(), ecorePackage.getEString(), "description", null, 0, 1, DescribedActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		op = initEOperation(getNestedActivity__JoinsCorrectly__EList_EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getFork(), "fork", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getNestedActivity__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSharedResource(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(forkedThreadEClass, ForkedThread.class, "ForkedThread", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getForkedThread_Daemon(), ecorePackage.getEBoolean(), "daemon", null, 0, 1, ForkedThread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(namedActivityEClass, NamedActivity.class, "NamedActivity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNamedActivity_ActivityName(), ecorePackage.getEString(), "activityName", null, 0, 1, NamedActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(referenceEClass, Reference.class, "Reference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getReference_Name(), ecorePackage.getEString(), "name", null, 0, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1029,16 +1203,16 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
 		   });	
 		addAnnotation
+		  (threadEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "ValidStartActivityThread"
+		   });	
+		addAnnotation
 		  (basicModelEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "UniqueNames1 UniqueNames2 ValidForkJoinUsage1 ValidForkJoinUsage2"
-		   });	
-		addAnnotation
-		  (activityEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "ProperActivityName"
+			 "constraints", "UniqueNames ValidForkJoinNesting MatchingForkForEveryJoin"
 		   });	
 		addAnnotation
 		  (linearActivityEClass, 
@@ -1050,7 +1224,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		  (forkEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "NonNegativeThreadCount ThreadIndependence"
+			 "constraints", "NonNegativeMaxThreadCount ThreadIndependence"
 		   });	
 		addAnnotation
 		  (decisionEClass, 
@@ -1065,40 +1239,16 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 			 "constraints", "ValidBranchCondition"
 		   });	
 		addAnnotation
-		  (sharedResourceEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "ValidSharedResourceName"
-		   });	
-		addAnnotation
-		  (instanceEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "ProperInstanceName"
-		   });	
-		addAnnotation
-		  (instanceTypeEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "ProperInstanceTypeName"
-		   });	
-		addAnnotation
 		  (sleepEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "PositiveSleepDuration"
 		   });	
 		addAnnotation
-		  (threadEClass, 
+		  (referenceEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "ThreadIndependence"
-		   });	
-		addAnnotation
-		  (describedActivityEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "ProperActivityDescription"
+			 "constraints", "ProperReferenceName"
 		   });
 	}
 
@@ -1111,25 +1261,30 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	protected void createPivotAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
 		addAnnotation
+		  (threadEClass, 
+		   source, 
+		   new String[] {
+			 "ValidStartActivityThread", "startActivity.thread = self or startActivity.oclIsKindOf(Join) or startActivity.oclIsKindOf(FinalActivity)"
+		   });	
+		addAnnotation
 		  (basicModelEClass, 
 		   source, 
 		   new String[] {
-			 "UniqueNames1", "activities->collect(a | a.name)->isUnique(n | n)",
-			 "UniqueNames2", "\n\t\t\tlet resourceNames: Bag(String) = SharedResource.allInstances()->collect(r | r.name) in\n\t\t\tlet instanceNames: Bag(String) = Instance.allInstances()->collect(i | i.name) in\n\t\t\tlet instanceTypeNames: Bag(String) = InstanceType.allInstances()->collect(t | t.name) in\n\t\t\tlet activityDescriptions: Bag(String) = DescribedActivity.allInstances()->collect(a | a.description) in\n\t\t\t    resourceNames->union(instanceNames->union(instanceTypeNames->union(activityDescriptions->asSet()->asBag())))->isUnique(n | n)",
-			 "ValidForkJoinUsage1", "startActivity.JoinsCorrectly()->includesAll(Activity.allInstances())",
-			 "ValidForkJoinUsage2", "\n\t\t\tlet forkThreads: Bag(Thread) = Fork.allInstances()->collect(thread)->asBag() in\n\t\t\tlet joinThreads: Bag(Thread) = Join.allInstances()->collect(thread)->asBag() in\n\t\t\t\tforkThreads->intersection(joinThreads) = joinThreads"
-		   });	
-		addAnnotation
-		  (activityEClass, 
-		   source, 
-		   new String[] {
-			 "ProperActivityName", "name.matches(\'[A-Za-z_$][A-Za-z0-9_$]*\')"
+			 "UniqueNames", "\n\t\t\tlet referenceNames: Bag(String) = Reference.allInstances()->collect(r | r.name) in\n\t\t\tlet activityNames: Bag(String) = NamedActivity.allInstances()->collect(a | a.activityName) in\n\t\t\t    referenceNames->union(activityNames->asSet()->asBag())->isUnique(n | n)",
+			 "ValidForkJoinNesting", "startActivity.JoinsCorrectly()->includesAll(Activity.allInstances()->asSet())",
+			 "MatchingForkForEveryJoin", "\n\t\t\tlet forkThreads: Bag(Thread) = Fork.allInstances()->collect(thread)->asBag() in\n\t\t\tlet joinThreads: Bag(Thread) = Join.allInstances()->collect(thread)->asBag() in\n\t\t\t\tforkThreads->intersection(joinThreads) = joinThreads"
 		   });	
 		addAnnotation
 		  (getActivity__JoinsCorrectly(), 
 		   source, 
 		   new String[] {
 			 "body", "JoinsCorrectly(Sequence{}, Set{})"
+		   });	
+		addAnnotation
+		  (getActivity__JoinsCorrectly__EList(), 
+		   source, 
+		   new String[] {
+			 "body", "JoinsCorrectly(Sequence{}, beenHere)"
 		   });	
 		addAnnotation
 		  (getActivity__UsesDifferentThread__Activity(), 
@@ -1144,10 +1299,28 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 			 "body", "((thread = a.thread) <> a.oclIsTypeOf(Join)) or a.oclIsKindOf(FinalActivity)"
 		   });	
 		addAnnotation
+		  (getActivity_Thread(), 
+		   source, 
+		   new String[] {
+			 "derivation", "let temp: Set(Thread) = Thread.allInstances()->select(t | t.activities->exists(a | a = self))\n\t\t\t            in if temp->size() = 1 then temp->asOrderedSet()->first() else null endif"
+		   });	
+		addAnnotation
+		  (getActivity_AccessedReferences(), 
+		   source, 
+		   new String[] {
+			 "derivation", "GetAccessedReferences(Set{}, Set{})"
+		   });	
+		addAnnotation
 		  (getFinalActivity__JoinsCorrectly__EList_EList(), 
 		   source, 
 		   new String[] {
 			 "body", "beenHere->including(self)"
+		   });	
+		addAnnotation
+		  (getFinalActivity__GetAccessedReferences__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "body", "soFar"
 		   });	
 		addAnnotation
 		  (linearActivityEClass, 
@@ -1162,11 +1335,17 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then beenHere\n\t\t\t      else nextActivity.JoinsCorrectly(fork, beenHere->including(self)) -- Check successor\n\t\t\t      endif"
 		   });	
 		addAnnotation
+		  (getLinearActivity__GetAccessedReferences__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else nextActivity.GetAccessedReferences(soFar, beenHere->including(self))\n\t\t\t      endif"
+		   });	
+		addAnnotation
 		  (forkEClass, 
 		   source, 
 		   new String[] {
-			 "NonNegativeThreadCount", "threadCount >= 0",
-			 "ThreadIndependence", "threads->forAll(t | self.UsesDifferentThread(t.activity))"
+			 "NonNegativeMaxThreadCount", "maxThreadCount >= 0",
+			 "ThreadIndependence", "forkedThreads->forAll(t | self.UsesDifferentThread(t.startActivity))"
 		   });	
 		addAnnotation
 		  (getFork__JoinsCorrectly(), 
@@ -1175,22 +1354,40 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 			 "body", "JoinsCorrectly(Sequence{self}, Set{})"
 		   });	
 		addAnnotation
+		  (getFork__JoinsCorrectly__EList(), 
+		   source, 
+		   new String[] {
+			 "body", "JoinsCorrectly(Sequence{self}, beenHere)"
+		   });	
+		addAnnotation
 		  (getFork__JoinsCorrectly__EList_EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if beenHere->exists(e | e = self) -- Fork has already been checked\n\t\t\t      then beenHere\n\t\t\t      else threads->iterate(t; result: Set(Activity) = Set{} | result->union(t.activity.JoinsCorrectly(fork->append(self), beenHere->including(self))))\n\t\t\t      endif"
+			 "body", "if beenHere->exists(e | e = self) -- Fork has already been checked\n\t\t\t      then beenHere\n\t\t\t      else let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t           let f: Sequence(Fork) = fork->append(self) in\n\t\t\t           forkedThreads->iterate(t; result: Set(Activity) = Set{} | result->union(t.startActivity.JoinsCorrectly(f, bh)))\n\t\t\t      endif"
+		   });	
+		addAnnotation
+		  (getFork__GetAccessedReferences__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t           forkedThreads->iterate(t; result: Set(Reference) = Set{} | result->union(t.startActivity.GetAccessedReferences(soFar, bh)))\n\t\t\t      endif"
 		   });	
 		addAnnotation
 		  (decisionEClass, 
 		   source, 
 		   new String[] {
-			 "ThreadIndependence", "branches->forAll(b | self.UsesSameThread(b.activity))"
+			 "ThreadIndependence", "branches->forAll(b | self.UsesSameThread(b.nextActivity))"
 		   });	
 		addAnnotation
 		  (getDecision__JoinsCorrectly__EList_EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then beenHere\n\t\t\t      else let bh: Set(Activity) = beenHere->including(self)\n\t\t\t           in nextActivity.JoinsCorrectly(fork, bh)->union(branches->iterate(b; result: Set(Activity) = Set{} | result->intersection(b.activity.JoinsCorrectly(fork, bh)))) -- Check all branches\n\t\t\t      endif"
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then beenHere\n\t\t\t      else let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t               nextActivity.JoinsCorrectly(fork, bh)->union(branches->iterate(b; result: Set(Activity) = Set{} | result->union(b.nextActivity.JoinsCorrectly(fork, bh)))) -- Check all branches\n\t\t\t      endif"
+		   });	
+		addAnnotation
+		  (getDecision__GetAccessedReferences__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t           let elseResult: Set(Reference) = nextActivity.GetAccessedReferences(soFar, beenHere->including(self)) in\n\t\t\t           let branchesResult: Set(Reference) = branches->iterate(b; result: Set(Reference) = Set{} | result->union(b.nextActivity.GetAccessedReferences(soFar, bh))) in\n\t\t\t               elseResult->union(branchesResult)\n\t\t\t      endif"
 		   });	
 		addAnnotation
 		  (branchEClass, 
@@ -1202,25 +1399,7 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		  (getJoin__JoinsCorrectly__EList_EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then beenHere\n\t\t\t      else if fork->notEmpty() -- There have been forks in the past\n\t\t\t           then if fork->last().thread = thread -- This join completes the most recent fork\n\t\t\t                then nextActivity.JoinsCorrectly(fork->subSequence(1, fork->size() - 1), beenHere->including(self)) -- Check successor\n\t\t\t                else Set{}\n\t\t\t                endif\n\t\t\t           else Set{}\n\t\t\t           endif\n\t\t\t      endif"
-		   });	
-		addAnnotation
-		  (sharedResourceEClass, 
-		   source, 
-		   new String[] {
-			 "ValidSharedResourceName", "name.matches(\'[A-Za-z_$][A-Za-z0-9_$]*\')"
-		   });	
-		addAnnotation
-		  (instanceEClass, 
-		   source, 
-		   new String[] {
-			 "ProperInstanceName", "name.matches(\'[A-Za-z_$][A-Za-z0-9_$]*\')"
-		   });	
-		addAnnotation
-		  (instanceTypeEClass, 
-		   source, 
-		   new String[] {
-			 "ProperInstanceTypeName", "name.matches(\'[A-Za-z_$][A-Za-z0-9_$]*\')"
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then beenHere\n\t\t\t      else if fork->notEmpty() -- There have been forks in the past\n\t\t\t           then if fork->last().thread = thread -- This join completes the most recent fork\n\t\t\t                -- I would rather use subSequence(1, size()-1) here, but that results in an error for some reason \n\t\t\t                then nextActivity.JoinsCorrectly(fork->excluding(thread), beenHere->including(self)) -- Check successor\n\t\t\t                else Set{}\n\t\t\t                endif\n\t\t\t           else Set{}\n\t\t\t           endif\n\t\t\t      endif"
 		   });	
 		addAnnotation
 		  (sleepEClass, 
@@ -1229,16 +1408,28 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 			 "PositiveSleepDuration", "duration >= 1"
 		   });	
 		addAnnotation
-		  (threadEClass, 
+		  (getSimpleActivity__GetAccessedReferences__EList_EList(), 
 		   source, 
 		   new String[] {
-			 "ThreadIndependence", "activity.thread = self"
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else nextActivity.GetAccessedReferences(soFar->union(sharedResources), beenHere->including(self))\n\t\t\t      endif"
 		   });	
 		addAnnotation
-		  (describedActivityEClass, 
+		  (getNestedActivity__JoinsCorrectly__EList_EList(), 
 		   source, 
 		   new String[] {
-			 "ProperActivityDescription", "description.matches(\'[A-Za-z_$][A-Za-z0-9_$]*\')"
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then beenHere\n\t\t\t      else let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t           let internalActivities: Set(Activity) = nestedThread.startActivity.JoinsCorrectly(bh) in -- Check internal activities\n\t\t\t           let nextActivities: Set(Activity) = nextActivity.JoinsCorrectly(fork, bh) in -- Check successor\n\t\t\t               internalActivities->union(nextActivities)\n\t\t\t      endif"
+		   });	
+		addAnnotation
+		  (getNestedActivity__GetAccessedReferences__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else nestedThread.startActivity.GetAccessedReferences(soFar, beenHere->including(self))\n\t\t\t      endif"
+		   });	
+		addAnnotation
+		  (referenceEClass, 
+		   source, 
+		   new String[] {
+			 "ProperReferenceName", "name.matches(\'[A-Za-z_$][A-Za-z0-9_$]*\')"
 		   });
 	}
 
@@ -1252,6 +1443,18 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		String source = "http://www.eclipse.org/OCL/Collection";	
 		addAnnotation
 		  (getActivity__JoinsCorrectly(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  (getActivity__JoinsCorrectly__EList(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getActivity__JoinsCorrectly__EList()).getEParameters().get(0), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
@@ -1275,6 +1478,30 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 			 "nullFree", "false"
 		   });	
 		addAnnotation
+		  (getActivity__GetAccessedReferences__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getActivity__GetAccessedReferences__EList_EList()).getEParameters().get(0), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getActivity__GetAccessedReferences__EList_EList()).getEParameters().get(1), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  (getActivity_AccessedReferences(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
 		  (getFinalActivity__JoinsCorrectly__EList_EList(), 
 		   source, 
 		   new String[] {
@@ -1288,6 +1515,24 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		   });	
 		addAnnotation
 		  ((getFinalActivity__JoinsCorrectly__EList_EList()).getEParameters().get(1), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  (getFinalActivity__GetAccessedReferences__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getFinalActivity__GetAccessedReferences__EList_EList()).getEParameters().get(0), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getFinalActivity__GetAccessedReferences__EList_EList()).getEParameters().get(1), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
@@ -1311,7 +1556,37 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 			 "nullFree", "false"
 		   });	
 		addAnnotation
+		  (getLinearActivity__GetAccessedReferences__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getLinearActivity__GetAccessedReferences__EList_EList()).getEParameters().get(0), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getLinearActivity__GetAccessedReferences__EList_EList()).getEParameters().get(1), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
 		  (getFork__JoinsCorrectly(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  (getFork__JoinsCorrectly__EList(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getFork__JoinsCorrectly__EList()).getEParameters().get(0), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
@@ -1335,6 +1610,24 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 			 "nullFree", "false"
 		   });	
 		addAnnotation
+		  (getFork__GetAccessedReferences__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getFork__GetAccessedReferences__EList_EList()).getEParameters().get(0), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getFork__GetAccessedReferences__EList_EList()).getEParameters().get(1), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
 		  (getDecision__JoinsCorrectly__EList_EList(), 
 		   source, 
 		   new String[] {
@@ -1353,6 +1646,24 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 			 "nullFree", "false"
 		   });	
 		addAnnotation
+		  (getDecision__GetAccessedReferences__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getDecision__GetAccessedReferences__EList_EList()).getEParameters().get(0), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getDecision__GetAccessedReferences__EList_EList()).getEParameters().get(1), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
 		  (getJoin__JoinsCorrectly__EList_EList(), 
 		   source, 
 		   new String[] {
@@ -1366,6 +1677,60 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		   });	
 		addAnnotation
 		  ((getJoin__JoinsCorrectly__EList_EList()).getEParameters().get(1), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  (getSimpleActivity__GetAccessedReferences__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getSimpleActivity__GetAccessedReferences__EList_EList()).getEParameters().get(0), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getSimpleActivity__GetAccessedReferences__EList_EList()).getEParameters().get(1), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  (getNestedActivity__JoinsCorrectly__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getNestedActivity__JoinsCorrectly__EList_EList()).getEParameters().get(0), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getNestedActivity__JoinsCorrectly__EList_EList()).getEParameters().get(1), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  (getNestedActivity__GetAccessedReferences__EList_EList(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getNestedActivity__GetAccessedReferences__EList_EList()).getEParameters().get(0), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getNestedActivity__GetAccessedReferences__EList_EList()).getEParameters().get(1), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"

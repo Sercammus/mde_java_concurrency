@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,33 +21,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ActivityDiagram.impl.InstanceImpl#getName <em>Name</em>}</li>
  *   <li>{@link ActivityDiagram.impl.InstanceImpl#getInstanceType <em>Instance Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class InstanceImpl extends MinimalEObjectImpl.Container implements Instance {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
+public class InstanceImpl extends ReferenceImpl implements Instance {
 	/**
 	 * The cached value of the '{@link #getInstanceType() <em>Instance Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -76,27 +54,6 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	@Override
 	protected EClass eStaticClass() {
 		return ActivityDiagramPackage.Literals.INSTANCE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.INSTANCE__NAME, oldName, name));
 	}
 
 	/**
@@ -145,8 +102,6 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ActivityDiagramPackage.INSTANCE__NAME:
-				return getName();
 			case ActivityDiagramPackage.INSTANCE__INSTANCE_TYPE:
 				if (resolve) return getInstanceType();
 				return basicGetInstanceType();
@@ -162,9 +117,6 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ActivityDiagramPackage.INSTANCE__NAME:
-				setName((String)newValue);
-				return;
 			case ActivityDiagramPackage.INSTANCE__INSTANCE_TYPE:
 				setInstanceType((InstanceType)newValue);
 				return;
@@ -180,9 +132,6 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ActivityDiagramPackage.INSTANCE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case ActivityDiagramPackage.INSTANCE__INSTANCE_TYPE:
 				setInstanceType((InstanceType)null);
 				return;
@@ -198,28 +147,10 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ActivityDiagramPackage.INSTANCE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ActivityDiagramPackage.INSTANCE__INSTANCE_TYPE:
 				return instanceType != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //InstanceImpl

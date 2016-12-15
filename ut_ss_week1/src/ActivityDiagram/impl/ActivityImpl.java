@@ -6,8 +6,12 @@ import ActivityDiagram.Activity;
 import ActivityDiagram.ActivityDiagramPackage;
 import ActivityDiagram.Fork;
 import ActivityDiagram.Instance;
+import ActivityDiagram.Reference;
+import ActivityDiagram.SharedResource;
 
 import java.lang.reflect.InvocationTargetException;
+
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -17,6 +21,7 @@ import org.eclipse.emf.common.util.WrappedException;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -30,34 +35,15 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ActivityDiagram.impl.ActivityImpl#getName <em>Name</em>}</li>
  *   <li>{@link ActivityDiagram.impl.ActivityImpl#getInstance <em>Instance</em>}</li>
  *   <li>{@link ActivityDiagram.impl.ActivityImpl#getThread <em>Thread</em>}</li>
- *   <li>{@link ActivityDiagram.impl.ActivityImpl#getName <em>Name</em>}</li>
+ *   <li>{@link ActivityDiagram.impl.ActivityImpl#getAccessedReferences <em>Accessed References</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ActivityImpl extends MinimalEObjectImpl.Container implements Activity {
-	/**
-	 * The cached value of the '{@link #getInstance() <em>Instance</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstance()
-	 * @generated
-	 * @ordered
-	 */
-	protected Instance instance;
-
-	/**
-	 * The cached value of the '{@link #getThread() <em>Thread</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getThread()
-	 * @generated
-	 * @ordered
-	 */
-	protected ActivityDiagram.Thread thread;
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,6 +65,36 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 	protected String name = NAME_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getInstance() <em>Instance</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstance()
+	 * @generated
+	 * @ordered
+	 */
+	protected Instance instance;
+
+	/**
+	 * The cached setting delegate for the '{@link #getThread() <em>Thread</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThread()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate THREAD__ESETTING_DELEGATE = ((EStructuralFeature.Internal)ActivityDiagramPackage.Literals.ACTIVITY__THREAD).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getAccessedReferences() <em>Accessed References</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAccessedReferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ACCESSED_REFERENCES__ESETTING_DELEGATE = ((EStructuralFeature.Internal)ActivityDiagramPackage.Literals.ACTIVITY__ACCESSED_REFERENCES).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -95,6 +111,27 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	protected EClass eStaticClass() {
 		return ActivityDiagramPackage.Literals.ACTIVITY;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.ACTIVITY__NAME, oldName, name));
 	}
 
 	/**
@@ -141,15 +178,7 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	public ActivityDiagram.Thread getThread() {
-		if (thread != null && thread.eIsProxy()) {
-			InternalEObject oldThread = (InternalEObject)thread;
-			thread = (ActivityDiagram.Thread)eResolveProxy(oldThread);
-			if (thread != oldThread) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivityDiagramPackage.ACTIVITY__THREAD, oldThread, thread));
-			}
-		}
-		return thread;
+		return (ActivityDiagram.Thread)THREAD__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -158,7 +187,7 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	public ActivityDiagram.Thread basicGetThread() {
-		return thread;
+		return (ActivityDiagram.Thread)THREAD__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
@@ -167,10 +196,7 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	public void setThread(ActivityDiagram.Thread newThread) {
-		ActivityDiagram.Thread oldThread = thread;
-		thread = newThread;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.ACTIVITY__THREAD, oldThread, thread));
+		THREAD__ESETTING_DELEGATE.dynamicSet(this, null, 0, newThread);
 	}
 
 	/**
@@ -178,20 +204,9 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.ACTIVITY__NAME, oldName, name));
+	@SuppressWarnings("unchecked")
+	public EList<Reference> getAccessedReferences() {
+		return (EList<Reference>)ACCESSED_REFERENCES__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -213,6 +228,31 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 	public EList<Activity> JoinsCorrectly() {
 		try {
 			return (EList<Activity>)JOINS_CORRECTLY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #JoinsCorrectly(org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #JoinsCorrectly(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate JOINS_CORRECTLY_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ActivityDiagramPackage.Literals.ACTIVITY___JOINS_CORRECTLY__ELIST).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Activity> JoinsCorrectly(EList<Activity> beenHere) {
+		try {
+			return (EList<Activity>)JOINS_CORRECTLY_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{beenHere}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -283,17 +323,30 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Reference> GetAccessedReferences(EList<SharedResource> soFar, EList<Activity> beenHere) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ActivityDiagramPackage.ACTIVITY__NAME:
+				return getName();
 			case ActivityDiagramPackage.ACTIVITY__INSTANCE:
 				if (resolve) return getInstance();
 				return basicGetInstance();
 			case ActivityDiagramPackage.ACTIVITY__THREAD:
 				if (resolve) return getThread();
 				return basicGetThread();
-			case ActivityDiagramPackage.ACTIVITY__NAME:
-				return getName();
+			case ActivityDiagramPackage.ACTIVITY__ACCESSED_REFERENCES:
+				return getAccessedReferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -303,17 +356,22 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ActivityDiagramPackage.ACTIVITY__NAME:
+				setName((String)newValue);
+				return;
 			case ActivityDiagramPackage.ACTIVITY__INSTANCE:
 				setInstance((Instance)newValue);
 				return;
 			case ActivityDiagramPackage.ACTIVITY__THREAD:
 				setThread((ActivityDiagram.Thread)newValue);
 				return;
-			case ActivityDiagramPackage.ACTIVITY__NAME:
-				setName((String)newValue);
+			case ActivityDiagramPackage.ACTIVITY__ACCESSED_REFERENCES:
+				getAccessedReferences().clear();
+				getAccessedReferences().addAll((Collection<? extends Reference>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -327,14 +385,17 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ActivityDiagramPackage.ACTIVITY__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case ActivityDiagramPackage.ACTIVITY__INSTANCE:
 				setInstance((Instance)null);
 				return;
 			case ActivityDiagramPackage.ACTIVITY__THREAD:
 				setThread((ActivityDiagram.Thread)null);
 				return;
-			case ActivityDiagramPackage.ACTIVITY__NAME:
-				setName(NAME_EDEFAULT);
+			case ActivityDiagramPackage.ACTIVITY__ACCESSED_REFERENCES:
+				getAccessedReferences().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -348,12 +409,14 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ActivityDiagramPackage.ACTIVITY__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ActivityDiagramPackage.ACTIVITY__INSTANCE:
 				return instance != null;
 			case ActivityDiagramPackage.ACTIVITY__THREAD:
-				return thread != null;
-			case ActivityDiagramPackage.ACTIVITY__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+				return THREAD__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case ActivityDiagramPackage.ACTIVITY__ACCESSED_REFERENCES:
+				return ACCESSED_REFERENCES__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -369,12 +432,16 @@ public abstract class ActivityImpl extends MinimalEObjectImpl.Container implemen
 		switch (operationID) {
 			case ActivityDiagramPackage.ACTIVITY___JOINS_CORRECTLY:
 				return JoinsCorrectly();
+			case ActivityDiagramPackage.ACTIVITY___JOINS_CORRECTLY__ELIST:
+				return JoinsCorrectly((EList<Activity>)arguments.get(0));
 			case ActivityDiagramPackage.ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST:
 				return JoinsCorrectly((EList<Fork>)arguments.get(0), (EList<Activity>)arguments.get(1));
 			case ActivityDiagramPackage.ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY:
 				return UsesDifferentThread((Activity)arguments.get(0));
 			case ActivityDiagramPackage.ACTIVITY___USES_SAME_THREAD__ACTIVITY:
 				return UsesSameThread((Activity)arguments.get(0));
+			case ActivityDiagramPackage.ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST:
+				return GetAccessedReferences((EList<SharedResource>)arguments.get(0), (EList<Activity>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -5,8 +5,6 @@ package ActivityDiagram.tests;
 import ActivityDiagram.ActivityDiagramFactory;
 import ActivityDiagram.SharedResource;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 /**
@@ -15,15 +13,7 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SharedResourceTest extends TestCase {
-
-	/**
-	 * The fixture for this Shared Resource test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SharedResource fixture = null;
+public class SharedResourceTest extends ReferenceTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -45,23 +35,14 @@ public class SharedResourceTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Shared Resource test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(SharedResource fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Shared Resource test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected SharedResource getFixture() {
-		return fixture;
+		return (SharedResource)fixture;
 	}
 
 	/**

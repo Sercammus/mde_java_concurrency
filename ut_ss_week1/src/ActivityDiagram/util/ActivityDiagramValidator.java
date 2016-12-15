@@ -7,16 +7,18 @@ import ActivityDiagram.ActivityDiagramPackage;
 import ActivityDiagram.BasicModel;
 import ActivityDiagram.Branch;
 import ActivityDiagram.Decision;
-import ActivityDiagram.DescribedActivity;
 import ActivityDiagram.End;
 import ActivityDiagram.FinalActivity;
 import ActivityDiagram.Fork;
+import ActivityDiagram.ForkedThread;
 import ActivityDiagram.Instance;
 import ActivityDiagram.InstanceType;
 import ActivityDiagram.Interrupt;
 import ActivityDiagram.Join;
 import ActivityDiagram.LinearActivity;
+import ActivityDiagram.NamedActivity;
 import ActivityDiagram.NestedActivity;
+import ActivityDiagram.Reference;
 import ActivityDiagram.SharedResource;
 import ActivityDiagram.SimpleActivity;
 import ActivityDiagram.Sleep;
@@ -104,6 +106,8 @@ public class ActivityDiagramValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
+			case ActivityDiagramPackage.THREAD:
+				return validateThread((ActivityDiagram.Thread)value, diagnostics, context);
 			case ActivityDiagramPackage.BASIC_MODEL:
 				return validateBasicModel((BasicModel)value, diagnostics, context);
 			case ActivityDiagramPackage.ACTIVITY:
@@ -132,19 +136,70 @@ public class ActivityDiagramValidator extends EObjectValidator {
 				return validateInstanceType((InstanceType)value, diagnostics, context);
 			case ActivityDiagramPackage.SLEEP:
 				return validateSleep((Sleep)value, diagnostics, context);
-			case ActivityDiagramPackage.THREAD:
-				return validateThread((ActivityDiagram.Thread)value, diagnostics, context);
 			case ActivityDiagramPackage.YIELD:
 				return validateYield((Yield)value, diagnostics, context);
 			case ActivityDiagramPackage.SIMPLE_ACTIVITY:
 				return validateSimpleActivity((SimpleActivity)value, diagnostics, context);
 			case ActivityDiagramPackage.NESTED_ACTIVITY:
 				return validateNestedActivity((NestedActivity)value, diagnostics, context);
-			case ActivityDiagramPackage.DESCRIBED_ACTIVITY:
-				return validateDescribedActivity((DescribedActivity)value, diagnostics, context);
+			case ActivityDiagramPackage.FORKED_THREAD:
+				return validateForkedThread((ForkedThread)value, diagnostics, context);
+			case ActivityDiagramPackage.NAMED_ACTIVITY:
+				return validateNamedActivity((NamedActivity)value, diagnostics, context);
+			case ActivityDiagramPackage.REFERENCE:
+				return validateReference((Reference)value, diagnostics, context);
 			default:
 				return true;
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateThread(ActivityDiagram.Thread thread, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(thread, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(thread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(thread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(thread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(thread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(thread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(thread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(thread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(thread, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_ProperReferenceName(thread, diagnostics, context);
+		if (result || diagnostics != null) result &= validateThread_ValidStartActivityThread(thread, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the ValidStartActivityThread constraint of '<em>Thread</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String THREAD__VALID_START_ACTIVITY_THREAD__EEXPRESSION = "startActivity.thread = self or startActivity.oclIsKindOf(Join) or startActivity.oclIsKindOf(FinalActivity)";
+
+	/**
+	 * Validates the ValidStartActivityThread constraint of '<em>Thread</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateThread_ValidStartActivityThread(ActivityDiagram.Thread thread, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(ActivityDiagramPackage.Literals.THREAD,
+				 thread,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "ValidStartActivityThread",
+				 THREAD__VALID_START_ACTIVITY_THREAD__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -162,28 +217,32 @@ public class ActivityDiagramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(basicModel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(basicModel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(basicModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBasicModel_UniqueNames1(basicModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBasicModel_UniqueNames2(basicModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBasicModel_ValidForkJoinUsage1(basicModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBasicModel_ValidForkJoinUsage2(basicModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_ProperReferenceName(basicModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateThread_ValidStartActivityThread(basicModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBasicModel_UniqueNames(basicModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBasicModel_ValidForkJoinNesting(basicModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBasicModel_MatchingForkForEveryJoin(basicModel, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the UniqueNames1 constraint of '<em>Basic Model</em>'.
+	 * The cached validation expression for the UniqueNames constraint of '<em>Basic Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String BASIC_MODEL__UNIQUE_NAMES1__EEXPRESSION = "activities->collect(a | a.name)->isUnique(n | n)";
+	protected static final String BASIC_MODEL__UNIQUE_NAMES__EEXPRESSION = "\n" +
+		"\t\t\tlet referenceNames: Bag(String) = Reference.allInstances()->collect(r | r.name) in\n" +
+		"\t\t\tlet activityNames: Bag(String) = NamedActivity.allInstances()->collect(a | a.activityName) in\n" +
+		"\t\t\t    referenceNames->union(activityNames->asSet()->asBag())->isUnique(n | n)";
 
 	/**
-	 * Validates the UniqueNames1 constraint of '<em>Basic Model</em>'.
+	 * Validates the UniqueNames constraint of '<em>Basic Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBasicModel_UniqueNames1(BasicModel basicModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBasicModel_UniqueNames(BasicModel basicModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
 				(ActivityDiagramPackage.Literals.BASIC_MODEL,
@@ -191,33 +250,28 @@ public class ActivityDiagramValidator extends EObjectValidator {
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "UniqueNames1",
-				 BASIC_MODEL__UNIQUE_NAMES1__EEXPRESSION,
+				 "UniqueNames",
+				 BASIC_MODEL__UNIQUE_NAMES__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
 	}
 
 	/**
-	 * The cached validation expression for the UniqueNames2 constraint of '<em>Basic Model</em>'.
+	 * The cached validation expression for the ValidForkJoinNesting constraint of '<em>Basic Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String BASIC_MODEL__UNIQUE_NAMES2__EEXPRESSION = "\n" +
-		"\t\t\tlet resourceNames: Bag(String) = SharedResource.allInstances()->collect(r | r.name) in\n" +
-		"\t\t\tlet instanceNames: Bag(String) = Instance.allInstances()->collect(i | i.name) in\n" +
-		"\t\t\tlet instanceTypeNames: Bag(String) = InstanceType.allInstances()->collect(t | t.name) in\n" +
-		"\t\t\tlet activityDescriptions: Bag(String) = DescribedActivity.allInstances()->collect(a | a.description) in\n" +
-		"\t\t\t    resourceNames->union(instanceNames->union(instanceTypeNames->union(activityDescriptions->asSet()->asBag())))->isUnique(n | n)";
+	protected static final String BASIC_MODEL__VALID_FORK_JOIN_NESTING__EEXPRESSION = "startActivity.JoinsCorrectly()->includesAll(Activity.allInstances()->asSet())";
 
 	/**
-	 * Validates the UniqueNames2 constraint of '<em>Basic Model</em>'.
+	 * Validates the ValidForkJoinNesting constraint of '<em>Basic Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBasicModel_UniqueNames2(BasicModel basicModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBasicModel_ValidForkJoinNesting(BasicModel basicModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
 				(ActivityDiagramPackage.Literals.BASIC_MODEL,
@@ -225,60 +279,31 @@ public class ActivityDiagramValidator extends EObjectValidator {
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "UniqueNames2",
-				 BASIC_MODEL__UNIQUE_NAMES2__EEXPRESSION,
+				 "ValidForkJoinNesting",
+				 BASIC_MODEL__VALID_FORK_JOIN_NESTING__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
 	}
 
 	/**
-	 * The cached validation expression for the ValidForkJoinUsage1 constraint of '<em>Basic Model</em>'.
+	 * The cached validation expression for the MatchingForkForEveryJoin constraint of '<em>Basic Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String BASIC_MODEL__VALID_FORK_JOIN_USAGE1__EEXPRESSION = "startActivity.JoinsCorrectly()->includesAll(Activity.allInstances())";
-
-	/**
-	 * Validates the ValidForkJoinUsage1 constraint of '<em>Basic Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateBasicModel_ValidForkJoinUsage1(BasicModel basicModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(ActivityDiagramPackage.Literals.BASIC_MODEL,
-				 basicModel,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "ValidForkJoinUsage1",
-				 BASIC_MODEL__VALID_FORK_JOIN_USAGE1__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
-	 * The cached validation expression for the ValidForkJoinUsage2 constraint of '<em>Basic Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String BASIC_MODEL__VALID_FORK_JOIN_USAGE2__EEXPRESSION = "\n" +
+	protected static final String BASIC_MODEL__MATCHING_FORK_FOR_EVERY_JOIN__EEXPRESSION = "\n" +
 		"\t\t\tlet forkThreads: Bag(Thread) = Fork.allInstances()->collect(thread)->asBag() in\n" +
 		"\t\t\tlet joinThreads: Bag(Thread) = Join.allInstances()->collect(thread)->asBag() in\n" +
 		"\t\t\t\tforkThreads->intersection(joinThreads) = joinThreads";
 
 	/**
-	 * Validates the ValidForkJoinUsage2 constraint of '<em>Basic Model</em>'.
+	 * Validates the MatchingForkForEveryJoin constraint of '<em>Basic Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBasicModel_ValidForkJoinUsage2(BasicModel basicModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBasicModel_MatchingForkForEveryJoin(BasicModel basicModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
 				(ActivityDiagramPackage.Literals.BASIC_MODEL,
@@ -286,8 +311,8 @@ public class ActivityDiagramValidator extends EObjectValidator {
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "ValidForkJoinUsage2",
-				 BASIC_MODEL__VALID_FORK_JOIN_USAGE2__EEXPRESSION,
+				 "MatchingForkForEveryJoin",
+				 BASIC_MODEL__MATCHING_FORK_FOR_EVERY_JOIN__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
@@ -299,46 +324,7 @@ public class ActivityDiagramValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateActivity(Activity activity, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(activity, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(activity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(activity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(activity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(activity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(activity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(activity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(activity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(activity, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(activity, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * The cached validation expression for the ProperActivityName constraint of '<em>Activity</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String ACTIVITY__PROPER_ACTIVITY_NAME__EEXPRESSION = "name.matches('[A-Za-z_$][A-Za-z0-9_$]*')";
-
-	/**
-	 * Validates the ProperActivityName constraint of '<em>Activity</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateActivity_ProperActivityName(Activity activity, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(ActivityDiagramPackage.Literals.ACTIVITY,
-				 activity,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "ProperActivityName",
-				 ACTIVITY__PROPER_ACTIVITY_NAME__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+		return validate_EveryDefaultConstraint(activity, diagnostics, context);
 	}
 
 	/**
@@ -347,17 +333,7 @@ public class ActivityDiagramValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateEnd(End end, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(end, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(end, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(end, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(end, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(end, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(end, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(end, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(end, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(end, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(end, diagnostics, context);
-		return result;
+		return validate_EveryDefaultConstraint(end, diagnostics, context);
 	}
 
 	/**
@@ -366,17 +342,7 @@ public class ActivityDiagramValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateFinalActivity(FinalActivity finalActivity, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(finalActivity, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(finalActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(finalActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(finalActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(finalActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(finalActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(finalActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(finalActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(finalActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(finalActivity, diagnostics, context);
-		return result;
+		return validate_EveryDefaultConstraint(finalActivity, diagnostics, context);
 	}
 
 	/**
@@ -394,7 +360,6 @@ public class ActivityDiagramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(linearActivity, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(linearActivity, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(linearActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(linearActivity, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinearActivity_ThreadIndependence(linearActivity, diagnostics, context);
 		return result;
 	}
@@ -443,27 +408,26 @@ public class ActivityDiagramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(fork, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(fork, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(fork, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(fork, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFork_NonNegativeThreadCount(fork, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFork_NonNegativeMaxThreadCount(fork, diagnostics, context);
 		if (result || diagnostics != null) result &= validateFork_ThreadIndependence(fork, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the NonNegativeThreadCount constraint of '<em>Fork</em>'.
+	 * The cached validation expression for the NonNegativeMaxThreadCount constraint of '<em>Fork</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String FORK__NON_NEGATIVE_THREAD_COUNT__EEXPRESSION = "threadCount >= 0";
+	protected static final String FORK__NON_NEGATIVE_MAX_THREAD_COUNT__EEXPRESSION = "maxThreadCount >= 0";
 
 	/**
-	 * Validates the NonNegativeThreadCount constraint of '<em>Fork</em>'.
+	 * Validates the NonNegativeMaxThreadCount constraint of '<em>Fork</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFork_NonNegativeThreadCount(Fork fork, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateFork_NonNegativeMaxThreadCount(Fork fork, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
 				(ActivityDiagramPackage.Literals.FORK,
@@ -471,8 +435,8 @@ public class ActivityDiagramValidator extends EObjectValidator {
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "NonNegativeThreadCount",
-				 FORK__NON_NEGATIVE_THREAD_COUNT__EEXPRESSION,
+				 "NonNegativeMaxThreadCount",
+				 FORK__NON_NEGATIVE_MAX_THREAD_COUNT__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
@@ -484,7 +448,7 @@ public class ActivityDiagramValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String FORK__THREAD_INDEPENDENCE__EEXPRESSION = "threads->forAll(t | self.UsesDifferentThread(t.activity))";
+	protected static final String FORK__THREAD_INDEPENDENCE__EEXPRESSION = "forkedThreads->forAll(t | self.UsesDifferentThread(t.startActivity))";
 
 	/**
 	 * Validates the ThreadIndependence constraint of '<em>Fork</em>'.
@@ -522,7 +486,6 @@ public class ActivityDiagramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(decision, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(decision, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(decision, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(decision, diagnostics, context);
 		if (result || diagnostics != null) result &= validateDecision_ThreadIndependence(decision, diagnostics, context);
 		return result;
 	}
@@ -533,7 +496,7 @@ public class ActivityDiagramValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String DECISION__THREAD_INDEPENDENCE__EEXPRESSION = "branches->forAll(b | self.UsesSameThread(b.activity))";
+	protected static final String DECISION__THREAD_INDEPENDENCE__EEXPRESSION = "branches->forAll(b | self.UsesSameThread(b.nextActivity))";
 
 	/**
 	 * Validates the ThreadIndependence constraint of '<em>Decision</em>'.
@@ -627,7 +590,6 @@ public class ActivityDiagramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(join, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(join, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(join, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(join, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinearActivity_ThreadIndependence(join, diagnostics, context);
 		return result;
 	}
@@ -647,37 +609,8 @@ public class ActivityDiagramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(sharedResource, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sharedResource, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sharedResource, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSharedResource_ValidSharedResourceName(sharedResource, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_ProperReferenceName(sharedResource, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * The cached validation expression for the ValidSharedResourceName constraint of '<em>Shared Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String SHARED_RESOURCE__VALID_SHARED_RESOURCE_NAME__EEXPRESSION = "name.matches('[A-Za-z_$][A-Za-z0-9_$]*')";
-
-	/**
-	 * Validates the ValidSharedResourceName constraint of '<em>Shared Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSharedResource_ValidSharedResourceName(SharedResource sharedResource, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(ActivityDiagramPackage.Literals.SHARED_RESOURCE,
-				 sharedResource,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "ValidSharedResourceName",
-				 SHARED_RESOURCE__VALID_SHARED_RESOURCE_NAME__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
 	}
 
 	/**
@@ -695,7 +628,6 @@ public class ActivityDiagramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(interrupt, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(interrupt, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(interrupt, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(interrupt, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinearActivity_ThreadIndependence(interrupt, diagnostics, context);
 		return result;
 	}
@@ -715,37 +647,8 @@ public class ActivityDiagramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(instance, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instance, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instance, diagnostics, context);
-		if (result || diagnostics != null) result &= validateInstance_ProperInstanceName(instance, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_ProperReferenceName(instance, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * The cached validation expression for the ProperInstanceName constraint of '<em>Instance</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String INSTANCE__PROPER_INSTANCE_NAME__EEXPRESSION = "name.matches('[A-Za-z_$][A-Za-z0-9_$]*')";
-
-	/**
-	 * Validates the ProperInstanceName constraint of '<em>Instance</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateInstance_ProperInstanceName(Instance instance, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(ActivityDiagramPackage.Literals.INSTANCE,
-				 instance,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "ProperInstanceName",
-				 INSTANCE__PROPER_INSTANCE_NAME__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
 	}
 
 	/**
@@ -754,46 +657,7 @@ public class ActivityDiagramValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateInstanceType(InstanceType instanceType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(instanceType, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(instanceType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instanceType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(instanceType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(instanceType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(instanceType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(instanceType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instanceType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceType, diagnostics, context);
-		if (result || diagnostics != null) result &= validateInstanceType_ProperInstanceTypeName(instanceType, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * The cached validation expression for the ProperInstanceTypeName constraint of '<em>Instance Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String INSTANCE_TYPE__PROPER_INSTANCE_TYPE_NAME__EEXPRESSION = "name.matches('[A-Za-z_$][A-Za-z0-9_$]*')";
-
-	/**
-	 * Validates the ProperInstanceTypeName constraint of '<em>Instance Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateInstanceType_ProperInstanceTypeName(InstanceType instanceType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(ActivityDiagramPackage.Literals.INSTANCE_TYPE,
-				 instanceType,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "ProperInstanceTypeName",
-				 INSTANCE_TYPE__PROPER_INSTANCE_TYPE_NAME__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+		return validate_EveryDefaultConstraint(instanceType, diagnostics, context);
 	}
 
 	/**
@@ -811,7 +675,6 @@ public class ActivityDiagramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(sleep, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sleep, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sleep, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(sleep, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinearActivity_ThreadIndependence(sleep, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSleep_PositiveSleepDuration(sleep, diagnostics, context);
 		return result;
@@ -851,54 +714,6 @@ public class ActivityDiagramValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateThread(ActivityDiagram.Thread thread, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(thread, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(thread, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(thread, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(thread, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(thread, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(thread, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(thread, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(thread, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(thread, diagnostics, context);
-		if (result || diagnostics != null) result &= validateThread_ThreadIndependence(thread, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * The cached validation expression for the ThreadIndependence constraint of '<em>Thread</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String THREAD__THREAD_INDEPENDENCE__EEXPRESSION = "activity.thread = self";
-
-	/**
-	 * Validates the ThreadIndependence constraint of '<em>Thread</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateThread_ThreadIndependence(ActivityDiagram.Thread thread, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(ActivityDiagramPackage.Literals.THREAD,
-				 thread,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "ThreadIndependence",
-				 THREAD__THREAD_INDEPENDENCE__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateYield(Yield yield, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(yield, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(yield, diagnostics, context);
@@ -909,7 +724,6 @@ public class ActivityDiagramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(yield, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(yield, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(yield, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(yield, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinearActivity_ThreadIndependence(yield, diagnostics, context);
 		return result;
 	}
@@ -929,9 +743,7 @@ public class ActivityDiagramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(simpleActivity, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(simpleActivity, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(simpleActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(simpleActivity, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinearActivity_ThreadIndependence(simpleActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDescribedActivity_ProperActivityDescription(simpleActivity, diagnostics, context);
 		return result;
 	}
 
@@ -950,9 +762,7 @@ public class ActivityDiagramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(nestedActivity, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(nestedActivity, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(nestedActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(nestedActivity, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinearActivity_ThreadIndependence(nestedActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDescribedActivity_ProperActivityDescription(nestedActivity, diagnostics, context);
 		return result;
 	}
 
@@ -961,46 +771,83 @@ public class ActivityDiagramValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateDescribedActivity(DescribedActivity describedActivity, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(describedActivity, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(describedActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(describedActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(describedActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(describedActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(describedActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(describedActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(describedActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(describedActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActivity_ProperActivityName(describedActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinearActivity_ThreadIndependence(describedActivity, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDescribedActivity_ProperActivityDescription(describedActivity, diagnostics, context);
+	public boolean validateForkedThread(ForkedThread forkedThread, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(forkedThread, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(forkedThread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(forkedThread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(forkedThread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(forkedThread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(forkedThread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(forkedThread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(forkedThread, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(forkedThread, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_ProperReferenceName(forkedThread, diagnostics, context);
+		if (result || diagnostics != null) result &= validateThread_ValidStartActivityThread(forkedThread, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the ProperActivityDescription constraint of '<em>Described Activity</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String DESCRIBED_ACTIVITY__PROPER_ACTIVITY_DESCRIPTION__EEXPRESSION = "description.matches('[A-Za-z_$][A-Za-z0-9_$]*')";
+	public boolean validateNamedActivity(NamedActivity namedActivity, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(namedActivity, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(namedActivity, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(namedActivity, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(namedActivity, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(namedActivity, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(namedActivity, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(namedActivity, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(namedActivity, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(namedActivity, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinearActivity_ThreadIndependence(namedActivity, diagnostics, context);
+		return result;
+	}
 
 	/**
-	 * Validates the ProperActivityDescription constraint of '<em>Described Activity</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateDescribedActivity_ProperActivityDescription(DescribedActivity describedActivity, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateReference(Reference reference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(reference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(reference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(reference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(reference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(reference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(reference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(reference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(reference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(reference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_ProperReferenceName(reference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the ProperReferenceName constraint of '<em>Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String REFERENCE__PROPER_REFERENCE_NAME__EEXPRESSION = "name.matches('[A-Za-z_$][A-Za-z0-9_$]*')";
+
+	/**
+	 * Validates the ProperReferenceName constraint of '<em>Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateReference_ProperReferenceName(Reference reference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
-				(ActivityDiagramPackage.Literals.DESCRIBED_ACTIVITY,
-				 describedActivity,
+				(ActivityDiagramPackage.Literals.REFERENCE,
+				 reference,
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "ProperActivityDescription",
-				 DESCRIBED_ACTIVITY__PROPER_ACTIVITY_DESCRIPTION__EEXPRESSION,
+				 "ProperReferenceName",
+				 REFERENCE__PROPER_REFERENCE_NAME__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);

@@ -13,18 +13,9 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -33,14 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BasicModelItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class BasicModelItemProvider extends ThreadItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -62,31 +46,8 @@ public class BasicModelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStartActivityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Start Activity feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStartActivityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BasicModel_startActivity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BasicModel_startActivity_feature", "_UI_BasicModel_type"),
-				 ActivityDiagramPackage.Literals.BASIC_MODEL__START_ACTIVITY,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -104,7 +65,7 @@ public class BasicModelItemProvider
 			childrenFeatures.add(ActivityDiagramPackage.Literals.BASIC_MODEL__RESOURCES);
 			childrenFeatures.add(ActivityDiagramPackage.Literals.BASIC_MODEL__INSTANCES);
 			childrenFeatures.add(ActivityDiagramPackage.Literals.BASIC_MODEL__INSTANCE_TYPES);
-			childrenFeatures.add(ActivityDiagramPackage.Literals.BASIC_MODEL__ACTIVITIES);
+			childrenFeatures.add(ActivityDiagramPackage.Literals.BASIC_MODEL__THREADS);
 		}
 		return childrenFeatures;
 	}
@@ -141,7 +102,10 @@ public class BasicModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_BasicModel_type");
+		String label = ((BasicModel)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_BasicModel_type") :
+			getString("_UI_BasicModel_type") + " " + label;
 	}
 	
 
@@ -160,7 +124,7 @@ public class BasicModelItemProvider
 			case ActivityDiagramPackage.BASIC_MODEL__RESOURCES:
 			case ActivityDiagramPackage.BASIC_MODEL__INSTANCES:
 			case ActivityDiagramPackage.BASIC_MODEL__INSTANCE_TYPES:
-			case ActivityDiagramPackage.BASIC_MODEL__ACTIVITIES:
+			case ActivityDiagramPackage.BASIC_MODEL__THREADS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -195,59 +159,13 @@ public class BasicModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ActivityDiagramPackage.Literals.BASIC_MODEL__ACTIVITIES,
-				 ActivityDiagramFactory.eINSTANCE.createEnd()));
+				(ActivityDiagramPackage.Literals.BASIC_MODEL__THREADS,
+				 ActivityDiagramFactory.eINSTANCE.createBasicModel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ActivityDiagramPackage.Literals.BASIC_MODEL__ACTIVITIES,
-				 ActivityDiagramFactory.eINSTANCE.createFork()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActivityDiagramPackage.Literals.BASIC_MODEL__ACTIVITIES,
-				 ActivityDiagramFactory.eINSTANCE.createDecision()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActivityDiagramPackage.Literals.BASIC_MODEL__ACTIVITIES,
-				 ActivityDiagramFactory.eINSTANCE.createJoin()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActivityDiagramPackage.Literals.BASIC_MODEL__ACTIVITIES,
-				 ActivityDiagramFactory.eINSTANCE.createInterrupt()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActivityDiagramPackage.Literals.BASIC_MODEL__ACTIVITIES,
-				 ActivityDiagramFactory.eINSTANCE.createSleep()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActivityDiagramPackage.Literals.BASIC_MODEL__ACTIVITIES,
-				 ActivityDiagramFactory.eINSTANCE.createYield()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActivityDiagramPackage.Literals.BASIC_MODEL__ACTIVITIES,
-				 ActivityDiagramFactory.eINSTANCE.createSimpleActivity()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActivityDiagramPackage.Literals.BASIC_MODEL__ACTIVITIES,
-				 ActivityDiagramFactory.eINSTANCE.createNestedActivity()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return ActivityDiagramEditPlugin.INSTANCE;
+				(ActivityDiagramPackage.Literals.BASIC_MODEL__THREADS,
+				 ActivityDiagramFactory.eINSTANCE.createForkedThread()));
 	}
 
 }

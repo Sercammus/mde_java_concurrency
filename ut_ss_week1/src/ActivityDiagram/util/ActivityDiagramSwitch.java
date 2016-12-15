@@ -7,16 +7,18 @@ import ActivityDiagram.ActivityDiagramPackage;
 import ActivityDiagram.BasicModel;
 import ActivityDiagram.Branch;
 import ActivityDiagram.Decision;
-import ActivityDiagram.DescribedActivity;
 import ActivityDiagram.End;
 import ActivityDiagram.FinalActivity;
 import ActivityDiagram.Fork;
+import ActivityDiagram.ForkedThread;
 import ActivityDiagram.Instance;
 import ActivityDiagram.InstanceType;
 import ActivityDiagram.Interrupt;
 import ActivityDiagram.Join;
 import ActivityDiagram.LinearActivity;
+import ActivityDiagram.NamedActivity;
 import ActivityDiagram.NestedActivity;
+import ActivityDiagram.Reference;
 import ActivityDiagram.SharedResource;
 import ActivityDiagram.SimpleActivity;
 import ActivityDiagram.Sleep;
@@ -84,9 +86,18 @@ public class ActivityDiagramSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case ActivityDiagramPackage.THREAD: {
+				ActivityDiagram.Thread thread = (ActivityDiagram.Thread)theEObject;
+				T result = caseThread(thread);
+				if (result == null) result = caseReference(thread);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ActivityDiagramPackage.BASIC_MODEL: {
 				BasicModel basicModel = (BasicModel)theEObject;
 				T result = caseBasicModel(basicModel);
+				if (result == null) result = caseThread(basicModel);
+				if (result == null) result = caseReference(basicModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -150,6 +161,7 @@ public class ActivityDiagramSwitch<T> extends Switch<T> {
 			case ActivityDiagramPackage.SHARED_RESOURCE: {
 				SharedResource sharedResource = (SharedResource)theEObject;
 				T result = caseSharedResource(sharedResource);
+				if (result == null) result = caseReference(sharedResource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -164,6 +176,7 @@ public class ActivityDiagramSwitch<T> extends Switch<T> {
 			case ActivityDiagramPackage.INSTANCE: {
 				Instance instance = (Instance)theEObject;
 				T result = caseInstance(instance);
+				if (result == null) result = caseReference(instance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -181,12 +194,6 @@ public class ActivityDiagramSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ActivityDiagramPackage.THREAD: {
-				ActivityDiagram.Thread thread = (ActivityDiagram.Thread)theEObject;
-				T result = caseThread(thread);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ActivityDiagramPackage.YIELD: {
 				Yield yield = (Yield)theEObject;
 				T result = caseYield(yield);
@@ -198,7 +205,7 @@ public class ActivityDiagramSwitch<T> extends Switch<T> {
 			case ActivityDiagramPackage.SIMPLE_ACTIVITY: {
 				SimpleActivity simpleActivity = (SimpleActivity)theEObject;
 				T result = caseSimpleActivity(simpleActivity);
-				if (result == null) result = caseDescribedActivity(simpleActivity);
+				if (result == null) result = caseNamedActivity(simpleActivity);
 				if (result == null) result = caseLinearActivity(simpleActivity);
 				if (result == null) result = caseActivity(simpleActivity);
 				if (result == null) result = defaultCase(theEObject);
@@ -207,22 +214,51 @@ public class ActivityDiagramSwitch<T> extends Switch<T> {
 			case ActivityDiagramPackage.NESTED_ACTIVITY: {
 				NestedActivity nestedActivity = (NestedActivity)theEObject;
 				T result = caseNestedActivity(nestedActivity);
-				if (result == null) result = caseDescribedActivity(nestedActivity);
+				if (result == null) result = caseNamedActivity(nestedActivity);
 				if (result == null) result = caseLinearActivity(nestedActivity);
 				if (result == null) result = caseActivity(nestedActivity);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ActivityDiagramPackage.DESCRIBED_ACTIVITY: {
-				DescribedActivity describedActivity = (DescribedActivity)theEObject;
-				T result = caseDescribedActivity(describedActivity);
-				if (result == null) result = caseLinearActivity(describedActivity);
-				if (result == null) result = caseActivity(describedActivity);
+			case ActivityDiagramPackage.FORKED_THREAD: {
+				ForkedThread forkedThread = (ForkedThread)theEObject;
+				T result = caseForkedThread(forkedThread);
+				if (result == null) result = caseThread(forkedThread);
+				if (result == null) result = caseReference(forkedThread);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ActivityDiagramPackage.NAMED_ACTIVITY: {
+				NamedActivity namedActivity = (NamedActivity)theEObject;
+				T result = caseNamedActivity(namedActivity);
+				if (result == null) result = caseLinearActivity(namedActivity);
+				if (result == null) result = caseActivity(namedActivity);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ActivityDiagramPackage.REFERENCE: {
+				Reference reference = (Reference)theEObject;
+				T result = caseReference(reference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Thread</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Thread</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseThread(ActivityDiagram.Thread object) {
+		return null;
 	}
 
 	/**
@@ -436,21 +472,6 @@ public class ActivityDiagramSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Thread</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Thread</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseThread(ActivityDiagram.Thread object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Yield</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -496,17 +517,47 @@ public class ActivityDiagramSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Described Activity</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Forked Thread</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Described Activity</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Forked Thread</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDescribedActivity(DescribedActivity object) {
+	public T caseForkedThread(ForkedThread object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Activity</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Activity</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedActivity(NamedActivity object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReference(Reference object) {
 		return null;
 	}
 

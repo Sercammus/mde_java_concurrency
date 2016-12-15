@@ -325,29 +325,6 @@ public class ActivityDiagramItemProviderAdapterFactory extends ActivityDiagramAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link ActivityDiagram.Thread} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ThreadItemProvider threadItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link ActivityDiagram.Thread}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createThreadAdapter() {
-		if (threadItemProvider == null) {
-			threadItemProvider = new ThreadItemProvider(this);
-		}
-
-		return threadItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link ActivityDiagram.Yield} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -414,6 +391,29 @@ public class ActivityDiagramItemProviderAdapterFactory extends ActivityDiagramAd
 		}
 
 		return nestedActivityItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link ActivityDiagram.ForkedThread} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ForkedThreadItemProvider forkedThreadItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ActivityDiagram.ForkedThread}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createForkedThreadAdapter() {
+		if (forkedThreadItemProvider == null) {
+			forkedThreadItemProvider = new ForkedThreadItemProvider(this);
+		}
+
+		return forkedThreadItemProvider;
 	}
 
 	/**
@@ -526,10 +526,10 @@ public class ActivityDiagramItemProviderAdapterFactory extends ActivityDiagramAd
 		if (instanceItemProvider != null) instanceItemProvider.dispose();
 		if (instanceTypeItemProvider != null) instanceTypeItemProvider.dispose();
 		if (sleepItemProvider != null) sleepItemProvider.dispose();
-		if (threadItemProvider != null) threadItemProvider.dispose();
 		if (yieldItemProvider != null) yieldItemProvider.dispose();
 		if (simpleActivityItemProvider != null) simpleActivityItemProvider.dispose();
 		if (nestedActivityItemProvider != null) nestedActivityItemProvider.dispose();
+		if (forkedThreadItemProvider != null) forkedThreadItemProvider.dispose();
 	}
 
 }

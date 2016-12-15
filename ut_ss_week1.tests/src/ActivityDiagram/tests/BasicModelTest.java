@@ -5,8 +5,6 @@ package ActivityDiagram.tests;
 import ActivityDiagram.ActivityDiagramFactory;
 import ActivityDiagram.BasicModel;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 /**
@@ -15,15 +13,7 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BasicModelTest extends TestCase {
-
-	/**
-	 * The fixture for this Basic Model test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BasicModel fixture = null;
+public class BasicModelTest extends ThreadTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -45,23 +35,14 @@ public class BasicModelTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Basic Model test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(BasicModel fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Basic Model test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected BasicModel getFixture() {
-		return fixture;
+		return (BasicModel)fixture;
 	}
 
 	/**

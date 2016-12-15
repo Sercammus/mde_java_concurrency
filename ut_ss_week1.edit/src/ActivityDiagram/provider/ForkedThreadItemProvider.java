@@ -4,7 +4,7 @@ package ActivityDiagram.provider;
 
 
 import ActivityDiagram.ActivityDiagramPackage;
-import ActivityDiagram.DescribedActivity;
+import ActivityDiagram.ForkedThread;
 
 import java.util.Collection;
 import java.util.List;
@@ -18,19 +18,19 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link ActivityDiagram.DescribedActivity} object.
+ * This is the item provider adapter for a {@link ActivityDiagram.ForkedThread} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DescribedActivityItemProvider extends LinearActivityItemProvider {
+public class ForkedThreadItemProvider extends ThreadItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DescribedActivityItemProvider(AdapterFactory adapterFactory) {
+	public ForkedThreadItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -45,31 +45,42 @@ public class DescribedActivityItemProvider extends LinearActivityItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDescriptionPropertyDescriptor(object);
+			addDaemonPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature.
+	 * This adds a property descriptor for the Daemon feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
+	protected void addDaemonPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DescribedActivity_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DescribedActivity_description_feature", "_UI_DescribedActivity_type"),
-				 ActivityDiagramPackage.Literals.DESCRIBED_ACTIVITY__DESCRIPTION,
+				 getString("_UI_ForkedThread_daemon_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ForkedThread_daemon_feature", "_UI_ForkedThread_type"),
+				 ActivityDiagramPackage.Literals.FORKED_THREAD__DAEMON,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
+	}
+
+	/**
+	 * This returns ForkedThread.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ForkedThread"));
 	}
 
 	/**
@@ -80,10 +91,10 @@ public class DescribedActivityItemProvider extends LinearActivityItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DescribedActivity)object).getName();
+		String label = ((ForkedThread)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_DescribedActivity_type") :
-			getString("_UI_DescribedActivity_type") + " " + label;
+			getString("_UI_ForkedThread_type") :
+			getString("_UI_ForkedThread_type") + " " + label;
 	}
 	
 
@@ -98,8 +109,8 @@ public class DescribedActivityItemProvider extends LinearActivityItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DescribedActivity.class)) {
-			case ActivityDiagramPackage.DESCRIBED_ACTIVITY__DESCRIPTION:
+		switch (notification.getFeatureID(ForkedThread.class)) {
+			case ActivityDiagramPackage.FORKED_THREAD__DAEMON:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

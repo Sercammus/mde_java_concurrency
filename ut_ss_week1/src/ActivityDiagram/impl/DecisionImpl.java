@@ -8,6 +8,8 @@ import ActivityDiagram.Branch;
 import ActivityDiagram.Decision;
 import ActivityDiagram.Fork;
 import ActivityDiagram.LinearActivity;
+import ActivityDiagram.Reference;
+import ActivityDiagram.SharedResource;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -107,6 +109,31 @@ public class DecisionImpl extends LinearActivityImpl implements Decision {
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate GET_ACCESSED_REFERENCES_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ActivityDiagramPackage.Literals.DECISION___GET_ACCESSED_REFERENCES__ELIST_ELIST).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Reference> GetAccessedReferences(EList<SharedResource> soFar, EList<Activity> beenHere) {
+		try {
+			return (EList<Reference>)GET_ACCESSED_REFERENCES_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{soFar, beenHere}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -190,12 +217,14 @@ public class DecisionImpl extends LinearActivityImpl implements Decision {
 		if (baseClass == Activity.class) {
 			switch (baseOperationID) {
 				case ActivityDiagramPackage.ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST: return ActivityDiagramPackage.DECISION___JOINS_CORRECTLY__ELIST_ELIST;
+				case ActivityDiagramPackage.ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST: return ActivityDiagramPackage.DECISION___GET_ACCESSED_REFERENCES__ELIST_ELIST;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		if (baseClass == LinearActivity.class) {
 			switch (baseOperationID) {
 				case ActivityDiagramPackage.LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST: return ActivityDiagramPackage.DECISION___JOINS_CORRECTLY__ELIST_ELIST;
+				case ActivityDiagramPackage.LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST: return ActivityDiagramPackage.DECISION___GET_ACCESSED_REFERENCES__ELIST_ELIST;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -213,6 +242,8 @@ public class DecisionImpl extends LinearActivityImpl implements Decision {
 		switch (operationID) {
 			case ActivityDiagramPackage.DECISION___JOINS_CORRECTLY__ELIST_ELIST:
 				return JoinsCorrectly((EList<Fork>)arguments.get(0), (EList<Activity>)arguments.get(1));
+			case ActivityDiagramPackage.DECISION___GET_ACCESSED_REFERENCES__ELIST_ELIST:
+				return GetAccessedReferences((EList<SharedResource>)arguments.get(0), (EList<Activity>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

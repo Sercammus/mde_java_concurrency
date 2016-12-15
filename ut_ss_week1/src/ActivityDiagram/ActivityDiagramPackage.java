@@ -60,50 +60,60 @@ public interface ActivityDiagramPackage extends EPackage {
 	ActivityDiagramPackage eINSTANCE = ActivityDiagram.impl.ActivityDiagramPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link ActivityDiagram.impl.BasicModelImpl <em>Basic Model</em>}' class.
+	 * The meta object id for the '{@link ActivityDiagram.impl.ReferenceImpl <em>Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ActivityDiagram.impl.BasicModelImpl
-	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getBasicModel()
+	 * @see ActivityDiagram.impl.ReferenceImpl
+	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getReference()
 	 * @generated
 	 */
-	int BASIC_MODEL = 0;
+	int REFERENCE = 20;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_MODEL__RESOURCES = 0;
+	int REFERENCE__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Instances</b></em>' containment reference list.
+	 * The number of structural features of the '<em>Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_MODEL__INSTANCES = 1;
+	int REFERENCE_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Instance Types</b></em>' containment reference list.
+	 * The number of operations of the '<em>Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_MODEL__INSTANCE_TYPES = 2;
+	int REFERENCE_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Start Activity</b></em>' reference.
+	 * The meta object id for the '{@link ActivityDiagram.impl.ThreadImpl <em>Thread</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ActivityDiagram.impl.ThreadImpl
+	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getThread()
+	 * @generated
+	 */
+	int THREAD = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_MODEL__START_ACTIVITY = 3;
+	int THREAD__NAME = REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
@@ -112,7 +122,107 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_MODEL__ACTIVITIES = 4;
+	int THREAD__ACTIVITIES = REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Start Activity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAD__START_ACTIVITY = REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Thread</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAD_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Thread</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAD_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link ActivityDiagram.impl.BasicModelImpl <em>Basic Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ActivityDiagram.impl.BasicModelImpl
+	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getBasicModel()
+	 * @generated
+	 */
+	int BASIC_MODEL = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_MODEL__NAME = THREAD__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_MODEL__ACTIVITIES = THREAD__ACTIVITIES;
+
+	/**
+	 * The feature id for the '<em><b>Start Activity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_MODEL__START_ACTIVITY = THREAD__START_ACTIVITY;
+
+	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_MODEL__RESOURCES = THREAD_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_MODEL__INSTANCES = THREAD_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Instance Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_MODEL__INSTANCE_TYPES = THREAD_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Threads</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_MODEL__THREADS = THREAD_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Basic Model</em>' class.
@@ -121,7 +231,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_MODEL_FEATURE_COUNT = 5;
+	int BASIC_MODEL_FEATURE_COUNT = THREAD_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Basic Model</em>' class.
@@ -130,7 +240,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_MODEL_OPERATION_COUNT = 0;
+	int BASIC_MODEL_OPERATION_COUNT = THREAD_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link ActivityDiagram.impl.ActivityImpl <em>Activity</em>}' class.
@@ -140,25 +250,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getActivity()
 	 * @generated
 	 */
-	int ACTIVITY = 1;
-
-	/**
-	 * The feature id for the '<em><b>Instance</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVITY__INSTANCE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Thread</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVITY__THREAD = 1;
+	int ACTIVITY = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -167,7 +259,34 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY__NAME = 2;
+	int ACTIVITY__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Instance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__INSTANCE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Thread</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__THREAD = 2;
+
+	/**
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__ACCESSED_REFERENCES = 3;
 
 	/**
 	 * The number of structural features of the '<em>Activity</em>' class.
@@ -176,7 +295,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY_FEATURE_COUNT = 3;
+	int ACTIVITY_FEATURE_COUNT = 4;
 
 	/**
 	 * The operation id for the '<em>Joins Correctly</em>' operation.
@@ -194,7 +313,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = 1;
+	int ACTIVITY___JOINS_CORRECTLY__ELIST = 1;
+
+	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = 2;
 
 	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
@@ -203,7 +331,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY = 2;
+	int ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY = 3;
 
 	/**
 	 * The operation id for the '<em>Uses Same Thread</em>' operation.
@@ -212,7 +340,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY___USES_SAME_THREAD__ACTIVITY = 3;
+	int ACTIVITY___USES_SAME_THREAD__ACTIVITY = 4;
+
+	/**
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = 5;
 
 	/**
 	 * The number of operations of the '<em>Activity</em>' class.
@@ -221,7 +358,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY_OPERATION_COUNT = 4;
+	int ACTIVITY_OPERATION_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link ActivityDiagram.impl.FinalActivityImpl <em>Final Activity</em>}' class.
@@ -231,7 +368,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getFinalActivity()
 	 * @generated
 	 */
-	int FINAL_ACTIVITY = 3;
+	int FINAL_ACTIVITY = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_ACTIVITY__NAME = ACTIVITY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Instance</b></em>' reference.
@@ -252,13 +398,13 @@ public interface ActivityDiagramPackage extends EPackage {
 	int FINAL_ACTIVITY__THREAD = ACTIVITY__THREAD;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FINAL_ACTIVITY__NAME = ACTIVITY__NAME;
+	int FINAL_ACTIVITY__ACCESSED_REFERENCES = ACTIVITY__ACCESSED_REFERENCES;
 
 	/**
 	 * The number of structural features of the '<em>Final Activity</em>' class.
@@ -277,6 +423,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int FINAL_ACTIVITY___JOINS_CORRECTLY = ACTIVITY___JOINS_CORRECTLY;
+
+	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_ACTIVITY___JOINS_CORRECTLY__ELIST = ACTIVITY___JOINS_CORRECTLY__ELIST;
 
 	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
@@ -306,13 +461,22 @@ public interface ActivityDiagramPackage extends EPackage {
 	int FINAL_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Final Activity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FINAL_ACTIVITY_OPERATION_COUNT = ACTIVITY_OPERATION_COUNT + 1;
+	int FINAL_ACTIVITY_OPERATION_COUNT = ACTIVITY_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link ActivityDiagram.impl.EndImpl <em>End</em>}' class.
@@ -322,7 +486,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getEnd()
 	 * @generated
 	 */
-	int END = 2;
+	int END = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END__NAME = FINAL_ACTIVITY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Instance</b></em>' reference.
@@ -343,13 +516,13 @@ public interface ActivityDiagramPackage extends EPackage {
 	int END__THREAD = FINAL_ACTIVITY__THREAD;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int END__NAME = FINAL_ACTIVITY__NAME;
+	int END__ACCESSED_REFERENCES = FINAL_ACTIVITY__ACCESSED_REFERENCES;
 
 	/**
 	 * The number of structural features of the '<em>End</em>' class.
@@ -368,6 +541,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int END___JOINS_CORRECTLY = FINAL_ACTIVITY___JOINS_CORRECTLY;
+
+	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END___JOINS_CORRECTLY__ELIST = FINAL_ACTIVITY___JOINS_CORRECTLY__ELIST;
 
 	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
@@ -397,6 +579,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	int END___JOINS_CORRECTLY__ELIST_ELIST = FINAL_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
 
 	/**
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END___GET_ACCESSED_REFERENCES__ELIST_ELIST = FINAL_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
+
+	/**
 	 * The number of operations of the '<em>End</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -413,7 +604,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getLinearActivity()
 	 * @generated
 	 */
-	int LINEAR_ACTIVITY = 4;
+	int LINEAR_ACTIVITY = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_ACTIVITY__NAME = ACTIVITY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Instance</b></em>' reference.
@@ -434,13 +634,13 @@ public interface ActivityDiagramPackage extends EPackage {
 	int LINEAR_ACTIVITY__THREAD = ACTIVITY__THREAD;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEAR_ACTIVITY__NAME = ACTIVITY__NAME;
+	int LINEAR_ACTIVITY__ACCESSED_REFERENCES = ACTIVITY__ACCESSED_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Next Activity</b></em>' reference.
@@ -470,6 +670,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	int LINEAR_ACTIVITY___JOINS_CORRECTLY = ACTIVITY___JOINS_CORRECTLY;
 
 	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST = ACTIVITY___JOINS_CORRECTLY__ELIST;
+
+	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -497,13 +706,22 @@ public interface ActivityDiagramPackage extends EPackage {
 	int LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Linear Activity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEAR_ACTIVITY_OPERATION_COUNT = ACTIVITY_OPERATION_COUNT + 1;
+	int LINEAR_ACTIVITY_OPERATION_COUNT = ACTIVITY_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link ActivityDiagram.impl.ForkImpl <em>Fork</em>}' class.
@@ -513,7 +731,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getFork()
 	 * @generated
 	 */
-	int FORK = 5;
+	int FORK = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK__NAME = ACTIVITY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Instance</b></em>' reference.
@@ -534,31 +761,31 @@ public interface ActivityDiagramPackage extends EPackage {
 	int FORK__THREAD = ACTIVITY__THREAD;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORK__NAME = ACTIVITY__NAME;
+	int FORK__ACCESSED_REFERENCES = ACTIVITY__ACCESSED_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Threads</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Max Thread Count</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORK__THREADS = ACTIVITY_FEATURE_COUNT + 0;
+	int FORK__MAX_THREAD_COUNT = ACTIVITY_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Thread Count</b></em>' attribute.
+	 * The feature id for the '<em><b>Forked Threads</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORK__THREAD_COUNT = ACTIVITY_FEATURE_COUNT + 1;
+	int FORK__FORKED_THREADS = ACTIVITY_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Fork</em>' class.
@@ -603,7 +830,25 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORK___JOINS_CORRECTLY__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 1;
+	int FORK___JOINS_CORRECTLY__ELIST = ACTIVITY_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK___JOINS_CORRECTLY__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK___GET_ACCESSED_REFERENCES__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Fork</em>' class.
@@ -612,7 +857,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORK_OPERATION_COUNT = ACTIVITY_OPERATION_COUNT + 2;
+	int FORK_OPERATION_COUNT = ACTIVITY_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link ActivityDiagram.impl.DecisionImpl <em>Decision</em>}' class.
@@ -622,7 +867,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getDecision()
 	 * @generated
 	 */
-	int DECISION = 6;
+	int DECISION = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION__NAME = LINEAR_ACTIVITY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Instance</b></em>' reference.
@@ -643,13 +897,13 @@ public interface ActivityDiagramPackage extends EPackage {
 	int DECISION__THREAD = LINEAR_ACTIVITY__THREAD;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION__NAME = LINEAR_ACTIVITY__NAME;
+	int DECISION__ACCESSED_REFERENCES = LINEAR_ACTIVITY__ACCESSED_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Next Activity</b></em>' reference.
@@ -688,6 +942,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	int DECISION___JOINS_CORRECTLY = LINEAR_ACTIVITY___JOINS_CORRECTLY;
 
 	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION___JOINS_CORRECTLY__ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST;
+
+	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -715,13 +978,22 @@ public interface ActivityDiagramPackage extends EPackage {
 	int DECISION___JOINS_CORRECTLY__ELIST_ELIST = LINEAR_ACTIVITY_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION___GET_ACCESSED_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Decision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_OPERATION_COUNT = LINEAR_ACTIVITY_OPERATION_COUNT + 1;
+	int DECISION_OPERATION_COUNT = LINEAR_ACTIVITY_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link ActivityDiagram.impl.BranchImpl <em>Branch</em>}' class.
@@ -731,16 +1003,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getBranch()
 	 * @generated
 	 */
-	int BRANCH = 7;
+	int BRANCH = 8;
 
 	/**
-	 * The feature id for the '<em><b>Activity</b></em>' reference.
+	 * The feature id for the '<em><b>Next Activity</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BRANCH__ACTIVITY = 0;
+	int BRANCH__NEXT_ACTIVITY = 0;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -777,7 +1049,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getJoin()
 	 * @generated
 	 */
-	int JOIN = 8;
+	int JOIN = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN__NAME = LINEAR_ACTIVITY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Instance</b></em>' reference.
@@ -798,13 +1079,13 @@ public interface ActivityDiagramPackage extends EPackage {
 	int JOIN__THREAD = LINEAR_ACTIVITY__THREAD;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JOIN__NAME = LINEAR_ACTIVITY__NAME;
+	int JOIN__ACCESSED_REFERENCES = LINEAR_ACTIVITY__ACCESSED_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Next Activity</b></em>' reference.
@@ -834,6 +1115,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	int JOIN___JOINS_CORRECTLY = LINEAR_ACTIVITY___JOINS_CORRECTLY;
 
 	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN___JOINS_CORRECTLY__ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST;
+
+	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -850,6 +1140,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int JOIN___USES_SAME_THREAD__ACTIVITY = LINEAR_ACTIVITY___USES_SAME_THREAD__ACTIVITY;
+
+	/**
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN___GET_ACCESSED_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Joins Correctly</em>' operation.
@@ -877,7 +1176,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getSharedResource()
 	 * @generated
 	 */
-	int SHARED_RESOURCE = 9;
+	int SHARED_RESOURCE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -886,7 +1185,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SHARED_RESOURCE__NAME = 0;
+	int SHARED_RESOURCE__NAME = REFERENCE__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Shared Resource</em>' class.
@@ -895,7 +1194,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SHARED_RESOURCE_FEATURE_COUNT = 1;
+	int SHARED_RESOURCE_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Shared Resource</em>' class.
@@ -904,7 +1203,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SHARED_RESOURCE_OPERATION_COUNT = 0;
+	int SHARED_RESOURCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link ActivityDiagram.impl.InterruptImpl <em>Interrupt</em>}' class.
@@ -914,7 +1213,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getInterrupt()
 	 * @generated
 	 */
-	int INTERRUPT = 10;
+	int INTERRUPT = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERRUPT__NAME = LINEAR_ACTIVITY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Instance</b></em>' reference.
@@ -935,13 +1243,13 @@ public interface ActivityDiagramPackage extends EPackage {
 	int INTERRUPT__THREAD = LINEAR_ACTIVITY__THREAD;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERRUPT__NAME = LINEAR_ACTIVITY__NAME;
+	int INTERRUPT__ACCESSED_REFERENCES = LINEAR_ACTIVITY__ACCESSED_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Next Activity</b></em>' reference.
@@ -980,6 +1288,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	int INTERRUPT___JOINS_CORRECTLY = LINEAR_ACTIVITY___JOINS_CORRECTLY;
 
 	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERRUPT___JOINS_CORRECTLY__ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST;
+
+	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1007,6 +1324,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	int INTERRUPT___JOINS_CORRECTLY__ELIST_ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
 
 	/**
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERRUPT___GET_ACCESSED_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
+
+	/**
 	 * The number of operations of the '<em>Interrupt</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1023,7 +1349,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getInstance()
 	 * @generated
 	 */
-	int INSTANCE = 11;
+	int INSTANCE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1032,7 +1358,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__NAME = 0;
+	int INSTANCE__NAME = REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Instance Type</b></em>' reference.
@@ -1041,7 +1367,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__INSTANCE_TYPE = 1;
+	int INSTANCE__INSTANCE_TYPE = REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Instance</em>' class.
@@ -1050,7 +1376,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_FEATURE_COUNT = 2;
+	int INSTANCE_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Instance</em>' class.
@@ -1059,7 +1385,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_OPERATION_COUNT = 0;
+	int INSTANCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link ActivityDiagram.impl.InstanceTypeImpl <em>Instance Type</em>}' class.
@@ -1069,7 +1395,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getInstanceType()
 	 * @generated
 	 */
-	int INSTANCE_TYPE = 12;
+	int INSTANCE_TYPE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1106,7 +1432,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getSleep()
 	 * @generated
 	 */
-	int SLEEP = 13;
+	int SLEEP = 14;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLEEP__NAME = LINEAR_ACTIVITY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Instance</b></em>' reference.
@@ -1127,13 +1462,13 @@ public interface ActivityDiagramPackage extends EPackage {
 	int SLEEP__THREAD = LINEAR_ACTIVITY__THREAD;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SLEEP__NAME = LINEAR_ACTIVITY__NAME;
+	int SLEEP__ACCESSED_REFERENCES = LINEAR_ACTIVITY__ACCESSED_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Next Activity</b></em>' reference.
@@ -1172,6 +1507,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	int SLEEP___JOINS_CORRECTLY = LINEAR_ACTIVITY___JOINS_CORRECTLY;
 
 	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLEEP___JOINS_CORRECTLY__ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST;
+
+	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1199,6 +1543,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	int SLEEP___JOINS_CORRECTLY__ELIST_ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
 
 	/**
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLEEP___GET_ACCESSED_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
+
+	/**
 	 * The number of operations of the '<em>Sleep</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1206,61 +1559,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int SLEEP_OPERATION_COUNT = LINEAR_ACTIVITY_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link ActivityDiagram.impl.ThreadImpl <em>Thread</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ActivityDiagram.impl.ThreadImpl
-	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getThread()
-	 * @generated
-	 */
-	int THREAD = 14;
-
-	/**
-	 * The feature id for the '<em><b>Daemon</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int THREAD__DAEMON = 0;
-
-	/**
-	 * The feature id for the '<em><b>Activity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int THREAD__ACTIVITY = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int THREAD__NAME = 2;
-
-	/**
-	 * The number of structural features of the '<em>Thread</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int THREAD_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Thread</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int THREAD_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link ActivityDiagram.impl.YieldImpl <em>Yield</em>}' class.
@@ -1271,6 +1569,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	int YIELD = 15;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int YIELD__NAME = LINEAR_ACTIVITY__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Instance</b></em>' reference.
@@ -1291,13 +1598,13 @@ public interface ActivityDiagramPackage extends EPackage {
 	int YIELD__THREAD = LINEAR_ACTIVITY__THREAD;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int YIELD__NAME = LINEAR_ACTIVITY__NAME;
+	int YIELD__ACCESSED_REFERENCES = LINEAR_ACTIVITY__ACCESSED_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Next Activity</b></em>' reference.
@@ -1327,6 +1634,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	int YIELD___JOINS_CORRECTLY = LINEAR_ACTIVITY___JOINS_CORRECTLY;
 
 	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int YIELD___JOINS_CORRECTLY__ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST;
+
+	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1354,6 +1670,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	int YIELD___JOINS_CORRECTLY__ELIST_ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
 
 	/**
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int YIELD___GET_ACCESSED_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
+
+	/**
 	 * The number of operations of the '<em>Yield</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1363,32 +1688,14 @@ public interface ActivityDiagramPackage extends EPackage {
 	int YIELD_OPERATION_COUNT = LINEAR_ACTIVITY_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link ActivityDiagram.impl.DescribedActivityImpl <em>Described Activity</em>}' class.
+	 * The meta object id for the '{@link ActivityDiagram.impl.NamedActivityImpl <em>Named Activity</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ActivityDiagram.impl.DescribedActivityImpl
-	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getDescribedActivity()
+	 * @see ActivityDiagram.impl.NamedActivityImpl
+	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getNamedActivity()
 	 * @generated
 	 */
-	int DESCRIBED_ACTIVITY = 18;
-
-	/**
-	 * The feature id for the '<em><b>Instance</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIBED_ACTIVITY__INSTANCE = LINEAR_ACTIVITY__INSTANCE;
-
-	/**
-	 * The feature id for the '<em><b>Thread</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIBED_ACTIVITY__THREAD = LINEAR_ACTIVITY__THREAD;
+	int NAMED_ACTIVITY = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1397,7 +1704,34 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIBED_ACTIVITY__NAME = LINEAR_ACTIVITY__NAME;
+	int NAMED_ACTIVITY__NAME = LINEAR_ACTIVITY__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Instance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ACTIVITY__INSTANCE = LINEAR_ACTIVITY__INSTANCE;
+
+	/**
+	 * The feature id for the '<em><b>Thread</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ACTIVITY__THREAD = LINEAR_ACTIVITY__THREAD;
+
+	/**
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ACTIVITY__ACCESSED_REFERENCES = LINEAR_ACTIVITY__ACCESSED_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Next Activity</b></em>' reference.
@@ -1406,25 +1740,25 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIBED_ACTIVITY__NEXT_ACTIVITY = LINEAR_ACTIVITY__NEXT_ACTIVITY;
+	int NAMED_ACTIVITY__NEXT_ACTIVITY = LINEAR_ACTIVITY__NEXT_ACTIVITY;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Activity Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIBED_ACTIVITY__DESCRIPTION = LINEAR_ACTIVITY_FEATURE_COUNT + 0;
+	int NAMED_ACTIVITY__ACTIVITY_NAME = LINEAR_ACTIVITY_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Described Activity</em>' class.
+	 * The number of structural features of the '<em>Named Activity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIBED_ACTIVITY_FEATURE_COUNT = LINEAR_ACTIVITY_FEATURE_COUNT + 1;
+	int NAMED_ACTIVITY_FEATURE_COUNT = LINEAR_ACTIVITY_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Joins Correctly</em>' operation.
@@ -1433,7 +1767,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIBED_ACTIVITY___JOINS_CORRECTLY = LINEAR_ACTIVITY___JOINS_CORRECTLY;
+	int NAMED_ACTIVITY___JOINS_CORRECTLY = LINEAR_ACTIVITY___JOINS_CORRECTLY;
+
+	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ACTIVITY___JOINS_CORRECTLY__ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST;
 
 	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
@@ -1442,7 +1785,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIBED_ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY = LINEAR_ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY;
+	int NAMED_ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY = LINEAR_ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY;
 
 	/**
 	 * The operation id for the '<em>Uses Same Thread</em>' operation.
@@ -1451,7 +1794,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIBED_ACTIVITY___USES_SAME_THREAD__ACTIVITY = LINEAR_ACTIVITY___USES_SAME_THREAD__ACTIVITY;
+	int NAMED_ACTIVITY___USES_SAME_THREAD__ACTIVITY = LINEAR_ACTIVITY___USES_SAME_THREAD__ACTIVITY;
 
 	/**
 	 * The operation id for the '<em>Joins Correctly</em>' operation.
@@ -1460,16 +1803,25 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIBED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
+	int NAMED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
 
 	/**
-	 * The number of operations of the '<em>Described Activity</em>' class.
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DESCRIBED_ACTIVITY_OPERATION_COUNT = LINEAR_ACTIVITY_OPERATION_COUNT + 0;
+	int NAMED_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
+
+	/**
+	 * The number of operations of the '<em>Named Activity</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ACTIVITY_OPERATION_COUNT = LINEAR_ACTIVITY_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link ActivityDiagram.impl.SimpleActivityImpl <em>Simple Activity</em>}' class.
@@ -1482,13 +1834,22 @@ public interface ActivityDiagramPackage extends EPackage {
 	int SIMPLE_ACTIVITY = 16;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_ACTIVITY__NAME = NAMED_ACTIVITY__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Instance</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY__INSTANCE = DESCRIBED_ACTIVITY__INSTANCE;
+	int SIMPLE_ACTIVITY__INSTANCE = NAMED_ACTIVITY__INSTANCE;
 
 	/**
 	 * The feature id for the '<em><b>Thread</b></em>' reference.
@@ -1497,16 +1858,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY__THREAD = DESCRIBED_ACTIVITY__THREAD;
+	int SIMPLE_ACTIVITY__THREAD = NAMED_ACTIVITY__THREAD;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY__NAME = DESCRIBED_ACTIVITY__NAME;
+	int SIMPLE_ACTIVITY__ACCESSED_REFERENCES = NAMED_ACTIVITY__ACCESSED_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Next Activity</b></em>' reference.
@@ -1515,16 +1876,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY__NEXT_ACTIVITY = DESCRIBED_ACTIVITY__NEXT_ACTIVITY;
+	int SIMPLE_ACTIVITY__NEXT_ACTIVITY = NAMED_ACTIVITY__NEXT_ACTIVITY;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Activity Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY__DESCRIPTION = DESCRIBED_ACTIVITY__DESCRIPTION;
+	int SIMPLE_ACTIVITY__ACTIVITY_NAME = NAMED_ACTIVITY__ACTIVITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Shared Resources</b></em>' reference list.
@@ -1533,7 +1894,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY__SHARED_RESOURCES = DESCRIBED_ACTIVITY_FEATURE_COUNT + 0;
+	int SIMPLE_ACTIVITY__SHARED_RESOURCES = NAMED_ACTIVITY_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Simple Activity</em>' class.
@@ -1542,7 +1903,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY_FEATURE_COUNT = DESCRIBED_ACTIVITY_FEATURE_COUNT + 1;
+	int SIMPLE_ACTIVITY_FEATURE_COUNT = NAMED_ACTIVITY_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Joins Correctly</em>' operation.
@@ -1551,7 +1912,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY___JOINS_CORRECTLY = DESCRIBED_ACTIVITY___JOINS_CORRECTLY;
+	int SIMPLE_ACTIVITY___JOINS_CORRECTLY = NAMED_ACTIVITY___JOINS_CORRECTLY;
+
+	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_ACTIVITY___JOINS_CORRECTLY__ELIST = NAMED_ACTIVITY___JOINS_CORRECTLY__ELIST;
 
 	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
@@ -1560,7 +1930,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY = DESCRIBED_ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY;
+	int SIMPLE_ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY = NAMED_ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY;
 
 	/**
 	 * The operation id for the '<em>Uses Same Thread</em>' operation.
@@ -1569,7 +1939,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY___USES_SAME_THREAD__ACTIVITY = DESCRIBED_ACTIVITY___USES_SAME_THREAD__ACTIVITY;
+	int SIMPLE_ACTIVITY___USES_SAME_THREAD__ACTIVITY = NAMED_ACTIVITY___USES_SAME_THREAD__ACTIVITY;
 
 	/**
 	 * The operation id for the '<em>Joins Correctly</em>' operation.
@@ -1578,7 +1948,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = DESCRIBED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
+	int SIMPLE_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = NAMED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
+
+	/**
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = NAMED_ACTIVITY_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Simple Activity</em>' class.
@@ -1587,7 +1966,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY_OPERATION_COUNT = DESCRIBED_ACTIVITY_OPERATION_COUNT + 0;
+	int SIMPLE_ACTIVITY_OPERATION_COUNT = NAMED_ACTIVITY_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link ActivityDiagram.impl.NestedActivityImpl <em>Nested Activity</em>}' class.
@@ -1600,13 +1979,22 @@ public interface ActivityDiagramPackage extends EPackage {
 	int NESTED_ACTIVITY = 17;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_ACTIVITY__NAME = NAMED_ACTIVITY__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Instance</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY__INSTANCE = DESCRIBED_ACTIVITY__INSTANCE;
+	int NESTED_ACTIVITY__INSTANCE = NAMED_ACTIVITY__INSTANCE;
 
 	/**
 	 * The feature id for the '<em><b>Thread</b></em>' reference.
@@ -1615,16 +2003,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY__THREAD = DESCRIBED_ACTIVITY__THREAD;
+	int NESTED_ACTIVITY__THREAD = NAMED_ACTIVITY__THREAD;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Accessed References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY__NAME = DESCRIBED_ACTIVITY__NAME;
+	int NESTED_ACTIVITY__ACCESSED_REFERENCES = NAMED_ACTIVITY__ACCESSED_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Next Activity</b></em>' reference.
@@ -1633,25 +2021,25 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY__NEXT_ACTIVITY = DESCRIBED_ACTIVITY__NEXT_ACTIVITY;
+	int NESTED_ACTIVITY__NEXT_ACTIVITY = NAMED_ACTIVITY__NEXT_ACTIVITY;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Activity Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY__DESCRIPTION = DESCRIBED_ACTIVITY__DESCRIPTION;
+	int NESTED_ACTIVITY__ACTIVITY_NAME = NAMED_ACTIVITY__ACTIVITY_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Start Activity</b></em>' reference.
+	 * The feature id for the '<em><b>Nested Thread</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY__START_ACTIVITY = DESCRIBED_ACTIVITY_FEATURE_COUNT + 0;
+	int NESTED_ACTIVITY__NESTED_THREAD = NAMED_ACTIVITY_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Nested Activity</em>' class.
@@ -1660,7 +2048,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY_FEATURE_COUNT = DESCRIBED_ACTIVITY_FEATURE_COUNT + 1;
+	int NESTED_ACTIVITY_FEATURE_COUNT = NAMED_ACTIVITY_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Joins Correctly</em>' operation.
@@ -1669,7 +2057,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY___JOINS_CORRECTLY = DESCRIBED_ACTIVITY___JOINS_CORRECTLY;
+	int NESTED_ACTIVITY___JOINS_CORRECTLY = NAMED_ACTIVITY___JOINS_CORRECTLY;
+
+	/**
+	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_ACTIVITY___JOINS_CORRECTLY__ELIST = NAMED_ACTIVITY___JOINS_CORRECTLY__ELIST;
 
 	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
@@ -1678,7 +2075,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY = DESCRIBED_ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY;
+	int NESTED_ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY = NAMED_ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY;
 
 	/**
 	 * The operation id for the '<em>Uses Same Thread</em>' operation.
@@ -1687,7 +2084,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY___USES_SAME_THREAD__ACTIVITY = DESCRIBED_ACTIVITY___USES_SAME_THREAD__ACTIVITY;
+	int NESTED_ACTIVITY___USES_SAME_THREAD__ACTIVITY = NAMED_ACTIVITY___USES_SAME_THREAD__ACTIVITY;
 
 	/**
 	 * The operation id for the '<em>Joins Correctly</em>' operation.
@@ -1696,7 +2093,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = DESCRIBED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
+	int NESTED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = NAMED_ACTIVITY_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Accessed References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = NAMED_ACTIVITY_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Nested Activity</em>' class.
@@ -1705,8 +2111,104 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY_OPERATION_COUNT = DESCRIBED_ACTIVITY_OPERATION_COUNT + 0;
+	int NESTED_ACTIVITY_OPERATION_COUNT = NAMED_ACTIVITY_OPERATION_COUNT + 2;
 
+	/**
+	 * The meta object id for the '{@link ActivityDiagram.impl.ForkedThreadImpl <em>Forked Thread</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ActivityDiagram.impl.ForkedThreadImpl
+	 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getForkedThread()
+	 * @generated
+	 */
+	int FORKED_THREAD = 18;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORKED_THREAD__NAME = THREAD__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORKED_THREAD__ACTIVITIES = THREAD__ACTIVITIES;
+
+	/**
+	 * The feature id for the '<em><b>Start Activity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORKED_THREAD__START_ACTIVITY = THREAD__START_ACTIVITY;
+
+	/**
+	 * The feature id for the '<em><b>Daemon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORKED_THREAD__DAEMON = THREAD_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Forked Thread</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORKED_THREAD_FEATURE_COUNT = THREAD_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Forked Thread</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORKED_THREAD_OPERATION_COUNT = THREAD_OPERATION_COUNT + 0;
+
+
+	/**
+	 * Returns the meta object for class '{@link ActivityDiagram.Thread <em>Thread</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Thread</em>'.
+	 * @see ActivityDiagram.Thread
+	 * @generated
+	 */
+	EClass getThread();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ActivityDiagram.Thread#getActivities <em>Activities</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Activities</em>'.
+	 * @see ActivityDiagram.Thread#getActivities()
+	 * @see #getThread()
+	 * @generated
+	 */
+	EReference getThread_Activities();
+
+	/**
+	 * Returns the meta object for the reference '{@link ActivityDiagram.Thread#getStartActivity <em>Start Activity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Start Activity</em>'.
+	 * @see ActivityDiagram.Thread#getStartActivity()
+	 * @see #getThread()
+	 * @generated
+	 */
+	EReference getThread_StartActivity();
 
 	/**
 	 * Returns the meta object for class '{@link ActivityDiagram.BasicModel <em>Basic Model</em>}'.
@@ -1752,26 +2254,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	EReference getBasicModel_InstanceTypes();
 
 	/**
-	 * Returns the meta object for the reference '{@link ActivityDiagram.BasicModel#getStartActivity <em>Start Activity</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ActivityDiagram.BasicModel#getThreads <em>Threads</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Start Activity</em>'.
-	 * @see ActivityDiagram.BasicModel#getStartActivity()
+	 * @return the meta object for the containment reference list '<em>Threads</em>'.
+	 * @see ActivityDiagram.BasicModel#getThreads()
 	 * @see #getBasicModel()
 	 * @generated
 	 */
-	EReference getBasicModel_StartActivity();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link ActivityDiagram.BasicModel#getActivities <em>Activities</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Activities</em>'.
-	 * @see ActivityDiagram.BasicModel#getActivities()
-	 * @see #getBasicModel()
-	 * @generated
-	 */
-	EReference getBasicModel_Activities();
+	EReference getBasicModel_Threads();
 
 	/**
 	 * Returns the meta object for class '{@link ActivityDiagram.Activity <em>Activity</em>}'.
@@ -1782,6 +2273,17 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getActivity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ActivityDiagram.Activity#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see ActivityDiagram.Activity#getName()
+	 * @see #getActivity()
+	 * @generated
+	 */
+	EAttribute getActivity_Name();
 
 	/**
 	 * Returns the meta object for the reference '{@link ActivityDiagram.Activity#getInstance <em>Instance</em>}'.
@@ -1806,15 +2308,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	EReference getActivity_Thread();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ActivityDiagram.Activity#getName <em>Name</em>}'.
+	 * Returns the meta object for the reference list '{@link ActivityDiagram.Activity#getAccessedReferences <em>Accessed References</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see ActivityDiagram.Activity#getName()
+	 * @return the meta object for the reference list '<em>Accessed References</em>'.
+	 * @see ActivityDiagram.Activity#getAccessedReferences()
 	 * @see #getActivity()
 	 * @generated
 	 */
-	EAttribute getActivity_Name();
+	EReference getActivity_AccessedReferences();
 
 	/**
 	 * Returns the meta object for the '{@link ActivityDiagram.Activity#JoinsCorrectly() <em>Joins Correctly</em>}' operation.
@@ -1825,6 +2327,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getActivity__JoinsCorrectly();
+
+	/**
+	 * Returns the meta object for the '{@link ActivityDiagram.Activity#JoinsCorrectly(org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Joins Correctly</em>' operation.
+	 * @see ActivityDiagram.Activity#JoinsCorrectly(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getActivity__JoinsCorrectly__EList();
 
 	/**
 	 * Returns the meta object for the '{@link ActivityDiagram.Activity#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
@@ -1857,6 +2369,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	EOperation getActivity__UsesSameThread__Activity();
 
 	/**
+	 * Returns the meta object for the '{@link ActivityDiagram.Activity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Accessed References</em>' operation.
+	 * @see ActivityDiagram.Activity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getActivity__GetAccessedReferences__EList_EList();
+
+	/**
 	 * Returns the meta object for class '{@link ActivityDiagram.End <em>End</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1885,6 +2407,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getFinalActivity__JoinsCorrectly__EList_EList();
+
+	/**
+	 * Returns the meta object for the '{@link ActivityDiagram.FinalActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Accessed References</em>' operation.
+	 * @see ActivityDiagram.FinalActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getFinalActivity__GetAccessedReferences__EList_EList();
 
 	/**
 	 * Returns the meta object for class '{@link ActivityDiagram.LinearActivity <em>Linear Activity</em>}'.
@@ -1918,6 +2450,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	EOperation getLinearActivity__JoinsCorrectly__EList_EList();
 
 	/**
+	 * Returns the meta object for the '{@link ActivityDiagram.LinearActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Accessed References</em>' operation.
+	 * @see ActivityDiagram.LinearActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getLinearActivity__GetAccessedReferences__EList_EList();
+
+	/**
 	 * Returns the meta object for class '{@link ActivityDiagram.Fork <em>Fork</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1928,26 +2470,26 @@ public interface ActivityDiagramPackage extends EPackage {
 	EClass getFork();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ActivityDiagram.Fork#getThreads <em>Threads</em>}'.
+	 * Returns the meta object for the attribute '{@link ActivityDiagram.Fork#getMaxThreadCount <em>Max Thread Count</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Threads</em>'.
-	 * @see ActivityDiagram.Fork#getThreads()
+	 * @return the meta object for the attribute '<em>Max Thread Count</em>'.
+	 * @see ActivityDiagram.Fork#getMaxThreadCount()
 	 * @see #getFork()
 	 * @generated
 	 */
-	EReference getFork_Threads();
+	EAttribute getFork_MaxThreadCount();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ActivityDiagram.Fork#getThreadCount <em>Thread Count</em>}'.
+	 * Returns the meta object for the reference list '{@link ActivityDiagram.Fork#getForkedThreads <em>Forked Threads</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Thread Count</em>'.
-	 * @see ActivityDiagram.Fork#getThreadCount()
+	 * @return the meta object for the reference list '<em>Forked Threads</em>'.
+	 * @see ActivityDiagram.Fork#getForkedThreads()
 	 * @see #getFork()
 	 * @generated
 	 */
-	EAttribute getFork_ThreadCount();
+	EReference getFork_ForkedThreads();
 
 	/**
 	 * Returns the meta object for the '{@link ActivityDiagram.Fork#JoinsCorrectly() <em>Joins Correctly</em>}' operation.
@@ -1960,6 +2502,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	EOperation getFork__JoinsCorrectly();
 
 	/**
+	 * Returns the meta object for the '{@link ActivityDiagram.Fork#JoinsCorrectly(org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Joins Correctly</em>' operation.
+	 * @see ActivityDiagram.Fork#JoinsCorrectly(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getFork__JoinsCorrectly__EList();
+
+	/**
 	 * Returns the meta object for the '{@link ActivityDiagram.Fork#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1968,6 +2520,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getFork__JoinsCorrectly__EList_EList();
+
+	/**
+	 * Returns the meta object for the '{@link ActivityDiagram.Fork#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Accessed References</em>' operation.
+	 * @see ActivityDiagram.Fork#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getFork__GetAccessedReferences__EList_EList();
 
 	/**
 	 * Returns the meta object for class '{@link ActivityDiagram.Decision <em>Decision</em>}'.
@@ -2001,6 +2563,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	EOperation getDecision__JoinsCorrectly__EList_EList();
 
 	/**
+	 * Returns the meta object for the '{@link ActivityDiagram.Decision#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Accessed References</em>' operation.
+	 * @see ActivityDiagram.Decision#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getDecision__GetAccessedReferences__EList_EList();
+
+	/**
 	 * Returns the meta object for class '{@link ActivityDiagram.Branch <em>Branch</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2011,15 +2583,15 @@ public interface ActivityDiagramPackage extends EPackage {
 	EClass getBranch();
 
 	/**
-	 * Returns the meta object for the reference '{@link ActivityDiagram.Branch#getActivity <em>Activity</em>}'.
+	 * Returns the meta object for the reference '{@link ActivityDiagram.Branch#getNextActivity <em>Next Activity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Activity</em>'.
-	 * @see ActivityDiagram.Branch#getActivity()
+	 * @return the meta object for the reference '<em>Next Activity</em>'.
+	 * @see ActivityDiagram.Branch#getNextActivity()
 	 * @see #getBranch()
 	 * @generated
 	 */
-	EReference getBranch_Activity();
+	EReference getBranch_NextActivity();
 
 	/**
 	 * Returns the meta object for the attribute '{@link ActivityDiagram.Branch#getCondition <em>Condition</em>}'.
@@ -2063,17 +2635,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	EClass getSharedResource();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ActivityDiagram.SharedResource#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see ActivityDiagram.SharedResource#getName()
-	 * @see #getSharedResource()
-	 * @generated
-	 */
-	EAttribute getSharedResource_Name();
-
-	/**
 	 * Returns the meta object for class '{@link ActivityDiagram.Interrupt <em>Interrupt</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2103,17 +2664,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getInstance();
-
-	/**
-	 * Returns the meta object for the attribute '{@link ActivityDiagram.Instance#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see ActivityDiagram.Instance#getName()
-	 * @see #getInstance()
-	 * @generated
-	 */
-	EAttribute getInstance_Name();
 
 	/**
 	 * Returns the meta object for the reference '{@link ActivityDiagram.Instance#getInstanceType <em>Instance Type</em>}'.
@@ -2169,49 +2719,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	EAttribute getSleep_Duration();
 
 	/**
-	 * Returns the meta object for class '{@link ActivityDiagram.Thread <em>Thread</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Thread</em>'.
-	 * @see ActivityDiagram.Thread
-	 * @generated
-	 */
-	EClass getThread();
-
-	/**
-	 * Returns the meta object for the attribute '{@link ActivityDiagram.Thread#isDaemon <em>Daemon</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Daemon</em>'.
-	 * @see ActivityDiagram.Thread#isDaemon()
-	 * @see #getThread()
-	 * @generated
-	 */
-	EAttribute getThread_Daemon();
-
-	/**
-	 * Returns the meta object for the reference '{@link ActivityDiagram.Thread#getActivity <em>Activity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Activity</em>'.
-	 * @see ActivityDiagram.Thread#getActivity()
-	 * @see #getThread()
-	 * @generated
-	 */
-	EReference getThread_Activity();
-
-	/**
-	 * Returns the meta object for the attribute '{@link ActivityDiagram.Thread#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see ActivityDiagram.Thread#getName()
-	 * @see #getThread()
-	 * @generated
-	 */
-	EAttribute getThread_Name();
-
-	/**
 	 * Returns the meta object for class '{@link ActivityDiagram.Yield <em>Yield</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2243,6 +2750,16 @@ public interface ActivityDiagramPackage extends EPackage {
 	EReference getSimpleActivity_SharedResources();
 
 	/**
+	 * Returns the meta object for the '{@link ActivityDiagram.SimpleActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Accessed References</em>' operation.
+	 * @see ActivityDiagram.SimpleActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getSimpleActivity__GetAccessedReferences__EList_EList();
+
+	/**
 	 * Returns the meta object for class '{@link ActivityDiagram.NestedActivity <em>Nested Activity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2253,36 +2770,98 @@ public interface ActivityDiagramPackage extends EPackage {
 	EClass getNestedActivity();
 
 	/**
-	 * Returns the meta object for the reference '{@link ActivityDiagram.NestedActivity#getStartActivity <em>Start Activity</em>}'.
+	 * Returns the meta object for the containment reference '{@link ActivityDiagram.NestedActivity#getNestedThread <em>Nested Thread</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Start Activity</em>'.
-	 * @see ActivityDiagram.NestedActivity#getStartActivity()
+	 * @return the meta object for the containment reference '<em>Nested Thread</em>'.
+	 * @see ActivityDiagram.NestedActivity#getNestedThread()
 	 * @see #getNestedActivity()
 	 * @generated
 	 */
-	EReference getNestedActivity_StartActivity();
+	EReference getNestedActivity_NestedThread();
 
 	/**
-	 * Returns the meta object for class '{@link ActivityDiagram.DescribedActivity <em>Described Activity</em>}'.
+	 * Returns the meta object for the '{@link ActivityDiagram.NestedActivity#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Described Activity</em>'.
-	 * @see ActivityDiagram.DescribedActivity
+	 * @return the meta object for the '<em>Joins Correctly</em>' operation.
+	 * @see ActivityDiagram.NestedActivity#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EClass getDescribedActivity();
+	EOperation getNestedActivity__JoinsCorrectly__EList_EList();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ActivityDiagram.DescribedActivity#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the '{@link ActivityDiagram.NestedActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see ActivityDiagram.DescribedActivity#getDescription()
-	 * @see #getDescribedActivity()
+	 * @return the meta object for the '<em>Get Accessed References</em>' operation.
+	 * @see ActivityDiagram.NestedActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EAttribute getDescribedActivity_Description();
+	EOperation getNestedActivity__GetAccessedReferences__EList_EList();
+
+	/**
+	 * Returns the meta object for class '{@link ActivityDiagram.ForkedThread <em>Forked Thread</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Forked Thread</em>'.
+	 * @see ActivityDiagram.ForkedThread
+	 * @generated
+	 */
+	EClass getForkedThread();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ActivityDiagram.ForkedThread#isDaemon <em>Daemon</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Daemon</em>'.
+	 * @see ActivityDiagram.ForkedThread#isDaemon()
+	 * @see #getForkedThread()
+	 * @generated
+	 */
+	EAttribute getForkedThread_Daemon();
+
+	/**
+	 * Returns the meta object for class '{@link ActivityDiagram.NamedActivity <em>Named Activity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Named Activity</em>'.
+	 * @see ActivityDiagram.NamedActivity
+	 * @generated
+	 */
+	EClass getNamedActivity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ActivityDiagram.NamedActivity#getActivityName <em>Activity Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Activity Name</em>'.
+	 * @see ActivityDiagram.NamedActivity#getActivityName()
+	 * @see #getNamedActivity()
+	 * @generated
+	 */
+	EAttribute getNamedActivity_ActivityName();
+
+	/**
+	 * Returns the meta object for class '{@link ActivityDiagram.Reference <em>Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reference</em>'.
+	 * @see ActivityDiagram.Reference
+	 * @generated
+	 */
+	EClass getReference();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ActivityDiagram.Reference#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see ActivityDiagram.Reference#getName()
+	 * @see #getReference()
+	 * @generated
+	 */
+	EAttribute getReference_Name();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2307,6 +2886,32 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
+		/**
+		 * The meta object literal for the '{@link ActivityDiagram.impl.ThreadImpl <em>Thread</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ActivityDiagram.impl.ThreadImpl
+		 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getThread()
+		 * @generated
+		 */
+		EClass THREAD = eINSTANCE.getThread();
+
+		/**
+		 * The meta object literal for the '<em><b>Activities</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference THREAD__ACTIVITIES = eINSTANCE.getThread_Activities();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Activity</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference THREAD__START_ACTIVITY = eINSTANCE.getThread_StartActivity();
+
 		/**
 		 * The meta object literal for the '{@link ActivityDiagram.impl.BasicModelImpl <em>Basic Model</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -2342,20 +2947,12 @@ public interface ActivityDiagramPackage extends EPackage {
 		EReference BASIC_MODEL__INSTANCE_TYPES = eINSTANCE.getBasicModel_InstanceTypes();
 
 		/**
-		 * The meta object literal for the '<em><b>Start Activity</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Threads</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BASIC_MODEL__START_ACTIVITY = eINSTANCE.getBasicModel_StartActivity();
-
-		/**
-		 * The meta object literal for the '<em><b>Activities</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BASIC_MODEL__ACTIVITIES = eINSTANCE.getBasicModel_Activities();
+		EReference BASIC_MODEL__THREADS = eINSTANCE.getBasicModel_Threads();
 
 		/**
 		 * The meta object literal for the '{@link ActivityDiagram.impl.ActivityImpl <em>Activity</em>}' class.
@@ -2366,6 +2963,14 @@ public interface ActivityDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ACTIVITY = eINSTANCE.getActivity();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACTIVITY__NAME = eINSTANCE.getActivity_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Instance</b></em>' reference feature.
@@ -2384,12 +2989,12 @@ public interface ActivityDiagramPackage extends EPackage {
 		EReference ACTIVITY__THREAD = eINSTANCE.getActivity_Thread();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Accessed References</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ACTIVITY__NAME = eINSTANCE.getActivity_Name();
+		EReference ACTIVITY__ACCESSED_REFERENCES = eINSTANCE.getActivity_AccessedReferences();
 
 		/**
 		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
@@ -2398,6 +3003,14 @@ public interface ActivityDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation ACTIVITY___JOINS_CORRECTLY = eINSTANCE.getActivity__JoinsCorrectly();
+
+		/**
+		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ACTIVITY___JOINS_CORRECTLY__ELIST = eINSTANCE.getActivity__JoinsCorrectly__EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
@@ -2422,6 +3035,14 @@ public interface ActivityDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation ACTIVITY___USES_SAME_THREAD__ACTIVITY = eINSTANCE.getActivity__UsesSameThread__Activity();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Accessed References</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = eINSTANCE.getActivity__GetAccessedReferences__EList_EList();
 
 		/**
 		 * The meta object literal for the '{@link ActivityDiagram.impl.EndImpl <em>End</em>}' class.
@@ -2452,6 +3073,14 @@ public interface ActivityDiagramPackage extends EPackage {
 		EOperation FINAL_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = eINSTANCE.getFinalActivity__JoinsCorrectly__EList_EList();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Accessed References</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation FINAL_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = eINSTANCE.getFinalActivity__GetAccessedReferences__EList_EList();
+
+		/**
 		 * The meta object literal for the '{@link ActivityDiagram.impl.LinearActivityImpl <em>Linear Activity</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2478,6 +3107,14 @@ public interface ActivityDiagramPackage extends EPackage {
 		EOperation LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = eINSTANCE.getLinearActivity__JoinsCorrectly__EList_EList();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Accessed References</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = eINSTANCE.getLinearActivity__GetAccessedReferences__EList_EList();
+
+		/**
 		 * The meta object literal for the '{@link ActivityDiagram.impl.ForkImpl <em>Fork</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2488,20 +3125,20 @@ public interface ActivityDiagramPackage extends EPackage {
 		EClass FORK = eINSTANCE.getFork();
 
 		/**
-		 * The meta object literal for the '<em><b>Threads</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Max Thread Count</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FORK__THREADS = eINSTANCE.getFork_Threads();
+		EAttribute FORK__MAX_THREAD_COUNT = eINSTANCE.getFork_MaxThreadCount();
 
 		/**
-		 * The meta object literal for the '<em><b>Thread Count</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Forked Threads</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FORK__THREAD_COUNT = eINSTANCE.getFork_ThreadCount();
+		EReference FORK__FORKED_THREADS = eINSTANCE.getFork_ForkedThreads();
 
 		/**
 		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
@@ -2517,7 +3154,23 @@ public interface ActivityDiagramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		EOperation FORK___JOINS_CORRECTLY__ELIST = eINSTANCE.getFork__JoinsCorrectly__EList();
+
+		/**
+		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
 		EOperation FORK___JOINS_CORRECTLY__ELIST_ELIST = eINSTANCE.getFork__JoinsCorrectly__EList_EList();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Accessed References</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation FORK___GET_ACCESSED_REFERENCES__ELIST_ELIST = eINSTANCE.getFork__GetAccessedReferences__EList_EList();
 
 		/**
 		 * The meta object literal for the '{@link ActivityDiagram.impl.DecisionImpl <em>Decision</em>}' class.
@@ -2546,6 +3199,14 @@ public interface ActivityDiagramPackage extends EPackage {
 		EOperation DECISION___JOINS_CORRECTLY__ELIST_ELIST = eINSTANCE.getDecision__JoinsCorrectly__EList_EList();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Accessed References</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DECISION___GET_ACCESSED_REFERENCES__ELIST_ELIST = eINSTANCE.getDecision__GetAccessedReferences__EList_EList();
+
+		/**
 		 * The meta object literal for the '{@link ActivityDiagram.impl.BranchImpl <em>Branch</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2556,12 +3217,12 @@ public interface ActivityDiagramPackage extends EPackage {
 		EClass BRANCH = eINSTANCE.getBranch();
 
 		/**
-		 * The meta object literal for the '<em><b>Activity</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Next Activity</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BRANCH__ACTIVITY = eINSTANCE.getBranch_Activity();
+		EReference BRANCH__NEXT_ACTIVITY = eINSTANCE.getBranch_NextActivity();
 
 		/**
 		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
@@ -2600,14 +3261,6 @@ public interface ActivityDiagramPackage extends EPackage {
 		EClass SHARED_RESOURCE = eINSTANCE.getSharedResource();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SHARED_RESOURCE__NAME = eINSTANCE.getSharedResource_Name();
-
-		/**
 		 * The meta object literal for the '{@link ActivityDiagram.impl.InterruptImpl <em>Interrupt</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2634,14 +3287,6 @@ public interface ActivityDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INSTANCE = eINSTANCE.getInstance();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INSTANCE__NAME = eINSTANCE.getInstance_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Instance Type</b></em>' reference feature.
@@ -2688,40 +3333,6 @@ public interface ActivityDiagramPackage extends EPackage {
 		EAttribute SLEEP__DURATION = eINSTANCE.getSleep_Duration();
 
 		/**
-		 * The meta object literal for the '{@link ActivityDiagram.impl.ThreadImpl <em>Thread</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see ActivityDiagram.impl.ThreadImpl
-		 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getThread()
-		 * @generated
-		 */
-		EClass THREAD = eINSTANCE.getThread();
-
-		/**
-		 * The meta object literal for the '<em><b>Daemon</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute THREAD__DAEMON = eINSTANCE.getThread_Daemon();
-
-		/**
-		 * The meta object literal for the '<em><b>Activity</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference THREAD__ACTIVITY = eINSTANCE.getThread_Activity();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute THREAD__NAME = eINSTANCE.getThread_Name();
-
-		/**
 		 * The meta object literal for the '{@link ActivityDiagram.impl.YieldImpl <em>Yield</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2750,6 +3361,14 @@ public interface ActivityDiagramPackage extends EPackage {
 		EReference SIMPLE_ACTIVITY__SHARED_RESOURCES = eINSTANCE.getSimpleActivity_SharedResources();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Accessed References</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SIMPLE_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = eINSTANCE.getSimpleActivity__GetAccessedReferences__EList_EList();
+
+		/**
 		 * The meta object literal for the '{@link ActivityDiagram.impl.NestedActivityImpl <em>Nested Activity</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2760,30 +3379,82 @@ public interface ActivityDiagramPackage extends EPackage {
 		EClass NESTED_ACTIVITY = eINSTANCE.getNestedActivity();
 
 		/**
-		 * The meta object literal for the '<em><b>Start Activity</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Nested Thread</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NESTED_ACTIVITY__START_ACTIVITY = eINSTANCE.getNestedActivity_StartActivity();
+		EReference NESTED_ACTIVITY__NESTED_THREAD = eINSTANCE.getNestedActivity_NestedThread();
 
 		/**
-		 * The meta object literal for the '{@link ActivityDiagram.impl.DescribedActivityImpl <em>Described Activity</em>}' class.
+		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ActivityDiagram.impl.DescribedActivityImpl
-		 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getDescribedActivity()
 		 * @generated
 		 */
-		EClass DESCRIBED_ACTIVITY = eINSTANCE.getDescribedActivity();
+		EOperation NESTED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = eINSTANCE.getNestedActivity__JoinsCorrectly__EList_EList();
 
 		/**
-		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Get Accessed References</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DESCRIBED_ACTIVITY__DESCRIPTION = eINSTANCE.getDescribedActivity_Description();
+		EOperation NESTED_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = eINSTANCE.getNestedActivity__GetAccessedReferences__EList_EList();
+
+		/**
+		 * The meta object literal for the '{@link ActivityDiagram.impl.ForkedThreadImpl <em>Forked Thread</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ActivityDiagram.impl.ForkedThreadImpl
+		 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getForkedThread()
+		 * @generated
+		 */
+		EClass FORKED_THREAD = eINSTANCE.getForkedThread();
+
+		/**
+		 * The meta object literal for the '<em><b>Daemon</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FORKED_THREAD__DAEMON = eINSTANCE.getForkedThread_Daemon();
+
+		/**
+		 * The meta object literal for the '{@link ActivityDiagram.impl.NamedActivityImpl <em>Named Activity</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ActivityDiagram.impl.NamedActivityImpl
+		 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getNamedActivity()
+		 * @generated
+		 */
+		EClass NAMED_ACTIVITY = eINSTANCE.getNamedActivity();
+
+		/**
+		 * The meta object literal for the '<em><b>Activity Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_ACTIVITY__ACTIVITY_NAME = eINSTANCE.getNamedActivity_ActivityName();
+
+		/**
+		 * The meta object literal for the '{@link ActivityDiagram.impl.ReferenceImpl <em>Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ActivityDiagram.impl.ReferenceImpl
+		 * @see ActivityDiagram.impl.ActivityDiagramPackageImpl#getReference()
+		 * @generated
+		 */
+		EClass REFERENCE = eINSTANCE.getReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REFERENCE__NAME = eINSTANCE.getReference_Name();
 
 	}
 
