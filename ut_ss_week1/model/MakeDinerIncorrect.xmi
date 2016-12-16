@@ -74,7 +74,7 @@
                   xsi:type="ad:Fork"
                   name="fork4">
                 <forkedThreads
-                    name="turnMeatThread"
+                    name="waitForMeatThread"
                     startActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.1/@forkedThreads.0/@activities.0">
                   <activities
                       xsi:type="ad:Sleep"
@@ -134,7 +134,7 @@
           name="areVegetablesDone"
           nextActivity="//@activities.0/@forkedThreads.1/@activities.3">
         <branches
-            nextActivity="//@activities.1"
+            nextActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.0/@activities.0"
             condition="[vegetables are done]"/>
       </activities>
     </forkedThreads>
@@ -172,7 +172,7 @@
         startActivity="//@activities.2/@forkedThreads.1/@activities.0">
       <activities
           xsi:type="ad:SimpleActivity"
-          name="addRice"
+          name="addHerbs"
           nextActivity="//@activities.3"
           activityName="addRice"/>
     </forkedThreads>
