@@ -78,7 +78,6 @@ public abstract class FinalActivityImpl extends ActivityImpl implements FinalAct
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate GET_ACCESSED_REFERENCES_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ActivityDiagramPackage.Literals.FINAL_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST).getInvocationDelegate();
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

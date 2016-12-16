@@ -119,7 +119,6 @@ public class NestedActivityImpl extends NamedActivityImpl implements NestedActiv
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate JOINS_CORRECTLY_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ActivityDiagramPackage.Literals.NESTED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST).getInvocationDelegate();
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -144,7 +143,6 @@ public class NestedActivityImpl extends NamedActivityImpl implements NestedActiv
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate GET_ACCESSED_REFERENCES_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ActivityDiagramPackage.Literals.NESTED_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST).getInvocationDelegate();
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

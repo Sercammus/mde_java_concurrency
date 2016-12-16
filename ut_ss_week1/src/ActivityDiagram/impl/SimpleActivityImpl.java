@@ -86,7 +86,6 @@ public class SimpleActivityImpl extends NamedActivityImpl implements SimpleActiv
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate GET_ACCESSED_REFERENCES_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ActivityDiagramPackage.Literals.SIMPLE_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST).getInvocationDelegate();
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

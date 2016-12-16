@@ -10,8 +10,7 @@
       <!-- @generated ActivityDiagram -->
       <package
             uri="www.example.org/activityDiagram"
-            class="ActivityDiagram.ActivityDiagramPackage"
-            genModel="model/ActivityDiagram.genmodel"/>
+            class="ActivityDiagram.ActivityDiagramPackage"/>
    </extension>
 
 </plugin>

@@ -137,7 +137,6 @@ public abstract class LinearActivityImpl extends ActivityImpl implements LinearA
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate GET_ACCESSED_REFERENCES_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ActivityDiagramPackage.Literals.LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST).getInvocationDelegate();
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
