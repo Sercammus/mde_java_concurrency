@@ -21,7 +21,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="startActivity" lowerBound="1"
         eType="#//Activity"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BasicModel" eSuperTypes="#//Thread">
+  <eClassifiers xsi:type="ecore:EClass" name="BasicModel" eSuperTypes="#//InterruptableThread">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="ValidForkJoinNesting MatchingForkForEveryJoin"/>
     </eAnnotations>
@@ -35,6 +35,8 @@
         eType="#//Instance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceTypes" upperBound="-1"
         eType="#//InstanceType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedThreads" upperBound="-1"
+        eType="#//NestedThread" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Activity" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -360,7 +362,7 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interruptedThread" lowerBound="1"
-        eType="#//Thread"/>
+        eType="#//InterruptableThread"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//Reference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceType" lowerBound="1"
@@ -439,9 +441,9 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedThread" lowerBound="1"
-        eType="#//NestedThread" containment="true"/>
+        eType="#//NestedThread"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ForkedThread" eSuperTypes="#//Thread">
+  <eClassifiers xsi:type="ecore:EClass" name="ForkedThread" eSuperTypes="#//InterruptableThread">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="daemon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedActivity" abstract="true" eSuperTypes="#//LinearActivity">
@@ -465,4 +467,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NestedThread" eSuperTypes="#//Thread"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InterruptableThread" abstract="true"
+      eSuperTypes="#//Thread"/>
 </ecore:EPackage>

@@ -21,8 +21,7 @@
       <activities
           xsi:type="ad:Sleep"
           name="sleep1"
-          nextActivity="//@activities.0/@forkedThreads.0/@activities.2"
-          duration="600"/>
+          nextActivity="//@activities.0/@forkedThreads.0/@activities.2"/>
       <activities
           xsi:type="ad:SimpleActivity"
           name="putRiceInWater"
@@ -60,60 +59,9 @@
           <activities
               xsi:type="ad:NestedActivity"
               name="prepareMeat"
-              nextActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.1/@forkedThreads.1/@activities.3"
-              activityName="prepareMeat">
-            <nestedThread
-                name="prepareMeatThread"
-                startActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.0">
-              <activities
-                  xsi:type="ad:SimpleActivity"
-                  name="putMeatInPan"
-                  nextActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.1"
-                  activityName="putMeatInPan"/>
-              <activities
-                  xsi:type="ad:Fork"
-                  name="fork4">
-                <forkedThreads
-                    name="waitForMeatThread"
-                    startActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.1/@forkedThreads.0/@activities.0">
-                  <activities
-                      xsi:type="ad:Sleep"
-                      name="sleep3"
-                      nextActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.1/@forkedThreads.0/@activities.1"
-                      duration="10"/>
-                  <activities
-                      xsi:type="ad:SimpleActivity"
-                      name="turnMeat"
-                      nextActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.1/@forkedThreads.0/@activities.0"
-                      activityName="turnMeat"/>
-                </forkedThreads>
-                <forkedThreads
-                    name="waitForMeatThread"
-                    startActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.1/@forkedThreads.1/@activities.0">
-                  <activities
-                      xsi:type="ad:Yield"
-                      name="yield2"
-                      nextActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.1/@forkedThreads.1/@activities.1"/>
-                  <activities
-                      xsi:type="ad:Decision"
-                      name="isMeatReady"
-                      nextActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.1/@forkedThreads.1/@activities.0">
-                    <branches
-                        nextActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.1/@forkedThreads.1/@activities.2"
-                        condition="[meat is ready]"/>
-                  </activities>
-                  <activities
-                      xsi:type="ad:Interrupt"
-                      name="interrupt1"
-                      nextActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.1/@forkedThreads.1/@activities.3"
-                      interruptedThread="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.1/@activities.0/@nestedThread/@activities.1/@forkedThreads.0"/>
-                  <activities
-                      xsi:type="ad:End"
-                      name="end3"/>
-                </forkedThreads>
-              </activities>
-            </nestedThread>
-          </activities>
+              nextActivity="//@activities.0/@forkedThreads.1/@activities.1"
+              activityName="prepareMeat"
+              nestedThread="//@nestedThreads.0"/>
         </forkedThreads>
       </activities>
       <activities
@@ -132,9 +80,9 @@
       <activities
           xsi:type="ad:Decision"
           name="areVegetablesDone"
-          nextActivity="//@activities.0/@forkedThreads.1/@activities.3">
+          nextActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.0/@activities.0">
         <branches
-            nextActivity="//@activities.0/@forkedThreads.1/@activities.0/@forkedThreads.0/@activities.0"
+            nextActivity="//@activities.1"
             condition="[vegetables are done]"/>
       </activities>
     </forkedThreads>
@@ -159,7 +107,7 @@
       xsi:type="ad:Fork"
       name="fork2">
     <forkedThreads
-        name="addHerbsThread"
+        name="addIngredientThread"
         startActivity="//@activities.2/@forkedThreads.0/@activities.0">
       <activities
           xsi:type="ad:SimpleActivity"
@@ -168,11 +116,11 @@
           activityName="addHerbs"/>
     </forkedThreads>
     <forkedThreads
-        name="addRiceThread"
+        name="addIngredientThread"
         startActivity="//@activities.2/@forkedThreads.1/@activities.0">
       <activities
           xsi:type="ad:SimpleActivity"
-          name="addHerbs"
+          name="addRice"
           nextActivity="//@activities.3"
           activityName="addRice"/>
     </forkedThreads>
@@ -189,4 +137,55 @@
   <activities
       xsi:type="ad:End"
       name="end1"/>
+  <nestedThreads
+      name="prepareMeatThread"
+      startActivity="//@nestedThreads.0/@activities.0">
+    <activities
+        xsi:type="ad:SimpleActivity"
+        name="putMeatInPan"
+        nextActivity="//@nestedThreads.0/@activities.1"
+        activityName="putMeatInPan"/>
+    <activities
+        xsi:type="ad:Fork"
+        name="fork4">
+      <forkedThreads
+          name="turnMeatThread"
+          startActivity="//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.0">
+        <activities
+            xsi:type="ad:Sleep"
+            name="sleep3"
+            nextActivity="//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.1"
+            duration="10"/>
+        <activities
+            xsi:type="ad:SimpleActivity"
+            name="turnMeat"
+            nextActivity="//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.0"
+            activityName="turnMeat"/>
+      </forkedThreads>
+      <forkedThreads
+          name="waitForMeatThread"
+          startActivity="//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.0">
+        <activities
+            xsi:type="ad:Yield"
+            name="yield2"
+            nextActivity="//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.1"/>
+        <activities
+            xsi:type="ad:Decision"
+            name="isMeatDone"
+            nextActivity="//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.0">
+          <branches
+              nextActivity="//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.2"
+              condition="[meat is done]"/>
+        </activities>
+        <activities
+            xsi:type="ad:Interrupt"
+            name="interrupt1"
+            nextActivity="//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.3"
+            interruptedThread="//@nestedThreads.0/@activities.1/@forkedThreads.0"/>
+        <activities
+            xsi:type="ad:End"
+            name="end3"/>
+      </forkedThreads>
+    </activities>
+  </nestedThreads>
 </ad:BasicModel>
