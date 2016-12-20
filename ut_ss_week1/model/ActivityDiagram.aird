@@ -2,7 +2,6 @@
 <viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/filter/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/filter http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style" xmi:id="_qnGEkLoTEeakxdqu94NXlA" selectedViews="_qqCD0LoTEeakxdqu94NXlA _qqSigLoTEeakxdqu94NXlA _qqeIsLoTEeakxdqu94NXlA _qqpu4LoTEeakxdqu94NXlA" version="11.0.1.201608181000">
   <semanticResources>ActivityDiagram.ecore</semanticResources>
   <ownedViews xmi:type="viewpoint:DView" xmi:id="_qqCD0LoTEeakxdqu94NXlA">
-    <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
     <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_xVBVILoTEeakxdqu94NXlA" name="ActivityDiagram">
       <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_xVBVIboTEeakxdqu94NXlA" source="DANNOTATION_CUSTOMIZATION_KEY">
         <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_xVBVIroTEeakxdqu94NXlA">
@@ -1169,7 +1168,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_BVAAAMJQEeaLtMsiIcP2Xg" name="maxThreadCount : EInt" tooltipText="">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_BVAAAMJQEeaLtMsiIcP2Xg" name="maxThreadCount : EInt = " tooltipText="">
           <target xmi:type="ecore:EAttribute" href="ActivityDiagram.ecore#//Fork/maxThreadCount"/>
           <semanticElements xmi:type="ecore:EAttribute" href="ActivityDiagram.ecore#//Fork/maxThreadCount"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_BVAAAcJQEeaLtMsiIcP2Xg" labelAlignment="LEFT">
@@ -1507,7 +1506,7 @@
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_5pjhUMEdEeagWcxQ0q2lTg" name="duration : EInt" tooltipText="">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_5pjhUMEdEeagWcxQ0q2lTg" name="duration : EInt = " tooltipText="">
           <target xmi:type="ecore:EAttribute" href="ActivityDiagram.ecore#//Sleep/duration"/>
           <semanticElements xmi:type="ecore:EAttribute" href="ActivityDiagram.ecore#//Sleep/duration"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_872_kMEdEeagWcxQ0q2lTg" labelAlignment="LEFT">
@@ -1952,6 +1951,7 @@
       <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Archetype']/@ownedRepresentationExtensions[name='Entities%20With%20Archetypes']/@layers[name='Archetypes']"/>
       <target xmi:type="ecore:EPackage" href="ActivityDiagram.ecore#/"/>
     </ownedRepresentations>
+    <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
   </ownedViews>
   <ownedViews xmi:type="viewpoint:DView" xmi:id="_qqSigLoTEeakxdqu94NXlA">
     <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Review']"/>
