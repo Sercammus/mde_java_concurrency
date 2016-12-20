@@ -9,7 +9,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: ActivityDiagram.tests
 Require-Bundle: org.eclipse.core.runtime,
- ut_ss_week1;visibility:=reexport,
+ umlad2javacc;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.junit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
