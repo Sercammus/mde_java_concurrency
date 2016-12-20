@@ -32,8 +32,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SharedResource" eSuperTypes="#//MethodParameter"/>
   <eClassifiers xsi:type="ecore:EClass" name="Thread" eSuperTypes="#//MethodParameter"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//MethodParameter"/>
-  <eClassifiers xsi:type="ecore:EClass" name="State" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//MethodParameter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instanceType" lowerBound="1"
+        eType="#//InstanceType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="State">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="jumps" lowerBound="1" upperBound="-1"
         eType="#//Jump" containment="true"/>
@@ -46,7 +49,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ForkState" eSuperTypes="#//State">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="threadInits" lowerBound="1"
-        upperBound="-1" eType="#//ThreadInit"/>
+        upperBound="-1" eType="#//ThreadInit" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MethodCallState" eSuperTypes="#//State">
     <eStructuralFeatures xsi:type="ecore:EReference" name="calledMethod" lowerBound="1"
