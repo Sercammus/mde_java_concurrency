@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<em:EnrichedModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:em="enrichedModel">
+  <instanceTypes name="Main">
+    <methods name="cookThread(forked method)">
+      <states xsi:type="em:ForkState" id="1">
+        <threadInits calledMethod="//@instanceTypes.0/@methods.8"/>
+        <threadInits calledMethod="//@instanceTypes.0/@methods.18"/>
+      </states>
+      <states xsi:type="em:MethodCallState" id="2" calledMethod="//@instanceTypes.0/@methods.3">
+        <jumps nextState="//@instanceTypes.0/@methods.0/@states.2"/>
+      </states>
+      <states xsi:type="em:YieldState" id="3">
+        <jumps nextState="//@instanceTypes.0/@methods.0/@states.3"/>
+      </states>
+      <states id="4">
+        <jumps condition="[vegetables are done]"/>
+        <jumps nextState="//@instanceTypes.0/@methods.0/@states.2"/>
+      </states>
+    </methods>
+    <methods name="cutVegetables(simple method)"/>
+    <methods name="turnMeatThread(forked method)">
+      <states xsi:type="em:SleepState" id="1">
+        <jumps nextState="//@instanceTypes.0/@methods.2/@states.1"/>
+      </states>
+      <states xsi:type="em:MethodCallState" id="2" calledMethod="//@instanceTypes.0/@methods.5">
+        <jumps nextState="//@instanceTypes.0/@methods.2/@states.0"/>
+      </states>
+    </methods>
+    <methods name="addVegetablesToMeat(simple method)"/>
+    <methods name="addHerbs(simple method)"/>
+    <methods name="turnMeat(simple method)"/>
+    <methods name="prepareMeat(nested method)">
+      <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.0/@methods.17">
+        <jumps nextState="//@instanceTypes.0/@methods.6/@states.1"/>
+      </states>
+      <states xsi:type="em:ForkState" id="-1">
+        <threadInits calledMethod="//@instanceTypes.0/@methods.2"/>
+        <threadInits calledMethod="//@instanceTypes.0/@methods.21"/>
+      </states>
+    </methods>
+    <methods name="riceThread(forked method)">
+      <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.0/@methods.13">
+        <jumps nextState="//@instanceTypes.0/@methods.7/@states.1"/>
+      </states>
+      <states xsi:type="em:SleepState" id="2">
+        <jumps nextState="//@instanceTypes.0/@methods.7/@states.2"/>
+      </states>
+      <states xsi:type="em:MethodCallState" id="3" calledMethod="//@instanceTypes.0/@methods.14">
+        <jumps nextState="//@instanceTypes.0/@methods.7/@states.3"/>
+      </states>
+      <states xsi:type="em:SleepState" id="4">
+        <jumps nextState="//@instanceTypes.0/@methods.7/@states.4"/>
+      </states>
+      <states xsi:type="em:MethodCallState" id="5" calledMethod="//@instanceTypes.0/@methods.16">
+        <jumps/>
+      </states>
+    </methods>
+    <methods name="vegetablesThread(forked method)">
+      <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.0/@methods.1">
+        <jumps/>
+      </states>
+    </methods>
+    <methods name="addRice(simple method)"/>
+    <methods name="addRiceThread(forked method)">
+      <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.0/@methods.9">
+        <jumps/>
+      </states>
+    </methods>
+    <methods name="makeTable(simple method)"/>
+    <methods name="main">
+      <states xsi:type="em:ForkState" id="1">
+        <threadInits calledMethod="//@instanceTypes.0/@methods.7"/>
+        <threadInits calledMethod="//@instanceTypes.0/@methods.0"/>
+        <threadInits calledMethod="//@instanceTypes.0/@methods.19"/>
+      </states>
+      <states xsi:type="em:ForkState" id="2">
+        <threadInits calledMethod="//@instanceTypes.0/@methods.20"/>
+        <threadInits calledMethod="//@instanceTypes.0/@methods.10"/>
+      </states>
+      <states xsi:type="em:MethodCallState" id="3" calledMethod="//@instanceTypes.0/@methods.15"/>
+    </methods>
+    <methods name="cookWater(simple method)"/>
+    <methods name="putRiceInWater(simple method)"/>
+    <methods name="mix(simple method)"/>
+    <methods name="takeRiceFromWater(simple method)"/>
+    <methods name="putMeatInPan(simple method)"/>
+    <methods name="meatThread(forked method)">
+      <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.0/@methods.6">
+        <jumps/>
+      </states>
+    </methods>
+    <methods name="makeTableThread(forked method)">
+      <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.0/@methods.11"/>
+    </methods>
+    <methods name="addHerbsThread(forked method)">
+      <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.0/@methods.4">
+        <jumps/>
+      </states>
+    </methods>
+    <methods name="waitForMeatThread(forked method)">
+      <states xsi:type="em:YieldState" id="1">
+        <jumps nextState="//@instanceTypes.0/@methods.21/@states.1"/>
+      </states>
+      <states id="2">
+        <jumps condition="[meat is done]" nextState="//@instanceTypes.0/@methods.21/@states.2"/>
+        <jumps nextState="//@instanceTypes.0/@methods.21/@states.0"/>
+      </states>
+      <states xsi:type="em:InterruptState" id="3" interruptedThread="//@methodParameters.8"/>
+    </methods>
+  </instanceTypes>
+  <methodParameters xsi:type="em:Thread" name="makeDinerThread"/>
+  <methodParameters xsi:type="em:Thread" name="riceThread"/>
+  <methodParameters xsi:type="em:Thread" name="cookThread"/>
+  <methodParameters xsi:type="em:Thread" name="vegetablesThread"/>
+  <methodParameters xsi:type="em:Thread" name="meatThread"/>
+  <methodParameters xsi:type="em:Thread" name="makeTableThread"/>
+  <methodParameters xsi:type="em:Thread" name="addHerbsThread"/>
+  <methodParameters xsi:type="em:Thread" name="addRiceThread"/>
+  <methodParameters xsi:type="em:Thread" name="turnMeatThread"/>
+  <methodParameters xsi:type="em:Thread" name="waitForMeatThread"/>
+</em:EnrichedModel>
