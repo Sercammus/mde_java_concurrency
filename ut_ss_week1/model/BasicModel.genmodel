@@ -1,11 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
-    modelDirectory="/ut_ss_week1/src" modelPluginID="ut_ss_week1" modelName="ActivityDiagram"
-    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/umlad2javacc/src" modelPluginID="umlad2javacc"
+    modelName="BasicModel" editPluginClass="BasicModel.provider.BasicModelEditPlugin"
+    editorPluginClass="BasicModel.presentation.BasicModelEditorPlugin" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testSuiteClass="BasicModel.tests.BasicModelAllTests" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
-  <foreignModel>ActivityDiagram.ecore</foreignModel>
-  <genPackages prefix="ActivityDiagram" disposableProviderFactory="true" ecorePackage="ActivityDiagram.ecore#/">
-    <genClasses ecoreClass="ActivityDiagram.ecore#//ActivityDiagram"/>
-    <genClasses ecoreClass="ActivityDiagram.ecore#//Activity"/>
+  <foreignModel>BasicModel.ecore</foreignModel>
+  <genPackages prefix="BasicModel" basePackage="umlad2javacc.basicmodel" disposableProviderFactory="true"
+      ecorePackage="BasicModel.ecore#/">
+    <genClasses image="false" ecoreClass="BasicModel.ecore#//Thread">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BasicModel.ecore#//Thread/activities"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BasicModel.ecore#//Thread/startActivity"/>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//BasicModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BasicModel.ecore#//BasicModel/resources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BasicModel.ecore#//BasicModel/instances"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BasicModel.ecore#//BasicModel/instanceTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BasicModel.ecore#//BasicModel/nestedThreads"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BasicModel.ecore#//Activity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BasicModel.ecore#//Activity/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BasicModel.ecore#//Activity/predecessor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BasicModel.ecore#//Activity/stateId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BasicModel.ecore#//Activity/rootActivity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BasicModel.ecore#//Activity/instance"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BasicModel.ecore#//Activity/thread"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BasicModel.ecore#//Activity/accessedReferences"/>
+      <genOperations ecoreOperation="BasicModel.ecore#//Activity/JoinsCorrectly">
+        <genParameters ecoreParameter="BasicModel.ecore#//Activity/JoinsCorrectly/threadStack"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Activity/JoinsCorrectly/beenHere"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//Activity/UsesDifferentThread">
+        <genParameters ecoreParameter="BasicModel.ecore#//Activity/UsesDifferentThread/a"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//Activity/UsesSameThread">
+        <genParameters ecoreParameter="BasicModel.ecore#//Activity/UsesSameThread/a"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//Activity/GetAccessedReferences">
+        <genParameters ecoreParameter="BasicModel.ecore#//Activity/GetAccessedReferences/soFar"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Activity/GetAccessedReferences/beenHere"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//Activity/GetSuccessorReferences">
+        <genParameters ecoreParameter="BasicModel.ecore#//Activity/GetSuccessorReferences/soFar"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Activity/GetSuccessorReferences/beenHere"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//Activity/GetPredecessors">
+        <genParameters ecoreParameter="BasicModel.ecore#//Activity/GetPredecessors/beenHere"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//Activity/AssignStateId">
+        <genParameters ecoreParameter="BasicModel.ecore#//Activity/AssignStateId/target"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Activity/AssignStateId/reachedId"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Activity/AssignStateId/beenHere"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//End"/>
+    <genClasses image="false" ecoreClass="BasicModel.ecore#//FinalActivity">
+      <genOperations ecoreOperation="BasicModel.ecore#//FinalActivity/JoinsCorrectly">
+        <genParameters ecoreParameter="BasicModel.ecore#//FinalActivity/JoinsCorrectly/threadStack"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//FinalActivity/JoinsCorrectly/beenHere"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//FinalActivity/GetSuccessorReferences">
+        <genParameters ecoreParameter="BasicModel.ecore#//FinalActivity/GetSuccessorReferences/soFar"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//FinalActivity/GetSuccessorReferences/beenHere"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BasicModel.ecore#//LinearActivity">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BasicModel.ecore#//LinearActivity/nextActivity"/>
+      <genOperations ecoreOperation="BasicModel.ecore#//LinearActivity/JoinsCorrectly">
+        <genParameters ecoreParameter="BasicModel.ecore#//LinearActivity/JoinsCorrectly/threadStack"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//LinearActivity/JoinsCorrectly/beenHere"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//LinearActivity/GetSuccessorReferences">
+        <genParameters ecoreParameter="BasicModel.ecore#//LinearActivity/GetSuccessorReferences/soFar"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//LinearActivity/GetSuccessorReferences/beenHere"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//LinearActivity/AssignStateId">
+        <genParameters ecoreParameter="BasicModel.ecore#//LinearActivity/AssignStateId/target"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//LinearActivity/AssignStateId/reachedId"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//LinearActivity/AssignStateId/beenHere"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//Fork">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BasicModel.ecore#//Fork/maxThreadCount"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BasicModel.ecore#//Fork/forkedThreads"/>
+      <genOperations ecoreOperation="BasicModel.ecore#//Fork/JoinsCorrectly"/>
+      <genOperations ecoreOperation="BasicModel.ecore#//Fork/JoinsCorrectly.1">
+        <genParameters ecoreParameter="BasicModel.ecore#//Fork/JoinsCorrectly.1/threadStack"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Fork/JoinsCorrectly.1/beenHere"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//Fork/GetSuccessorReferences">
+        <genParameters ecoreParameter="BasicModel.ecore#//Fork/GetSuccessorReferences/soFar"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Fork/GetSuccessorReferences/beenHere"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//Decision">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BasicModel.ecore#//Decision/branches"/>
+      <genOperations ecoreOperation="BasicModel.ecore#//Decision/JoinsCorrectly">
+        <genParameters ecoreParameter="BasicModel.ecore#//Decision/JoinsCorrectly/threadStack"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Decision/JoinsCorrectly/beenHere"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//Decision/GetSuccessorReferences">
+        <genParameters ecoreParameter="BasicModel.ecore#//Decision/GetSuccessorReferences/soFar"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Decision/GetSuccessorReferences/beenHere"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//Decision/AssignStateId">
+        <genParameters ecoreParameter="BasicModel.ecore#//Decision/AssignStateId/target"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Decision/AssignStateId/reachedId"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Decision/AssignStateId/beenHere"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//Branch">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BasicModel.ecore#//Branch/nextActivity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BasicModel.ecore#//Branch/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//Join">
+      <genOperations ecoreOperation="BasicModel.ecore#//Join/JoinsCorrectly">
+        <genParameters ecoreParameter="BasicModel.ecore#//Join/JoinsCorrectly/threadStack"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Join/JoinsCorrectly/beenHere"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//SharedResource"/>
+    <genClasses ecoreClass="BasicModel.ecore#//Interrupt">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BasicModel.ecore#//Interrupt/interruptedThread"/>
+      <genOperations ecoreOperation="BasicModel.ecore#//Interrupt/GetSuccessorReferences">
+        <genParameters ecoreParameter="BasicModel.ecore#//Interrupt/GetSuccessorReferences/soFar"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//Interrupt/GetSuccessorReferences/beenHere"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//Instance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BasicModel.ecore#//Instance/instanceType"/>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//InstanceType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BasicModel.ecore#//InstanceType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//Sleep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BasicModel.ecore#//Sleep/duration"/>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//Yield"/>
+    <genClasses ecoreClass="BasicModel.ecore#//SimpleActivity">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BasicModel.ecore#//SimpleActivity/sharedResources"/>
+      <genOperations ecoreOperation="BasicModel.ecore#//SimpleActivity/GetSuccessorReferences">
+        <genParameters ecoreParameter="BasicModel.ecore#//SimpleActivity/GetSuccessorReferences/soFar"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//SimpleActivity/GetSuccessorReferences/beenHere"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//NestedActivity">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BasicModel.ecore#//NestedActivity/nestedThread"/>
+      <genOperations ecoreOperation="BasicModel.ecore#//NestedActivity/JoinsCorrectly">
+        <genParameters ecoreParameter="BasicModel.ecore#//NestedActivity/JoinsCorrectly/threadStack"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//NestedActivity/JoinsCorrectly/beenHere"/>
+      </genOperations>
+      <genOperations ecoreOperation="BasicModel.ecore#//NestedActivity/GetAccessedReferences">
+        <genParameters ecoreParameter="BasicModel.ecore#//NestedActivity/GetAccessedReferences/soFar"/>
+        <genParameters ecoreParameter="BasicModel.ecore#//NestedActivity/GetAccessedReferences/beenHere"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//ForkedThread">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BasicModel.ecore#//ForkedThread/daemon"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BasicModel.ecore#//NamedActivity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BasicModel.ecore#//NamedActivity/activityName"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BasicModel.ecore#//Reference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BasicModel.ecore#//Reference/name"/>
+    </genClasses>
+    <genClasses ecoreClass="BasicModel.ecore#//NestedThread"/>
+    <genClasses image="false" ecoreClass="BasicModel.ecore#//InterruptableThread"/>
   </genPackages>
 </genmodel:GenModel>

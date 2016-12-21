@@ -6,10 +6,15 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: ActivityDiagram,
- ActivityDiagram.impl,
- ActivityDiagram.util
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8umlad2javacc.basicmodel.ActivityDiagram,
+ umlad2javacc.basicmodel.ActivityDiagram.impl,
+ umlad2javacc.basicmodel.ActivityDiagram.util,
+ umlad2javacc.basicmodel.BasicModel,
+ umlad2javacc.basicmodel.BasicModel.impl,
+ umlad2javacc.basicmodel.BasicModel.util
+Export-Package: umlad2javacc.basicmodel.BasicModel,
+ umlad2javacc.basicmodel.BasicModel.impl,
+ umlad2javacc.basicmodel.BasicModel.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 ERequire-Bundle: org.eclipse.core.runtime,

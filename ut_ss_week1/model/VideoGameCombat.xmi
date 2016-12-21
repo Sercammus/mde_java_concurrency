@@ -3,8 +3,8 @@
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ad="www.example.org/activityDiagram"
-    xsi:schemaLocation="www.example.org/activityDiagram ActivityDiagram.ecore"
+    xmlns:ad="www.example.org/basicModel"
+    xsi:schemaLocation="www.example.org/basicModel BasicModel.ecore"
     name="gameThread"
     startActivity="//@activities.0">
   <activities
@@ -24,7 +24,7 @@
       <activities
           xsi:type="ad:SimpleActivity"
           name="gameRendering"
-          instance="//@instances.1"
+          instance="//@instances.0"
           nextActivity="//@activities.1/@forkedThreads.0/@activities.1"
           activityName="render"
           sharedResources="//@resources.0"/>
@@ -32,6 +32,7 @@
           xsi:type="ad:SimpleActivity"
           name="unitRendering"
           instance="//@instances.1"
+          instanceType="//@instanceTypes.1"
           nextActivity="//@activities.1/@forkedThreads.0/@activities.2"
           activityName="render"/>
       <activities

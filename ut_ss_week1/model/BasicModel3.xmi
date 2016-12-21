@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ad:BasicModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ad="www.example.org/basicModel"
+    xsi:schemaLocation="www.example.org/basicModel BasicModel.ecore"
+    name="bla"
+    startActivity="//@activities.0">
+  <activities
+      xsi:type="ad:Fork"
+      name="fork1">
+    <forkedThreads
+        name="forkedThread"
+        startActivity="//@activities.1"/>
+  </activities>
+  <activities
+      xsi:type="ad:Join"
+      name="join"
+      nextActivity="//@activities.0"/>
+</ad:BasicModel>

@@ -3,8 +3,8 @@
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ad="www.example.org/activityDiagram"
-    xsi:schemaLocation="www.example.org/activityDiagram ActivityDiagram.ecore"
+    xmlns:ad="www.example.org/basicModel"
+    xsi:schemaLocation="www.example.org/basicModel BasicModel.ecore"
     name="makeDinerThread"
     startActivity="//@activities.0">
   <activities

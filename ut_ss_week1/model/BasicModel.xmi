@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ad:BasicModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ad="www.example.org/basicModel"
+    xsi:schemaLocation="www.example.org/basicModel BasicModel.ecore"
+    startActivity="//@activities.0">
+  <activities
+      xsi:type="ad:SimpleActivity"
+      name="a"
+      nextActivity="//@activities.1"/>
+  <activities
+      xsi:type="ad:SimpleActivity"
+      name="b"/>
+</ad:BasicModel>
