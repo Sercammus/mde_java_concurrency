@@ -2,6 +2,7 @@
  */
 package umlad2javacc.basicmodel.BasicModel.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -9,7 +10,9 @@ import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -29,24 +32,14 @@ import umlad2javacc.basicmodel.BasicModel.BasicModelPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link umlad2javacc.basicmodel.BasicModel.impl.ThreadImpl#getActivities <em>Activities</em>}</li>
  *   <li>{@link umlad2javacc.basicmodel.BasicModel.impl.ThreadImpl#getActivitiesByStateId <em>Activities By State Id</em>}</li>
+ *   <li>{@link umlad2javacc.basicmodel.BasicModel.impl.ThreadImpl#getActivities <em>Activities</em>}</li>
  *   <li>{@link umlad2javacc.basicmodel.BasicModel.impl.ThreadImpl#getStartActivity <em>Start Activity</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ThreadImpl extends ReferenceImpl implements umlad2javacc.basicmodel.BasicModel.Thread {
-	/**
-	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getActivities()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Activity> activities;
-
 	/**
 	 * The cached setting delegate for the '{@link #getActivitiesByStateId() <em>Activities By State Id</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -56,6 +49,16 @@ public abstract class ThreadImpl extends ReferenceImpl implements umlad2javacc.b
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ACTIVITIES_BY_STATE_ID__ESETTING_DELEGATE = ((EStructuralFeature.Internal)BasicModelPackage.Literals.THREAD__ACTIVITIES_BY_STATE_ID).getSettingDelegate();
+
+	/**
+	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivities()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Activity> activities;
 
 	/**
 	 * The cached value of the '{@link #getStartActivity() <em>Start Activity</em>}' reference.
@@ -147,6 +150,31 @@ public abstract class ThreadImpl extends ReferenceImpl implements umlad2javacc.b
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #GetActivitiesByStateId() <em>Get Activities By State Id</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #GetActivitiesByStateId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate GET_ACTIVITIES_BY_STATE_ID__EINVOCATION_DELEGATE = ((EOperation.Internal)BasicModelPackage.Literals.THREAD___GET_ACTIVITIES_BY_STATE_ID).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Activity> GetActivitiesByStateId() {
+		try {
+			return (EList<Activity>)GET_ACTIVITIES_BY_STATE_ID__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -168,10 +196,10 @@ public abstract class ThreadImpl extends ReferenceImpl implements umlad2javacc.b
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BasicModelPackage.THREAD__ACTIVITIES:
-				return getActivities();
 			case BasicModelPackage.THREAD__ACTIVITIES_BY_STATE_ID:
 				return getActivitiesByStateId();
+			case BasicModelPackage.THREAD__ACTIVITIES:
+				return getActivities();
 			case BasicModelPackage.THREAD__START_ACTIVITY:
 				if (resolve) return getStartActivity();
 				return basicGetStartActivity();
@@ -188,13 +216,13 @@ public abstract class ThreadImpl extends ReferenceImpl implements umlad2javacc.b
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BasicModelPackage.THREAD__ACTIVITIES:
-				getActivities().clear();
-				getActivities().addAll((Collection<? extends Activity>)newValue);
-				return;
 			case BasicModelPackage.THREAD__ACTIVITIES_BY_STATE_ID:
 				getActivitiesByStateId().clear();
 				getActivitiesByStateId().addAll((Collection<? extends Activity>)newValue);
+				return;
+			case BasicModelPackage.THREAD__ACTIVITIES:
+				getActivities().clear();
+				getActivities().addAll((Collection<? extends Activity>)newValue);
 				return;
 			case BasicModelPackage.THREAD__START_ACTIVITY:
 				setStartActivity((Activity)newValue);
@@ -211,11 +239,11 @@ public abstract class ThreadImpl extends ReferenceImpl implements umlad2javacc.b
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BasicModelPackage.THREAD__ACTIVITIES:
-				getActivities().clear();
-				return;
 			case BasicModelPackage.THREAD__ACTIVITIES_BY_STATE_ID:
 				getActivitiesByStateId().clear();
+				return;
+			case BasicModelPackage.THREAD__ACTIVITIES:
+				getActivities().clear();
 				return;
 			case BasicModelPackage.THREAD__START_ACTIVITY:
 				setStartActivity((Activity)null);
@@ -232,14 +260,28 @@ public abstract class ThreadImpl extends ReferenceImpl implements umlad2javacc.b
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BasicModelPackage.THREAD__ACTIVITIES:
-				return activities != null && !activities.isEmpty();
 			case BasicModelPackage.THREAD__ACTIVITIES_BY_STATE_ID:
 				return ACTIVITIES_BY_STATE_ID__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case BasicModelPackage.THREAD__ACTIVITIES:
+				return activities != null && !activities.isEmpty();
 			case BasicModelPackage.THREAD__START_ACTIVITY:
 				return startActivity != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case BasicModelPackage.THREAD___GET_ACTIVITIES_BY_STATE_ID:
+				return GetActivitiesByStateId();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ThreadImpl

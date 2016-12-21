@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see umlad2javacc.basicmodel.BasicModel.BasicModelPackage#getBasicModel()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidForkJoinNesting MatchingForkForEveryJoin'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot ValidForkJoinNesting='startActivity.JoinsCorrectly(Sequence{self}, Set{})->includesAll(Activity.allInstances()->asSet())' MatchingForkForEveryJoin='\n\t\t\tlet forkThreads: Bag(Thread) = Fork.allInstances()->collect(thread)->asBag() in\n\t\t\tlet joinThreads: Bag(Thread) = Join.allInstances()->collect(thread)->asBag() in\n\t\t\t\tforkThreads->intersection(joinThreads) = joinThreads'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MatchingForkForEveryJoin'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot MatchingForkForEveryJoin='\n\t\t\tlet forkThreads: Bag(Thread) = Fork.allInstances()->collect(thread)->asBag() in\n\t\t\tlet joinThreads: Bag(Thread) = Join.allInstances()->collect(thread)->asBag() in\n\t\t\t\tforkThreads->intersection(joinThreads) = joinThreads'"
  * @generated
  */
 public interface BasicModel extends InterruptableThread {

@@ -13,8 +13,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link umlad2javacc.basicmodel.BasicModel.Thread#getActivities <em>Activities</em>}</li>
  *   <li>{@link umlad2javacc.basicmodel.BasicModel.Thread#getActivitiesByStateId <em>Activities By State Id</em>}</li>
+ *   <li>{@link umlad2javacc.basicmodel.BasicModel.Thread#getActivities <em>Activities</em>}</li>
  *   <li>{@link umlad2javacc.basicmodel.BasicModel.Thread#getStartActivity <em>Start Activity</em>}</li>
  * </ul>
  *
@@ -53,7 +53,7 @@ public interface Thread extends Reference {
 	 * @return the value of the '<em>Activities By State Id</em>' reference list.
 	 * @see umlad2javacc.basicmodel.BasicModel.BasicModelPackage#getThread_ActivitiesByStateId()
 	 * @model volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='startActivity.GetActivitiesByStateId(OrderedSet{}, Set{})'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='GetActivitiesByStateId()'"
 	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 * @generated
 	 */
@@ -84,5 +84,14 @@ public interface Thread extends Reference {
 	 * @generated
 	 */
 	void setStartActivity(Activity value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='startActivity.GetActivitiesByStateId(OrderedSet{}, Set{})'"
+	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 * @generated
+	 */
+	EList<Activity> GetActivitiesByStateId();
 
 } // Thread

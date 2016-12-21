@@ -116,22 +116,22 @@ public interface BasicModelPackage extends EPackage {
 	int THREAD__NAME = REFERENCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int THREAD__ACTIVITIES = REFERENCE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Activities By State Id</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THREAD__ACTIVITIES_BY_STATE_ID = REFERENCE_FEATURE_COUNT + 1;
+	int THREAD__ACTIVITIES_BY_STATE_ID = REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAD__ACTIVITIES = REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Start Activity</b></em>' reference.
@@ -152,13 +152,22 @@ public interface BasicModelPackage extends EPackage {
 	int THREAD_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAD___GET_ACTIVITIES_BY_STATE_ID = REFERENCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Thread</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THREAD_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
+	int THREAD_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link umlad2javacc.basicmodel.BasicModel.impl.InterruptableThreadImpl <em>Interruptable Thread</em>}' class.
@@ -180,15 +189,6 @@ public interface BasicModelPackage extends EPackage {
 	int INTERRUPTABLE_THREAD__NAME = THREAD__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERRUPTABLE_THREAD__ACTIVITIES = THREAD__ACTIVITIES;
-
-	/**
 	 * The feature id for the '<em><b>Activities By State Id</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,6 +196,15 @@ public interface BasicModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERRUPTABLE_THREAD__ACTIVITIES_BY_STATE_ID = THREAD__ACTIVITIES_BY_STATE_ID;
+
+	/**
+	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERRUPTABLE_THREAD__ACTIVITIES = THREAD__ACTIVITIES;
 
 	/**
 	 * The feature id for the '<em><b>Start Activity</b></em>' reference.
@@ -214,6 +223,15 @@ public interface BasicModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERRUPTABLE_THREAD_FEATURE_COUNT = THREAD_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERRUPTABLE_THREAD___GET_ACTIVITIES_BY_STATE_ID = THREAD___GET_ACTIVITIES_BY_STATE_ID;
 
 	/**
 	 * The number of operations of the '<em>Interruptable Thread</em>' class.
@@ -244,15 +262,6 @@ public interface BasicModelPackage extends EPackage {
 	int BASIC_MODEL__NAME = INTERRUPTABLE_THREAD__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BASIC_MODEL__ACTIVITIES = INTERRUPTABLE_THREAD__ACTIVITIES;
-
-	/**
 	 * The feature id for the '<em><b>Activities By State Id</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -260,6 +269,15 @@ public interface BasicModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int BASIC_MODEL__ACTIVITIES_BY_STATE_ID = INTERRUPTABLE_THREAD__ACTIVITIES_BY_STATE_ID;
+
+	/**
+	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_MODEL__ACTIVITIES = INTERRUPTABLE_THREAD__ACTIVITIES;
 
 	/**
 	 * The feature id for the '<em><b>Start Activity</b></em>' reference.
@@ -323,6 +341,15 @@ public interface BasicModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int BASIC_MODEL_FEATURE_COUNT = INTERRUPTABLE_THREAD_FEATURE_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_MODEL___GET_ACTIVITIES_BY_STATE_ID = INTERRUPTABLE_THREAD___GET_ACTIVITIES_BY_STATE_ID;
 
 	/**
 	 * The number of operations of the '<em>Basic Model</em>' class.
@@ -407,22 +434,13 @@ public interface BasicModelPackage extends EPackage {
 	int ACTIVITY_FEATURE_COUNT = 6;
 
 	/**
-	 * The operation id for the '<em>Joins Correctly</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = 0;
-
-	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY = 1;
+	int ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY = 0;
 
 	/**
 	 * The operation id for the '<em>Uses Same Thread</em>' operation.
@@ -431,7 +449,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY___USES_SAME_THREAD__ACTIVITY = 2;
+	int ACTIVITY___USES_SAME_THREAD__ACTIVITY = 1;
 
 	/**
 	 * The operation id for the '<em>Get Accessed References</em>' operation.
@@ -440,7 +458,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = 3;
+	int ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = 2;
 
 	/**
 	 * The operation id for the '<em>Search For Join</em>' operation.
@@ -449,7 +467,16 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST = 4;
+	int ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = 3;
+
+	/**
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST = 4;
 
 	/**
 	 * The operation id for the '<em>Get Successor References</em>' operation.
@@ -585,7 +612,16 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FINAL_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST = ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST;
+	int FINAL_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST;
+
+	/**
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST = ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
@@ -730,7 +766,16 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int END___SEARCH_FOR_JOIN__ELIST_ELIST = FINAL_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST;
+	int END___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = FINAL_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST;
+
+	/**
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END___GET_REACHABLE_ACTIVITIES__ELIST = FINAL_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
@@ -878,13 +923,13 @@ public interface BasicModelPackage extends EPackage {
 	int LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
 
 	/**
-	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 0;
+	int LINEAR_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST = ACTIVITY_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Successor References</em>' operation.
@@ -902,7 +947,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINEAR_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 2;
+	int LINEAR_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = ACTIVITY_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
@@ -1005,13 +1050,13 @@ public interface BasicModelPackage extends EPackage {
 	int FORK__FORKED_THREADS = ACTIVITY_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Join</b></em>' reference.
+	 * The feature id for the '<em><b>Corresponding Join</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORK__JOIN = ACTIVITY_FEATURE_COUNT + 2;
+	int FORK__CORRESPONDING_JOIN = ACTIVITY_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Fork</em>' class.
@@ -1050,22 +1095,13 @@ public interface BasicModelPackage extends EPackage {
 	int FORK___GET_ACCESSED_REFERENCES__ELIST_ELIST = ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
 
 	/**
-	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORK___JOINS_CORRECTLY = ACTIVITY_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Joins Correctly</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FORK___JOINS_CORRECTLY__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 1;
+	int FORK___GET_REACHABLE_ACTIVITIES__ELIST = ACTIVITY_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Successor References</em>' operation.
@@ -1074,7 +1110,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORK___GET_SUCCESSOR_REFERENCES__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 2;
+	int FORK___GET_SUCCESSOR_REFERENCES__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Search For Join</em>' operation.
@@ -1083,7 +1119,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORK___SEARCH_FOR_JOIN__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 3;
+	int FORK___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = ACTIVITY_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
@@ -1092,7 +1128,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORK___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 4;
+	int FORK___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST = ACTIVITY_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Fork</em>' class.
@@ -1101,7 +1137,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORK_OPERATION_COUNT = ACTIVITY_OPERATION_COUNT + 5;
+	int FORK_OPERATION_COUNT = ACTIVITY_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link umlad2javacc.basicmodel.BasicModel.impl.DecisionImpl <em>Decision</em>}' class.
@@ -1222,22 +1258,13 @@ public interface BasicModelPackage extends EPackage {
 	int DECISION___GET_ACCESSED_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
 
 	/**
-	 * The operation id for the '<em>Search For Join</em>' operation.
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION___SEARCH_FOR_JOIN__ELIST_ELIST = LINEAR_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST;
-
-	/**
-	 * The operation id for the '<em>Joins Correctly</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECISION___JOINS_CORRECTLY__ELIST_ELIST = LINEAR_ACTIVITY_OPERATION_COUNT + 0;
+	int DECISION___GET_REACHABLE_ACTIVITIES__ELIST = LINEAR_ACTIVITY_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Successor References</em>' operation.
@@ -1249,13 +1276,22 @@ public interface BasicModelPackage extends EPackage {
 	int DECISION___GET_SUCCESSOR_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Search For Join</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = LINEAR_ACTIVITY_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST = LINEAR_ACTIVITY_OPERATION_COUNT + 2;
+	int DECISION___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST = LINEAR_ACTIVITY_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Decision</em>' class.
@@ -1264,7 +1300,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_OPERATION_COUNT = LINEAR_ACTIVITY_OPERATION_COUNT + 3;
+	int DECISION_OPERATION_COUNT = LINEAR_ACTIVITY_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link umlad2javacc.basicmodel.BasicModel.impl.BranchImpl <em>Branch</em>}' class.
@@ -1422,6 +1458,15 @@ public interface BasicModelPackage extends EPackage {
 	int JOIN___GET_ACCESSED_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
 
 	/**
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN___GET_REACHABLE_ACTIVITIES__ELIST = LINEAR_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST;
+
+	/**
 	 * The operation id for the '<em>Get Successor References</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1431,31 +1476,22 @@ public interface BasicModelPackage extends EPackage {
 	int JOIN___GET_SUCCESSOR_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY___GET_SUCCESSOR_REFERENCES__ELIST_ELIST;
 
 	/**
-	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST;
-
-	/**
-	 * The operation id for the '<em>Joins Correctly</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN___JOINS_CORRECTLY__ELIST_ELIST = LINEAR_ACTIVITY_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Search For Join</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JOIN___SEARCH_FOR_JOIN__ELIST_ELIST = LINEAR_ACTIVITY_OPERATION_COUNT + 1;
+	int JOIN___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = LINEAR_ACTIVITY_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST = LINEAR_ACTIVITY_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Join</em>' class.
@@ -1622,13 +1658,13 @@ public interface BasicModelPackage extends EPackage {
 	int INTERRUPT___GET_ACCESSED_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
 
 	/**
-	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERRUPT___JOINS_CORRECTLY__ELIST_ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
+	int INTERRUPT___GET_REACHABLE_ACTIVITIES__ELIST = LINEAR_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST;
 
 	/**
 	 * The operation id for the '<em>Search For Join</em>' operation.
@@ -1637,7 +1673,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERRUPT___SEARCH_FOR_JOIN__ELIST_ELIST = LINEAR_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST;
+	int INTERRUPT___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = LINEAR_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
@@ -1877,13 +1913,13 @@ public interface BasicModelPackage extends EPackage {
 	int SLEEP___GET_ACCESSED_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
 
 	/**
-	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SLEEP___JOINS_CORRECTLY__ELIST_ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
+	int SLEEP___GET_REACHABLE_ACTIVITIES__ELIST = LINEAR_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Successor References</em>' operation.
@@ -1901,7 +1937,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SLEEP___SEARCH_FOR_JOIN__ELIST_ELIST = LINEAR_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST;
+	int SLEEP___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = LINEAR_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
@@ -2031,13 +2067,13 @@ public interface BasicModelPackage extends EPackage {
 	int YIELD___GET_ACCESSED_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
 
 	/**
-	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int YIELD___JOINS_CORRECTLY__ELIST_ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
+	int YIELD___GET_REACHABLE_ACTIVITIES__ELIST = LINEAR_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Successor References</em>' operation.
@@ -2055,7 +2091,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int YIELD___SEARCH_FOR_JOIN__ELIST_ELIST = LINEAR_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST;
+	int YIELD___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = LINEAR_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
@@ -2194,13 +2230,13 @@ public interface BasicModelPackage extends EPackage {
 	int NAMED_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
 
 	/**
-	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
+	int NAMED_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST = LINEAR_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Successor References</em>' operation.
@@ -2218,7 +2254,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST = LINEAR_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST;
+	int NAMED_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = LINEAR_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
@@ -2366,13 +2402,13 @@ public interface BasicModelPackage extends EPackage {
 	int SIMPLE_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST = NAMED_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST;
 
 	/**
-	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = NAMED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST;
+	int SIMPLE_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST = NAMED_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST;
 
 	/**
 	 * The operation id for the '<em>Search For Join</em>' operation.
@@ -2381,7 +2417,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST = NAMED_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST;
+	int SIMPLE_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = NAMED_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
@@ -2544,7 +2580,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST = NAMED_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST;
+	int NESTED_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = NAMED_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
@@ -2556,13 +2592,13 @@ public interface BasicModelPackage extends EPackage {
 	int NESTED_ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST = NAMED_ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST;
 
 	/**
-	 * The operation id for the '<em>Joins Correctly</em>' operation.
+	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = NAMED_ACTIVITY_OPERATION_COUNT + 0;
+	int NESTED_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST = NAMED_ACTIVITY_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Accessed References</em>' operation.
@@ -2602,15 +2638,6 @@ public interface BasicModelPackage extends EPackage {
 	int FORKED_THREAD__NAME = INTERRUPTABLE_THREAD__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FORKED_THREAD__ACTIVITIES = INTERRUPTABLE_THREAD__ACTIVITIES;
-
-	/**
 	 * The feature id for the '<em><b>Activities By State Id</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2618,6 +2645,15 @@ public interface BasicModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int FORKED_THREAD__ACTIVITIES_BY_STATE_ID = INTERRUPTABLE_THREAD__ACTIVITIES_BY_STATE_ID;
+
+	/**
+	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORKED_THREAD__ACTIVITIES = INTERRUPTABLE_THREAD__ACTIVITIES;
 
 	/**
 	 * The feature id for the '<em><b>Start Activity</b></em>' reference.
@@ -2645,6 +2681,15 @@ public interface BasicModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int FORKED_THREAD_FEATURE_COUNT = INTERRUPTABLE_THREAD_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORKED_THREAD___GET_ACTIVITIES_BY_STATE_ID = INTERRUPTABLE_THREAD___GET_ACTIVITIES_BY_STATE_ID;
 
 	/**
 	 * The number of operations of the '<em>Forked Thread</em>' class.
@@ -2675,15 +2720,6 @@ public interface BasicModelPackage extends EPackage {
 	int NESTED_THREAD__NAME = THREAD__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NESTED_THREAD__ACTIVITIES = THREAD__ACTIVITIES;
-
-	/**
 	 * The feature id for the '<em><b>Activities By State Id</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2691,6 +2727,15 @@ public interface BasicModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int NESTED_THREAD__ACTIVITIES_BY_STATE_ID = THREAD__ACTIVITIES_BY_STATE_ID;
+
+	/**
+	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_THREAD__ACTIVITIES = THREAD__ACTIVITIES;
 
 	/**
 	 * The feature id for the '<em><b>Start Activity</b></em>' reference.
@@ -2709,6 +2754,15 @@ public interface BasicModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int NESTED_THREAD_FEATURE_COUNT = THREAD_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Activities By State Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_THREAD___GET_ACTIVITIES_BY_STATE_ID = THREAD___GET_ACTIVITIES_BY_STATE_ID;
 
 	/**
 	 * The number of operations of the '<em>Nested Thread</em>' class.
@@ -2762,6 +2816,16 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getThread_StartActivity();
+
+	/**
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Thread#GetActivitiesByStateId() <em>Get Activities By State Id</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Activities By State Id</em>' operation.
+	 * @see umlad2javacc.basicmodel.BasicModel.Thread#GetActivitiesByStateId()
+	 * @generated
+	 */
+	EOperation getThread__GetActivitiesByStateId();
 
 	/**
 	 * Returns the meta object for class '{@link umlad2javacc.basicmodel.BasicModel.BasicModel <em>Basic Model</em>}'.
@@ -2905,16 +2969,6 @@ public interface BasicModelPackage extends EPackage {
 	EReference getActivity_AccessedReferences();
 
 	/**
-	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Activity#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Joins Correctly</em>' operation.
-	 * @see umlad2javacc.basicmodel.BasicModel.Activity#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
-	 * @generated
-	 */
-	EOperation getActivity__JoinsCorrectly__EList_EList();
-
-	/**
 	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Activity#UsesDifferentThread(umlad2javacc.basicmodel.BasicModel.Activity) <em>Uses Different Thread</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2945,14 +2999,24 @@ public interface BasicModelPackage extends EPackage {
 	EOperation getActivity__GetAccessedReferences__EList_EList();
 
 	/**
-	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Activity#SearchForJoin(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Activity#SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Search For Join</em>' operation.
-	 * @see umlad2javacc.basicmodel.BasicModel.Activity#SearchForJoin(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @see umlad2javacc.basicmodel.BasicModel.Activity#SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getActivity__SearchForJoin__EList_EList();
+	EOperation getActivity__SearchForJoin__BigInteger_EList();
+
+	/**
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Activity#GetReachableActivities(org.eclipse.emf.common.util.EList) <em>Get Reachable Activities</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Reachable Activities</em>' operation.
+	 * @see umlad2javacc.basicmodel.BasicModel.Activity#GetReachableActivities(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getActivity__GetReachableActivities__EList();
 
 	/**
 	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Activity#GetSuccessorReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Successor References</em>}' operation.
@@ -3036,14 +3100,14 @@ public interface BasicModelPackage extends EPackage {
 	EReference getLinearActivity_NextActivity();
 
 	/**
-	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.LinearActivity#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.LinearActivity#GetReachableActivities(org.eclipse.emf.common.util.EList) <em>Get Reachable Activities</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Joins Correctly</em>' operation.
-	 * @see umlad2javacc.basicmodel.BasicModel.LinearActivity#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @return the meta object for the '<em>Get Reachable Activities</em>' operation.
+	 * @see umlad2javacc.basicmodel.BasicModel.LinearActivity#GetReachableActivities(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getLinearActivity__JoinsCorrectly__EList_EList();
+	EOperation getLinearActivity__GetReachableActivities__EList();
 
 	/**
 	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.LinearActivity#GetSuccessorReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Successor References</em>}' operation.
@@ -3056,14 +3120,14 @@ public interface BasicModelPackage extends EPackage {
 	EOperation getLinearActivity__GetSuccessorReferences__EList_EList();
 
 	/**
-	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.LinearActivity#SearchForJoin(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.LinearActivity#SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Search For Join</em>' operation.
-	 * @see umlad2javacc.basicmodel.BasicModel.LinearActivity#SearchForJoin(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @see umlad2javacc.basicmodel.BasicModel.LinearActivity#SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getLinearActivity__SearchForJoin__EList_EList();
+	EOperation getLinearActivity__SearchForJoin__BigInteger_EList();
 
 	/**
 	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.LinearActivity#GetActivitiesByStateId(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Activities By State Id</em>}' operation.
@@ -3108,35 +3172,25 @@ public interface BasicModelPackage extends EPackage {
 	EReference getFork_ForkedThreads();
 
 	/**
-	 * Returns the meta object for the reference '{@link umlad2javacc.basicmodel.BasicModel.Fork#getJoin <em>Join</em>}'.
+	 * Returns the meta object for the reference '{@link umlad2javacc.basicmodel.BasicModel.Fork#getCorrespondingJoin <em>Corresponding Join</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Join</em>'.
-	 * @see umlad2javacc.basicmodel.BasicModel.Fork#getJoin()
+	 * @return the meta object for the reference '<em>Corresponding Join</em>'.
+	 * @see umlad2javacc.basicmodel.BasicModel.Fork#getCorrespondingJoin()
 	 * @see #getFork()
 	 * @generated
 	 */
-	EReference getFork_Join();
+	EReference getFork_CorrespondingJoin();
 
 	/**
-	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Fork#JoinsCorrectly() <em>Joins Correctly</em>}' operation.
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Fork#GetReachableActivities(org.eclipse.emf.common.util.EList) <em>Get Reachable Activities</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Joins Correctly</em>' operation.
-	 * @see umlad2javacc.basicmodel.BasicModel.Fork#JoinsCorrectly()
+	 * @return the meta object for the '<em>Get Reachable Activities</em>' operation.
+	 * @see umlad2javacc.basicmodel.BasicModel.Fork#GetReachableActivities(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getFork__JoinsCorrectly();
-
-	/**
-	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Fork#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Joins Correctly</em>' operation.
-	 * @see umlad2javacc.basicmodel.BasicModel.Fork#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
-	 * @generated
-	 */
-	EOperation getFork__JoinsCorrectly__EList_EList();
+	EOperation getFork__GetReachableActivities__EList();
 
 	/**
 	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Fork#GetSuccessorReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Successor References</em>}' operation.
@@ -3149,14 +3203,14 @@ public interface BasicModelPackage extends EPackage {
 	EOperation getFork__GetSuccessorReferences__EList_EList();
 
 	/**
-	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Fork#SearchForJoin(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Fork#SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Search For Join</em>' operation.
-	 * @see umlad2javacc.basicmodel.BasicModel.Fork#SearchForJoin(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @see umlad2javacc.basicmodel.BasicModel.Fork#SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getFork__SearchForJoin__EList_EList();
+	EOperation getFork__SearchForJoin__BigInteger_EList();
 
 	/**
 	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Fork#GetActivitiesByStateId(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Activities By State Id</em>}' operation.
@@ -3190,14 +3244,14 @@ public interface BasicModelPackage extends EPackage {
 	EReference getDecision_Branches();
 
 	/**
-	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Decision#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Decision#GetReachableActivities(org.eclipse.emf.common.util.EList) <em>Get Reachable Activities</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Joins Correctly</em>' operation.
-	 * @see umlad2javacc.basicmodel.BasicModel.Decision#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @return the meta object for the '<em>Get Reachable Activities</em>' operation.
+	 * @see umlad2javacc.basicmodel.BasicModel.Decision#GetReachableActivities(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getDecision__JoinsCorrectly__EList_EList();
+	EOperation getDecision__GetReachableActivities__EList();
 
 	/**
 	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Decision#GetSuccessorReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Successor References</em>}' operation.
@@ -3208,6 +3262,16 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getDecision__GetSuccessorReferences__EList_EList();
+
+	/**
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Decision#SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Search For Join</em>' operation.
+	 * @see umlad2javacc.basicmodel.BasicModel.Decision#SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getDecision__SearchForJoin__BigInteger_EList();
 
 	/**
 	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Decision#GetActivitiesByStateId(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Activities By State Id</em>}' operation.
@@ -3262,24 +3326,24 @@ public interface BasicModelPackage extends EPackage {
 	EClass getJoin();
 
 	/**
-	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Join#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Joins Correctly</em>' operation.
-	 * @see umlad2javacc.basicmodel.BasicModel.Join#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
-	 * @generated
-	 */
-	EOperation getJoin__JoinsCorrectly__EList_EList();
-
-	/**
-	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Join#SearchForJoin(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Join#SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Search For Join</em>' operation.
-	 * @see umlad2javacc.basicmodel.BasicModel.Join#SearchForJoin(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @see umlad2javacc.basicmodel.BasicModel.Join#SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getJoin__SearchForJoin__EList_EList();
+	EOperation getJoin__SearchForJoin__BigInteger_EList();
+
+	/**
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.Join#GetActivitiesByStateId(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Activities By State Id</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Activities By State Id</em>' operation.
+	 * @see umlad2javacc.basicmodel.BasicModel.Join#GetActivitiesByStateId(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getJoin__GetActivitiesByStateId__EList_EList();
 
 	/**
 	 * Returns the meta object for class '{@link umlad2javacc.basicmodel.BasicModel.SharedResource <em>Shared Resource</em>}'.
@@ -3459,14 +3523,14 @@ public interface BasicModelPackage extends EPackage {
 	EReference getNestedActivity_NestedThread();
 
 	/**
-	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.NestedActivity#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.NestedActivity#GetReachableActivities(org.eclipse.emf.common.util.EList) <em>Get Reachable Activities</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Joins Correctly</em>' operation.
-	 * @see umlad2javacc.basicmodel.BasicModel.NestedActivity#JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @return the meta object for the '<em>Get Reachable Activities</em>' operation.
+	 * @see umlad2javacc.basicmodel.BasicModel.NestedActivity#GetReachableActivities(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getNestedActivity__JoinsCorrectly__EList_EList();
+	EOperation getNestedActivity__GetReachableActivities__EList();
 
 	/**
 	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.NestedActivity#GetAccessedReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Accessed References</em>}' operation.
@@ -3619,6 +3683,14 @@ public interface BasicModelPackage extends EPackage {
 		EReference THREAD__START_ACTIVITY = eINSTANCE.getThread_StartActivity();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Activities By State Id</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation THREAD___GET_ACTIVITIES_BY_STATE_ID = eINSTANCE.getThread__GetActivitiesByStateId();
+
+		/**
 		 * The meta object literal for the '{@link umlad2javacc.basicmodel.BasicModel.impl.BasicModelImpl <em>Basic Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3727,14 +3799,6 @@ public interface BasicModelPackage extends EPackage {
 		EReference ACTIVITY__ACCESSED_REFERENCES = eINSTANCE.getActivity_AccessedReferences();
 
 		/**
-		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = eINSTANCE.getActivity__JoinsCorrectly__EList_EList();
-
-		/**
 		 * The meta object literal for the '<em><b>Uses Different Thread</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3764,7 +3828,15 @@ public interface BasicModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST = eINSTANCE.getActivity__SearchForJoin__EList_EList();
+		EOperation ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = eINSTANCE.getActivity__SearchForJoin__BigInteger_EList();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Reachable Activities</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST = eINSTANCE.getActivity__GetReachableActivities__EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Successor References</b></em>' operation.
@@ -3837,12 +3909,12 @@ public interface BasicModelPackage extends EPackage {
 		EReference LINEAR_ACTIVITY__NEXT_ACTIVITY = eINSTANCE.getLinearActivity_NextActivity();
 
 		/**
-		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
+		 * The meta object literal for the '<em><b>Get Reachable Activities</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = eINSTANCE.getLinearActivity__JoinsCorrectly__EList_EList();
+		EOperation LINEAR_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST = eINSTANCE.getLinearActivity__GetReachableActivities__EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Successor References</b></em>' operation.
@@ -3858,7 +3930,7 @@ public interface BasicModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation LINEAR_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST = eINSTANCE.getLinearActivity__SearchForJoin__EList_EList();
+		EOperation LINEAR_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = eINSTANCE.getLinearActivity__SearchForJoin__BigInteger_EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Activities By State Id</b></em>' operation.
@@ -3895,28 +3967,20 @@ public interface BasicModelPackage extends EPackage {
 		EReference FORK__FORKED_THREADS = eINSTANCE.getFork_ForkedThreads();
 
 		/**
-		 * The meta object literal for the '<em><b>Join</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Corresponding Join</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FORK__JOIN = eINSTANCE.getFork_Join();
+		EReference FORK__CORRESPONDING_JOIN = eINSTANCE.getFork_CorrespondingJoin();
 
 		/**
-		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
+		 * The meta object literal for the '<em><b>Get Reachable Activities</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation FORK___JOINS_CORRECTLY = eINSTANCE.getFork__JoinsCorrectly();
-
-		/**
-		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation FORK___JOINS_CORRECTLY__ELIST_ELIST = eINSTANCE.getFork__JoinsCorrectly__EList_EList();
+		EOperation FORK___GET_REACHABLE_ACTIVITIES__ELIST = eINSTANCE.getFork__GetReachableActivities__EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Successor References</b></em>' operation.
@@ -3932,7 +3996,7 @@ public interface BasicModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation FORK___SEARCH_FOR_JOIN__ELIST_ELIST = eINSTANCE.getFork__SearchForJoin__EList_EList();
+		EOperation FORK___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = eINSTANCE.getFork__SearchForJoin__BigInteger_EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Activities By State Id</b></em>' operation.
@@ -3961,12 +4025,12 @@ public interface BasicModelPackage extends EPackage {
 		EReference DECISION__BRANCHES = eINSTANCE.getDecision_Branches();
 
 		/**
-		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
+		 * The meta object literal for the '<em><b>Get Reachable Activities</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation DECISION___JOINS_CORRECTLY__ELIST_ELIST = eINSTANCE.getDecision__JoinsCorrectly__EList_EList();
+		EOperation DECISION___GET_REACHABLE_ACTIVITIES__ELIST = eINSTANCE.getDecision__GetReachableActivities__EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Successor References</b></em>' operation.
@@ -3975,6 +4039,14 @@ public interface BasicModelPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation DECISION___GET_SUCCESSOR_REFERENCES__ELIST_ELIST = eINSTANCE.getDecision__GetSuccessorReferences__EList_EList();
+
+		/**
+		 * The meta object literal for the '<em><b>Search For Join</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DECISION___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = eINSTANCE.getDecision__SearchForJoin__BigInteger_EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Activities By State Id</b></em>' operation.
@@ -4021,20 +4093,20 @@ public interface BasicModelPackage extends EPackage {
 		EClass JOIN = eINSTANCE.getJoin();
 
 		/**
-		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation JOIN___JOINS_CORRECTLY__ELIST_ELIST = eINSTANCE.getJoin__JoinsCorrectly__EList_EList();
-
-		/**
 		 * The meta object literal for the '<em><b>Search For Join</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation JOIN___SEARCH_FOR_JOIN__ELIST_ELIST = eINSTANCE.getJoin__SearchForJoin__EList_EList();
+		EOperation JOIN___SEARCH_FOR_JOIN__BIGINTEGER_ELIST = eINSTANCE.getJoin__SearchForJoin__BigInteger_EList();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Activities By State Id</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation JOIN___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST = eINSTANCE.getJoin__GetActivitiesByStateId__EList_EList();
 
 		/**
 		 * The meta object literal for the '{@link umlad2javacc.basicmodel.BasicModel.impl.SharedResourceImpl <em>Shared Resource</em>}' class.
@@ -4189,12 +4261,12 @@ public interface BasicModelPackage extends EPackage {
 		EReference NESTED_ACTIVITY__NESTED_THREAD = eINSTANCE.getNestedActivity_NestedThread();
 
 		/**
-		 * The meta object literal for the '<em><b>Joins Correctly</b></em>' operation.
+		 * The meta object literal for the '<em><b>Get Reachable Activities</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation NESTED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST = eINSTANCE.getNestedActivity__JoinsCorrectly__EList_EList();
+		EOperation NESTED_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST = eINSTANCE.getNestedActivity__GetReachableActivities__EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Accessed References</b></em>' operation.

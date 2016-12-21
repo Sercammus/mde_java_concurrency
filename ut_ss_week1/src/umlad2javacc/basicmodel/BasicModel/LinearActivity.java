@@ -2,6 +2,7 @@
  */
 package umlad2javacc.basicmodel.BasicModel;
 
+import java.math.BigInteger;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -52,14 +53,13 @@ public interface LinearActivity extends Activity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false" threadStackUnique="false" threadStackMany="true"
-	 *        threadStackAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'" beenHereMany="true" beenHereOrdered="false"
-	 *        beenHereAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then beenHere\n\t\t\t      else nextActivity.JoinsCorrectly(threadStack, beenHere->including(self)) -- Check successor\n\t\t\t      endif'"
+	 * @model ordered="false" soFarMany="true" soFarOrdered="false"
+	 *        soFarAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else nextActivity.GetReachableActivities(soFar->including(self)) -- Check successor\n\t\t\t      endif'"
 	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 * @generated
 	 */
-	EList<Activity> JoinsCorrectly(EList<umlad2javacc.basicmodel.BasicModel.Thread> threadStack, EList<Activity> beenHere);
+	EList<Activity> GetReachableActivities(EList<Activity> soFar);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -76,13 +76,12 @@ public interface LinearActivity extends Activity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model threadStackUnique="false" threadStackMany="true"
-	 *        threadStackAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'" beenHereMany="true" beenHereOrdered="false"
+	 * @model beenHereMany="true" beenHereOrdered="false"
 	 *        beenHereAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t\t      then null\n\t\t\t\t      else nextActivity.SearchForJoin(threadStack, beenHere->including(self))\n\t\t\t\t      endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t\t      then null\n\t\t\t\t      else nextActivity.SearchForJoin(searchDepth, beenHere->including(self))\n\t\t\t\t      endif'"
 	 * @generated
 	 */
-	Activity SearchForJoin(EList<umlad2javacc.basicmodel.BasicModel.Thread> threadStack, EList<Activity> beenHere);
+	Activity SearchForJoin(BigInteger searchDepth, EList<Activity> beenHere);
 
 	/**
 	 * <!-- begin-user-doc -->

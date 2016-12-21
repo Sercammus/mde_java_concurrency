@@ -4,6 +4,7 @@ package umlad2javacc.basicmodel.BasicModel.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.math.BigInteger;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -39,7 +40,7 @@ import umlad2javacc.basicmodel.BasicModel.Reference;
  * <ul>
  *   <li>{@link umlad2javacc.basicmodel.BasicModel.impl.ForkImpl#getMaxThreadCount <em>Max Thread Count</em>}</li>
  *   <li>{@link umlad2javacc.basicmodel.BasicModel.impl.ForkImpl#getForkedThreads <em>Forked Threads</em>}</li>
- *   <li>{@link umlad2javacc.basicmodel.BasicModel.impl.ForkImpl#getJoin <em>Join</em>}</li>
+ *   <li>{@link umlad2javacc.basicmodel.BasicModel.impl.ForkImpl#getCorrespondingJoin <em>Corresponding Join</em>}</li>
  * </ul>
  *
  * @generated
@@ -76,14 +77,14 @@ public class ForkImpl extends ActivityImpl implements Fork {
 	protected EList<ForkedThread> forkedThreads;
 
 	/**
-	 * The cached setting delegate for the '{@link #getJoin() <em>Join</em>}' reference.
+	 * The cached setting delegate for the '{@link #getCorrespondingJoin() <em>Corresponding Join</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getJoin()
+	 * @see #getCorrespondingJoin()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate JOIN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)BasicModelPackage.Literals.FORK__JOIN).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate CORRESPONDING_JOIN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)BasicModelPackage.Literals.FORK__CORRESPONDING_JOIN).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,8 +143,8 @@ public class ForkImpl extends ActivityImpl implements Fork {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity getJoin() {
-		return (Activity)JOIN__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public Activity getCorrespondingJoin() {
+		return (Activity)CORRESPONDING_JOIN__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -151,8 +152,8 @@ public class ForkImpl extends ActivityImpl implements Fork {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity basicGetJoin() {
-		return (Activity)JOIN__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	public Activity basicGetCorrespondingJoin() {
+		return (Activity)CORRESPONDING_JOIN__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
@@ -160,19 +161,19 @@ public class ForkImpl extends ActivityImpl implements Fork {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setJoin(Activity newJoin) {
-		JOIN__ESETTING_DELEGATE.dynamicSet(this, null, 0, newJoin);
+	public void setCorrespondingJoin(Activity newCorrespondingJoin) {
+		CORRESPONDING_JOIN__ESETTING_DELEGATE.dynamicSet(this, null, 0, newCorrespondingJoin);
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #JoinsCorrectly() <em>Joins Correctly</em>}' operation.
+	 * The cached invocation delegate for the '{@link #GetReachableActivities(org.eclipse.emf.common.util.EList) <em>Get Reachable Activities</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #JoinsCorrectly()
+	 * @see #GetReachableActivities(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate JOINS_CORRECTLY__EINVOCATION_DELEGATE = ((EOperation.Internal)BasicModelPackage.Literals.FORK___JOINS_CORRECTLY).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate GET_REACHABLE_ACTIVITIES_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)BasicModelPackage.Literals.FORK___GET_REACHABLE_ACTIVITIES__ELIST).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -180,34 +181,9 @@ public class ForkImpl extends ActivityImpl implements Fork {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Activity> JoinsCorrectly() {
+	public EList<Activity> GetReachableActivities(EList<Activity> soFar) {
 		try {
-			return (EList<Activity>)JOINS_CORRECTLY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
-
-	/**
-	 * The cached invocation delegate for the '{@link #JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate JOINS_CORRECTLY_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)BasicModelPackage.Literals.FORK___JOINS_CORRECTLY__ELIST_ELIST).getInvocationDelegate();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<Activity> JoinsCorrectly(EList<umlad2javacc.basicmodel.BasicModel.Thread> threadStack, EList<Activity> beenHere) {
-		try {
-			return (EList<Activity>)JOINS_CORRECTLY_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{threadStack, beenHere}));
+			return (EList<Activity>)GET_REACHABLE_ACTIVITIES_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{soFar}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -240,23 +216,23 @@ public class ForkImpl extends ActivityImpl implements Fork {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #SearchForJoin(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
+	 * The cached invocation delegate for the '{@link #SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SearchForJoin(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @see #SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate SEARCH_FOR_JOIN_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)BasicModelPackage.Literals.FORK___SEARCH_FOR_JOIN__ELIST_ELIST).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate SEARCH_FOR_JOIN_BIG_INTEGER_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)BasicModelPackage.Literals.FORK___SEARCH_FOR_JOIN__BIGINTEGER_ELIST).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity SearchForJoin(EList<umlad2javacc.basicmodel.BasicModel.Thread> threadStack, EList<Activity> beenHere) {
+	public Activity SearchForJoin(BigInteger searchDepth, EList<Activity> beenHere) {
 		try {
-			return (Activity)SEARCH_FOR_JOIN_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{threadStack, beenHere}));
+			return (Activity)SEARCH_FOR_JOIN_BIG_INTEGER_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{searchDepth, beenHere}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -314,9 +290,9 @@ public class ForkImpl extends ActivityImpl implements Fork {
 				return getMaxThreadCount();
 			case BasicModelPackage.FORK__FORKED_THREADS:
 				return getForkedThreads();
-			case BasicModelPackage.FORK__JOIN:
-				if (resolve) return getJoin();
-				return basicGetJoin();
+			case BasicModelPackage.FORK__CORRESPONDING_JOIN:
+				if (resolve) return getCorrespondingJoin();
+				return basicGetCorrespondingJoin();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -337,8 +313,8 @@ public class ForkImpl extends ActivityImpl implements Fork {
 				getForkedThreads().clear();
 				getForkedThreads().addAll((Collection<? extends ForkedThread>)newValue);
 				return;
-			case BasicModelPackage.FORK__JOIN:
-				setJoin((Activity)newValue);
+			case BasicModelPackage.FORK__CORRESPONDING_JOIN:
+				setCorrespondingJoin((Activity)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -358,8 +334,8 @@ public class ForkImpl extends ActivityImpl implements Fork {
 			case BasicModelPackage.FORK__FORKED_THREADS:
 				getForkedThreads().clear();
 				return;
-			case BasicModelPackage.FORK__JOIN:
-				setJoin((Activity)null);
+			case BasicModelPackage.FORK__CORRESPONDING_JOIN:
+				setCorrespondingJoin((Activity)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -377,8 +353,8 @@ public class ForkImpl extends ActivityImpl implements Fork {
 				return maxThreadCount != MAX_THREAD_COUNT_EDEFAULT;
 			case BasicModelPackage.FORK__FORKED_THREADS:
 				return forkedThreads != null && !forkedThreads.isEmpty();
-			case BasicModelPackage.FORK__JOIN:
-				return JOIN__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case BasicModelPackage.FORK__CORRESPONDING_JOIN:
+				return CORRESPONDING_JOIN__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -392,8 +368,8 @@ public class ForkImpl extends ActivityImpl implements Fork {
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Activity.class) {
 			switch (baseOperationID) {
-				case BasicModelPackage.ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST: return BasicModelPackage.FORK___JOINS_CORRECTLY__ELIST_ELIST;
-				case BasicModelPackage.ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST: return BasicModelPackage.FORK___SEARCH_FOR_JOIN__ELIST_ELIST;
+				case BasicModelPackage.ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST: return BasicModelPackage.FORK___SEARCH_FOR_JOIN__BIGINTEGER_ELIST;
+				case BasicModelPackage.ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST: return BasicModelPackage.FORK___GET_REACHABLE_ACTIVITIES__ELIST;
 				case BasicModelPackage.ACTIVITY___GET_SUCCESSOR_REFERENCES__ELIST_ELIST: return BasicModelPackage.FORK___GET_SUCCESSOR_REFERENCES__ELIST_ELIST;
 				case BasicModelPackage.ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST: return BasicModelPackage.FORK___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -411,14 +387,12 @@ public class ForkImpl extends ActivityImpl implements Fork {
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case BasicModelPackage.FORK___JOINS_CORRECTLY:
-				return JoinsCorrectly();
-			case BasicModelPackage.FORK___JOINS_CORRECTLY__ELIST_ELIST:
-				return JoinsCorrectly((EList<umlad2javacc.basicmodel.BasicModel.Thread>)arguments.get(0), (EList<Activity>)arguments.get(1));
+			case BasicModelPackage.FORK___GET_REACHABLE_ACTIVITIES__ELIST:
+				return GetReachableActivities((EList<Activity>)arguments.get(0));
 			case BasicModelPackage.FORK___GET_SUCCESSOR_REFERENCES__ELIST_ELIST:
 				return GetSuccessorReferences((EList<Reference>)arguments.get(0), (EList<Activity>)arguments.get(1));
-			case BasicModelPackage.FORK___SEARCH_FOR_JOIN__ELIST_ELIST:
-				return SearchForJoin((EList<umlad2javacc.basicmodel.BasicModel.Thread>)arguments.get(0), (EList<Activity>)arguments.get(1));
+			case BasicModelPackage.FORK___SEARCH_FOR_JOIN__BIGINTEGER_ELIST:
+				return SearchForJoin((BigInteger)arguments.get(0), (EList<Activity>)arguments.get(1));
 			case BasicModelPackage.FORK___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST:
 				return GetActivitiesByStateId((EList<Activity>)arguments.get(0), (EList<Activity>)arguments.get(1));
 		}

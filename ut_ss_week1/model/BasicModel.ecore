@@ -24,6 +24,15 @@
         <details key="nullFree" value="false"/>
       </eAnnotations>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activitiesByStateId" upperBound="-1"
+        eType="#//Activity" volatile="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="GetActivitiesByStateId()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activities" upperBound="-1"
         eType="#//Activity" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="startActivity" lowerBound="1"
@@ -339,7 +348,7 @@
     </eOperations>
     <eOperations name="GetActivitiesByStateId" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;&#x9;      else if correspondingJoin = null -- No corresponding join activity&#xA;&#x9;&#x9;&#x9;&#x9;           then soFar&#xA;&#x9;&#x9;&#x9;&#x9;           else correspondingJoin.GetActivitiesByStateId(soFar->append(self), beenHere->including(self))&#xA;&#x9;&#x9;&#x9;&#x9;           endif&#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
+        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;&#x9;      else if correspondingJoin = null -- No corresponding join activity&#xA;&#x9;&#x9;&#x9;&#x9;           then soFar->append(self)&#xA;&#x9;&#x9;&#x9;&#x9;           else correspondingJoin.GetActivitiesByStateId(soFar->append(self), beenHere->including(self))&#xA;&#x9;&#x9;&#x9;&#x9;           endif&#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>

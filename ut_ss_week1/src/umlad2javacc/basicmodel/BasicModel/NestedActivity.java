@@ -50,14 +50,13 @@ public interface NestedActivity extends NamedActivity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false" threadStackUnique="false" threadStackMany="true"
-	 *        threadStackAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'" beenHereMany="true" beenHereOrdered="false"
-	 *        beenHereAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then beenHere\n\t\t\t      else let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t           let internalActivities: Set(Activity) = nestedThread.startActivity.JoinsCorrectly(Sequence{nestedThread}, bh) in -- Check internal activities\n\t\t\t           let nextActivities: Set(Activity) = nextActivity.JoinsCorrectly(threadStack, bh) in -- Check successor\n\t\t\t               internalActivities->union(nextActivities)\n\t\t\t      endif'"
+	 * @model ordered="false" soFarMany="true" soFarOrdered="false"
+	 *        soFarAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t          then soFar\n\t\t\t          else let sf: Set(Activity) = soFar->including(self) in\n\t\t\t               let internalActivities: Set(Activity) = nestedThread.startActivity.GetReachableActivities(sf) in -- Check internal activities\n\t\t\t                   nextActivity.GetReachableActivities(internalActivities) -- Check successor\n\t\t\t          endif'"
 	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 * @generated
 	 */
-	EList<Activity> JoinsCorrectly(EList<umlad2javacc.basicmodel.BasicModel.Thread> threadStack, EList<Activity> beenHere);
+	EList<Activity> GetReachableActivities(EList<Activity> soFar);
 
 	/**
 	 * <!-- begin-user-doc -->

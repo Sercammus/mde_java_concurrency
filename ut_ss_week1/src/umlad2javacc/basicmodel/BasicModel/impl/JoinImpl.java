@@ -4,6 +4,7 @@ package umlad2javacc.basicmodel.BasicModel.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.math.BigInteger;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
@@ -44,24 +45,23 @@ public class JoinImpl extends LinearActivityImpl implements Join {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Joins Correctly</em>}' operation.
+	 * The cached invocation delegate for the '{@link #SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #JoinsCorrectly(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @see #SearchForJoin(java.math.BigInteger, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate JOINS_CORRECTLY_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)BasicModelPackage.Literals.JOIN___JOINS_CORRECTLY__ELIST_ELIST).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate SEARCH_FOR_JOIN_BIG_INTEGER_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)BasicModelPackage.Literals.JOIN___SEARCH_FOR_JOIN__BIGINTEGER_ELIST).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public EList<Activity> JoinsCorrectly(EList<umlad2javacc.basicmodel.BasicModel.Thread> threadStack, EList<Activity> beenHere) {
+	public Activity SearchForJoin(BigInteger searchDepth, EList<Activity> beenHere) {
 		try {
-			return (EList<Activity>)JOINS_CORRECTLY_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{threadStack, beenHere}));
+			return (Activity)SEARCH_FOR_JOIN_BIG_INTEGER_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{searchDepth, beenHere}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -69,23 +69,24 @@ public class JoinImpl extends LinearActivityImpl implements Join {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #SearchForJoin(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Search For Join</em>}' operation.
+	 * The cached invocation delegate for the '{@link #GetActivitiesByStateId(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Activities By State Id</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SearchForJoin(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @see #GetActivitiesByStateId(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate SEARCH_FOR_JOIN_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)BasicModelPackage.Literals.JOIN___SEARCH_FOR_JOIN__ELIST_ELIST).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate GET_ACTIVITIES_BY_STATE_ID_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)BasicModelPackage.Literals.JOIN___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activity SearchForJoin(EList<umlad2javacc.basicmodel.BasicModel.Thread> threadStack, EList<Activity> beenHere) {
+	@SuppressWarnings("unchecked")
+	public EList<Activity> GetActivitiesByStateId(EList<Activity> soFar, EList<Activity> beenHere) {
 		try {
-			return (Activity)SEARCH_FOR_JOIN_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{threadStack, beenHere}));
+			return (EList<Activity>)GET_ACTIVITIES_BY_STATE_ID_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{soFar, beenHere}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -101,15 +102,15 @@ public class JoinImpl extends LinearActivityImpl implements Join {
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Activity.class) {
 			switch (baseOperationID) {
-				case BasicModelPackage.ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST: return BasicModelPackage.JOIN___JOINS_CORRECTLY__ELIST_ELIST;
-				case BasicModelPackage.ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST: return BasicModelPackage.JOIN___SEARCH_FOR_JOIN__ELIST_ELIST;
+				case BasicModelPackage.ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST: return BasicModelPackage.JOIN___SEARCH_FOR_JOIN__BIGINTEGER_ELIST;
+				case BasicModelPackage.ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST: return BasicModelPackage.JOIN___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		if (baseClass == LinearActivity.class) {
 			switch (baseOperationID) {
-				case BasicModelPackage.LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST: return BasicModelPackage.JOIN___JOINS_CORRECTLY__ELIST_ELIST;
-				case BasicModelPackage.LINEAR_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST: return BasicModelPackage.JOIN___SEARCH_FOR_JOIN__ELIST_ELIST;
+				case BasicModelPackage.LINEAR_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST: return BasicModelPackage.JOIN___SEARCH_FOR_JOIN__BIGINTEGER_ELIST;
+				case BasicModelPackage.LINEAR_ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST: return BasicModelPackage.JOIN___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -125,10 +126,10 @@ public class JoinImpl extends LinearActivityImpl implements Join {
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case BasicModelPackage.JOIN___JOINS_CORRECTLY__ELIST_ELIST:
-				return JoinsCorrectly((EList<umlad2javacc.basicmodel.BasicModel.Thread>)arguments.get(0), (EList<Activity>)arguments.get(1));
-			case BasicModelPackage.JOIN___SEARCH_FOR_JOIN__ELIST_ELIST:
-				return SearchForJoin((EList<umlad2javacc.basicmodel.BasicModel.Thread>)arguments.get(0), (EList<Activity>)arguments.get(1));
+			case BasicModelPackage.JOIN___SEARCH_FOR_JOIN__BIGINTEGER_ELIST:
+				return SearchForJoin((BigInteger)arguments.get(0), (EList<Activity>)arguments.get(1));
+			case BasicModelPackage.JOIN___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST:
+				return GetActivitiesByStateId((EList<Activity>)arguments.get(0), (EList<Activity>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

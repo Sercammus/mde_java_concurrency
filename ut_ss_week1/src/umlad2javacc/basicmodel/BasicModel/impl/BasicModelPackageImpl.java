@@ -291,7 +291,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * @generated
 	 */
 	public EReference getThread_Activities() {
-		return (EReference)threadEClass.getEStructuralFeatures().get(0);
+		return (EReference)threadEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -300,7 +300,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * @generated
 	 */
 	public EReference getThread_ActivitiesByStateId() {
-		return (EReference)threadEClass.getEStructuralFeatures().get(1);
+		return (EReference)threadEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -310,6 +310,15 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 */
 	public EReference getThread_StartActivity() {
 		return (EReference)threadEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getThread__GetActivitiesByStateId() {
+		return threadEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -434,7 +443,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getActivity__JoinsCorrectly__EList_EList() {
+	public EOperation getActivity__UsesDifferentThread__Activity() {
 		return activityEClass.getEOperations().get(0);
 	}
 
@@ -443,7 +452,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getActivity__UsesDifferentThread__Activity() {
+	public EOperation getActivity__UsesSameThread__Activity() {
 		return activityEClass.getEOperations().get(1);
 	}
 
@@ -452,7 +461,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getActivity__UsesSameThread__Activity() {
+	public EOperation getActivity__GetAccessedReferences__EList_EList() {
 		return activityEClass.getEOperations().get(2);
 	}
 
@@ -461,7 +470,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getActivity__GetAccessedReferences__EList_EList() {
+	public EOperation getActivity__SearchForJoin__BigInteger_EList() {
 		return activityEClass.getEOperations().get(3);
 	}
 
@@ -470,7 +479,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getActivity__SearchForJoin__EList_EList() {
+	public EOperation getActivity__GetReachableActivities__EList() {
 		return activityEClass.getEOperations().get(4);
 	}
 
@@ -551,7 +560,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getLinearActivity__JoinsCorrectly__EList_EList() {
+	public EOperation getLinearActivity__GetReachableActivities__EList() {
 		return linearActivityEClass.getEOperations().get(0);
 	}
 
@@ -569,7 +578,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getLinearActivity__SearchForJoin__EList_EList() {
+	public EOperation getLinearActivity__SearchForJoin__BigInteger_EList() {
 		return linearActivityEClass.getEOperations().get(2);
 	}
 
@@ -614,7 +623,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFork_Join() {
+	public EReference getFork_CorrespondingJoin() {
 		return (EReference)forkEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -623,7 +632,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFork__JoinsCorrectly() {
+	public EOperation getFork__GetReachableActivities__EList() {
 		return forkEClass.getEOperations().get(0);
 	}
 
@@ -632,7 +641,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFork__JoinsCorrectly__EList_EList() {
+	public EOperation getFork__GetSuccessorReferences__EList_EList() {
 		return forkEClass.getEOperations().get(1);
 	}
 
@@ -641,7 +650,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFork__GetSuccessorReferences__EList_EList() {
+	public EOperation getFork__SearchForJoin__BigInteger_EList() {
 		return forkEClass.getEOperations().get(2);
 	}
 
@@ -650,17 +659,8 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFork__SearchForJoin__EList_EList() {
-		return forkEClass.getEOperations().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getFork__GetActivitiesByStateId__EList_EList() {
-		return forkEClass.getEOperations().get(4);
+		return forkEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -686,7 +686,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getDecision__JoinsCorrectly__EList_EList() {
+	public EOperation getDecision__GetReachableActivities__EList() {
 		return decisionEClass.getEOperations().get(0);
 	}
 
@@ -704,8 +704,17 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getDecision__GetActivitiesByStateId__EList_EList() {
+	public EOperation getDecision__SearchForJoin__BigInteger_EList() {
 		return decisionEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDecision__GetActivitiesByStateId__EList_EList() {
+		return decisionEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -749,7 +758,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getJoin__JoinsCorrectly__EList_EList() {
+	public EOperation getJoin__SearchForJoin__BigInteger_EList() {
 		return joinEClass.getEOperations().get(0);
 	}
 
@@ -758,7 +767,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getJoin__SearchForJoin__EList_EList() {
+	public EOperation getJoin__GetActivitiesByStateId__EList_EList() {
 		return joinEClass.getEOperations().get(1);
 	}
 
@@ -920,7 +929,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNestedActivity__JoinsCorrectly__EList_EList() {
+	public EOperation getNestedActivity__GetReachableActivities__EList() {
 		return nestedActivityEClass.getEOperations().get(0);
 	}
 
@@ -1034,9 +1043,10 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 
 		// Create classes and their features
 		threadEClass = createEClass(THREAD);
-		createEReference(threadEClass, THREAD__ACTIVITIES);
 		createEReference(threadEClass, THREAD__ACTIVITIES_BY_STATE_ID);
+		createEReference(threadEClass, THREAD__ACTIVITIES);
 		createEReference(threadEClass, THREAD__START_ACTIVITY);
+		createEOperation(threadEClass, THREAD___GET_ACTIVITIES_BY_STATE_ID);
 
 		basicModelEClass = createEClass(BASIC_MODEL);
 		createEReference(basicModelEClass, BASIC_MODEL__RESOURCES);
@@ -1052,11 +1062,11 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		createEReference(activityEClass, ACTIVITY__INSTANCE_TYPE);
 		createEReference(activityEClass, ACTIVITY__THREAD);
 		createEReference(activityEClass, ACTIVITY__ACCESSED_REFERENCES);
-		createEOperation(activityEClass, ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST);
 		createEOperation(activityEClass, ACTIVITY___USES_DIFFERENT_THREAD__ACTIVITY);
 		createEOperation(activityEClass, ACTIVITY___USES_SAME_THREAD__ACTIVITY);
 		createEOperation(activityEClass, ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST);
-		createEOperation(activityEClass, ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST);
+		createEOperation(activityEClass, ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST);
+		createEOperation(activityEClass, ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST);
 		createEOperation(activityEClass, ACTIVITY___GET_SUCCESSOR_REFERENCES__ELIST_ELIST);
 		createEOperation(activityEClass, ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST);
 
@@ -1068,25 +1078,25 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 
 		linearActivityEClass = createEClass(LINEAR_ACTIVITY);
 		createEReference(linearActivityEClass, LINEAR_ACTIVITY__NEXT_ACTIVITY);
-		createEOperation(linearActivityEClass, LINEAR_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST);
+		createEOperation(linearActivityEClass, LINEAR_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST);
 		createEOperation(linearActivityEClass, LINEAR_ACTIVITY___GET_SUCCESSOR_REFERENCES__ELIST_ELIST);
-		createEOperation(linearActivityEClass, LINEAR_ACTIVITY___SEARCH_FOR_JOIN__ELIST_ELIST);
+		createEOperation(linearActivityEClass, LINEAR_ACTIVITY___SEARCH_FOR_JOIN__BIGINTEGER_ELIST);
 		createEOperation(linearActivityEClass, LINEAR_ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST);
 
 		forkEClass = createEClass(FORK);
 		createEAttribute(forkEClass, FORK__MAX_THREAD_COUNT);
 		createEReference(forkEClass, FORK__FORKED_THREADS);
-		createEReference(forkEClass, FORK__JOIN);
-		createEOperation(forkEClass, FORK___JOINS_CORRECTLY);
-		createEOperation(forkEClass, FORK___JOINS_CORRECTLY__ELIST_ELIST);
+		createEReference(forkEClass, FORK__CORRESPONDING_JOIN);
+		createEOperation(forkEClass, FORK___GET_REACHABLE_ACTIVITIES__ELIST);
 		createEOperation(forkEClass, FORK___GET_SUCCESSOR_REFERENCES__ELIST_ELIST);
-		createEOperation(forkEClass, FORK___SEARCH_FOR_JOIN__ELIST_ELIST);
+		createEOperation(forkEClass, FORK___SEARCH_FOR_JOIN__BIGINTEGER_ELIST);
 		createEOperation(forkEClass, FORK___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST);
 
 		decisionEClass = createEClass(DECISION);
 		createEReference(decisionEClass, DECISION__BRANCHES);
-		createEOperation(decisionEClass, DECISION___JOINS_CORRECTLY__ELIST_ELIST);
+		createEOperation(decisionEClass, DECISION___GET_REACHABLE_ACTIVITIES__ELIST);
 		createEOperation(decisionEClass, DECISION___GET_SUCCESSOR_REFERENCES__ELIST_ELIST);
+		createEOperation(decisionEClass, DECISION___SEARCH_FOR_JOIN__BIGINTEGER_ELIST);
 		createEOperation(decisionEClass, DECISION___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST);
 
 		branchEClass = createEClass(BRANCH);
@@ -1094,8 +1104,8 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		createEAttribute(branchEClass, BRANCH__CONDITION);
 
 		joinEClass = createEClass(JOIN);
-		createEOperation(joinEClass, JOIN___JOINS_CORRECTLY__ELIST_ELIST);
-		createEOperation(joinEClass, JOIN___SEARCH_FOR_JOIN__ELIST_ELIST);
+		createEOperation(joinEClass, JOIN___SEARCH_FOR_JOIN__BIGINTEGER_ELIST);
+		createEOperation(joinEClass, JOIN___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST);
 
 		sharedResourceEClass = createEClass(SHARED_RESOURCE);
 
@@ -1121,7 +1131,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 
 		nestedActivityEClass = createEClass(NESTED_ACTIVITY);
 		createEReference(nestedActivityEClass, NESTED_ACTIVITY__NESTED_THREAD);
-		createEOperation(nestedActivityEClass, NESTED_ACTIVITY___JOINS_CORRECTLY__ELIST_ELIST);
+		createEOperation(nestedActivityEClass, NESTED_ACTIVITY___GET_REACHABLE_ACTIVITIES__ELIST);
 		createEOperation(nestedActivityEClass, NESTED_ACTIVITY___GET_ACCESSED_REFERENCES__ELIST_ELIST);
 
 		forkedThreadEClass = createEClass(FORKED_THREAD);
@@ -1188,9 +1198,11 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(threadEClass, umlad2javacc.basicmodel.BasicModel.Thread.class, "Thread", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getThread_Activities(), this.getActivity(), null, "activities", null, 0, -1, umlad2javacc.basicmodel.BasicModel.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getThread_ActivitiesByStateId(), this.getActivity(), null, "activitiesByStateId", null, 0, -1, umlad2javacc.basicmodel.BasicModel.Thread.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getThread_Activities(), this.getActivity(), null, "activities", null, 0, -1, umlad2javacc.basicmodel.BasicModel.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getThread_StartActivity(), this.getActivity(), null, "startActivity", null, 1, 1, umlad2javacc.basicmodel.BasicModel.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getThread__GetActivitiesByStateId(), this.getActivity(), "GetActivitiesByStateId", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(basicModelEClass, BasicModel.class, "BasicModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBasicModel_Resources(), this.getSharedResource(), null, "resources", null, 0, -1, BasicModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1207,11 +1219,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		initEReference(getActivity_Thread(), this.getThread(), null, "thread", null, 0, 1, Activity.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getActivity_AccessedReferences(), this.getReference(), null, "accessedReferences", null, 0, -1, Activity.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		EOperation op = initEOperation(getActivity__JoinsCorrectly__EList_EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getThread(), "threadStack", 0, -1, !IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
-
-		op = initEOperation(getActivity__UsesDifferentThread__Activity(), ecorePackage.getEBoolean(), "UsesDifferentThread", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getActivity__UsesDifferentThread__Activity(), ecorePackage.getEBoolean(), "UsesDifferentThread", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getActivity(), "a", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getActivity__UsesSameThread__Activity(), ecorePackage.getEBoolean(), "UsesSameThread", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1221,9 +1229,12 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = initEOperation(getActivity__SearchForJoin__EList_EList(), this.getActivity(), "SearchForJoin", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getThread(), "threadStack", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getActivity__SearchForJoin__BigInteger_EList(), this.getActivity(), "SearchForJoin", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBigInteger(), "searchDepth", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getActivity__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getActivity__GetSuccessorReferences__EList_EList(), this.getReference(), "GetSuccessorReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
@@ -1248,16 +1259,15 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		initEClass(linearActivityEClass, LinearActivity.class, "LinearActivity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLinearActivity_NextActivity(), this.getActivity(), null, "nextActivity", null, 1, 1, LinearActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getLinearActivity__JoinsCorrectly__EList_EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getThread(), "threadStack", 0, -1, !IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getLinearActivity__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getLinearActivity__GetSuccessorReferences__EList_EList(), this.getReference(), "GetSuccessorReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = initEOperation(getLinearActivity__SearchForJoin__EList_EList(), this.getActivity(), "SearchForJoin", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getThread(), "threadStack", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getLinearActivity__SearchForJoin__BigInteger_EList(), this.getActivity(), "SearchForJoin", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBigInteger(), "searchDepth", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getLinearActivity__GetActivitiesByStateId__EList_EList(), this.getActivity(), "GetActivitiesByStateId", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -1267,20 +1277,17 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		initEClass(forkEClass, Fork.class, "Fork", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFork_MaxThreadCount(), ecorePackage.getEInt(), "maxThreadCount", null, 0, 1, Fork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFork_ForkedThreads(), this.getForkedThread(), null, "forkedThreads", null, 1, -1, Fork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFork_Join(), this.getActivity(), null, "join", null, 0, 1, Fork.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFork_CorrespondingJoin(), this.getActivity(), null, "correspondingJoin", null, 0, 1, Fork.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getFork__JoinsCorrectly(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
-
-		op = initEOperation(getFork__JoinsCorrectly__EList_EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getThread(), "threadStack", 0, -1, !IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getFork__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getFork__GetSuccessorReferences__EList_EList(), this.getReference(), "GetSuccessorReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = initEOperation(getFork__SearchForJoin__EList_EList(), this.getActivity(), "SearchForJoin", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getThread(), "threadStack", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getFork__SearchForJoin__BigInteger_EList(), this.getActivity(), "SearchForJoin", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBigInteger(), "searchDepth", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getFork__GetActivitiesByStateId__EList_EList(), this.getActivity(), "GetActivitiesByStateId", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -1290,12 +1297,15 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		initEClass(decisionEClass, Decision.class, "Decision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDecision_Branches(), this.getBranch(), null, "branches", null, 0, -1, Decision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getDecision__JoinsCorrectly__EList_EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getThread(), "threadStack", 0, -1, !IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getDecision__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getDecision__GetSuccessorReferences__EList_EList(), this.getReference(), "GetSuccessorReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getDecision__SearchForJoin__BigInteger_EList(), this.getActivity(), "SearchForJoin", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBigInteger(), "searchDepth", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getDecision__GetActivitiesByStateId__EList_EList(), this.getActivity(), "GetActivitiesByStateId", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -1308,12 +1318,12 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 
 		initEClass(joinEClass, Join.class, "Join", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = initEOperation(getJoin__JoinsCorrectly__EList_EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getThread(), "threadStack", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getJoin__SearchForJoin__BigInteger_EList(), this.getActivity(), "SearchForJoin", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBigInteger(), "searchDepth", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = initEOperation(getJoin__SearchForJoin__EList_EList(), this.getActivity(), "SearchForJoin", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getThread(), "threadStack", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getJoin__GetActivitiesByStateId__EList_EList(), this.getActivity(), "GetActivitiesByStateId", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(sharedResourceEClass, SharedResource.class, "SharedResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1347,9 +1357,8 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		initEClass(nestedActivityEClass, NestedActivity.class, "NestedActivity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNestedActivity_NestedThread(), this.getNestedThread(), null, "nestedThread", null, 1, 1, NestedActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getNestedActivity__JoinsCorrectly__EList_EList(), this.getActivity(), "JoinsCorrectly", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getThread(), "threadStack", 0, -1, !IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getNestedActivity__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getNestedActivity__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
@@ -1424,7 +1433,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		  (basicModelEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "ValidForkJoinNesting MatchingForkForEveryJoin"
+			 "constraints", "MatchingForkForEveryJoin"
 		   });	
 		addAnnotation
 		  (activityEClass, 
@@ -1442,7 +1451,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		  (forkEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "NonNegativeMaxThreadCount ThreadIndependence"
+			 "constraints", "NonNegativeMaxThreadCount ThreadIndependence ValidCorrespondingJoin"
 		   });	
 		addAnnotation
 		  (decisionEClass, 
@@ -1491,16 +1500,21 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "ValidStartActivityThread", "startActivity.thread = self or startActivity.oclIsKindOf(Join) or startActivity.oclIsKindOf(FinalActivity)"
 		   });	
 		addAnnotation
+		  (getThread__GetActivitiesByStateId(), 
+		   source, 
+		   new String[] {
+			 "body", "startActivity.GetActivitiesByStateId(OrderedSet{}, Set{})"
+		   });	
+		addAnnotation
 		  (getThread_ActivitiesByStateId(), 
 		   source, 
 		   new String[] {
-			 "derivation", "startActivity.GetActivitiesByStateId(OrderedSet{}, Set{})"
+			 "derivation", "GetActivitiesByStateId()"
 		   });	
 		addAnnotation
 		  (basicModelEClass, 
 		   source, 
 		   new String[] {
-			 "ValidForkJoinNesting", "startActivity.JoinsCorrectly(Sequence{self}, Set{})->includesAll(Activity.allInstances()->asSet())",
 			 "MatchingForkForEveryJoin", "\n\t\t\tlet forkThreads: Bag(Thread) = Fork.allInstances()->collect(thread)->asBag() in\n\t\t\tlet joinThreads: Bag(Thread) = Join.allInstances()->collect(thread)->asBag() in\n\t\t\t\tforkThreads->intersection(joinThreads) = joinThreads"
 		   });	
 		addAnnotation
@@ -1513,7 +1527,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		  (activityEClass, 
 		   source, 
 		   new String[] {
-			 "Reachability", "let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in\n\t                        let reachableActivities: Set(Activity) = basicModel.startActivity.JoinsCorrectly(Sequence{basicModel}, Set{}) in\n\t                            reachableActivities->exists(a | a = self)"
+			 "Reachability", "let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in\n\t                        let reachableActivities: Set(Activity) = basicModel.startActivity.GetReachableActivities(Set{}) in\n\t                            reachableActivities->exists(a | a = self)"
 		   });	
 		addAnnotation
 		  (getActivity__UsesDifferentThread__Activity(), 
@@ -1534,10 +1548,16 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else if instance <> null\n\t\t\t           then GetSuccessorReferences(soFar->including(instance), beenHere)\n\t\t\t           else GetSuccessorReferences(soFar, beenHere)\n\t\t\t           endif\n\t\t\t      endif"
 		   });	
 		addAnnotation
-		  (getActivity__SearchForJoin__EList_EList(), 
+		  (getActivity__SearchForJoin__BigInteger_EList(), 
 		   source, 
 		   new String[] {
 			 "body", "null"
+		   });	
+		addAnnotation
+		  (getActivity__GetReachableActivities__EList(), 
+		   source, 
+		   new String[] {
+			 "body", "soFar->including(self)"
 		   });	
 		addAnnotation
 		  (getActivity__GetActivitiesByStateId__EList_EList(), 
@@ -1549,7 +1569,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		  (getActivity_StateId(), 
 		   source, 
 		   new String[] {
-			 "derivation", "let activitiesByStateId: OrderedSet(Activity) = thread.activitiesByStateId in\n\t\t\t         let numbers: Sequence(ecore::EInt) = Sequence{1..activitiesByStateId->size()}->select(nr | activitiesByStateId->at(nr) = self) in\n\t\t\t             if numbers->isEmpty()\n\t\t\t             then -1\n\t\t\t             else numbers->first()\n\t\t\t             endif"
+			 "derivation", "let activitiesByStateId: OrderedSet(Activity) = thread.GetActivitiesByStateId() in\n\t\t\t         let numbers: Sequence(ecore::EInt) = Sequence{1..activitiesByStateId->size()}->select(nr | activitiesByStateId->at(nr) = self) in\n\t\t\t             if numbers->isEmpty()\n\t\t\t             then -1\n\t\t\t             else numbers->first()\n\t\t\t             endif"
 		   });	
 		addAnnotation
 		  (getActivity_InstanceType(), 
@@ -1588,10 +1608,10 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "ThreadIndependence", "self.UsesSameThread(nextActivity)"
 		   });	
 		addAnnotation
-		  (getLinearActivity__JoinsCorrectly__EList_EList(), 
+		  (getLinearActivity__GetReachableActivities__EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then beenHere\n\t\t\t      else nextActivity.JoinsCorrectly(threadStack, beenHere->including(self)) -- Check successor\n\t\t\t      endif"
+			 "body", "if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else nextActivity.GetReachableActivities(soFar->including(self)) -- Check successor\n\t\t\t      endif"
 		   });	
 		addAnnotation
 		  (getLinearActivity__GetSuccessorReferences__EList_EList(), 
@@ -1600,10 +1620,10 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "body", "nextActivity.GetAccessedReferences(soFar, beenHere->including(self))"
 		   });	
 		addAnnotation
-		  (getLinearActivity__SearchForJoin__EList_EList(), 
+		  (getLinearActivity__SearchForJoin__BigInteger_EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t\t      then null\n\t\t\t\t      else nextActivity.SearchForJoin(threadStack, beenHere->including(self))\n\t\t\t\t      endif"
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t\t      then null\n\t\t\t\t      else nextActivity.SearchForJoin(searchDepth, beenHere->including(self))\n\t\t\t\t      endif"
 		   });	
 		addAnnotation
 		  (getLinearActivity__GetActivitiesByStateId__EList_EList(), 
@@ -1616,19 +1636,14 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		   source, 
 		   new String[] {
 			 "NonNegativeMaxThreadCount", "maxThreadCount >= 0",
-			 "ThreadIndependence", "forkedThreads->forAll(t | self.UsesDifferentThread(t.startActivity))"
+			 "ThreadIndependence", "forkedThreads->forAll(t | self.UsesDifferentThread(t.startActivity))",
+			 "ValidCorrespondingJoin", "correspondingJoin = null or correspondingJoin.thread = thread"
 		   });	
 		addAnnotation
-		  (getFork__JoinsCorrectly(), 
+		  (getFork__GetReachableActivities__EList(), 
 		   source, 
 		   new String[] {
-			 "body", "JoinsCorrectly(Sequence{self.thread}, Set{})"
-		   });	
-		addAnnotation
-		  (getFork__JoinsCorrectly__EList_EList(), 
-		   source, 
-		   new String[] {
-			 "body", "if beenHere->exists(e | e = self) -- Fork has already been checked\n\t\t\t      then beenHere\n\t\t\t      else let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t           forkedThreads->iterate(t; result: Set(Activity) = Set{} | result->union(t.startActivity.JoinsCorrectly(threadStack->append(t), bh)))\n\t\t\t      endif"
+			 "body", "if soFar->exists(e | e = self) -- Fork has already been checked\n\t\t\t          then soFar\n\t\t\t          else let sf: Set(Activity) = soFar->including(self) in\n\t\t\t                   forkedThreads->iterate(t; result: Set(Activity) = Set{} | result->union(t.startActivity.GetReachableActivities(sf)))\n\t\t\t          endif"
 		   });	
 		addAnnotation
 		  (getFork__GetSuccessorReferences__EList_EList(), 
@@ -1637,22 +1652,22 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "body", "let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t      let successorRefs: Set(Reference) = forkedThreads->iterate(t; result: Set(Reference) = Set{} | result->union(t.startActivity.GetAccessedReferences(soFar, bh))) in\n\t\t\t          successorRefs - forkedThreads"
 		   });	
 		addAnnotation
-		  (getFork__SearchForJoin__EList_EList(), 
+		  (getFork__SearchForJoin__BigInteger_EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t\t      then null\n\t\t\t\t      else let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t\t           let joins: Sequence(Activity) = forkedThreads->collect(e | e.startActivity.SearchForJoin(threadStack->append(e.startActivity.thread), bh))->select(e | e <> null) in\n\t\t\t\t               if (joins->isEmpty())\n\t\t\t\t               then self\n\t\t\t\t               else joins->first()\n\t\t\t\t               endif\n\t\t\t\t      endif"
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t\t      then null\n\t\t\t\t      else let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t\t           let joins: Sequence(Activity) = forkedThreads->collect(e | e.startActivity.SearchForJoin(searchDepth + 1, bh))->select(e | e <> null) in\n\t\t\t\t               if (joins->isEmpty())\n\t\t\t\t               then null\n\t\t\t\t               else joins->first()\n\t\t\t\t               endif\n\t\t\t\t      endif"
 		   });	
 		addAnnotation
 		  (getFork__GetActivitiesByStateId__EList_EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t\t      then soFar\n\t\t\t\t      else Join.allInstances()->select(e | e.thread = thread)->asSequence()->first().GetActivitiesByStateId(soFar->append(self), beenHere->including(self))\n\t\t\t\t      endif"
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t\t      then soFar\n\t\t\t\t      else if correspondingJoin = null -- No corresponding join activity\n\t\t\t\t           then soFar->append(self)\n\t\t\t\t           else correspondingJoin.GetActivitiesByStateId(soFar->append(self), beenHere->including(self))\n\t\t\t\t           endif\n\t\t\t\t      endif"
 		   });	
 		addAnnotation
-		  (getFork_Join(), 
+		  (getFork_CorrespondingJoin(), 
 		   source, 
 		   new String[] {
-			 "derivation", "self.SearchForJoin(Sequence{}, Set{})"
+			 "derivation", "self.SearchForJoin(0, Set{})"
 		   });	
 		addAnnotation
 		  (decisionEClass, 
@@ -1661,16 +1676,22 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "ThreadIndependence", "branches->forAll(b | self.UsesSameThread(b.nextActivity))"
 		   });	
 		addAnnotation
-		  (getDecision__JoinsCorrectly__EList_EList(), 
+		  (getDecision__GetReachableActivities__EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then beenHere\n\t\t\t      else let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t               nextActivity.JoinsCorrectly(threadStack, bh)->union(branches->iterate(b; result: Set(Activity) = Set{} | result->union(b.nextActivity.JoinsCorrectly(threadStack, bh)))) -- Check all branches\n\t\t\t      endif"
+			 "body", "if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else let sf: Set(Activity) = soFar->including(self) in\n\t\t\t           let elseActivities: Set(Activity) = nextActivity.GetReachableActivities(sf) in\n\t\t\t               branches->iterate(b; result: Set(Activity) = elseActivities | b.nextActivity.GetReachableActivities(result)) -- Check all branches\n\t\t\t      endif"
 		   });	
 		addAnnotation
 		  (getDecision__GetSuccessorReferences__EList_EList(), 
 		   source, 
 		   new String[] {
 			 "body", "let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t      let elseResult: Set(Reference) = nextActivity.GetAccessedReferences(soFar, beenHere->including(self)) in\n\t\t\t      let branchesResult: Set(Reference) = branches->iterate(b; result: Set(Reference) = Set{} | result->union(b.nextActivity.GetAccessedReferences(soFar, bh))) in\n\t\t\t          elseResult->union(branchesResult)"
+		   });	
+		addAnnotation
+		  (getDecision__SearchForJoin__BigInteger_EList(), 
+		   source, 
+		   new String[] {
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t\t      then null\n\t\t\t\t      else let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t\t           let joins: Sequence(Activity) = branches->collect(e | e.nextActivity.SearchForJoin(searchDepth, bh))->select(e | e <> null) in\n\t\t\t\t               if (joins->isEmpty())\n\t\t\t\t               then null\n\t\t\t\t               else joins->first()\n\t\t\t\t               endif\n\t\t\t\t      endif"
 		   });	
 		addAnnotation
 		  (getDecision__GetActivitiesByStateId__EList_EList(), 
@@ -1685,16 +1706,16 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "ValidBranchCondition", "true"
 		   });	
 		addAnnotation
-		  (getJoin__JoinsCorrectly__EList_EList(), 
+		  (getJoin__SearchForJoin__BigInteger_EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then beenHere\n\t\t\t      else let newThreadStack: Sequence(Thread) = threadStack->subSequence(1, threadStack->size() - 1) in\n\t\t\t               if newThreadStack->last() = thread -- This join completes the most recent fork\n\t\t\t               then nextActivity.JoinsCorrectly(newThreadStack, beenHere->including(self)) -- Check successor\n\t\t\t               else Set{}\n\t\t\t               endif\n\t\t\t      endif"
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t\t      then null\n\t\t\t\t      else if searchDepth <= 1\n\t\t\t               then self\n\t\t\t               else nextActivity.SearchForJoin(searchDepth - 1, beenHere->including(self))\n\t\t\t               endif\n\t\t\t\t      endif"
 		   });	
 		addAnnotation
-		  (getJoin__SearchForJoin__EList_EList(), 
+		  (getJoin__GetActivitiesByStateId__EList_EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t\t      then null\n\t\t\t\t      else let ts: Sequence(Thread) = threadStack->subSequence(1, threadStack->size() - 1) in\n\t\t\t\t               if ts->isEmpty()\n\t\t\t\t               then self\n\t\t\t\t               else nextActivity.SearchForJoin(ts, beenHere->including(self))\n\t\t\t\t               endif\n\t\t\t\t      endif"
+			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t\t      then soFar\n\t\t\t\t      else nextActivity.GetActivitiesByStateId(soFar, beenHere->including(self)) \n\t\t\t\t      endif"
 		   });	
 		addAnnotation
 		  (getInterrupt__GetSuccessorReferences__EList_EList(), 
@@ -1721,10 +1742,10 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "body", "nextActivity.GetAccessedReferences(soFar->union(sharedResources), beenHere->including(self))"
 		   });	
 		addAnnotation
-		  (getNestedActivity__JoinsCorrectly__EList_EList(), 
+		  (getNestedActivity__GetReachableActivities__EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if beenHere->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then beenHere\n\t\t\t      else let bh: Set(Activity) = beenHere->including(self) in\n\t\t\t           let internalActivities: Set(Activity) = nestedThread.startActivity.JoinsCorrectly(Sequence{nestedThread}, bh) in -- Check internal activities\n\t\t\t           let nextActivities: Set(Activity) = nextActivity.JoinsCorrectly(threadStack, bh) in -- Check successor\n\t\t\t               internalActivities->union(nextActivities)\n\t\t\t      endif"
+			 "body", "if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t          then soFar\n\t\t\t          else let sf: Set(Activity) = soFar->including(self) in\n\t\t\t               let internalActivities: Set(Activity) = nestedThread.startActivity.GetReachableActivities(sf) in -- Check internal activities\n\t\t\t                   nextActivity.GetReachableActivities(internalActivities) -- Check successor\n\t\t\t          endif"
 		   });	
 		addAnnotation
 		  (getNestedActivity__GetAccessedReferences__EList_EList(), 
@@ -1757,6 +1778,12 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	protected void createCollectionAnnotations() {
 		String source = "http://www.eclipse.org/OCL/Collection";	
 		addAnnotation
+		  (getThread__GetActivitiesByStateId(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
 		  (getThread_ActivitiesByStateId(), 
 		   source, 
 		   new String[] {
@@ -1764,24 +1791,6 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		   });	
 		addAnnotation
 		  (getBasicModel_ForkedThreads(), 
-		   source, 
-		   new String[] {
-			 "nullFree", "false"
-		   });	
-		addAnnotation
-		  (getActivity__JoinsCorrectly__EList_EList(), 
-		   source, 
-		   new String[] {
-			 "nullFree", "false"
-		   });	
-		addAnnotation
-		  ((getActivity__JoinsCorrectly__EList_EList()).getEParameters().get(0), 
-		   source, 
-		   new String[] {
-			 "nullFree", "false"
-		   });	
-		addAnnotation
-		  ((getActivity__JoinsCorrectly__EList_EList()).getEParameters().get(1), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
@@ -1805,13 +1814,19 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  ((getActivity__SearchForJoin__EList_EList()).getEParameters().get(0), 
+		  ((getActivity__SearchForJoin__BigInteger_EList()).getEParameters().get(1), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  ((getActivity__SearchForJoin__EList_EList()).getEParameters().get(1), 
+		  (getActivity__GetReachableActivities__EList(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
+		  ((getActivity__GetReachableActivities__EList()).getEParameters().get(0), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
@@ -1895,19 +1910,13 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  (getLinearActivity__JoinsCorrectly__EList_EList(), 
+		  (getLinearActivity__GetReachableActivities__EList(), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  ((getLinearActivity__JoinsCorrectly__EList_EList()).getEParameters().get(0), 
-		   source, 
-		   new String[] {
-			 "nullFree", "false"
-		   });	
-		addAnnotation
-		  ((getLinearActivity__JoinsCorrectly__EList_EList()).getEParameters().get(1), 
+		  ((getLinearActivity__GetReachableActivities__EList()).getEParameters().get(0), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
@@ -1931,13 +1940,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  ((getLinearActivity__SearchForJoin__EList_EList()).getEParameters().get(0), 
-		   source, 
-		   new String[] {
-			 "nullFree", "false"
-		   });	
-		addAnnotation
-		  ((getLinearActivity__SearchForJoin__EList_EList()).getEParameters().get(1), 
+		  ((getLinearActivity__SearchForJoin__BigInteger_EList()).getEParameters().get(1), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
@@ -1961,25 +1964,13 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  (getFork__JoinsCorrectly(), 
+		  (getFork__GetReachableActivities__EList(), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  (getFork__JoinsCorrectly__EList_EList(), 
-		   source, 
-		   new String[] {
-			 "nullFree", "false"
-		   });	
-		addAnnotation
-		  ((getFork__JoinsCorrectly__EList_EList()).getEParameters().get(0), 
-		   source, 
-		   new String[] {
-			 "nullFree", "false"
-		   });	
-		addAnnotation
-		  ((getFork__JoinsCorrectly__EList_EList()).getEParameters().get(1), 
+		  ((getFork__GetReachableActivities__EList()).getEParameters().get(0), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
@@ -2003,13 +1994,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  ((getFork__SearchForJoin__EList_EList()).getEParameters().get(0), 
-		   source, 
-		   new String[] {
-			 "nullFree", "false"
-		   });	
-		addAnnotation
-		  ((getFork__SearchForJoin__EList_EList()).getEParameters().get(1), 
+		  ((getFork__SearchForJoin__BigInteger_EList()).getEParameters().get(1), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
@@ -2033,19 +2018,13 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  (getDecision__JoinsCorrectly__EList_EList(), 
+		  (getDecision__GetReachableActivities__EList(), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  ((getDecision__JoinsCorrectly__EList_EList()).getEParameters().get(0), 
-		   source, 
-		   new String[] {
-			 "nullFree", "false"
-		   });	
-		addAnnotation
-		  ((getDecision__JoinsCorrectly__EList_EList()).getEParameters().get(1), 
+		  ((getDecision__GetReachableActivities__EList()).getEParameters().get(0), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
@@ -2069,6 +2048,12 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "nullFree", "false"
 		   });	
 		addAnnotation
+		  ((getDecision__SearchForJoin__BigInteger_EList()).getEParameters().get(1), 
+		   source, 
+		   new String[] {
+			 "nullFree", "false"
+		   });	
+		addAnnotation
 		  (getDecision__GetActivitiesByStateId__EList_EList(), 
 		   source, 
 		   new String[] {
@@ -2087,31 +2072,25 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  (getJoin__JoinsCorrectly__EList_EList(), 
+		  ((getJoin__SearchForJoin__BigInteger_EList()).getEParameters().get(1), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  ((getJoin__JoinsCorrectly__EList_EList()).getEParameters().get(0), 
+		  (getJoin__GetActivitiesByStateId__EList_EList(), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  ((getJoin__JoinsCorrectly__EList_EList()).getEParameters().get(1), 
+		  ((getJoin__GetActivitiesByStateId__EList_EList()).getEParameters().get(0), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  ((getJoin__SearchForJoin__EList_EList()).getEParameters().get(0), 
-		   source, 
-		   new String[] {
-			 "nullFree", "false"
-		   });	
-		addAnnotation
-		  ((getJoin__SearchForJoin__EList_EList()).getEParameters().get(1), 
+		  ((getJoin__GetActivitiesByStateId__EList_EList()).getEParameters().get(1), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
@@ -2159,19 +2138,13 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  (getNestedActivity__JoinsCorrectly__EList_EList(), 
+		  (getNestedActivity__GetReachableActivities__EList(), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"
 		   });	
 		addAnnotation
-		  ((getNestedActivity__JoinsCorrectly__EList_EList()).getEParameters().get(0), 
-		   source, 
-		   new String[] {
-			 "nullFree", "false"
-		   });	
-		addAnnotation
-		  ((getNestedActivity__JoinsCorrectly__EList_EList()).getEParameters().get(1), 
+		  ((getNestedActivity__GetReachableActivities__EList()).getEParameters().get(0), 
 		   source, 
 		   new String[] {
 			 "nullFree", "false"

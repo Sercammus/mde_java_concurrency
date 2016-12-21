@@ -2,6 +2,7 @@
  */
 package umlad2javacc.basicmodel.BasicModel;
 
+import java.math.BigInteger;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -26,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see umlad2javacc.basicmodel.BasicModel.BasicModelPackage#getActivity()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='Reachability'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot Reachability='let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in\n\t                        let reachableActivities: Set(Activity) = basicModel.startActivity.JoinsCorrectly(Sequence{basicModel}, Set{}) in\n\t                            reachableActivities->exists(a | a = self)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot Reachability='let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in\n\t                        let reachableActivities: Set(Activity) = basicModel.startActivity.GetReachableActivities(Set{}) in\n\t                            reachableActivities->exists(a | a = self)'"
  * @generated
  */
 public interface Activity extends EObject {
@@ -68,7 +69,7 @@ public interface Activity extends EObject {
 	 * @see #setStateId(int)
 	 * @see umlad2javacc.basicmodel.BasicModel.BasicModelPackage#getActivity_StateId()
 	 * @model volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='let activitiesByStateId: OrderedSet(Activity) = thread.activitiesByStateId in\n\t\t\t         let numbers: Sequence(ecore::EInt) = Sequence{1..activitiesByStateId->size()}->select(nr | activitiesByStateId->at(nr) = self) in\n\t\t\t             if numbers->isEmpty()\n\t\t\t             then -1\n\t\t\t             else numbers->first()\n\t\t\t             endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='let activitiesByStateId: OrderedSet(Activity) = thread.GetActivitiesByStateId() in\n\t\t\t         let numbers: Sequence(ecore::EInt) = Sequence{1..activitiesByStateId->size()}->select(nr | activitiesByStateId->at(nr) = self) in\n\t\t\t             if numbers->isEmpty()\n\t\t\t             then -1\n\t\t\t             else numbers->first()\n\t\t\t             endif'"
 	 * @generated
 	 */
 	int getStateId();
@@ -183,17 +184,6 @@ public interface Activity extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false" threadStackUnique="false" threadStackMany="true"
-	 *        threadStackAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'" beenHereMany="true" beenHereOrdered="false"
-	 *        beenHereAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
-	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
-	 * @generated
-	 */
-	EList<Activity> JoinsCorrectly(EList<umlad2javacc.basicmodel.BasicModel.Thread> threadStack, EList<Activity> beenHere);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='((thread = a.thread) = a.oclIsTypeOf(Join)) or a.oclIsKindOf(FinalActivity)'"
 	 * @generated
 	 */
@@ -222,13 +212,23 @@ public interface Activity extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model threadStackUnique="false" threadStackMany="true"
-	 *        threadStackAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'" beenHereMany="true" beenHereOrdered="false"
+	 * @model beenHereMany="true" beenHereOrdered="false"
 	 *        beenHereAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='null'"
 	 * @generated
 	 */
-	Activity SearchForJoin(EList<umlad2javacc.basicmodel.BasicModel.Thread> threadStack, EList<Activity> beenHere);
+	Activity SearchForJoin(BigInteger searchDepth, EList<Activity> beenHere);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false" soFarMany="true" soFarOrdered="false"
+	 *        soFarAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='soFar->including(self)'"
+	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 * @generated
+	 */
+	EList<Activity> GetReachableActivities(EList<Activity> soFar);
 
 	/**
 	 * <!-- begin-user-doc -->

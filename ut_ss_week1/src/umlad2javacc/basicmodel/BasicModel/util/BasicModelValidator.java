@@ -227,38 +227,8 @@ public class BasicModelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateReference_ProperReferenceName(basicModel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReference_UniqueReferenceName(basicModel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateThread_ValidStartActivityThread(basicModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBasicModel_ValidForkJoinNesting(basicModel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBasicModel_MatchingForkForEveryJoin(basicModel, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * The cached validation expression for the ValidForkJoinNesting constraint of '<em>Basic Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String BASIC_MODEL__VALID_FORK_JOIN_NESTING__EEXPRESSION = "startActivity.JoinsCorrectly(Sequence{self}, Set{})->includesAll(Activity.allInstances()->asSet())";
-
-	/**
-	 * Validates the ValidForkJoinNesting constraint of '<em>Basic Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateBasicModel_ValidForkJoinNesting(BasicModel basicModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(BasicModelPackage.Literals.BASIC_MODEL,
-				 basicModel,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "ValidForkJoinNesting",
-				 BASIC_MODEL__VALID_FORK_JOIN_NESTING__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
 	}
 
 	/**
@@ -319,7 +289,7 @@ public class BasicModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String ACTIVITY__REACHABILITY__EEXPRESSION = "let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in\n" +
-		"\t                        let reachableActivities: Set(Activity) = basicModel.startActivity.JoinsCorrectly(Sequence{basicModel}, Set{}) in\n" +
+		"\t                        let reachableActivities: Set(Activity) = basicModel.startActivity.GetReachableActivities(Set{}) in\n" +
 		"\t                            reachableActivities->exists(a | a = self)";
 
 	/**
@@ -448,6 +418,7 @@ public class BasicModelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateActivity_Reachability(fork, diagnostics, context);
 		if (result || diagnostics != null) result &= validateFork_NonNegativeMaxThreadCount(fork, diagnostics, context);
 		if (result || diagnostics != null) result &= validateFork_ThreadIndependence(fork, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFork_ValidCorrespondingJoin(fork, diagnostics, context);
 		return result;
 	}
 
@@ -504,6 +475,35 @@ public class BasicModelValidator extends EObjectValidator {
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "ThreadIndependence",
 				 FORK__THREAD_INDEPENDENCE__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the ValidCorrespondingJoin constraint of '<em>Fork</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String FORK__VALID_CORRESPONDING_JOIN__EEXPRESSION = "correspondingJoin = null or correspondingJoin.thread = thread";
+
+	/**
+	 * Validates the ValidCorrespondingJoin constraint of '<em>Fork</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFork_ValidCorrespondingJoin(Fork fork, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(BasicModelPackage.Literals.FORK,
+				 fork,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "ValidCorrespondingJoin",
+				 FORK__VALID_CORRESPONDING_JOIN__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
