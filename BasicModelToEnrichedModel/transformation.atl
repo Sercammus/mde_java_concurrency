@@ -1,22 +1,19 @@
 module ModelTransformation;
-create OUT: EnrichedModel from IN: BasicModel;
+create OUT: EnrichedModel from IN: ActivityDiagram;
 
 rule basic2Enriched {
 	from
-		basicModel: BasicModel!BasicModel
+		basicModel: ActivityDiagram!BasicModel
 	to
 		enrichedModel: EnrichedModel!EnrichedModel(
 			instanceTypes <- basicModel.instanceTypes->including(DefaultInstanceType),
 			methodParameters <- basicModel.instances
-			                ->including(ThreadReference)
-							->union(BasicModel!ForkedThread.allInstances()->collect(i|thisModule.resolveTemp(i, 'ThreadReference')))
+							->union(ActivityDiagram!ForkedThread.allInstances()->collect(i|thisModule.resolveTemp(i, 'ThreadReference')))
 							->union(basicModel.resources)
 		),
 		DefaultInstanceType: EnrichedModel!InstanceType(
 			name <- 'Main',
-			methods <- Set{ProgramEntryPoint}
-				->union(BasicModel!NamedActivity.allInstances()->select(e|e.getInstanceType()=OclUndefined)->collect(e|thisModule.resolveTemp(e, 'SimpleMethod')))
-				->union(BasicModel!BasicModel.allInstances()->asSequence()->first().forkedThreads->collect(e|thisModule.resolveTemp(e, 'ForkedThreadMethod')))
+			methods <- Sequence{ProgramEntryPoint}->union(ActivityDiagram!NamedActivity.allInstances()->select(e|e.getInstanceType()=OclUndefined)->collect(e|thisModule.resolveTemp(e, 'SimpleMethod')))
 		),
 		ProgramEntryPoint: EnrichedModel!Method(
 			name <- 'main',
@@ -30,22 +27,25 @@ rule basic2Enriched {
 --Instance
 rule instanceType2instanceType {
 	from
-		instanceTypeBasic: BasicModel!InstanceType
+		instanceTypeBasic: ActivityDiagram!InstanceType
 	to
 		instanceTypeEnriched: EnrichedModel!InstanceType(
-			name <- instanceTypeBasic.name,
-			methods <- BasicModel!NamedActivity.allInstances()->select(e|e.getInstanceType()=instanceTypeBasic)->collect(e|thisModule.resolveTemp(e, 'SimpleMethod'))
-				->union(instanceTypeBasic.forkedThreads->collect(e|thisModule.resolveTemp(e, 'ForkedThreadMethod')))
+			methods <- ActivityDiagram!NamedActivity.allInstances()->select(e|e.getInstanceType()=instanceTypeBasic)->collect(e|thisModule.resolveTemp(e, 'SimpleMethod'))
 		)
 }
 
-helper context BasicModel!Activity def: getInstanceType(): BasicModel!InstanceType =
-	if self.instance.oclIsUndefined() then OclUndefined else self.instance.instanceType endif
-;
+helper context ActivityDiagram!Activity def: getInstanceType(): ActivityDiagram!InstanceType =
+	if self.instance.oclIsUndefined()
+	then
+		--thisModule.resolveTemp(ActivityDiagram!BasicModel.allInstances()->first(), 'DefaultInstanceType')
+		OclUndefined
+	else
+		self.instance.instanceType
+	endif;
 
 rule instance2instance {
 	from
-		instanceBasic: BasicModel!Instance
+		instanceBasic: ActivityDiagram!Instance
 	to
 		instanceEnriched: EnrichedModel!Instance(
 			name<-instanceBasic.name,
@@ -56,49 +56,42 @@ rule instance2instance {
 
 rule sharedResources2sharedResources{
 	from
-		resourceBasic: BasicModel!SharedResource
+		resourceBasic: ActivityDiagram!SharedResource
 	to
 		resourceEnriched: EnrichedModel!SharedResource(
 			name<-resourceBasic.name	
 		)
+	
 }
 
 --Activities to states
 abstract rule linearActivity2State{
 	from
-		linearactivity: BasicModel!LinearActivity
+		linearactivity: ActivityDiagram!LinearActivity
 	to
 		state: EnrichedModel!State(
-			jumps<-Set{linearactivity.nextActivity}->iterate(e; result: Set(EnrichedModel!Activity) = Set{} | if e.oclIsKindOf(BasicModel!End) then result else result->including(thisModule.nextActivity2Jump(e)) endif),
-			id<-linearactivity.stateId
+			jumps<-Sequence{linearJump}	
+		),
+		linearJump: EnrichedModel!Jump(
+			nextState<-linearactivity.nextActivity	
 		)
 }
-
-lazy rule nextActivity2Jump{
-	from
-		activity: BasicModel!Activity
-	to
-		jump: EnrichedModel!Jump(
-			nextState<-activity
-		)
-}
-
 rule simpleActivity2State extends linearActivity2State{
 	from
-		linearactivity: BasicModel!SimpleActivity
+		linearactivity: ActivityDiagram!SimpleActivity
 	to
 		state: EnrichedModel!MethodCallState(
 			calledMethod <- SimpleMethod,
 			targetInstance <- linearactivity.instance
 		),
 		SimpleMethod: EnrichedModel!Method(
-			name <- linearactivity.activityName + '(simple method)'
+			name <- linearactivity.activityName	
 		)
 }
 
 rule nestedActivity2State extends linearActivity2State{
 	from
-		linearactivity: BasicModel!NestedActivity
+		linearactivity: ActivityDiagram!NestedActivity
 	to
 		state: EnrichedModel!MethodCallState(
 			calledMethod <- SimpleMethod,
@@ -106,28 +99,30 @@ rule nestedActivity2State extends linearActivity2State{
 			
 		),
 		SimpleMethod: EnrichedModel!Method(
-			name <- linearactivity.activityName + '(nested method)',
+			name <- linearactivity.activityName,
 			states <- linearactivity.nestedThread.activities
 		)
 }
 
+
+
 rule sleepActivity2SleepState  extends linearActivity2State {
 	from
-		linearactivity: BasicModel!Sleep
+		linearactivity: ActivityDiagram!Sleep
 	to
 		state: EnrichedModel!SleepState
 }
 
 rule yieldActivity2YieldState  extends linearActivity2State{
 	from
-		linearactivity: BasicModel!Yield
+		linearactivity: ActivityDiagram!Yield
 	to
 		state: EnrichedModel!YieldState
 }
 
 rule interruptActivity2YieldState  extends linearActivity2State{
 	from
-		linearactivity: BasicModel!Interrupt
+		linearactivity: ActivityDiagram!Interrupt
 	to
 		state: EnrichedModel!InterruptState(
 			interruptedThread <- thisModule.resolveTemp(linearactivity.interruptedThread, 'ThreadReference')	
@@ -136,49 +131,47 @@ rule interruptActivity2YieldState  extends linearActivity2State{
 
 rule decisionActivity2State{
 	from
-		linearactivity: BasicModel!Decision
+		linearactivity: ActivityDiagram!Decision
 	to
 		state: EnrichedModel!State(
-			jumps <- linearactivity.branches->including(linearJump),
-			id <- linearactivity.stateId
+			jumps <- linearactivity.branches->including(linearJump)	
 		),
 		linearJump: EnrichedModel!Jump(
-			nextState<-if linearactivity.nextActivity.oclIsKindOf(BasicModel!End) then OclUndefined else linearactivity.nextActivity endif
+			nextState<-linearactivity.nextActivity	
 		)
 }
 
 rule forkActivity2ForkState{
 	from
-		forkActivity: BasicModel!Fork
+		forkActivity: ActivityDiagram!Fork
 	to
 		state: EnrichedModel!ForkState(
 			threadCount <- forkActivity.maxThreadCount,
-			threadInits <- forkActivity.forkedThreads,
-			id <- forkActivity.stateId
+			threadInits <- forkActivity.forkedThreads
 		)
 			
 }
 
 rule branches2Jump{
 	from
-		branch: BasicModel!Branch
+		branch: ActivityDiagram!Branch
 	to
 		jump: EnrichedModel!Jump(
 			condition <-branch.condition,
-			nextState <-if branch.nextActivity.oclIsKindOf(BasicModel!End) then OclUndefined else branch.nextActivity endif
+			nextState <- branch.nextActivity
 		)
 }
 
 rule forkedThread2threadInit{
 	from
-		forkedThread: BasicModel!ForkedThread
+		forkedThread: ActivityDiagram!ForkedThread
 	to
 		threadInit: EnrichedModel!ThreadInit(
 			isDaemon <- forkedThread.daemon,
 			calledMethod <- ForkedThreadMethod
 		),
 		ForkedThreadMethod: EnrichedModel!Method(
-			name <- forkedThread.name + '(forked method)',
+			name <- forkedThread.name + '_thread',
 			states <- forkedThread.activities
 		),
 		ThreadReference: EnrichedModel!Thread(
