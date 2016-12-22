@@ -2,6 +2,8 @@
  */
 package umlad2javacc.basicmodel.BasicModel;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -13,6 +15,7 @@ package umlad2javacc.basicmodel.BasicModel;
  * </p>
  * <ul>
  *   <li>{@link umlad2javacc.basicmodel.BasicModel.NamedActivity#getActivityName <em>Activity Name</em>}</li>
+ *   <li>{@link umlad2javacc.basicmodel.BasicModel.NamedActivity#getSharedResources <em>Shared Resources</em>}</li>
  * </ul>
  *
  * @see umlad2javacc.basicmodel.BasicModel.BasicModelPackage#getNamedActivity()
@@ -47,5 +50,37 @@ public interface NamedActivity extends LinearActivity {
 	 * @generated
 	 */
 	void setActivityName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Shared Resources</b></em>' reference list.
+	 * The list contents are of type {@link umlad2javacc.basicmodel.BasicModel.SharedResource}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Shared Resources</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Shared Resources</em>' reference list.
+	 * @see umlad2javacc.basicmodel.BasicModel.BasicModelPackage#getNamedActivity_SharedResources()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<SharedResource> getSharedResources();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='other.activityName = self.activityName and other.instanceType = self.instanceType'"
+	 * @generated
+	 */
+	boolean IsSameReference(NamedActivity other);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in\n\t                  let reachableActivities: OrderedSet(Activity) = basicModel.startActivity.GetReachableActivities(OrderedSet{}) in\n\t                  let otherMethodUsers: OrderedSet(Activity) = reachableActivities->select(e | e.oclIsKindOf(NamedActivity)) - NamedActivity.allInstances()->select(e | not e.IsSameReference(self)) in\n\t                         otherMethodUsers->first()'"
+	 * @generated
+	 */
+	Activity GetMethodCreator();
 
 } // NamedActivity

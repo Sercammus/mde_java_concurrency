@@ -53,7 +53,7 @@ public interface LinearActivity extends Activity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false" soFarMany="true" soFarOrdered="false"
+	 * @model soFarMany="true"
 	 *        soFarAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else nextActivity.GetReachableActivities(soFar->including(self)) -- Check successor\n\t\t\t      endif'"
 	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"

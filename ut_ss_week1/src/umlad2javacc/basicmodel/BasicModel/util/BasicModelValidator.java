@@ -289,7 +289,7 @@ public class BasicModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String ACTIVITY__REACHABILITY__EEXPRESSION = "let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in\n" +
-		"\t                        let reachableActivities: Set(Activity) = basicModel.startActivity.GetReachableActivities(Set{}) in\n" +
+		"\t                        let reachableActivities: OrderedSet(Activity) = basicModel.startActivity.GetReachableActivities(OrderedSet{}) in\n" +
 		"\t                            reachableActivities->exists(a | a = self)";
 
 	/**
@@ -814,7 +814,37 @@ public class BasicModelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateLinearActivity_ThreadIndependence(nestedActivity, diagnostics, context);
 		if (result || diagnostics != null) result &= validateNamedActivity_ProperNamedActivityName(nestedActivity, diagnostics, context);
 		if (result || diagnostics != null) result &= validateNamedActivity_UniqueNamedActivityName(nestedActivity, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNestedActivity_NestedActivityConsistency(nestedActivity, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * The cached validation expression for the NestedActivityConsistency constraint of '<em>Nested Activity</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String NESTED_ACTIVITY__NESTED_ACTIVITY_CONSISTENCY__EEXPRESSION = "NestedActivity.allInstances()->forAll(e | e.IsSameReference(self) implies e.nestedThread = self.nestedThread)";
+
+	/**
+	 * Validates the NestedActivityConsistency constraint of '<em>Nested Activity</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNestedActivity_NestedActivityConsistency(NestedActivity nestedActivity, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(BasicModelPackage.Literals.NESTED_ACTIVITY,
+				 nestedActivity,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "NestedActivityConsistency",
+				 NESTED_ACTIVITY__NESTED_ACTIVITY_CONSISTENCY__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

@@ -42,9 +42,9 @@ public interface Decision extends LinearActivity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false" soFarMany="true" soFarOrdered="false"
+	 * @model soFarMany="true"
 	 *        soFarAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else let sf: Set(Activity) = soFar->including(self) in\n\t\t\t           let elseActivities: Set(Activity) = nextActivity.GetReachableActivities(sf) in\n\t\t\t               branches->iterate(b; result: Set(Activity) = elseActivities | b.nextActivity.GetReachableActivities(result)) -- Check all branches\n\t\t\t      endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else let sf: OrderedSet(Activity) = soFar->including(self) in\n\t\t\t           let elseActivities: OrderedSet(Activity) = nextActivity.GetReachableActivities(sf) in\n\t\t\t               branches->iterate(b; result: OrderedSet(Activity) = elseActivities | b.nextActivity.GetReachableActivities(result)) -- Check all branches\n\t\t\t      endif'"
 	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 * @generated
 	 */

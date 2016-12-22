@@ -2194,13 +2194,22 @@ public interface BasicModelPackage extends EPackage {
 	int NAMED_ACTIVITY__ACTIVITY_NAME = LINEAR_ACTIVITY_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Shared Resources</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ACTIVITY__SHARED_RESOURCES = LINEAR_ACTIVITY_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Named Activity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ACTIVITY_FEATURE_COUNT = LINEAR_ACTIVITY_FEATURE_COUNT + 1;
+	int NAMED_ACTIVITY_FEATURE_COUNT = LINEAR_ACTIVITY_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
@@ -2266,13 +2275,31 @@ public interface BasicModelPackage extends EPackage {
 	int NAMED_ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST = LINEAR_ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST;
 
 	/**
+	 * The operation id for the '<em>Is Same Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ACTIVITY___IS_SAME_REFERENCE__NAMEDACTIVITY = LINEAR_ACTIVITY_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Method Creator</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ACTIVITY___GET_METHOD_CREATOR = LINEAR_ACTIVITY_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Named Activity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ACTIVITY_OPERATION_COUNT = LINEAR_ACTIVITY_OPERATION_COUNT + 0;
+	int NAMED_ACTIVITY_OPERATION_COUNT = LINEAR_ACTIVITY_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link umlad2javacc.basicmodel.BasicModel.impl.SimpleActivityImpl <em>Simple Activity</em>}' class.
@@ -2363,7 +2390,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY__SHARED_RESOURCES = NAMED_ACTIVITY_FEATURE_COUNT + 0;
+	int SIMPLE_ACTIVITY__SHARED_RESOURCES = NAMED_ACTIVITY__SHARED_RESOURCES;
 
 	/**
 	 * The number of structural features of the '<em>Simple Activity</em>' class.
@@ -2372,7 +2399,7 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_ACTIVITY_FEATURE_COUNT = NAMED_ACTIVITY_FEATURE_COUNT + 1;
+	int SIMPLE_ACTIVITY_FEATURE_COUNT = NAMED_ACTIVITY_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Uses Different Thread</em>' operation.
@@ -2427,6 +2454,24 @@ public interface BasicModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SIMPLE_ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST = NAMED_ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST;
+
+	/**
+	 * The operation id for the '<em>Is Same Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_ACTIVITY___IS_SAME_REFERENCE__NAMEDACTIVITY = NAMED_ACTIVITY___IS_SAME_REFERENCE__NAMEDACTIVITY;
+
+	/**
+	 * The operation id for the '<em>Get Method Creator</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_ACTIVITY___GET_METHOD_CREATOR = NAMED_ACTIVITY___GET_METHOD_CREATOR;
 
 	/**
 	 * The operation id for the '<em>Get Successor References</em>' operation.
@@ -2529,6 +2574,15 @@ public interface BasicModelPackage extends EPackage {
 	int NESTED_ACTIVITY__ACTIVITY_NAME = NAMED_ACTIVITY__ACTIVITY_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Shared Resources</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_ACTIVITY__SHARED_RESOURCES = NAMED_ACTIVITY__SHARED_RESOURCES;
+
+	/**
 	 * The feature id for the '<em><b>Nested Thread</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2590,6 +2644,24 @@ public interface BasicModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int NESTED_ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST = NAMED_ACTIVITY___GET_ACTIVITIES_BY_STATE_ID__ELIST_ELIST;
+
+	/**
+	 * The operation id for the '<em>Is Same Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_ACTIVITY___IS_SAME_REFERENCE__NAMEDACTIVITY = NAMED_ACTIVITY___IS_SAME_REFERENCE__NAMEDACTIVITY;
+
+	/**
+	 * The operation id for the '<em>Get Method Creator</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_ACTIVITY___GET_METHOD_CREATOR = NAMED_ACTIVITY___GET_METHOD_CREATOR;
 
 	/**
 	 * The operation id for the '<em>Get Reachable Activities</em>' operation.
@@ -3481,17 +3553,6 @@ public interface BasicModelPackage extends EPackage {
 	EClass getSimpleActivity();
 
 	/**
-	 * Returns the meta object for the reference list '{@link umlad2javacc.basicmodel.BasicModel.SimpleActivity#getSharedResources <em>Shared Resources</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Shared Resources</em>'.
-	 * @see umlad2javacc.basicmodel.BasicModel.SimpleActivity#getSharedResources()
-	 * @see #getSimpleActivity()
-	 * @generated
-	 */
-	EReference getSimpleActivity_SharedResources();
-
-	/**
 	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.SimpleActivity#GetSuccessorReferences(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Successor References</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3583,6 +3644,37 @@ public interface BasicModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNamedActivity_ActivityName();
+
+	/**
+	 * Returns the meta object for the reference list '{@link umlad2javacc.basicmodel.BasicModel.NamedActivity#getSharedResources <em>Shared Resources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Shared Resources</em>'.
+	 * @see umlad2javacc.basicmodel.BasicModel.NamedActivity#getSharedResources()
+	 * @see #getNamedActivity()
+	 * @generated
+	 */
+	EReference getNamedActivity_SharedResources();
+
+	/**
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.NamedActivity#IsSameReference(umlad2javacc.basicmodel.BasicModel.NamedActivity) <em>Is Same Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Same Reference</em>' operation.
+	 * @see umlad2javacc.basicmodel.BasicModel.NamedActivity#IsSameReference(umlad2javacc.basicmodel.BasicModel.NamedActivity)
+	 * @generated
+	 */
+	EOperation getNamedActivity__IsSameReference__NamedActivity();
+
+	/**
+	 * Returns the meta object for the '{@link umlad2javacc.basicmodel.BasicModel.NamedActivity#GetMethodCreator() <em>Get Method Creator</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Method Creator</em>' operation.
+	 * @see umlad2javacc.basicmodel.BasicModel.NamedActivity#GetMethodCreator()
+	 * @generated
+	 */
+	EOperation getNamedActivity__GetMethodCreator();
 
 	/**
 	 * Returns the meta object for class '{@link umlad2javacc.basicmodel.BasicModel.Reference <em>Reference</em>}'.
@@ -4227,14 +4319,6 @@ public interface BasicModelPackage extends EPackage {
 		EClass SIMPLE_ACTIVITY = eINSTANCE.getSimpleActivity();
 
 		/**
-		 * The meta object literal for the '<em><b>Shared Resources</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SIMPLE_ACTIVITY__SHARED_RESOURCES = eINSTANCE.getSimpleActivity_SharedResources();
-
-		/**
 		 * The meta object literal for the '<em><b>Get Successor References</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4311,6 +4395,30 @@ public interface BasicModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAMED_ACTIVITY__ACTIVITY_NAME = eINSTANCE.getNamedActivity_ActivityName();
+
+		/**
+		 * The meta object literal for the '<em><b>Shared Resources</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NAMED_ACTIVITY__SHARED_RESOURCES = eINSTANCE.getNamedActivity_SharedResources();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Same Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation NAMED_ACTIVITY___IS_SAME_REFERENCE__NAMEDACTIVITY = eINSTANCE.getNamedActivity__IsSameReference__NamedActivity();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Method Creator</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation NAMED_ACTIVITY___GET_METHOD_CREATOR = eINSTANCE.getNamedActivity__GetMethodCreator();
 
 		/**
 		 * The meta object literal for the '{@link umlad2javacc.basicmodel.BasicModel.impl.ReferenceImpl <em>Reference</em>}' class.

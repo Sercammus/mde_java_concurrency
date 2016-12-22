@@ -893,15 +893,6 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSimpleActivity_SharedResources() {
-		return (EReference)simpleActivityEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getSimpleActivity__GetSuccessorReferences__EList_EList() {
 		return simpleActivityEClass.getEOperations().get(0);
 	}
@@ -976,6 +967,33 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 	 */
 	public EAttribute getNamedActivity_ActivityName() {
 		return (EAttribute)namedActivityEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNamedActivity_SharedResources() {
+		return (EReference)namedActivityEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getNamedActivity__IsSameReference__NamedActivity() {
+		return namedActivityEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getNamedActivity__GetMethodCreator() {
+		return namedActivityEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -1126,7 +1144,6 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		yieldEClass = createEClass(YIELD);
 
 		simpleActivityEClass = createEClass(SIMPLE_ACTIVITY);
-		createEReference(simpleActivityEClass, SIMPLE_ACTIVITY__SHARED_RESOURCES);
 		createEOperation(simpleActivityEClass, SIMPLE_ACTIVITY___GET_SUCCESSOR_REFERENCES__ELIST_ELIST);
 
 		nestedActivityEClass = createEClass(NESTED_ACTIVITY);
@@ -1139,6 +1156,9 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 
 		namedActivityEClass = createEClass(NAMED_ACTIVITY);
 		createEAttribute(namedActivityEClass, NAMED_ACTIVITY__ACTIVITY_NAME);
+		createEReference(namedActivityEClass, NAMED_ACTIVITY__SHARED_RESOURCES);
+		createEOperation(namedActivityEClass, NAMED_ACTIVITY___IS_SAME_REFERENCE__NAMEDACTIVITY);
+		createEOperation(namedActivityEClass, NAMED_ACTIVITY___GET_METHOD_CREATOR);
 
 		referenceEClass = createEClass(REFERENCE);
 		createEAttribute(referenceEClass, REFERENCE__NAME);
@@ -1233,8 +1253,8 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		addEParameter(op, ecorePackage.getEBigInteger(), "searchDepth", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getActivity(), "beenHere", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = initEOperation(getActivity__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getActivity__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getActivity__GetSuccessorReferences__EList_EList(), this.getReference(), "GetSuccessorReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
@@ -1259,8 +1279,8 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		initEClass(linearActivityEClass, LinearActivity.class, "LinearActivity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLinearActivity_NextActivity(), this.getActivity(), null, "nextActivity", null, 1, 1, LinearActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getLinearActivity__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getLinearActivity__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getLinearActivity__GetSuccessorReferences__EList_EList(), this.getReference(), "GetSuccessorReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
@@ -1279,8 +1299,8 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		initEReference(getFork_ForkedThreads(), this.getForkedThread(), null, "forkedThreads", null, 1, -1, Fork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFork_CorrespondingJoin(), this.getActivity(), null, "correspondingJoin", null, 0, 1, Fork.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getFork__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getFork__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getFork__GetSuccessorReferences__EList_EList(), this.getReference(), "GetSuccessorReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
@@ -1297,8 +1317,8 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		initEClass(decisionEClass, Decision.class, "Decision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDecision_Branches(), this.getBranch(), null, "branches", null, 0, -1, Decision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getDecision__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getDecision__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getDecision__GetSuccessorReferences__EList_EList(), this.getReference(), "GetSuccessorReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
@@ -1348,7 +1368,6 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		initEClass(yieldEClass, Yield.class, "Yield", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(simpleActivityEClass, SimpleActivity.class, "SimpleActivity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSimpleActivity_SharedResources(), this.getSharedResource(), null, "sharedResources", null, 0, -1, SimpleActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		op = initEOperation(getSimpleActivity__GetSuccessorReferences__EList_EList(), this.getReference(), "GetSuccessorReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
@@ -1357,8 +1376,8 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		initEClass(nestedActivityEClass, NestedActivity.class, "NestedActivity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNestedActivity_NestedThread(), this.getNestedThread(), null, "nestedThread", null, 1, 1, NestedActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getNestedActivity__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getNestedActivity__GetReachableActivities__EList(), this.getActivity(), "GetReachableActivities", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getActivity(), "soFar", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getNestedActivity__GetAccessedReferences__EList_EList(), this.getReference(), "GetAccessedReferences", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getReference(), "soFar", 0, -1, IS_UNIQUE, !IS_ORDERED);
@@ -1369,6 +1388,12 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 
 		initEClass(namedActivityEClass, NamedActivity.class, "NamedActivity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedActivity_ActivityName(), ecorePackage.getEString(), "activityName", null, 0, 1, NamedActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNamedActivity_SharedResources(), this.getSharedResource(), null, "sharedResources", null, 0, -1, NamedActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		op = initEOperation(getNamedActivity__IsSameReference__NamedActivity(), ecorePackage.getEBoolean(), "IsSameReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNamedActivity(), "other", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getNamedActivity__GetMethodCreator(), this.getActivity(), "GetMethodCreator", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(referenceEClass, Reference.class, "Reference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getReference_Name(), ecorePackage.getEString(), "name", null, 0, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1472,6 +1497,12 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "constraints", "PositiveSleepDuration"
 		   });	
 		addAnnotation
+		  (nestedActivityEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "NestedActivityConsistency"
+		   });	
+		addAnnotation
 		  (namedActivityEClass, 
 		   source, 
 		   new String[] {
@@ -1527,7 +1558,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		  (activityEClass, 
 		   source, 
 		   new String[] {
-			 "Reachability", "let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in\n\t                        let reachableActivities: Set(Activity) = basicModel.startActivity.GetReachableActivities(Set{}) in\n\t                            reachableActivities->exists(a | a = self)"
+			 "Reachability", "let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in\n\t                        let reachableActivities: OrderedSet(Activity) = basicModel.startActivity.GetReachableActivities(OrderedSet{}) in\n\t                            reachableActivities->exists(a | a = self)"
 		   });	
 		addAnnotation
 		  (getActivity__UsesDifferentThread__Activity(), 
@@ -1643,7 +1674,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		  (getFork__GetReachableActivities__EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if soFar->exists(e | e = self) -- Fork has already been checked\n\t\t\t          then soFar\n\t\t\t          else let sf: Set(Activity) = soFar->including(self) in\n\t\t\t                   forkedThreads->iterate(t; result: Set(Activity) = Set{} | result->union(t.startActivity.GetReachableActivities(sf)))\n\t\t\t          endif"
+			 "body", "if soFar->exists(e | e = self) -- Fork has already been checked\n\t\t\t          then soFar\n\t\t\t          else forkedThreads->iterate(t; result: OrderedSet(Activity) = soFar->including(self) | t.startActivity.GetReachableActivities(result))\n\t\t\t          endif"
 		   });	
 		addAnnotation
 		  (getFork__GetSuccessorReferences__EList_EList(), 
@@ -1679,7 +1710,7 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		  (getDecision__GetReachableActivities__EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else let sf: Set(Activity) = soFar->including(self) in\n\t\t\t           let elseActivities: Set(Activity) = nextActivity.GetReachableActivities(sf) in\n\t\t\t               branches->iterate(b; result: Set(Activity) = elseActivities | b.nextActivity.GetReachableActivities(result)) -- Check all branches\n\t\t\t      endif"
+			 "body", "if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t      then soFar\n\t\t\t      else let sf: OrderedSet(Activity) = soFar->including(self) in\n\t\t\t           let elseActivities: OrderedSet(Activity) = nextActivity.GetReachableActivities(sf) in\n\t\t\t               branches->iterate(b; result: OrderedSet(Activity) = elseActivities | b.nextActivity.GetReachableActivities(result)) -- Check all branches\n\t\t\t      endif"
 		   });	
 		addAnnotation
 		  (getDecision__GetSuccessorReferences__EList_EList(), 
@@ -1742,10 +1773,16 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 			 "body", "nextActivity.GetAccessedReferences(soFar->union(sharedResources), beenHere->including(self))"
 		   });	
 		addAnnotation
+		  (nestedActivityEClass, 
+		   source, 
+		   new String[] {
+			 "NestedActivityConsistency", "NestedActivity.allInstances()->forAll(e | e.IsSameReference(self) implies e.nestedThread = self.nestedThread)"
+		   });	
+		addAnnotation
 		  (getNestedActivity__GetReachableActivities__EList(), 
 		   source, 
 		   new String[] {
-			 "body", "if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t          then soFar\n\t\t\t          else let sf: Set(Activity) = soFar->including(self) in\n\t\t\t               let internalActivities: Set(Activity) = nestedThread.startActivity.GetReachableActivities(sf) in -- Check internal activities\n\t\t\t                   nextActivity.GetReachableActivities(internalActivities) -- Check successor\n\t\t\t          endif"
+			 "body", "if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t          then soFar\n\t\t\t          else let sf: OrderedSet(Activity) = soFar->including(self) in\n\t\t\t               let internalActivities: OrderedSet(Activity) = nestedThread.startActivity.GetReachableActivities(sf) in -- Check internal activities\n\t\t\t                   nextActivity.GetReachableActivities(internalActivities) -- Check successor\n\t\t\t          endif"
 		   });	
 		addAnnotation
 		  (getNestedActivity__GetAccessedReferences__EList_EList(), 
@@ -1759,6 +1796,18 @@ public class BasicModelPackageImpl extends EPackageImpl implements BasicModelPac
 		   new String[] {
 			 "ProperNamedActivityName", "activityName.matches(\'[A-Za-z_$][A-Za-z0-9_$]*\')",
 			 "UniqueNamedActivityName", "Reference.allInstances()->select(r | r.name = activityName and not r.oclIsKindOf(NestedThread))->isEmpty()"
+		   });	
+		addAnnotation
+		  (getNamedActivity__IsSameReference__NamedActivity(), 
+		   source, 
+		   new String[] {
+			 "body", "other.activityName = self.activityName and other.instanceType = self.instanceType"
+		   });	
+		addAnnotation
+		  (getNamedActivity__GetMethodCreator(), 
+		   source, 
+		   new String[] {
+			 "body", "let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in\n\t                  let reachableActivities: OrderedSet(Activity) = basicModel.startActivity.GetReachableActivities(OrderedSet{}) in\n\t                  let otherMethodUsers: OrderedSet(Activity) = reachableActivities->select(e | e.oclIsKindOf(NamedActivity)) - NamedActivity.allInstances()->select(e | not e.IsSameReference(self)) in\n\t                         otherMethodUsers->first()"
 		   });	
 		addAnnotation
 		  (referenceEClass, 

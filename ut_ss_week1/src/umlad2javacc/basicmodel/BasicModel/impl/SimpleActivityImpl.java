@@ -3,49 +3,26 @@
 package umlad2javacc.basicmodel.BasicModel.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
-import java.util.Collection;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import umlad2javacc.basicmodel.BasicModel.Activity;
 import umlad2javacc.basicmodel.BasicModel.BasicModelPackage;
 import umlad2javacc.basicmodel.BasicModel.LinearActivity;
 import umlad2javacc.basicmodel.BasicModel.Reference;
-import umlad2javacc.basicmodel.BasicModel.SharedResource;
 import umlad2javacc.basicmodel.BasicModel.SimpleActivity;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Simple Activity</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link umlad2javacc.basicmodel.BasicModel.impl.SimpleActivityImpl#getSharedResources <em>Shared Resources</em>}</li>
- * </ul>
  *
  * @generated
  */
 public class SimpleActivityImpl extends NamedActivityImpl implements SimpleActivity {
-	/**
-	 * The cached value of the '{@link #getSharedResources() <em>Shared Resources</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSharedResources()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<SharedResource> sharedResources;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,18 +40,6 @@ public class SimpleActivityImpl extends NamedActivityImpl implements SimpleActiv
 	@Override
 	protected EClass eStaticClass() {
 		return BasicModelPackage.Literals.SIMPLE_ACTIVITY;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<SharedResource> getSharedResources() {
-		if (sharedResources == null) {
-			sharedResources = new EObjectResolvingEList<SharedResource>(SharedResource.class, this, BasicModelPackage.SIMPLE_ACTIVITY__SHARED_RESOURCES);
-		}
-		return sharedResources;
 	}
 
 	/**
@@ -100,66 +65,6 @@ public class SimpleActivityImpl extends NamedActivityImpl implements SimpleActiv
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case BasicModelPackage.SIMPLE_ACTIVITY__SHARED_RESOURCES:
-				return getSharedResources();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case BasicModelPackage.SIMPLE_ACTIVITY__SHARED_RESOURCES:
-				getSharedResources().clear();
-				getSharedResources().addAll((Collection<? extends SharedResource>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case BasicModelPackage.SIMPLE_ACTIVITY__SHARED_RESOURCES:
-				getSharedResources().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case BasicModelPackage.SIMPLE_ACTIVITY__SHARED_RESOURCES:
-				return sharedResources != null && !sharedResources.isEmpty();
-		}
-		return super.eIsSet(featureID);
 	}
 
 	/**

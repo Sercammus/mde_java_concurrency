@@ -97,9 +97,9 @@ public interface Fork extends Activity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false" soFarMany="true" soFarOrdered="false"
+	 * @model soFarMany="true"
 	 *        soFarAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if soFar->exists(e | e = self) -- Fork has already been checked\n\t\t\t          then soFar\n\t\t\t          else let sf: Set(Activity) = soFar->including(self) in\n\t\t\t                   forkedThreads->iterate(t; result: Set(Activity) = Set{} | result->union(t.startActivity.GetReachableActivities(sf)))\n\t\t\t          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if soFar->exists(e | e = self) -- Fork has already been checked\n\t\t\t          then soFar\n\t\t\t          else forkedThreads->iterate(t; result: OrderedSet(Activity) = soFar->including(self) | t.startActivity.GetReachableActivities(result))\n\t\t\t          endif'"
 	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 * @generated
 	 */

@@ -17,7 +17,8 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see umlad2javacc.basicmodel.BasicModel.BasicModelPackage#getNestedActivity()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='NestedActivityConsistency'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot NestedActivityConsistency='NestedActivity.allInstances()->forAll(e | e.IsSameReference(self) implies e.nestedThread = self.nestedThread)'"
  * @generated
  */
 public interface NestedActivity extends NamedActivity {
@@ -50,9 +51,9 @@ public interface NestedActivity extends NamedActivity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false" soFarMany="true" soFarOrdered="false"
+	 * @model soFarMany="true"
 	 *        soFarAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t          then soFar\n\t\t\t          else let sf: Set(Activity) = soFar->including(self) in\n\t\t\t               let internalActivities: Set(Activity) = nestedThread.startActivity.GetReachableActivities(sf) in -- Check internal activities\n\t\t\t                   nextActivity.GetReachableActivities(internalActivities) -- Check successor\n\t\t\t          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if soFar->exists(e | e = self) -- Activity has already been checked\n\t\t\t          then soFar\n\t\t\t          else let sf: OrderedSet(Activity) = soFar->including(self) in\n\t\t\t               let internalActivities: OrderedSet(Activity) = nestedThread.startActivity.GetReachableActivities(sf) in -- Check internal activities\n\t\t\t                   nextActivity.GetReachableActivities(internalActivities) -- Check successor\n\t\t\t          endif'"
 	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 * @generated
 	 */

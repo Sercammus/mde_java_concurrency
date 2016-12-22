@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see umlad2javacc.basicmodel.BasicModel.BasicModelPackage#getActivity()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='Reachability'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot Reachability='let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in\n\t                        let reachableActivities: Set(Activity) = basicModel.startActivity.GetReachableActivities(Set{}) in\n\t                            reachableActivities->exists(a | a = self)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot Reachability='let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in\n\t                        let reachableActivities: OrderedSet(Activity) = basicModel.startActivity.GetReachableActivities(OrderedSet{}) in\n\t                            reachableActivities->exists(a | a = self)'"
  * @generated
  */
 public interface Activity extends EObject {
@@ -222,7 +222,7 @@ public interface Activity extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false" soFarMany="true" soFarOrdered="false"
+	 * @model soFarMany="true"
 	 *        soFarAnnotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='soFar->including(self)'"
 	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"

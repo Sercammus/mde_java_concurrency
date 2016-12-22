@@ -68,7 +68,7 @@
       <details key="constraints" value="Reachability"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="Reachability" value="let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in&#xA;&#x9;                        let reachableActivities: Set(Activity) = basicModel.startActivity.GetReachableActivities(Set{}) in&#xA;&#x9;                            reachableActivities->exists(a | a = self)"/>
+      <details key="Reachability" value="let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in&#xA;&#x9;                        let reachableActivities: OrderedSet(Activity) = basicModel.startActivity.GetReachableActivities(OrderedSet{}) in&#xA;&#x9;                            reachableActivities->exists(a | a = self)"/>
     </eAnnotations>
     <eOperations name="UsesDifferentThread" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -111,14 +111,14 @@
         </eAnnotations>
       </eParameters>
     </eOperations>
-    <eOperations name="GetReachableActivities" ordered="false" upperBound="-1" eType="#//Activity">
+    <eOperations name="GetReachableActivities" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="soFar->including(self)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
-      <eParameters name="soFar" ordered="false" upperBound="-1" eType="#//Activity">
+      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
         <eAnnotations source="http://www.eclipse.org/OCL/Collection">
           <details key="nullFree" value="false"/>
         </eAnnotations>
@@ -232,14 +232,14 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="ThreadIndependence" value="self.UsesSameThread(nextActivity)"/>
     </eAnnotations>
-    <eOperations name="GetReachableActivities" ordered="false" upperBound="-1" eType="#//Activity">
+    <eOperations name="GetReachableActivities" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="if soFar->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;      else nextActivity.GetReachableActivities(soFar->including(self)) -- Check successor&#xA;&#x9;&#x9;&#x9;      endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
-      <eParameters name="soFar" ordered="false" upperBound="-1" eType="#//Activity">
+      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
         <eAnnotations source="http://www.eclipse.org/OCL/Collection">
           <details key="nullFree" value="false"/>
         </eAnnotations>
@@ -304,14 +304,14 @@
       <details key="ThreadIndependence" value="forkedThreads->forAll(t | self.UsesDifferentThread(t.startActivity))"/>
       <details key="ValidCorrespondingJoin" value="correspondingJoin = null or correspondingJoin.thread = thread"/>
     </eAnnotations>
-    <eOperations name="GetReachableActivities" ordered="false" upperBound="-1" eType="#//Activity">
+    <eOperations name="GetReachableActivities" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if soFar->exists(e | e = self) -- Fork has already been checked&#xA;&#x9;&#x9;&#x9;          then soFar&#xA;&#x9;&#x9;&#x9;          else let sf: Set(Activity) = soFar->including(self) in&#xA;&#x9;&#x9;&#x9;                   forkedThreads->iterate(t; result: Set(Activity) = Set{} | result->union(t.startActivity.GetReachableActivities(sf)))&#xA;&#x9;&#x9;&#x9;          endif"/>
+        <details key="body" value="if soFar->exists(e | e = self) -- Fork has already been checked&#xA;&#x9;&#x9;&#x9;          then soFar&#xA;&#x9;&#x9;&#x9;          else forkedThreads->iterate(t; result: OrderedSet(Activity) = soFar->including(self) | t.startActivity.GetReachableActivities(result))&#xA;&#x9;&#x9;&#x9;          endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
-      <eParameters name="soFar" ordered="false" upperBound="-1" eType="#//Activity">
+      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
         <eAnnotations source="http://www.eclipse.org/OCL/Collection">
           <details key="nullFree" value="false"/>
         </eAnnotations>
@@ -381,14 +381,14 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="ThreadIndependence" value="branches->forAll(b | self.UsesSameThread(b.nextActivity))"/>
     </eAnnotations>
-    <eOperations name="GetReachableActivities" ordered="false" upperBound="-1" eType="#//Activity">
+    <eOperations name="GetReachableActivities" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if soFar->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;      else let sf: Set(Activity) = soFar->including(self) in&#xA;&#x9;&#x9;&#x9;           let elseActivities: Set(Activity) = nextActivity.GetReachableActivities(sf) in&#xA;&#x9;&#x9;&#x9;               branches->iterate(b; result: Set(Activity) = elseActivities | b.nextActivity.GetReachableActivities(result)) -- Check all branches&#xA;&#x9;&#x9;&#x9;      endif"/>
+        <details key="body" value="if soFar->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;      else let sf: OrderedSet(Activity) = soFar->including(self) in&#xA;&#x9;&#x9;&#x9;           let elseActivities: OrderedSet(Activity) = nextActivity.GetReachableActivities(sf) in&#xA;&#x9;&#x9;&#x9;               branches->iterate(b; result: OrderedSet(Activity) = elseActivities | b.nextActivity.GetReachableActivities(result)) -- Check all branches&#xA;&#x9;&#x9;&#x9;      endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
-      <eParameters name="soFar" ordered="false" upperBound="-1" eType="#//Activity">
+      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
         <eAnnotations source="http://www.eclipse.org/OCL/Collection">
           <details key="nullFree" value="false"/>
         </eAnnotations>
@@ -554,18 +554,22 @@
         </eAnnotations>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedResources" ordered="false"
-        upperBound="-1" eType="#//SharedResource"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NestedActivity" eSuperTypes="#//NamedActivity">
-    <eOperations name="GetReachableActivities" ordered="false" upperBound="-1" eType="#//Activity">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="NestedActivityConsistency"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="NestedActivityConsistency" value="NestedActivity.allInstances()->forAll(e | e.IsSameReference(self) implies e.nestedThread = self.nestedThread)"/>
+    </eAnnotations>
+    <eOperations name="GetReachableActivities" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if soFar->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;          then soFar&#xA;&#x9;&#x9;&#x9;          else let sf: Set(Activity) = soFar->including(self) in&#xA;&#x9;&#x9;&#x9;               let internalActivities: Set(Activity) = nestedThread.startActivity.GetReachableActivities(sf) in -- Check internal activities&#xA;&#x9;&#x9;&#x9;                   nextActivity.GetReachableActivities(internalActivities) -- Check successor&#xA;&#x9;&#x9;&#x9;          endif"/>
+        <details key="body" value="if soFar->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;          then soFar&#xA;&#x9;&#x9;&#x9;          else let sf: OrderedSet(Activity) = soFar->including(self) in&#xA;&#x9;&#x9;&#x9;               let internalActivities: OrderedSet(Activity) = nestedThread.startActivity.GetReachableActivities(sf) in -- Check internal activities&#xA;&#x9;&#x9;&#x9;                   nextActivity.GetReachableActivities(internalActivities) -- Check successor&#xA;&#x9;&#x9;&#x9;          endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
-      <eParameters name="soFar" ordered="false" upperBound="-1" eType="#//Activity">
+      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
         <eAnnotations source="http://www.eclipse.org/OCL/Collection">
           <details key="nullFree" value="false"/>
         </eAnnotations>
@@ -603,7 +607,20 @@
       <details key="ProperNamedActivityName" value="activityName.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
       <details key="UniqueNamedActivityName" value="Reference.allInstances()->select(r | r.name = activityName and not r.oclIsKindOf(NestedThread))->isEmpty()"/>
     </eAnnotations>
+    <eOperations name="IsSameReference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="other.activityName = self.activityName and other.instanceType = self.instanceType"/>
+      </eAnnotations>
+      <eParameters name="other" eType="#//NamedActivity"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methodCreator" eType="#//Activity">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in&#xA;&#x9;                     let reachableActivities: OrderedSet(Activity) = basicModel.startActivity.GetReachableActivities(OrderedSet{}) in&#xA;&#x9;                     let otherMethodUsers: OrderedSet(Activity) = reachableActivities->select(e | e.oclIsKindOf(NamedActivity)) - NamedActivity.allInstances()->select(e | not e.IsSameReference(self)) in&#xA;&#x9;                         otherMethodUsers->first()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="activityName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedResources" ordered="false"
+        upperBound="-1" eType="#//SharedResource"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Reference" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
