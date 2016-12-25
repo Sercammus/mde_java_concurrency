@@ -69,4 +69,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="YieldState" eSuperTypes="#//State"/>
+  <eClassifiers xsi:type="ecore:EClass" name="JoinState" eSuperTypes="#//State">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="joinedThreads" lowerBound="1"
+        upperBound="-1" eType="#//Thread"/>
+  </eClassifiers>
 </ecore:EPackage>

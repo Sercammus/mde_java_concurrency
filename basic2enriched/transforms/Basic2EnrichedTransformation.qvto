@@ -35,7 +35,7 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 	};
 	
 	//Make a list of all method parameters that are used
-	methodParameters += BasicModel::InterruptableThread.allInstances().resolveIn(BasicModel::InterruptableThread::interruptableThread2thread, EnrichedModel::Thread);
+	methodParameters += BasicModel::InterruptableThread.allInstances().resolveIn(BasicModel::Thread::interruptableThread2thread, EnrichedModel::Thread);
 	
 	end {
 		
@@ -57,22 +57,33 @@ mapping BasicModel::Activity::activity2state() : EnrichedModel::State disjuncts
 	BasicModel::SimpleActivity::simpleActivity2state, BasicModel::NestedActivity::nestedActivity2state,
 	BasicModel::Sleep::sleepActivity2state, BasicModel::Yield::yieldActivity2state,
 	BasicModel::Interrupt::interruptActivity2state, BasicModel::Decision::decisionActivity2state,
-	BasicModel::Fork::forkActivity2state
+	BasicModel::Fork::forkActivity2state, BasicModel::Join::joinActivity2state
 {}
 
 //Linear activitiy
 abstract mapping BasicModel::LinearActivity::linearActivity2state() : EnrichedModel::State {
 	id := self.stateId;
 	
-	if (self.nextActivity.canBeJumpedTo()) then {
+	if (self.canJumpTo(self.nextActivity)) then {
 		jumps := Sequence{self.nextActivity}->map nextActivity2jump();
 	} else {
 		jumps := Sequence{};
 	} endif;
 }
 
-query BasicModel::Activity::canBeJumpedTo() : Boolean {
-	return not self.oclIsKindOf(BasicModel::Join) and not self.oclIsKindOf(BasicModel::End);
+query BasicModel::Activity::canJumpTo(nextActivity : BasicModel::Activity) : Boolean {
+	//Do not jump to an end activity (since it does not do anything anyway)
+	if (nextActivity.oclIsKindOf(BasicModel::End)) then {
+		return false;
+	} endif;
+	
+	//Only go to a join if we are currently in the thread that is supposed to join
+	if (nextActivity.oclIsKindOf(BasicModel::Join)) then {
+		return nextActivity.oclAsType(BasicModel::Join).joiningThread = self.thread;
+	} endif;
+	
+	//Jump to the next activity in all other cases
+	return true;
 }
 
 mapping BasicModel::Activity::nextActivity2jump() : EnrichedModel::Jump {
@@ -147,7 +158,7 @@ mapping BasicModel::Interrupt::interruptActivity2state() : EnrichedModel::Interr
 	inherits BasicModel::LinearActivity::linearActivity2state
 	when { self.oclIsKindOf(BasicModel::Interrupt) }
 {
-	interruptedThread := self.interruptedThread.resolveoneIn(BasicModel::InterruptableThread::interruptableThread2thread, EnrichedModel::Thread);
+	interruptedThread := self.interruptedThread.resolveoneIn(BasicModel::Thread::interruptableThread2thread, EnrichedModel::Thread);
 }
 
 //Decision
@@ -155,13 +166,13 @@ mapping BasicModel::Decision::decisionActivity2state() : EnrichedModel::State
 	inherits BasicModel::LinearActivity::linearActivity2state
 	when { self.oclIsKindOf(BasicModel::Decision) }
 {
-	jumps += self.branches->map branch2jump();
+	jumps += self.branches->map branch2jump(self);
 }
 
-mapping BasicModel::Branch::branch2jump() : EnrichedModel::Jump {
+mapping BasicModel::Branch::branch2jump(decision : BasicModel::Decision) : EnrichedModel::Jump {
 	condition := self.condition;
 	
-	if (not self.nextActivity.canBeJumpedTo()) then {
+	if (not decision.canJumpTo(decision.nextActivity)) then {
 		nextState := self.nextActivity.map activity2state();
 	} endif;
 }
@@ -194,7 +205,15 @@ mapping BasicModel::ForkedThread::forkedThread2threadInit(fork: BasicModel::Fork
 	self.map interruptableThread2thread();
 }
 
-mapping BasicModel::InterruptableThread::interruptableThread2thread() : EnrichedModel::Thread {
+mapping BasicModel::Thread::interruptableThread2thread() : EnrichedModel::Thread {
 	name := self.name;
 }
+
+//Join
+mapping BasicModel::Join::joinActivity2state() : EnrichedModel::JoinState
+	when { self.oclIsKindOf(BasicModel::Join) }
+{
+	joinedThreads += self.GetIncomingThreads()->select(e | e <> self.joiningThread)->map interruptableThread2thread();
+}
+
 

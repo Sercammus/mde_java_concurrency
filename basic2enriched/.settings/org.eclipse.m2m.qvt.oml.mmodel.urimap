@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
+  <mapping sourceURI="www.example.org/basicModel" targetURI="platform:/resource/basic2enriched/metamodels/BasicModel.ecore"/>
+  <mapping sourceURI="enrichedModel" targetURI="platform:/resource/basic2enriched/metamodels/EnrichedModel.ecore"/>
+</uriMap:MappingContainer>

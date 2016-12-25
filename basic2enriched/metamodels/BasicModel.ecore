@@ -10,24 +10,26 @@
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Thread" abstract="true" eSuperTypes="#//Reference">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ValidStartActivityThread"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="ValidStartActivityThread" value="startActivity.thread = self or startActivity.oclIsKindOf(Join) or startActivity.oclIsKindOf(FinalActivity)"/>
-    </eAnnotations>
     <eOperations name="GetActivitiesByStateId" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="startActivity.GetActivitiesByStateId(OrderedSet{}, Set{})"/>
+        <details key="body" value="activities->select(a | a.HasStateId())"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activitiesByStateId" upperBound="-1"
-        eType="#//Activity" volatile="true" derived="true">
+    <eOperations name="GetSiblingThreads" ordered="false" upperBound="-1" eType="#//Thread">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="GetActivitiesByStateId()"/>
+        <details key="body" value="if startActivity.thread = self&#xA;&#x9;&#x9;&#x9;      then startActivity.GetSiblingThreads()&#xA;&#x9;&#x9;&#x9;      else let forks : Set(Fork) = Fork.allInstances()->select(e | e.forkedThreads->includes(self)) in&#xA;&#x9;&#x9;&#x9;               if forks->isEmpty()&#xA;&#x9;&#x9;&#x9;               then Set{}&#xA;&#x9;&#x9;&#x9;               else let fork: Fork = forks->asSequence()->first() in&#xA;&#x9;&#x9;&#x9;                        fork.forkedThreads->union(fork.GetSiblingThreads())&#xA;&#x9;&#x9;&#x9;               endif&#xA;&#x9;&#x9;&#x9;      endif"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="siblingThreads" ordered="false"
+        upperBound="-1" eType="#//Thread" volatile="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="GetSiblingThreads()"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
@@ -39,12 +41,6 @@
         eType="#//Activity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BasicModel" eSuperTypes="#//InterruptableThread">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="MatchingForkForEveryJoin"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="MatchingForkForEveryJoin" value="&#xA;&#x9;&#x9;&#x9;let forkThreads: Bag(Thread) = Fork.allInstances()->collect(thread)->asBag() in&#xA;&#x9;&#x9;&#x9;let joinThreads: Bag(Thread) = Join.allInstances()->collect(thread)->asBag() in&#xA;&#x9;&#x9;&#x9;&#x9;forkThreads->intersection(joinThreads) = joinThreads"/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resources" upperBound="-1"
         eType="#//SharedResource" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
@@ -68,23 +64,119 @@
       <details key="constraints" value="Reachability"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="Reachability" value="let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in&#xA;&#x9;                        let reachableActivities: OrderedSet(Activity) = basicModel.startActivity.GetReachableActivities(OrderedSet{}) in&#xA;&#x9;                            reachableActivities->exists(a | a = self)"/>
+      <details key="Reachability" value="let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in&#xA;&#x9;                      let reachableActivities: OrderedSet(Activity) = basicModel.startActivity.GetReachableActivities(OrderedSet{}) in&#xA;&#x9;                          reachableActivities->exists(a | a = self)"/>
     </eAnnotations>
     <eOperations name="UsesDifferentThread" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="((thread = a.thread) = a.oclIsTypeOf(Join)) or a.oclIsKindOf(FinalActivity)"/>
+        <details key="body" value="(thread &lt;> a.thread) or a.oclIsTypeOf(Join) or a.oclIsKindOf(End)"/>
       </eAnnotations>
       <eParameters name="a" eType="#//Activity"/>
     </eOperations>
     <eOperations name="UsesSameThread" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="((thread = a.thread) &lt;> a.oclIsTypeOf(Join)) or a.oclIsKindOf(FinalActivity)"/>
+        <details key="body" value="(thread = a.thread) or a.oclIsTypeOf(Join) or a.oclIsKindOf(End)"/>
       </eAnnotations>
       <eParameters name="a" eType="#//Activity"/>
     </eOperations>
+    <eOperations name="GetNextActivities" ordered="false" upperBound="-1" eType="#//Activity">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Set{}"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="UpdateParentThreads" unique="false" upperBound="-1" eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if parentThreads->last() &lt;> thread then parentThreads->append(thread) else parentThreads endif"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+      <eParameters name="parentThreads" unique="false" upperBound="-1" eType="#//Thread">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="false"/>
+        </eAnnotations>
+      </eParameters>
+    </eOperations>
+    <eOperations name="GetParentThreads" unique="false" upperBound="-1" eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in&#xA;&#x9;&#x9;&#x9;          basicModel.startActivity.GetParentThreads(self, Sequence{basicModel}, Set{})"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="GetParentThreads" unique="false" upperBound="-1" eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if beenHere->includes(self)&#xA;&#x9;&#x9;&#x9;      then Sequence{}&#xA;&#x9;&#x9;&#x9;      else let sf: Sequence(Thread) = UpdateParentThreads(soFar) in &#xA;&#x9;&#x9;&#x9;               if target = self&#xA;&#x9;&#x9;&#x9;               then sf&#xA;&#x9;&#x9;&#x9;               else GetNextActivities()->iterate(a; result: Sequence(Thread) = Sequence{} |&#xA;&#x9;&#x9;&#x9;                   if result->isEmpty()&#xA;&#x9;&#x9;&#x9;                   then a.GetParentThreads(target, sf, beenHere->including(self))&#xA;&#x9;&#x9;&#x9;                   else result&#xA;&#x9;&#x9;&#x9;                   endif&#xA;&#x9;&#x9;&#x9;               )&#xA;&#x9;&#x9;&#x9;           endif&#xA;&#x9;&#x9;&#x9;      endif"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+      <eParameters name="target" eType="#//Activity"/>
+      <eParameters name="soFar" unique="false" upperBound="-1" eType="#//Thread">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="false"/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="false"/>
+        </eAnnotations>
+      </eParameters>
+    </eOperations>
+    <eOperations name="AddedSiblingThreads" ordered="false" upperBound="-1" eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Set{}"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="RemovedSiblingThreads" ordered="false" upperBound="-1" eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Set{}"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="HasStateId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="true"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="GetSiblingThreads" ordered="false" upperBound="-1" eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in&#xA;&#x9;&#x9;&#x9;          basicModel.startActivity.GetSiblingThreads(self, Set{}, Set{})"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="GetSiblingThreads" ordered="false" upperBound="-1" eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if beenHere->includes(self)&#xA;&#x9;&#x9;&#x9;      then Set{}&#xA;&#x9;&#x9;&#x9;      else if target = self&#xA;                       then soFar - RemovedSiblingThreads()&#xA;&#x9;&#x9;               else let sf: Set(Thread) = (soFar - RemovedSiblingThreads())->union(AddedSiblingThreads()) in&#xA;&#x9;&#x9;                        GetNextActivities()->iterate(a; result: Set(Thread) = Set{} |&#xA;&#x9;&#x9;                            if result->isEmpty()&#xA;&#x9;&#x9;                            then a.GetSiblingThreads(target, sf, beenHere->including(self)) - RemovedSiblingThreads()&#xA;&#x9;&#x9;                            else result&#xA;&#x9;&#x9;                            endif)&#xA;&#x9;&#x9;&#x9;           endif&#xA;&#x9;&#x9;&#x9;      endif"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+      <eParameters name="target" eType="#//Activity"/>
+      <eParameters name="soFar" ordered="false" upperBound="-1" eType="#//Thread">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="false"/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="false"/>
+        </eAnnotations>
+      </eParameters>
+    </eOperations>
     <eOperations name="GetAccessedReferences" ordered="false" upperBound="-1" eType="#//Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;      else if instance &lt;> null&#xA;&#x9;&#x9;&#x9;           then GetSuccessorReferences(soFar->including(instance), beenHere)&#xA;&#x9;&#x9;&#x9;           else GetSuccessorReferences(soFar, beenHere)&#xA;&#x9;&#x9;&#x9;           endif&#xA;&#x9;&#x9;&#x9;      endif"/>
+        <details key="body" value="if beenHere->includes(self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;      else if instance &lt;> null&#xA;&#x9;&#x9;&#x9;           then GetSuccessorReferences(soFar->including(instance), beenHere)&#xA;&#x9;&#x9;&#x9;           else GetSuccessorReferences(soFar, beenHere)&#xA;&#x9;&#x9;&#x9;           endif&#xA;&#x9;&#x9;&#x9;      endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
@@ -100,25 +192,32 @@
         </eAnnotations>
       </eParameters>
     </eOperations>
-    <eOperations name="SearchForJoin" eType="#//Activity">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="null"/>
-      </eAnnotations>
-      <eParameters name="searchDepth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
-      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-    </eOperations>
     <eOperations name="GetReachableActivities" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="soFar->including(self)"/>
+        <details key="body" value="if soFar->includes(self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;      else GetNextActivities()->iterate(a; result: OrderedSet(Activity) = soFar->including(self) | a.GetReachableActivities(result))&#xA;&#x9;&#x9;&#x9;      endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
       <eParameters name="soFar" upperBound="-1" eType="#//Activity">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="false"/>
+        </eAnnotations>
+      </eParameters>
+    </eOperations>
+    <eOperations name="GetReachableThreads" upperBound="-1" eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if beenHere->includes(self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;      else let bh: Set(Activity) = beenHere->including(self) in&#xA;&#x9;&#x9;&#x9;               GetNextActivities()->iterate(a; result: OrderedSet(Thread) = soFar->including(thread) | a.GetReachableThreads(result, bh))&#xA;&#x9;&#x9;&#x9;      endif"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+      <eParameters name="soFar" upperBound="-1" eType="#//Thread">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="false"/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
         <eAnnotations source="http://www.eclipse.org/OCL/Collection">
           <details key="nullFree" value="false"/>
         </eAnnotations>
@@ -139,24 +238,24 @@
         </eAnnotations>
       </eParameters>
     </eOperations>
-    <eOperations name="GetActivitiesByStateId" upperBound="-1" eType="#//Activity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentThreads" unique="false"
+        upperBound="-1" eType="#//Thread" volatile="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="soFar"/>
+        <details key="derivation" value="GetParentThreads()->excluding(thread)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
-      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-    </eOperations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="siblingThreads" ordered="false"
+        upperBound="-1" eType="#//Thread" volatile="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="GetSiblingThreads() - GetParentThreads()->asSet()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stateId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         volatile="true" derived="true">
@@ -186,26 +285,14 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="End" eSuperTypes="#//FinalActivity"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FinalActivity" abstract="true" eSuperTypes="#//Activity">
-    <eOperations name="JoinsCorrectly" ordered="false" upperBound="-1" eType="#//Activity">
+  <eClassifiers xsi:type="ecore:EClass" name="End" eSuperTypes="#//FinalActivity">
+    <eOperations name="HasStateId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="beenHere->including(self)"/>
+        <details key="body" value="false"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-        <details key="nullFree" value="false"/>
-      </eAnnotations>
-      <eParameters name="threadStack" unique="false" upperBound="-1" eType="#//Thread">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
     </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinalActivity" abstract="true" eSuperTypes="#//Activity">
     <eOperations name="GetSuccessorReferences" ordered="false" upperBound="-1" eType="#//Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="soFar"/>
@@ -232,19 +319,6 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="ThreadIndependence" value="self.UsesSameThread(nextActivity)"/>
     </eAnnotations>
-    <eOperations name="GetReachableActivities" upperBound="-1" eType="#//Activity">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if soFar->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;      else nextActivity.GetReachableActivities(soFar->including(self)) -- Check successor&#xA;&#x9;&#x9;&#x9;      endif"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-        <details key="nullFree" value="false"/>
-      </eAnnotations>
-      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-    </eOperations>
     <eOperations name="GetSuccessorReferences" ordered="false" upperBound="-1" eType="#//Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="nextActivity.GetAccessedReferences(soFar, beenHere->including(self))"/>
@@ -263,59 +337,40 @@
         </eAnnotations>
       </eParameters>
     </eOperations>
-    <eOperations name="SearchForJoin" eType="#//Activity">
+    <eOperations name="GetNextActivities" ordered="false" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;&#x9;      then null&#xA;&#x9;&#x9;&#x9;&#x9;      else nextActivity.SearchForJoin(searchDepth, beenHere->including(self))&#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
-      </eAnnotations>
-      <eParameters name="searchDepth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
-      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-    </eOperations>
-    <eOperations name="GetActivitiesByStateId" upperBound="-1" eType="#//Activity">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;&#x9;      else nextActivity.GetActivitiesByStateId(soFar->append(self), beenHere->including(self))&#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
+        <details key="body" value="Set{nextActivity}"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
-      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nextActivity" lowerBound="1"
         eType="#//Activity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Fork" eSuperTypes="#//Activity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="NonNegativeMaxThreadCount ThreadIndependence ValidCorrespondingJoin"/>
+      <details key="constraints" value="NonNegativeMaxThreadCount ThreadIndependence"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="NonNegativeMaxThreadCount" value="maxThreadCount >= 0"/>
       <details key="ThreadIndependence" value="forkedThreads->forAll(t | self.UsesDifferentThread(t.startActivity))"/>
-      <details key="ValidCorrespondingJoin" value="correspondingJoin = null or correspondingJoin.thread = thread"/>
     </eAnnotations>
-    <eOperations name="GetReachableActivities" upperBound="-1" eType="#//Activity">
+    <eOperations name="AddedSiblingThreads" ordered="false" upperBound="-1" eType="#//Thread">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if soFar->exists(e | e = self) -- Fork has already been checked&#xA;&#x9;&#x9;&#x9;          then soFar&#xA;&#x9;&#x9;&#x9;          else forkedThreads->iterate(t; result: OrderedSet(Activity) = soFar->including(self) | t.startActivity.GetReachableActivities(result))&#xA;&#x9;&#x9;&#x9;          endif"/>
+        <details key="body" value="forkedThreads->asSet()"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
-      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
+    </eOperations>
+    <eOperations name="GetNextActivities" ordered="false" upperBound="-1" eType="#//Activity">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="forkedThreads->collect(t | t.startActivity)->asSet()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
     </eOperations>
     <eOperations name="GetSuccessorReferences" ordered="false" upperBound="-1" eType="#//Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -335,44 +390,9 @@
         </eAnnotations>
       </eParameters>
     </eOperations>
-    <eOperations name="SearchForJoin" eType="#//Activity">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;&#x9;      then null&#xA;&#x9;&#x9;&#x9;&#x9;      else let bh: Set(Activity) = beenHere->including(self) in&#xA;&#x9;&#x9;&#x9;&#x9;           let joins: Sequence(Activity) = forkedThreads->collect(e | e.startActivity.SearchForJoin(searchDepth + 1, bh))->select(e | e &lt;> null) in&#xA;&#x9;&#x9;&#x9;&#x9;               if (joins->isEmpty())&#xA;&#x9;&#x9;&#x9;&#x9;               then null&#xA;&#x9;&#x9;&#x9;&#x9;               else joins->first()&#xA;&#x9;&#x9;&#x9;&#x9;               endif&#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
-      </eAnnotations>
-      <eParameters name="searchDepth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
-      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-    </eOperations>
-    <eOperations name="GetActivitiesByStateId" upperBound="-1" eType="#//Activity">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;&#x9;      else if correspondingJoin = null -- No corresponding join activity&#xA;&#x9;&#x9;&#x9;&#x9;           then soFar->append(self)&#xA;&#x9;&#x9;&#x9;&#x9;           else correspondingJoin.GetActivitiesByStateId(soFar->append(self), beenHere->including(self))&#xA;&#x9;&#x9;&#x9;&#x9;           endif&#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-        <details key="nullFree" value="false"/>
-      </eAnnotations>
-      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxThreadCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forkedThreads" lowerBound="1"
         upperBound="-1" eType="#//ForkedThread" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="correspondingJoin" eType="#//Activity"
-        volatile="true" derived="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="self.SearchForJoin(0, Set{})"/>
-      </eAnnotations>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Decision" eSuperTypes="#//LinearActivity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -381,18 +401,13 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="ThreadIndependence" value="branches->forAll(b | self.UsesSameThread(b.nextActivity))"/>
     </eAnnotations>
-    <eOperations name="GetReachableActivities" upperBound="-1" eType="#//Activity">
+    <eOperations name="GetNextActivities" ordered="false" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if soFar->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;      else let sf: OrderedSet(Activity) = soFar->including(self) in&#xA;&#x9;&#x9;&#x9;           let elseActivities: OrderedSet(Activity) = nextActivity.GetReachableActivities(sf) in&#xA;&#x9;&#x9;&#x9;               branches->iterate(b; result: OrderedSet(Activity) = elseActivities | b.nextActivity.GetReachableActivities(result)) -- Check all branches&#xA;&#x9;&#x9;&#x9;      endif"/>
+        <details key="body" value="branches->collect(b | b.nextActivity)->asSet()->including(nextActivity)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
-      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
     </eOperations>
     <eOperations name="GetSuccessorReferences" ordered="false" upperBound="-1" eType="#//Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -402,35 +417,6 @@
         <details key="nullFree" value="false"/>
       </eAnnotations>
       <eParameters name="soFar" ordered="false" upperBound="-1" eType="#//Reference">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-    </eOperations>
-    <eOperations name="SearchForJoin" eType="#//Activity">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;&#x9;      then null&#xA;&#x9;&#x9;&#x9;&#x9;      else let bh: Set(Activity) = beenHere->including(self) in&#xA;&#x9;&#x9;&#x9;&#x9;           let joins: Sequence(Activity) = branches->collect(e | e.nextActivity.SearchForJoin(searchDepth, bh))->select(e | e &lt;> null) in&#xA;&#x9;&#x9;&#x9;&#x9;               if (joins->isEmpty())&#xA;&#x9;&#x9;&#x9;&#x9;               then null&#xA;&#x9;&#x9;&#x9;&#x9;               else joins->first()&#xA;&#x9;&#x9;&#x9;&#x9;               endif&#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
-      </eAnnotations>
-      <eParameters name="searchDepth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
-      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-    </eOperations>
-    <eOperations name="GetActivitiesByStateId" upperBound="-1" eType="#//Activity">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;&#x9;      else let bh: Set(Activity) = beenHere->including(self) in&#xA;&#x9;&#x9;&#x9;&#x9;           let temp: OrderedSet(Activity) = branches->iterate(e; result: OrderedSet(Activity) = soFar->append(self) | e.nextActivity.GetActivitiesByStateId(result, bh)) in&#xA;&#x9;&#x9;&#x9;&#x9;               nextActivity.GetActivitiesByStateId(temp, bh)&#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-        <details key="nullFree" value="false"/>
-      </eAnnotations>
-      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
         <eAnnotations source="http://www.eclipse.org/OCL/Collection">
           <details key="nullFree" value="false"/>
         </eAnnotations>
@@ -456,38 +442,70 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//LinearActivity">
-    <eOperations name="SearchForJoin" eType="#//Activity">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="OneThreadCanAccessAllJoiningThreads"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="OneThreadCanAccessAllJoiningThreads" value="GetIncomingThreadsWithAccess()->notEmpty()"/>
+    </eAnnotations>
+    <eOperations name="RemovedSiblingThreads" ordered="false" upperBound="-1" eType="#//Thread">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;&#x9;      then null&#xA;&#x9;&#x9;&#x9;&#x9;      else if searchDepth &lt;= 1&#xA;&#x9;&#x9;&#x9;               then self&#xA;&#x9;&#x9;&#x9;               else nextActivity.SearchForJoin(searchDepth - 1, beenHere->including(self))&#xA;&#x9;&#x9;&#x9;               endif&#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
-      </eAnnotations>
-      <eParameters name="searchDepth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
-      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-    </eOperations>
-    <eOperations name="GetActivitiesByStateId" upperBound="-1" eType="#//Activity">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;&#x9;      else nextActivity.GetActivitiesByStateId(soFar, beenHere->including(self)) &#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
+        <details key="body" value="let incoming: Set(Thread) = GetIncomingThreads() in&#xA;&#x9;&#x9;&#x9;&#x9;      let forks: Set(Fork) = Fork.allInstances()->select(f | f.forkedThreads->intersection(incoming)->notEmpty()) in&#xA;&#x9;&#x9;&#x9;&#x9;          forks->collect(f | f.forkedThreads)->asSet()"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
-      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
-        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-          <details key="nullFree" value="false"/>
-        </eAnnotations>
-      </eParameters>
-      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
+    </eOperations>
+    <eOperations name="GetIncomingThreads" ordered="false" upperBound="-1" eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="let incoming: Set(Activity) = Activity.allInstances()->select(a | a.GetNextActivities()->exists(e | e = self)) in&#xA;&#x9;&#x9;&#x9;&#x9;          incoming->collect(a | a.thread)->asSet()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="GetIncomingThreadsWithAccess" ordered="false" upperBound="-1"
+        eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="let incomingThreads: Set(Thread) = GetIncomingThreads() in&#xA;&#x9;&#x9;&#x9;&#x9;           incomingThreads->select(t | &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;       incomingThreads->forAll(e | e.GetSiblingThreads()->intersection(t.GetSiblingThreads()) = e.GetSiblingThreads()))"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="UpdateParentThreads" unique="false" upperBound="-1" eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="let r: Sequence(Thread) = parentThreads->subSequence(1, parentThreads->size() - 1) in&#xA;&#x9;&#x9;&#x9;&#x9;             if r->last() &lt;> thread then r->append(thread) else r endif"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+      <eParameters name="parentThreads" unique="false" upperBound="-1" eType="#//Thread">
         <eAnnotations source="http://www.eclipse.org/OCL/Collection">
           <details key="nullFree" value="false"/>
         </eAnnotations>
       </eParameters>
     </eOperations>
+    <eOperations name="HasStateId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="joiningThread" eType="#//Thread"
+        volatile="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="let basicModel: BasicModel = BasicModel.allInstances()->asSequence()->first() in&#xA;&#x9;                     let reachableThreads: OrderedSet(Thread) = basicModel.startActivity.GetReachableThreads(OrderedSet{}, Set{}) in&#xA;&#x9;                     let incomingThreadsWithAccess: Set(Thread) = GetIncomingThreadsWithAccess() in&#xA;&#x9;                         reachableThreads->select(t | incomingThreadsWithAccess->exists(e | e = t))->first()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SharedResource" eSuperTypes="#//Reference"/>
   <eClassifiers xsi:type="ecore:EClass" name="Interrupt" eSuperTypes="#//LinearActivity">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="CanAccessInterruptedThread"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="CanAccessInterruptedThread" value="GetSiblingThreads()->includes(interruptedThread)"/>
+    </eAnnotations>
     <eOperations name="GetSuccessorReferences" ordered="false" upperBound="-1" eType="#//Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="nextActivity.GetAccessedReferences(soFar->including(interruptedThread), beenHere->including(self))"/>
@@ -562,18 +580,42 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="NestedActivityConsistency" value="NestedActivity.allInstances()->forAll(e | e.IsSameReference(self) implies e.nestedThread = self.nestedThread)"/>
     </eAnnotations>
-    <eOperations name="GetReachableActivities" upperBound="-1" eType="#//Activity">
+    <eOperations name="UpdateParentThreads" unique="false" upperBound="-1" eType="#//Thread">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if soFar->exists(e | e = self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;          then soFar&#xA;&#x9;&#x9;&#x9;          else let sf: OrderedSet(Activity) = soFar->including(self) in&#xA;&#x9;&#x9;&#x9;               let internalActivities: OrderedSet(Activity) = nestedThread.startActivity.GetReachableActivities(sf) in -- Check internal activities&#xA;&#x9;&#x9;&#x9;                   nextActivity.GetReachableActivities(internalActivities) -- Check successor&#xA;&#x9;&#x9;&#x9;          endif"/>
+        <details key="body" value="Sequence{nestedThread}"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
-      <eParameters name="soFar" upperBound="-1" eType="#//Activity">
+      <eParameters name="parentThreads" unique="false" upperBound="-1" eType="#//Thread">
         <eAnnotations source="http://www.eclipse.org/OCL/Collection">
           <details key="nullFree" value="false"/>
         </eAnnotations>
       </eParameters>
+    </eOperations>
+    <eOperations name="AddedSiblingThreads" ordered="false" upperBound="-1" eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Set{nestedThread}"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="RemovedSiblingThreads" ordered="false" upperBound="-1" eType="#//Thread">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Thread.allInstances()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="GetNextActivities" ordered="false" upperBound="-1" eType="#//Activity">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Set{nestedThread.startActivity, nextActivity}"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
     </eOperations>
     <eOperations name="GetAccessedReferences" ordered="false" upperBound="-1" eType="#//Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
