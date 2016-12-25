@@ -5,12 +5,57 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ad="www.example.org/basicModel"
     xsi:schemaLocation="www.example.org/basicModel BasicModel.ecore"
+    name="model"
     startActivity="//@activities.0">
   <activities
-      xsi:type="ad:SimpleActivity"
-      name="a"
-      nextActivity="//@activities.1"/>
+      xsi:type="ad:Fork"
+      name="f1">
+    <forkedThreads
+        name="f1_thread_a"
+        startActivity="//@activities.0/@forkedThreads.0/@activities.0">
+      <activities
+          xsi:type="ad:Fork"
+          name="f2">
+        <forkedThreads
+            name="f2_thread_a"
+            startActivity="//@activities.0/@forkedThreads.0/@activities.0/@forkedThreads.0/@activities.0">
+          <activities
+              xsi:type="ad:SimpleActivity"
+              name="a"
+              nextActivity="//@activities.1"
+              activityName="a"/>
+        </forkedThreads>
+        <forkedThreads
+            name="f2_thread_b"
+            startActivity="//@activities.0/@forkedThreads.0/@activities.0/@forkedThreads.1/@activities.0">
+          <activities
+              xsi:type="ad:SimpleActivity"
+              name="b"
+              nextActivity="//@activities.1"
+              activityName="b"/>
+        </forkedThreads>
+      </activities>
+    </forkedThreads>
+    <forkedThreads
+        name="f1_thread_b"
+        startActivity="//@activities.0/@forkedThreads.1/@activities.0">
+      <activities
+          xsi:type="ad:SimpleActivity"
+          name="d"
+          nextActivity="//@activities.0/@forkedThreads.1/@activities.1"
+          activityName="d"/>
+      <activities
+          xsi:type="ad:Interrupt"
+          name="interrupt"
+          nextActivity="//@activities.1"
+          interruptedThread="//@activities.0/@forkedThreads.0/@activities.0/@forkedThreads.0"/>
+    </forkedThreads>
+  </activities>
   <activities
-      xsi:type="ad:SimpleActivity"
-      name="b"/>
+      xsi:type="ad:Join"
+      name="join"
+      nextActivity="//@activities.2"/>
+  <activities
+      xsi:type="ad:End"
+      name="end"/>
 </ad:BasicModel>
