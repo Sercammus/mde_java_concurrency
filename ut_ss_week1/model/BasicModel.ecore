@@ -334,11 +334,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Fork" eSuperTypes="#//Activity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="NonNegativeMaxThreadCount ThreadIndependence"/>
+      <details key="constraints" value="NonNegativeMaxThreadCount"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="NonNegativeMaxThreadCount" value="maxThreadCount >= 0"/>
-      <details key="ThreadIndependence" value="forkedThreads->forAll(t | self.UsesDifferentThread(t.startActivity))"/>
     </eAnnotations>
     <eOperations name="GetSiblingThreads" ordered="false" upperBound="-1" eType="#//Thread">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -385,6 +384,24 @@
         </eAnnotations>
       </eParameters>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forkedThreadsUsingThreadInit"
+        ordered="false" upperBound="-1" eType="#//ForkedThread" volatile="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="forkedThreads->select(t | self.UsesDifferentThread(t.startActivity))->asSet()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forkedThreadsUsingJump"
+        ordered="false" upperBound="-1" eType="#//ForkedThread" volatile="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="forkedThreads->select(t | not self.UsesDifferentThread(t.startActivity))->asSet()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxThreadCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forkedThreads" lowerBound="1"
         upperBound="-1" eType="#//ForkedThread" containment="true"/>
@@ -671,7 +688,7 @@
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="ActivityNameIsValid" value="activityName.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
-      <details key="ActivityNameIsNotReserved" value="not Reference.allInstances()->asSequence()->first().IsReservedWord(name)"/>
+      <details key="ActivityNameIsNotReserved" value="not Reference.allInstances()->asSequence()->first().IsReservedWord(activityName)"/>
       <details key="UniqueNamedActivityName" value="Reference.allInstances()->select(r | r.name = activityName and not r.oclIsKindOf(NestedThread))->isEmpty()"/>
     </eAnnotations>
     <eOperations name="IsSameReference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -700,7 +717,7 @@
     </eAnnotations>
     <eOperations name="IsReservedWord" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="let javaKeywords: Set(String) = Set{&#xA;&#x9;&#x9;&#x9;&#x9;          'abstract', 'continue', 'for', 'new', 'switch', 'assert',&#xA;                          'default', 'goto', 'package', 'synchronized', 'boolean', 'do',&#xA;                          'if', 'private', 'this', 'break', 'double', 'implements',&#xA;                          'protected', 'throw', 'byte', 'else', 'import', 'public',&#xA;                          'throws', 'case', 'enum', 'instanceof', 'return', 'transient',&#xA;                          'catch', 'extends', 'int', 'short', 'try', 'char',&#xA;                          'final', 'interface', 'static', 'void', 'class', 'finally',&#xA;                          'long', 'strictfp', 'volatile', 'const', 'float', 'native',&#xA;                          'super', 'while'} in&#xA;                          javaKeywords->includes(word)"/>
+        <details key="body" value="let javaKeywords: Set(String) = Set{&#xA;&#x9;&#x9;&#x9;&#x9;          'abstract', 'continue', 'for', 'new', 'switch', 'assert',&#xA;                          'default', 'goto', 'package', 'synchronized', 'boolean', 'do',&#xA;                          'if', 'private', 'this', 'break', 'double', 'implements',&#xA;                          'protected', 'throw', 'byte', 'else', 'import', 'public',&#xA;                          'throws', 'case', 'enum', 'instanceof', 'return', 'transient',&#xA;                          'catch', 'extends', 'int', 'short', 'try', 'char',&#xA;                          'final', 'interface', 'static', 'void', 'class', 'finally',&#xA;                          'long', 'strictfp', 'volatile', 'const', 'float', 'native',&#xA;                          'super', 'while', 'Main', 'main'} in&#xA;                          javaKeywords->includes(word)"/>
       </eAnnotations>
       <eParameters name="word" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>

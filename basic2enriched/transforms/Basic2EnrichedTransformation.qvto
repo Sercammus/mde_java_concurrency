@@ -10,31 +10,37 @@ main() {
 }
 
 mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
-	init {
-		
-	}
 	
-	//Create a default class if necessary
-	if (self.startActivity.instance = null) then {
+	//Create a list of instance types (= classes)
+	//Start by create the class with the program entry point
+	//'Main' and 'main' are invalid reference/activity names in the basic model to allow for this class
+	//The class also contains any shared resources (excepting threads)
+	init {
 		defaultInstanceType := object EnrichedModel::InstanceType {
 			name := 'Main';
 		};
-		instanceTypes+=defaultInstanceType;
-	} else {
-		instanceTypes+=self.instanceTypes->map instanceType2instanceType();
-		defaultInstanceType := self.startActivity.instanceType.resolveoneIn(BasicModel::InstanceType::instanceType2instanceType, EnrichedModel::InstanceType);
-	} endif;
+	}
+	
+	instanceTypes+=defaultInstanceType;
+	instanceTypes+=self.instanceTypes->map instanceType2instanceType();
+	
+	methodParameters+=self.instances->map instance2instance();
+	//methodParameters+=self.resources->map sharedResource2sharedResource(); 
+	
+	var entryPoint := object EnrichedModel::Method {
+		name := "main";
+		
+		//Start looking through the original model
+		//All activities are required in the basic model to be reachable 
+		states := self.activities->map activity2state();
+	};
+	
+	defaultInstanceType.methods += entryPoint;
 	
 	//Make it possible to interrupt the main thread
 	self.map interruptableThread2thread();
 	
-	//Create the program entry point
-	defaultInstanceType.methods+=object EnrichedModel::Method {
-		name := "main";
-		states := self.activities->map activity2state();
-	};
-	
-	//Make a list of all method parameters that are used
+	//Make a list of all method parameters that were used
 	methodParameters += BasicModel::InterruptableThread.allInstances().resolveIn(BasicModel::Thread::interruptableThread2thread, EnrichedModel::Thread);
 	
 	end {
@@ -45,6 +51,7 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 //Instance
 mapping BasicModel::Instance::instance2instance() : EnrichedModel::Instance {
 	name := self.name;
+	instanceType := self.instanceType.resolveoneIn(BasicModel::InstanceType::instanceType2instanceType, EnrichedModel::InstanceType);
 }
 
 //Instance type
@@ -127,10 +134,10 @@ mapping BasicModel::NestedActivity::nestedActivity2state() : EnrichedModel::Meth
 			states := self.nestedThread.activities->map activity2state();
 		};
 		
-		if (self.instanceType = null) then {
+		if (self.nestedThread.startActivity.instanceType = null) then {
 			defaultInstanceType.methods += calledMethod;
 		} else {
-			self.instanceType.resolveoneIn(BasicModel::InstanceType::instanceType2instanceType, EnrichedModel::InstanceType).methods += calledMethod;
+			self.nestedThread.startActivity.instanceType.resolveoneIn(BasicModel::InstanceType::instanceType2instanceType, EnrichedModel::InstanceType).methods += calledMethod;
 		} endif;
 	} else {
 		calledMethod := self.methodCreator.resolveoneIn(BasicModel::NestedActivity::nestedActivity2state, EnrichedModel::MethodCallState).calledMethod;
@@ -158,23 +165,28 @@ mapping BasicModel::Interrupt::interruptActivity2state() : EnrichedModel::Interr
 	inherits BasicModel::LinearActivity::linearActivity2state
 	when { self.oclIsKindOf(BasicModel::Interrupt) }
 {
-	interruptedThread := self.interruptedThread.resolveoneIn(BasicModel::Thread::interruptableThread2thread, EnrichedModel::Thread);
+	//interruptedThread := self.interruptedThread.resolveoneIn(BasicModel::Thread::interruptableThread2thread, EnrichedModel::Thread);
+	interruptedThread := self.interruptedThread.map interruptableThread2thread();
 }
 
 //Decision
 mapping BasicModel::Decision::decisionActivity2state() : EnrichedModel::State
-	inherits BasicModel::LinearActivity::linearActivity2state
 	when { self.oclIsKindOf(BasicModel::Decision) }
 {
+	id := self.stateId;
 	jumps += self.branches->map branch2jump(self);
+	
+	if (self.canJumpTo(self.nextActivity)) then {
+		jumps += Sequence{self.nextActivity}->map nextActivity2jump();
+	} endif;
 }
 
 mapping BasicModel::Branch::branch2jump(decision : BasicModel::Decision) : EnrichedModel::Jump {
 	condition := self.condition;
 	
-	if (not decision.canJumpTo(decision.nextActivity)) then {
+	if (decision.canJumpTo(self.nextActivity)) {
 		nextState := self.nextActivity.map activity2state();
-	} endif;
+	}
 }
 
 //Fork
@@ -182,12 +194,14 @@ mapping BasicModel::Fork::forkActivity2state() : EnrichedModel::ForkState
 	when { self.oclIsKindOf(BasicModel::Fork) }
 {
 	threadCount := self.maxThreadCount;
-	threadInits := self.forkedThreads->map forkedThread2threadInit(self);
+	threadInits := self.forkedThreadsUsingThreadInit->map forkedThread2threadInit();
+	jumps := self.forkedThreadsUsingJump->map forkedThread2jump();
 	id := self.stateId;
 }
 
-mapping BasicModel::ForkedThread::forkedThread2threadInit(fork: BasicModel::Fork) : EnrichedModel::ThreadInit {
+mapping BasicModel::ForkedThread::forkedThread2threadInit() : EnrichedModel::ThreadInit {
 	isDaemon := self.daemon;
+	targetInstance := self.startActivity.instance.map instance2instance();
 	
 	//Create method that is executed by the thread
 	calledMethod := object EnrichedModel::Method {
@@ -195,14 +209,19 @@ mapping BasicModel::ForkedThread::forkedThread2threadInit(fork: BasicModel::Fork
 		states := self.activities->map activity2state();
 	};
 	
-	if (fork.instanceType = null) then {
+	//Place the thread method in the instance type with the starting activity
+	if (self.startActivity.instanceType = null) then {
 		defaultInstanceType.methods += calledMethod;
 	} else {
-		fork.instanceType.resolveoneIn(BasicModel::InstanceType::instanceType2instanceType, EnrichedModel::InstanceType).methods += calledMethod;
+		self.startActivity.instanceType.resolveoneIn(BasicModel::InstanceType::instanceType2instanceType, EnrichedModel::InstanceType).methods += calledMethod;
 	} endif;
 	
 	//Create reference to the thread (so that is can be interrupted and joined with)
 	self.map interruptableThread2thread();
+}
+
+mapping BasicModel::ForkedThread::forkedThread2jump() : EnrichedModel::Jump {
+	nextState := self.startActivity.map activity2state();
 }
 
 mapping BasicModel::Thread::interruptableThread2thread() : EnrichedModel::Thread {
