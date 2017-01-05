@@ -236,7 +236,7 @@ mapping BasicModel::ForkedThread::forkedThread2threadInit() : EnrichedModel::Thr
 	} endif;
 	
 	//Create reference to the thread (so that is can be interrupted and joined with)
-	self.map interruptableThread2thread();
+	thread := self.map interruptableThread2thread();
 }
 
 mapping BasicModel::ForkedThread::forkedThread2jump() : EnrichedModel::Jump {
