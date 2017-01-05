@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <em:EnrichedModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:em="enrichedModel" xsi:schemaLocation="enrichedModel metamodels/EnrichedModel.ecore">
   <instanceTypes name="Main">
-    <methods name="main">
+    <methods name="main" isStatic="true" startStateId="1">
       <states xsi:type="em:ForkState" id="1">
         <threadInits calledMethod="//@instanceTypes.2/@methods.2" targetInstance="//@methodParameters.2"/>
         <threadInits calledMethod="//@instanceTypes.1/@methods.2" targetInstance="//@methodParameters.0"/>
@@ -9,9 +9,9 @@
     </methods>
   </instanceTypes>
   <instanceTypes name="GUI">
-    <methods name="broadcastMsg"/>
-    <methods name="getUserInput"/>
-    <methods name="guiThread">
+    <methods name="broadcastMsg" parameters="//@methodParameters.0 //@methodParameters.6" startStateId="-1"/>
+    <methods name="getUserInput" parameters="//@methodParameters.0 //@methodParameters.6" startStateId="-1"/>
+    <methods name="guiThread" parameters="//@methodParameters.0 //@methodParameters.6" startStateId="1">
       <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.1/@methods.1" targetInstance="//@methodParameters.0">
         <jumps nextState="//@instanceTypes.1/@methods.2/@states.1"/>
       </states>
@@ -22,13 +22,13 @@
       <states xsi:type="em:MethodCallState" id="3" calledMethod="//@instanceTypes.1/@methods.0" targetInstance="//@methodParameters.0">
         <jumps nextState="//@instanceTypes.1/@methods.2/@states.0"/>
       </states>
-      <states xsi:type="em:InterruptState" id="4" interruptedThread="//@methodParameters.5"/>
+      <states xsi:type="em:InterruptState" id="4" interruptedThread="//@methodParameters.6"/>
     </methods>
   </instanceTypes>
   <instanceTypes name="Server">
-    <methods name="addClient"/>
-    <methods name="listenForClient"/>
-    <methods name="serverThread">
+    <methods name="addClient" parameters="//@methodParameters.3 //@methodParameters.2 //@methodParameters.1" startStateId="-1"/>
+    <methods name="listenForClient" parameters="//@methodParameters.3 //@methodParameters.2 //@methodParameters.1" startStateId="-1"/>
+    <methods name="serverThread" parameters="//@methodParameters.3 //@methodParameters.2 //@methodParameters.1" startStateId="1">
       <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.2/@methods.1" targetInstance="//@methodParameters.2">
         <jumps nextState="//@instanceTypes.2/@methods.2/@states.1"/>
       </states>
@@ -42,9 +42,9 @@
     </methods>
   </instanceTypes>
   <instanceTypes name="Client">
-    <methods name="removeClient"/>
-    <methods name="displayMsg"/>
-    <methods name="clientThread">
+    <methods name="removeClient" parameters="//@methodParameters.3 //@methodParameters.1" startStateId="-1"/>
+    <methods name="displayMsg" parameters="//@methodParameters.3 //@methodParameters.1" startStateId="-1"/>
+    <methods name="clientThread" parameters="//@methodParameters.3 //@methodParameters.1" startStateId="1">
       <states id="1">
         <jumps condition="[no msg]" nextState="//@instanceTypes.3/@methods.2/@states.1"/>
         <jumps condition="[disconnect]" nextState="//@instanceTypes.3/@methods.2/@states.3"/>
@@ -62,8 +62,9 @@
   <methodParameters xsi:type="em:Instance" name="gui" instanceType="//@instanceTypes.1"/>
   <methodParameters xsi:type="em:Instance" name="c" instanceType="//@instanceTypes.3"/>
   <methodParameters xsi:type="em:Instance" name="s" instanceType="//@instanceTypes.2"/>
-  <methodParameters xsi:type="em:Thread" name="guiThread"/>
-  <methodParameters xsi:type="em:Thread" name="chatServer"/>
-  <methodParameters xsi:type="em:Thread" name="serverThread"/>
-  <methodParameters xsi:type="em:Thread" name="clientThread"/>
+  <methodParameters xsi:type="em:SharedResource" name="clientList"/>
+  <methodParameters xsi:type="em:Thread" name="var$guiThread"/>
+  <methodParameters xsi:type="em:Thread" name="var$clientThread"/>
+  <methodParameters xsi:type="em:Thread" name="var$serverThread"/>
+  <methodParameters xsi:type="em:Thread" name="var$chatServer"/>
 </em:EnrichedModel>
