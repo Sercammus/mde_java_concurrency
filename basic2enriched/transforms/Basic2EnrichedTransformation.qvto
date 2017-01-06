@@ -93,7 +93,7 @@ query BasicModel::Activity::canJumpTo(nextActivity : BasicModel::Activity) : Boo
 	
 	//Only go to a join if we are currently in the thread that is supposed to join
 	if (nextActivity.oclIsKindOf(BasicModel::Join)) then {
-		return nextActivity.oclAsType(BasicModel::Join).joiningThread = self.thread;
+		return nextActivity.thread = self.thread;
 	} endif;
 	
 	//Jump to the next activity in all other cases
@@ -117,11 +117,11 @@ mapping BasicModel::SimpleActivity::simpleActivity2state() : EnrichedModel::Meth
 	var it = if self.instanceType = null then defaultInstanceType else self.instanceType.resolveoneIn(BasicModel::InstanceType::instanceType2instanceType, EnrichedModel::InstanceType) endif;
 	
 	//Determine whether a method with the same name already exists in that instance type 
-	var methodsWithSameName := it.methods->select(e | e.name = self.name);
+	var methodsWithSameName := it.methods->select(e | e.name = self.activityName);
 	
 	if (methodsWithSameName->isEmpty()) {
 		calledMethod := object EnrichedModel::Method {
-			name := self.name;
+			name := self.activityName;
 			startStateId := -1;
 			parameters := self.accessedReferences.late resolve(EnrichedModel::MethodParameter);
 			isStatic := self.instanceType = null;

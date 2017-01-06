@@ -3,60 +3,59 @@
   <instanceTypes name="Main">
     <methods name="main" isStatic="true" startStateId="1">
       <states xsi:type="em:ForkState" id="1">
-        <threadInits calledMethod="//@instanceTypes.2/@methods.2" targetInstance="//@methodParameters.2" thread="//@methodParameters.5"/>
-        <threadInits calledMethod="//@instanceTypes.1/@methods.2" targetInstance="//@methodParameters.0" thread="//@methodParameters.7"/>
+        <threadInits calledMethod="//@instanceTypes.1/@methods.1" targetInstance="//@methodParameters.0" thread="//@methodParameters.5"/>
+        <threadInits calledMethod="//@instanceTypes.2/@methods.4" targetInstance="//@methodParameters.2" thread="//@methodParameters.6"/>
       </states>
     </methods>
   </instanceTypes>
   <instanceTypes name="GUI">
-    <methods name="broadcastMsg" parameters="//@methodParameters.0 //@methodParameters.5" startStateId="-1"/>
-    <methods name="getUserInput" parameters="//@methodParameters.0 //@methodParameters.5" startStateId="-1"/>
-    <methods name="guiThread" parameters="//@methodParameters.0 //@methodParameters.5" startStateId="1">
-      <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.1/@methods.1" targetInstance="//@methodParameters.0">
-        <jumps nextState="//@instanceTypes.1/@methods.2/@states.1"/>
+    <methods name="getUserInput" parameters="//@methodParameters.2 //@methodParameters.6 //@methodParameters.0" startStateId="-1"/>
+    <methods name="guiThread" parameters="//@methodParameters.2 //@methodParameters.6 //@methodParameters.0" startStateId="1">
+      <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.1/@methods.0" targetInstance="//@methodParameters.0">
+        <jumps nextState="//@instanceTypes.1/@methods.1/@states.1"/>
       </states>
       <states id="2">
-        <jumps condition="[message]" nextState="//@instanceTypes.1/@methods.2/@states.2"/>
-        <jumps nextState="//@instanceTypes.1/@methods.2/@states.3"/>
+        <jumps condition="[message]" nextState="//@instanceTypes.1/@methods.1/@states.2"/>
+        <jumps nextState="//@instanceTypes.1/@methods.1/@states.3"/>
       </states>
-      <states xsi:type="em:MethodCallState" id="3" calledMethod="//@instanceTypes.1/@methods.0" targetInstance="//@methodParameters.0">
-        <jumps nextState="//@instanceTypes.1/@methods.2/@states.0"/>
+      <states xsi:type="em:MethodCallState" id="3" calledMethod="//@instanceTypes.2/@methods.0" targetInstance="//@methodParameters.2">
+        <jumps nextState="//@instanceTypes.1/@methods.1/@states.0"/>
       </states>
-      <states xsi:type="em:InterruptState" id="4" interruptedThread="//@methodParameters.5"/>
+      <states xsi:type="em:InterruptState" id="4" interruptedThread="//@methodParameters.6"/>
     </methods>
   </instanceTypes>
   <instanceTypes name="Server">
-    <methods name="addClient" parameters="//@methodParameters.3 //@methodParameters.1 //@methodParameters.2" startStateId="-1"/>
-    <methods name="listenForClient" parameters="//@methodParameters.3 //@methodParameters.1 //@methodParameters.2" startStateId="-1"/>
-    <methods name="serverThread" parameters="//@methodParameters.3 //@methodParameters.1 //@methodParameters.2" startStateId="1">
-      <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.2/@methods.1" targetInstance="//@methodParameters.2">
-        <jumps nextState="//@instanceTypes.2/@methods.2/@states.1"/>
+    <methods name="broadcastMsg" parameters="//@methodParameters.2 //@methodParameters.6 //@methodParameters.0" startStateId="-1"/>
+    <methods name="removeClient" parameters="//@methodParameters.2 //@methodParameters.3" startStateId="-1"/>
+    <methods name="addClient" parameters="//@methodParameters.2 //@methodParameters.3 //@methodParameters.1" startStateId="-1"/>
+    <methods name="listenForClient" parameters="//@methodParameters.2 //@methodParameters.3 //@methodParameters.1" startStateId="-1"/>
+    <methods name="serverThread" parameters="//@methodParameters.2 //@methodParameters.3 //@methodParameters.1" startStateId="1">
+      <states xsi:type="em:MethodCallState" id="1" calledMethod="//@instanceTypes.2/@methods.3" targetInstance="//@methodParameters.2">
+        <jumps nextState="//@instanceTypes.2/@methods.4/@states.1"/>
       </states>
-      <states xsi:type="em:MethodCallState" id="2" calledMethod="//@instanceTypes.2/@methods.0" targetInstance="//@methodParameters.2">
-        <jumps nextState="//@instanceTypes.2/@methods.2/@states.2"/>
+      <states xsi:type="em:MethodCallState" id="2" calledMethod="//@instanceTypes.2/@methods.2" targetInstance="//@methodParameters.2">
+        <jumps nextState="//@instanceTypes.2/@methods.4/@states.2"/>
       </states>
       <states xsi:type="em:ForkState" id="3">
-        <jumps nextState="//@instanceTypes.2/@methods.2/@states.0"/>
-        <threadInits calledMethod="//@instanceTypes.3/@methods.2" targetInstance="//@methodParameters.1" thread="//@methodParameters.6"/>
+        <jumps nextState="//@instanceTypes.2/@methods.4/@states.0"/>
+        <threadInits calledMethod="//@instanceTypes.3/@methods.0" targetInstance="//@methodParameters.1" thread="//@methodParameters.7"/>
       </states>
     </methods>
   </instanceTypes>
   <instanceTypes name="Client">
-    <methods name="removeClient" parameters="//@methodParameters.1 //@methodParameters.3" startStateId="-1"/>
-    <methods name="displayMsg" parameters="//@methodParameters.1 //@methodParameters.3" startStateId="-1"/>
-    <methods name="clientThread" parameters="//@methodParameters.1 //@methodParameters.3" startStateId="1">
+    <methods name="clientThread" parameters="//@methodParameters.2 //@methodParameters.3 //@methodParameters.1" startStateId="1">
       <states id="1">
-        <jumps condition="[no msg]" nextState="//@instanceTypes.3/@methods.2/@states.1"/>
-        <jumps condition="[disconnect]" nextState="//@instanceTypes.3/@methods.2/@states.3"/>
-        <jumps nextState="//@instanceTypes.3/@methods.2/@states.2"/>
+        <jumps condition="[no msg]" nextState="//@instanceTypes.3/@methods.0/@states.1"/>
+        <jumps condition="[disconnect]" nextState="//@instanceTypes.3/@methods.0/@states.3"/>
+        <jumps nextState="//@instanceTypes.3/@methods.0/@states.2"/>
       </states>
       <states xsi:type="em:SleepState" id="2" duration="1">
-        <jumps nextState="//@instanceTypes.3/@methods.2/@states.0"/>
+        <jumps nextState="//@instanceTypes.3/@methods.0/@states.0"/>
       </states>
-      <states xsi:type="em:MethodCallState" id="3" calledMethod="//@instanceTypes.3/@methods.1" targetInstance="//@methodParameters.1">
-        <jumps nextState="//@instanceTypes.3/@methods.2/@states.1"/>
+      <states xsi:type="em:MethodCallState" id="3" calledMethod="//@instanceTypes.2/@methods.0" targetInstance="//@methodParameters.2">
+        <jumps nextState="//@instanceTypes.3/@methods.0/@states.1"/>
       </states>
-      <states xsi:type="em:MethodCallState" id="4" calledMethod="//@instanceTypes.3/@methods.0" targetInstance="//@methodParameters.1"/>
+      <states xsi:type="em:MethodCallState" id="4" calledMethod="//@instanceTypes.2/@methods.1" targetInstance="//@methodParameters.2"/>
     </methods>
   </instanceTypes>
   <methodParameters xsi:type="em:Instance" name="gui" instanceType="//@instanceTypes.1"/>
@@ -64,7 +63,7 @@
   <methodParameters xsi:type="em:Instance" name="s" instanceType="//@instanceTypes.2"/>
   <methodParameters xsi:type="em:SharedResource" name="clientList"/>
   <methodParameters xsi:type="em:Thread" name="var$chatServer"/>
+  <methodParameters xsi:type="em:Thread" name="var$guiThread"/>
   <methodParameters xsi:type="em:Thread" name="var$serverThread"/>
   <methodParameters xsi:type="em:Thread" name="var$clientThread"/>
-  <methodParameters xsi:type="em:Thread" name="var$guiThread"/>
 </em:EnrichedModel>

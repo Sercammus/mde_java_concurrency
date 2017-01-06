@@ -16,12 +16,8 @@
       <activities
           xsi:type="ad:SimpleActivity"
           name="sa1"
-          nextActivity="//@activities.0/@forkedThreads.0/@activities.1"
+          nextActivity="//@activities.0/@forkedThreads.1/@activities.1"
           activityName="sa1"/>
-      <activities
-          xsi:type="ad:Join"
-          name="j1"
-          nextActivity="//@activities.1"/>
     </forkedThreads>
     <forkedThreads
         name="f1b"
@@ -29,8 +25,12 @@
       <activities
           xsi:type="ad:SimpleActivity"
           name="sa2"
-          nextActivity="//@activities.0/@forkedThreads.0/@activities.1"
+          nextActivity="//@activities.0/@forkedThreads.1/@activities.1"
           activityName="sa2"/>
+      <activities
+          xsi:type="ad:Join"
+          name="j1"
+          nextActivity="//@activities.1"/>
     </forkedThreads>
   </activities>
   <activities
