@@ -28,14 +28,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MethodParameter" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SharedResource" eSuperTypes="#//MethodParameter"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Thread" eSuperTypes="#//MethodParameter"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//MethodParameter">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceType" lowerBound="1"
         eType="#//InstanceType"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SharedResource" eSuperTypes="#//MethodParameter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Thread" eSuperTypes="#//MethodParameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMultiple" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//MethodParameter"/>
   <eClassifiers xsi:type="ecore:EClass" name="State">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="jumps" upperBound="-1"
@@ -62,10 +62,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="ThreadInit">
     <eStructuralFeatures xsi:type="ecore:EReference" name="calledMethod" lowerBound="1"
         eType="#//Method"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDaemon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAdopted" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetInstance" eType="#//Instance"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="thread" lowerBound="1"
         eType="#//Thread"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDaemon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SleepState" eSuperTypes="#//State">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -74,5 +75,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="JoinState" eSuperTypes="#//State">
     <eStructuralFeatures xsi:type="ecore:EReference" name="joinedThreads" lowerBound="1"
         upperBound="-1" eType="#//Thread"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="joinName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

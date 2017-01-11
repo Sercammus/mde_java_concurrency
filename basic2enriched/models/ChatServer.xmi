@@ -4,7 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ad="www.example.org/basicModel"
-    xsi:schemaLocation="www.example.org/basicModel /umlad2javacc/model/BasicModel.ecore"
+    xsi:schemaLocation="www.example.org/basicModel /basic2enriched/metamodels/BasicModel.ecore"
     name="chatServer"
     startActivity="//@activities.0">
   <activities
