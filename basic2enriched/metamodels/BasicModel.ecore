@@ -231,7 +231,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="siblingThreads" ordered="false"
         upperBound="-1" eType="#//Thread" volatile="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="GetSiblingThreads() - GetParentThreads()->asSet()"/>
+        <details key="derivation" value="GetSiblingThreads()"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
@@ -609,7 +609,7 @@
     </eOperations>
     <eOperations name="GetSiblingThreads" ordered="false" upperBound="-1" eType="#//Thread">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->includes(self)&#xA;&#x9;&#x9;&#x9;&#x9;      then Set{}&#xA;&#x9;&#x9;&#x9;&#x9;      else if target = self&#xA;&#x9;&#x9;&#x9;&#x9;           then soFar&#xA;&#x9;&#x9;&#x9;&#x9;           else let bh: Set(Activity) = beenHere->including(self) in&#xA;&#x9;&#x9;&#x9;&#x9;                let search1: Set(Thread) = nextActivity.GetSiblingThreads(target, soFar, bh) in&#xA;&#x9;&#x9;&#x9;&#x9;                    if search1->isEmpty()&#xA;&#x9;&#x9;&#x9;&#x9;                    then nestedThread.startActivity.GetSiblingThreads(target, Set{}, bh)&#xA;&#x9;&#x9;&#x9;&#x9;                    else search1&#xA;&#x9;&#x9;&#x9;&#x9;                    endif&#xA;&#x9;&#x9;&#x9;&#x9;           endif&#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
+        <details key="body" value="if beenHere->includes(self)&#xA;&#x9;&#x9;&#x9;&#x9;      then Set{}&#xA;&#x9;&#x9;&#x9;&#x9;      else if target = self&#xA;&#x9;&#x9;&#x9;&#x9;           then soFar&#xA;&#x9;&#x9;&#x9;&#x9;           else nextActivity.GetSiblingThreads(target, soFar, beenHere->including(self))&#xA;&#x9;&#x9;&#x9;&#x9;           endif&#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>

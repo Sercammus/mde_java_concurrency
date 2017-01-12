@@ -29,11 +29,12 @@
             condition="[message]"/>
       </activities>
       <activities
-          xsi:type="ad:SimpleActivity"
+          xsi:type="ad:NestedActivity"
           name="broadcastMsg1"
           instance="//@instances.2"
           nextActivity="//@activities.0/@forkedThreads.0/@activities.0"
-          activityName="broadcastMsg"/>
+          activityName="broadcastMsg"
+          nestedThread="//@nestedThreads.0"/>
       <activities
           xsi:type="ad:Interrupt"
           name="interrupt"
@@ -90,11 +91,12 @@
               nextActivity="//@activities.0/@forkedThreads.1/@activities.2/@forkedThreads.1/@activities.0"
               duration="1"/>
           <activities
-              xsi:type="ad:SimpleActivity"
+              xsi:type="ad:NestedActivity"
               name="broadcastMsg2"
               instance="//@instances.2"
-              nextActivity="//@activities.0/@forkedThreads.1/@activities.2/@forkedThreads.1/@activities.1"
-              activityName="broadcastMsg"/>
+              nextActivity="//@activities.0/@forkedThreads.1/@activities.2/@forkedThreads.1/@activities.0"
+              activityName="broadcastMsg"
+              nestedThread="//@nestedThreads.0"/>
           <activities
               xsi:type="ad:SimpleActivity"
               name="removeClient"
@@ -127,4 +129,24 @@
       name="Server"/>
   <instanceTypes
       name="Client"/>
+  <nestedThreads
+      name="broadcastMsg"
+      startActivity="//@nestedThreads.0/@activities.0">
+    <activities
+        xsi:type="ad:SimpleActivity"
+        name="logMsg"
+        instance="//@instances.2"
+        nextActivity="//@nestedThreads.0/@activities.1"
+        activityName="logMsg"/>
+    <activities
+        xsi:type="ad:SimpleActivity"
+        name="sendMsg"
+        instance="//@instances.1"
+        nextActivity="//@nestedThreads.0/@activities.2"
+        activityName="sendMsg"
+        sharedResources="//@resources.0"/>
+    <activities
+        xsi:type="ad:End"
+        name="end3"/>
+  </nestedThreads>
 </ad:BasicModel>
