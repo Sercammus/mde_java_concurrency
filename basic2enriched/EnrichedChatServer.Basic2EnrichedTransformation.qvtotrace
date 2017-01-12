@@ -145,11 +145,11 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="nestedThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="createMainMethod" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
     <context>
-      <context name="self" type="NestedThread">
+      <context name="self" type="BasicModel">
         <value>
-          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0"/>
+          <modelElement href="models/ChatServer.xmi#/"/>
         </value>
       </context>
     </context>
@@ -157,115 +157,25 @@
     <result>
       <result kind="OUT" name="result" type="Method">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.1"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.0/@methods.0"/>
         </value>
       </result>
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="basicModel2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
     <context>
-      <context name="self" type="SimpleActivity">
+      <context name="self" type="BasicModel">
         <value>
-          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.0"/>
+          <modelElement href="models/ChatServer.xmi#/"/>
         </value>
       </context>
     </context>
     <parameters/>
     <result>
-      <result kind="OUT" name="result" type="MethodCallState">
+      <result kind="OUT" name="result" type="Method">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.1/@states.0"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="LinearActivity">
-        <value>
-          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.0"/>
-        </value>
-      </context>
-    </context>
-    <parameters/>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.1/@states.0"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Activity">
-        <value>
-          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.0"/>
-        </value>
-      </context>
-    </context>
-    <parameters/>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.1/@states.0"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="SimpleActivity">
-        <value>
-          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.1"/>
-        </value>
-      </context>
-    </context>
-    <parameters/>
-    <result>
-      <result kind="OUT" name="result" type="MethodCallState">
-        <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.1/@states.1"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="LinearActivity">
-        <value>
-          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.1"/>
-        </value>
-      </context>
-    </context>
-    <parameters/>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.1/@states.1"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Activity">
-        <value>
-          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.1"/>
-        </value>
-      </context>
-    </context>
-    <parameters/>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.1/@states.1"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.0/@methods.1"/>
         </value>
       </result>
     </result>
@@ -279,11 +189,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.0/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="ForkState">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.0/@methods.0/@states.0"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.0/@methods.1/@states.0"/>
         </value>
       </result>
     </result>
@@ -307,7 +223,25 @@
     <result>
       <result kind="OUT" name="result" type="ThreadInit">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.0/@methods.0/@states.0/@threadInits.1"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.0/@methods.1/@states.0/@threadInits.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="forkedThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="ForkedThread">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@activities.0/@forkedThreads.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
         </value>
       </result>
     </result>
@@ -321,7 +255,13 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="MethodCallState">
         <value>
@@ -339,7 +279,13 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
@@ -357,7 +303,13 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
@@ -375,7 +327,13 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
@@ -417,7 +375,13 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
@@ -435,7 +399,13 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="MethodCallState">
         <value>
@@ -453,7 +423,13 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
@@ -471,7 +447,13 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
@@ -489,7 +471,13 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="InterruptState">
         <value>
@@ -507,7 +495,13 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
@@ -525,11 +519,65 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
           <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1/@states.3"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="endActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="End">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@activities.0/@forkedThreads.0/@activities.4"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1/@states.4"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@activities.0/@forkedThreads.0/@activities.4"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.1/@methods.1/@states.4"/>
         </value>
       </result>
     </result>
@@ -580,7 +628,25 @@
     <result>
       <result kind="OUT" name="result" type="ThreadInit">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.0/@methods.0/@states.0/@threadInits.0"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.0/@methods.1/@states.0/@threadInits.1"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="forkedThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="ForkedThread">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@activities.0/@forkedThreads.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3"/>
         </value>
       </result>
     </result>
@@ -594,11 +660,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="MethodCallState">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.0"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3/@states.0"/>
         </value>
       </result>
     </result>
@@ -612,11 +684,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.0"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3/@states.0"/>
         </value>
       </result>
     </result>
@@ -630,11 +708,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.0"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3/@states.0"/>
         </value>
       </result>
     </result>
@@ -648,11 +732,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="MethodCallState">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.1"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3/@states.1"/>
         </value>
       </result>
     </result>
@@ -666,11 +756,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.1"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3/@states.1"/>
         </value>
       </result>
     </result>
@@ -684,11 +780,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.1"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3/@states.1"/>
         </value>
       </result>
     </result>
@@ -702,11 +804,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="ForkState">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.2"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3/@states.2"/>
         </value>
       </result>
     </result>
@@ -730,7 +838,25 @@
     <result>
       <result kind="OUT" name="result" type="ThreadInit">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.2/@threadInits.0"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3/@states.2/@threadInits.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="forkedThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="ForkedThread">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@activities.0/@forkedThreads.1/@activities.2/@forkedThreads.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
         </value>
       </result>
     </result>
@@ -744,11 +870,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.0"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.0"/>
         </value>
       </result>
     </result>
@@ -772,7 +904,7 @@
     <result>
       <result kind="OUT" name="result" type="Jump">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.0/@jumps.0"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.0/@jumps.0"/>
         </value>
       </result>
     </result>
@@ -796,7 +928,7 @@
     <result>
       <result kind="OUT" name="result" type="Jump">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.0/@jumps.1"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.0/@jumps.1"/>
         </value>
       </result>
     </result>
@@ -810,11 +942,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.0"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.0"/>
         </value>
       </result>
     </result>
@@ -828,11 +966,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="SleepState">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.1"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.1"/>
         </value>
       </result>
     </result>
@@ -846,11 +990,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.1"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.1"/>
         </value>
       </result>
     </result>
@@ -864,11 +1014,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.1"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.1"/>
         </value>
       </result>
     </result>
@@ -882,11 +1038,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="MethodCallState">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.2"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.2"/>
         </value>
       </result>
     </result>
@@ -900,11 +1062,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.2"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.2"/>
         </value>
       </result>
     </result>
@@ -918,11 +1086,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.2"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.2"/>
         </value>
       </result>
     </result>
@@ -936,11 +1110,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="MethodCallState">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.3"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.3"/>
         </value>
       </result>
     </result>
@@ -954,11 +1134,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.3"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.3"/>
         </value>
       </result>
     </result>
@@ -972,11 +1158,65 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.1/@states.3"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.3"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="endActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="End">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@activities.0/@forkedThreads.1/@activities.2/@forkedThreads.1/@activities.4"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.4"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@activities.0/@forkedThreads.1/@activities.2/@forkedThreads.1/@activities.4"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.3/@methods.0/@states.4"/>
         </value>
       </result>
     </result>
@@ -1021,7 +1261,7 @@
     <result>
       <result kind="OUT" name="result" type="Jump">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.2/@jumps.0"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3/@states.2/@jumps.0"/>
         </value>
       </result>
     </result>
@@ -1035,11 +1275,17 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.2"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.3/@states.2"/>
         </value>
       </result>
     </result>
@@ -1080,11 +1326,227 @@
         </value>
       </context>
     </context>
-    <parameters/>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.0/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.0/@methods.0/@states.0"/>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.0/@methods.1/@states.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="nestedThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="NestedThread">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="SimpleActivity">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="MethodCallState">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="LinearActivity">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="SimpleActivity">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="MethodCallState">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.1"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="LinearActivity">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.1"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.1"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="endActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="End">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.2"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.2"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/ChatServer.xmi#//@nestedThreads.0/@activities.2"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedChatServer.xmi#//@instanceTypes.2/@methods.5/@states.2"/>
         </value>
       </result>
     </result>

@@ -446,7 +446,7 @@
         eType="#//Activity"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//LinearActivity">
+  <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//Activity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="JoinLocatedInIncomingThread"/>
     </eAnnotations>
@@ -502,6 +502,32 @@
         </eAnnotations>
       </eParameters>
     </eOperations>
+    <eOperations name="GetSuccessorReferences" ordered="false" upperBound="-1" eType="#//Reference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="nextActivity.GetAccessedReferences(soFar, beenHere->including(self))"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+      <eParameters name="soFar" ordered="false" upperBound="-1" eType="#//Reference">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="false"/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="beenHere" ordered="false" upperBound="-1" eType="#//Activity">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="false"/>
+        </eAnnotations>
+      </eParameters>
+    </eOperations>
+    <eOperations name="GetNextActivities" ordered="false" upperBound="-1" eType="#//Activity">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Set{nextActivity}"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingThreads" ordered="false"
         upperBound="-1" eType="#//Thread">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -511,6 +537,8 @@
         <details key="nullFree" value="false"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nextActivity" lowerBound="1"
+        eType="#//Activity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SharedResource" eSuperTypes="#//Reference"/>
   <eClassifiers xsi:type="ecore:EClass" name="Interrupt" eSuperTypes="#//LinearActivity">
@@ -561,7 +589,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Yield" eSuperTypes="#//LinearActivity"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleActivity" eSuperTypes="#//NamedActivity">
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleActivity" eSuperTypes="#//LinearActivity">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ActivityNameIsValid ActivityNameIsNotReserved UniqueNamedActivityName"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ActivityNameIsValid" value="activityName.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
+      <details key="ActivityNameIsNotReserved" value="not Reference.allInstances()->asSequence()->first().IsReservedWord(activityName)"/>
+      <details key="UniqueNamedActivityName" value="Reference.allInstances()->select(r | r.name = activityName and not r.oclIsKindOf(NestedThread))->isEmpty()"/>
+    </eAnnotations>
     <eOperations name="GetSuccessorReferences" ordered="false" upperBound="-1" eType="#//Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="nextActivity.GetAccessedReferences(soFar->union(sharedResources), beenHere->including(self))"/>
@@ -580,14 +616,11 @@
         </eAnnotations>
       </eParameters>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activityName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedResources" ordered="false"
+        upperBound="-1" eType="#//SharedResource"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NestedActivity" eSuperTypes="#//NamedActivity">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="NestedActivityConsistency"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="NestedActivityConsistency" value="NestedActivity.allInstances()->forAll(e | e.IsSameReference(self) implies e.nestedThread = self.nestedThread)"/>
-    </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="NestedActivity" eSuperTypes="#//LinearActivity">
     <eOperations name="GetParentThreads" unique="false" upperBound="-1" eType="#//Thread">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="if beenHere->includes(self)&#xA;&#x9;&#x9;&#x9;&#x9;      then Sequence{}&#xA;&#x9;&#x9;&#x9;&#x9;      else if target = self&#xA;&#x9;&#x9;&#x9;&#x9;           then UpdateParentThreads(soFar)&#xA;&#x9;&#x9;&#x9;&#x9;           else let bh: Set(Activity) = beenHere->including(self) in&#xA;&#x9;&#x9;&#x9;&#x9;                let search1: Sequence(Thread) = nextActivity.GetParentThreads(target, UpdateParentThreads(soFar), bh) in&#xA;&#x9;&#x9;&#x9;&#x9;                    if search1->isEmpty()&#xA;&#x9;&#x9;&#x9;&#x9;                    then nestedThread.startActivity.GetParentThreads(target, Sequence{}, bh)&#xA;&#x9;&#x9;&#x9;&#x9;                    else search1&#xA;&#x9;&#x9;&#x9;&#x9;                    endif&#xA;&#x9;&#x9;&#x9;&#x9;               endif&#xA;&#x9;&#x9;&#x9;&#x9;      endif"/>
@@ -634,9 +667,9 @@
         <details key="nullFree" value="false"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="GetAccessedReferences" ordered="false" upperBound="-1" eType="#//Reference">
+    <eOperations name="GetSuccessorReferences" ordered="false" upperBound="-1" eType="#//Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="nestedThread.startActivity.GetAccessedReferences(soFar, beenHere->including(self))"/>
+        <details key="body" value="let bh: Set(Activity) = beenHere->including(self) in&#xA;&#x9;&#x9;&#x9;&#x9;          nextActivity.GetAccessedReferences(nestedThread.startActivity.GetAccessedReferences(soFar->union(nestedThread.sharedResources), bh), bh)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
@@ -658,25 +691,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="ForkedThread" eSuperTypes="#//InterruptableThread">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="daemon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedActivity" abstract="true" eSuperTypes="#//LinearActivity">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ActivityNameIsValid ActivityNameIsNotReserved UniqueNamedActivityName"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="ActivityNameIsValid" value="activityName.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
-      <details key="ActivityNameIsNotReserved" value="not Reference.allInstances()->asSequence()->first().IsReservedWord(activityName)"/>
-      <details key="UniqueNamedActivityName" value="Reference.allInstances()->select(r | r.name = activityName and not r.oclIsKindOf(NestedThread))->isEmpty()"/>
-    </eAnnotations>
-    <eOperations name="IsSameReference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="other.activityName = self.activityName and other.instanceType = self.instanceType"/>
-      </eAnnotations>
-      <eParameters name="other" eType="#//NamedActivity"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activityName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedResources" ordered="false"
-        upperBound="-1" eType="#//SharedResource"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Reference" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="ReferenceNameIsValid ReferenceNameIsNotReserved UniqueReferenceName"/>
@@ -694,7 +708,19 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NestedThread" eSuperTypes="#//Thread"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NestedThread" eSuperTypes="#//Thread">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ActivityNameIsValid ActivityNameIsNotReserved UniqueNamedActivityName"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ActivityNameIsValid" value="activityName.matches('[A-Za-z_$][A-Za-z0-9_$]*')"/>
+      <details key="ActivityNameIsNotReserved" value="not Reference.allInstances()->asSequence()->first().IsReservedWord(activityName)"/>
+      <details key="UniqueNamedActivityName" value="Reference.allInstances()->select(r | r.name = activityName and not r.oclIsKindOf(NestedThread))->isEmpty()"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activityName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedResources" ordered="false"
+        upperBound="-1" eType="#//SharedResource"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InterruptableThread" abstract="true"
       eSuperTypes="#//Thread"/>
 </ecore:EPackage>

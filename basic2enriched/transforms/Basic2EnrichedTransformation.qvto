@@ -27,20 +27,16 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 	//This is easy, because all of these things we will refer to later and not the other way around
 	instanceTypes+=defaultInstanceType;
 	instanceTypes+=self.instanceTypes->map instanceType2instanceType();
-	methodParameters+=self.instances->map instance2instance();
+	methodParameters+=self.instances->map instance2instance(); //Must be done AFTER instance types!
 	methodParameters+=self.resources->map sharedResource2sharedResource();
+	
+	//Create the main method from the main thread (and all threads that spawn from it, recursively)
+	defaultInstanceType.methods += self.map createMainMethod();
+	defaultInstanceType.methods += self.map basicModel2method();
 	
 	//Transform all nested threads
 	//Note that states must late-resolve nested threads because nested threads transform states that refer to nested threads! 
 	self.nestedThreads->map nestedThread2method();
-	
-	//Create the main method from the main thread (and all threads that spawn from it, recursively)
-	defaultInstanceType.methods += object EnrichedModel::Method {
-		name := "main";
-		firstState := self.startActivity.late resolveone(EnrichedModel::State);
-		states := self.activities->map activity2state();
-		isStatic := true;
-	};
 	
 	//Make it possible to interrupt the main thread
 	self.map interruptableThread2thread(defaultInstanceType, true);
@@ -53,6 +49,24 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 			t.resolveone(EnrichedModel::Thread).isUsedAsParameter := false;
 		};
 	}
+}
+
+mapping BasicModel::BasicModel::createMainMethod() : EnrichedModel::Method {
+	name := "main";
+	defaultFirstState := object EnrichedModel::MethodCallState {
+		method := result;
+		calledMethod := self.late resolveoneIn(BasicModel::BasicModel::basicModel2method, EnrichedModel::Method);
+		firstState := self.startActivity.late resolveone(EnrichedModel::State);
+	};
+	states += defaultFirstState;
+	isStatic := true;
+}
+
+mapping BasicModel::BasicModel::basicModel2method() : EnrichedModel::Method {
+	name := self.name;
+	defaultFirstState := self.startActivity.late resolveone(EnrichedModel::State);
+	states := self.activities->map activity2state(result);
+	isStatic := true;
 }
 
 //Instance type
@@ -83,30 +97,39 @@ mapping BasicModel::SharedResource::sharedResource2sharedResource() : EnrichedMo
 }
 
 //Activity
-mapping BasicModel::Activity::activity2state() : EnrichedModel::State disjuncts
+mapping BasicModel::Activity::activity2state(m : EnrichedModel::Method) : EnrichedModel::State disjuncts
 	BasicModel::SimpleActivity::simpleActivity2state, BasicModel::NestedActivity::nestedActivity2state,
 	BasicModel::Sleep::sleepActivity2state, BasicModel::Yield::yieldActivity2state,
 	BasicModel::Interrupt::interruptActivity2state, BasicModel::Decision::decisionActivity2state,
-	BasicModel::Fork::forkActivity2state, BasicModel::Join::joinActivity2state
+	BasicModel::Fork::forkActivity2state, BasicModel::Join::joinActivity2state,
+	BasicModel::End::endActivity2state
 {}
 
+//End activity
+mapping BasicModel::End::endActivity2state(m : EnrichedModel::Method) : EnrichedModel::State {
+	method := m;
+	jumps := OrderedSet{};
+}
+
 //Linear activitiy
-abstract mapping BasicModel::LinearActivity::linearActivity2state() : EnrichedModel::State {
+abstract mapping BasicModel::LinearActivity::linearActivity2state(m : EnrichedModel::Method) : EnrichedModel::State {
+	method := m;
+	
 	if (self.canJumpTo(self.nextActivity)) then {
-		jumps := Sequence{object EnrichedModel::Jump {
+		jumps := OrderedSet{object EnrichedModel::Jump {
 			nextState := self.nextActivity.late resolveone(EnrichedModel::State);
 		}};
 	} else {
-		jumps := Sequence{};
+		jumps := OrderedSet{};
 	} endif;
 }
 
 query BasicModel::Activity::canJumpTo(nextActivity : BasicModel::Activity) : Boolean {
-	//Do not jump to an end activity (since it does not do anything anyway)
-	if (nextActivity.oclIsKindOf(BasicModel::End)) then {
-		return false;
-	} endif;
-	
+//	//Do not jump to an end activity (since it does not do anything anyway)
+//	if (nextActivity.oclIsKindOf(BasicModel::End)) then {
+//		return false;
+//	} endif;
+//	
 	//Only go to a join if we are currently in the thread that is supposed to join
 	//Other threads terminate, so that the joining will actually eventually happen
 	if (nextActivity.oclIsKindOf(BasicModel::Join)) then {
@@ -118,14 +141,10 @@ query BasicModel::Activity::canJumpTo(nextActivity : BasicModel::Activity) : Boo
 }
 
 //Simple activity
-mapping BasicModel::SimpleActivity::simpleActivity2state() : EnrichedModel::MethodCallState
+mapping BasicModel::SimpleActivity::simpleActivity2state(m : EnrichedModel::Method) : EnrichedModel::MethodCallState
 	inherits BasicModel::LinearActivity::linearActivity2state
 	when { self.oclIsKindOf(BasicModel::SimpleActivity) }
 {
-	if (self.instance != null) then {
-		targetInstance := self.instance.resolveone(EnrichedModel::Instance); //Was created in the beginning
-	} endif;
-	
 	//Determine in which instance type (= class) the method must be placed
 	var it = self.getInstanceType();
 	
@@ -137,6 +156,7 @@ mapping BasicModel::SimpleActivity::simpleActivity2state() : EnrichedModel::Meth
 			name := self.activityName;
 			firstState := null;
 			states := OrderedSet{};
+			hasDynamicFirstState := false;
 			parameters := self.accessedReferences->late resolve(EnrichedModel::MethodParameter);
 			lockedResources := self.sharedResources->resolve(EnrichedModel::SharedResource);
 			isStatic := self.instanceType = null;
@@ -145,15 +165,22 @@ mapping BasicModel::SimpleActivity::simpleActivity2state() : EnrichedModel::Meth
 	} else {
 		calledMethod := methodsWithSameName->first();
 	} endif;
+	
+	firstState := null;
+	
+	if (self.instance != null) then {
+		targetInstance := self.instance.resolveone(EnrichedModel::Instance); //Was created in the beginning
+	} endif;
 }
 
 //Nested activity
-mapping BasicModel::NestedActivity::nestedActivity2state() : EnrichedModel::MethodCallState
+mapping BasicModel::NestedActivity::nestedActivity2state(m : EnrichedModel::Method) : EnrichedModel::MethodCallState
 	inherits BasicModel::LinearActivity::linearActivity2state
 	when { self.oclIsKindOf(BasicModel::NestedActivity) }
 {
 	//Resolve late, because nested threads also transform states which access (non-existing) nested threads
 	calledMethod := self.nestedThread.late resolveoneIn(BasicModel::NestedThread::nestedThread2method, EnrichedModel::Method);
+	firstState := self.nestedThread.startActivity.late resolveone(EnrichedModel::State);
 	
 	if (self.nestedThread.startActivity.instance != null) {
 		targetInstance := self.nestedThread.startActivity.instance.resolveone(EnrichedModel::Instance); //Was created in the beginning
@@ -162,10 +189,11 @@ mapping BasicModel::NestedActivity::nestedActivity2state() : EnrichedModel::Meth
 
 mapping BasicModel::NestedThread::nestedThread2method() : EnrichedModel::Method {
 	name := self.name;
-	firstState := self.startActivity.late resolveone(EnrichedModel::State);
-	states := self.activities->map activity2state();
+	defaultFirstState := self.startActivity.late resolveone(EnrichedModel::State);
+	hasDynamicFirstState := false;
+	states := self.activities->map activity2state(result);
 	parameters := self.startActivity.accessedReferences->late resolve(EnrichedModel::MethodParameter);
-	lockedResources := Set{};
+	lockedResources := self.sharedResources->late resolve(EnrichedModel::SharedResource);
 	isStatic := self.startActivity.instanceType = null;
 	
 	//Place the method in the instance type with the starting activity
@@ -177,7 +205,7 @@ mapping BasicModel::NestedThread::nestedThread2method() : EnrichedModel::Method 
 }
 
 //Sleep
-mapping BasicModel::Sleep::sleepActivity2state() : EnrichedModel::SleepState
+mapping BasicModel::Sleep::sleepActivity2state(m : EnrichedModel::Method) : EnrichedModel::SleepState
 	inherits BasicModel::LinearActivity::linearActivity2state
 	when { self.oclIsKindOf(BasicModel::Sleep) }
 {
@@ -185,7 +213,7 @@ mapping BasicModel::Sleep::sleepActivity2state() : EnrichedModel::SleepState
 }
 
 //Yield
-mapping BasicModel::Yield::yieldActivity2state() : EnrichedModel::YieldState
+mapping BasicModel::Yield::yieldActivity2state(m : EnrichedModel::Method) : EnrichedModel::YieldState
 	inherits BasicModel::LinearActivity::linearActivity2state
 	when { self.oclIsKindOf(BasicModel::Yield) }
 {
@@ -193,7 +221,7 @@ mapping BasicModel::Yield::yieldActivity2state() : EnrichedModel::YieldState
 }
 
 //Interrupt
-mapping BasicModel::Interrupt::interruptActivity2state() : EnrichedModel::InterruptState
+mapping BasicModel::Interrupt::interruptActivity2state(m : EnrichedModel::Method) : EnrichedModel::InterruptState
 	inherits BasicModel::LinearActivity::linearActivity2state
 	when { self.oclIsKindOf(BasicModel::Interrupt) }
 {
@@ -206,9 +234,10 @@ mapping BasicModel::Interrupt::interruptActivity2state() : EnrichedModel::Interr
 }
 
 //Decision
-mapping BasicModel::Decision::decisionActivity2state() : EnrichedModel::State
+mapping BasicModel::Decision::decisionActivity2state(m : EnrichedModel::Method) : EnrichedModel::State
 	when { self.oclIsKindOf(BasicModel::Decision) }
 {
+	method := m;
 	jumps := self.branches->map branch2jump(self);
 	
 	if (self.canJumpTo(self.nextActivity)) then {
@@ -227,9 +256,10 @@ mapping BasicModel::Branch::branch2jump(decision : BasicModel::Decision) : Enric
 }
 
 //Fork
-mapping BasicModel::Fork::forkActivity2state() : EnrichedModel::ForkState
+mapping BasicModel::Fork::forkActivity2state(m : EnrichedModel::Method) : EnrichedModel::ForkState
 	when { self.oclIsKindOf(BasicModel::Fork) }
 {
+	method := m;
 	threadCount := self.maxThreadCount;
 	threadInits := self.forkedThreadsUsingThreadInit->map forkedThread2threadInit(self);
 	jumps := self.forkedThreadsUsingJump->map forkedThread2jump();
@@ -241,13 +271,7 @@ mapping BasicModel::ForkedThread::forkedThread2threadInit(fork : BasicModel::For
 	targetInstance := self.startActivity.instance.map instance2instance();
 	
 	//Create the method that the forked thread will execute
-	calledMethod := object EnrichedModel::Method {
-		name := self.name;
-		firstState := self.startActivity.late resolveone(EnrichedModel::State);
-		states := self.activities->map activity2state();
-		parameters := self.startActivity.accessedReferences->late resolve(EnrichedModel::MethodParameter);
-		isStatic := self.startActivity.instanceType = null;
-	};
+	calledMethod := self.map forkedThread2method();
 	
 	//Place the thread method in the instance type with the starting activity
 	if (calledMethod.isStatic) then {
@@ -258,6 +282,14 @@ mapping BasicModel::ForkedThread::forkedThread2threadInit(fork : BasicModel::For
 	
 	//Create reference to the thread (so that is can be interrupted and joined with)
 	thread := self.map interruptableThread2thread(fork.getInstanceType(), fork.isVisitedOnce);
+}
+
+mapping BasicModel::ForkedThread::forkedThread2method() : EnrichedModel::Method {
+	name := self.name;
+	defaultFirstState := self.startActivity.late resolveone(EnrichedModel::State);
+	states := self.activities->map activity2state(result);
+	parameters := self.startActivity.accessedReferences->late resolve(EnrichedModel::MethodParameter);
+	isStatic := self.startActivity.instanceType = null;
 }
 
 mapping BasicModel::ForkedThread::forkedThread2jump() : EnrichedModel::Jump {
@@ -272,15 +304,36 @@ mapping BasicModel::Thread::interruptableThread2thread(enclosingInstanceType : E
 }
 
 //Join
-mapping BasicModel::Join::joinActivity2state() : EnrichedModel::JoinState
-	inherits BasicModel::LinearActivity::linearActivity2state
+mapping BasicModel::Join::joinActivity2state(m : EnrichedModel::Method) : EnrichedModel::JoinState
 	when { self.oclIsKindOf(BasicModel::Join) }
 {
+	method := m;
 	joinedThreads += self.incomingThreads->late resolveIn(BasicModel::Thread::interruptableThread2thread, EnrichedModel::Thread);
 	
 	//If we cannot pass the incoming threads to this state as a parameters, the incoming threads must be made static
 	(self.incomingThreads - self.thread.GetSiblingThreads())->forEach(t) {
 		staticThreads := staticThreads->including(t);
 	};
+	
+	if (self.canJumpTo(self.nextActivity)) then {
+		if (self.nextActivity.thread = self.thread) {
+			//We stay in the same thread, so make a simple jump
+			jumps := Sequence{object EnrichedModel::Jump {
+				nextState := self.nextActivity.late resolveone(EnrichedModel::State);
+			}};
+		} else {
+			//We continue with another thread, so call its method
+			jumps := Sequence{object EnrichedModel::Jump {
+				nextState := object EnrichedModel::MethodCallState {
+					jumps := OrderedSet{};
+					calledMethod := null;
+					firstState := self.nextActivity.late resolveone(EnrichedModel::State);
+					targetInstance := self.nextActivity.instance.resolveone(EnrichedModel::Instance);
+				};
+			}};
+		} endif;
+	} else {
+		jumps := OrderedSet{};
+	} endif;
 }
 
