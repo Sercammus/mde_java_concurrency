@@ -45,6 +45,33 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 	methodParameters += BasicModel::InterruptableThread.allInstances().resolveIn(BasicModel::Thread::interruptableThread2thread, EnrichedModel::Thread);
 	
 	end {
+		//Create extra method call states for the Join objects that need them
+		//We do this here because creating extra states while iterating over them results in errors
+		BasicModel::Join.allInstances()->forEach(basicJoin) {
+			if (basicJoin.canJumpTo(basicJoin.nextActivity)) then {
+				if (basicJoin.nextActivity.thread != basicJoin.thread) {
+					var enrichedJoin := basicJoin.resolveone(EnrichedModel::JoinState);
+					
+					var methodCallState := object EnrichedModel::MethodCallState {
+						method := enrichedJoin.method; 
+						jumps := OrderedSet{};
+						
+						//We would not be able to resolve this in the mapping for Joins,
+						//and we need its value in order to set calledMethod
+						firstState := basicJoin.nextActivity.resolveone(EnrichedModel::State);
+						targetInstance := basicJoin.nextActivity.instance.resolveone(EnrichedModel::Instance);
+						calledMethod := firstState.method; //Do this after firstState has been resolved!
+					};
+					
+					enrichedJoin.method.states += methodCallState;
+					enrichedJoin.jumps := Sequence{object EnrichedModel::Jump {
+						nextState := methodCallState;
+					}};
+				} endif;
+			} endif;
+		};
+		
+		//Mark threads that are accessed statically by a Join/Interrupt at least once as static
 		staticThreads->forEach(t) {
 			t.resolveone(EnrichedModel::Thread).isUsedAsParameter := false;
 		};
@@ -129,7 +156,7 @@ query BasicModel::Activity::canJumpTo(nextActivity : BasicModel::Activity) : Boo
 //	if (nextActivity.oclIsKindOf(BasicModel::End)) then {
 //		return false;
 //	} endif;
-//	
+	
 	//Only go to a join if we are currently in the thread that is supposed to join
 	//Other threads terminate, so that the joining will actually eventually happen
 	if (nextActivity.oclIsKindOf(BasicModel::Join)) then {
@@ -322,15 +349,10 @@ mapping BasicModel::Join::joinActivity2state(m : EnrichedModel::Method) : Enrich
 				nextState := self.nextActivity.late resolveone(EnrichedModel::State);
 			}};
 		} else {
-			//We continue with another thread, so call its method
-			jumps := Sequence{object EnrichedModel::Jump {
-				nextState := object EnrichedModel::MethodCallState {
-					jumps := OrderedSet{};
-					calledMethod := null;
-					firstState := self.nextActivity.late resolveone(EnrichedModel::State);
-					targetInstance := self.nextActivity.instance.resolveone(EnrichedModel::Instance);
-				};
-			}};
+			//We want to call another method here, but we can only obtain this method
+			//by late-resolving nextActivity and accessing its method field.
+			//Since QVT does not like us accessing the field of a late-resolved object,
+			//we do this at the very end of the transformation.
 		} endif;
 	} else {
 		jumps := OrderedSet{};
