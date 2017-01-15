@@ -16,13 +16,11 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 	//Start by create the class with the program entry point
 	//'Main' and 'main' are invalid reference/activity names in the basic model to allow for this class
 	//The class also contains any shared resources (excepting threads)
-	init {
-		defaultInstanceType := object EnrichedModel::InstanceType {
-			name := 'Main';
-		};
-		
-		staticThreads := Set{};
-	}
+	defaultInstanceType := object EnrichedModel::InstanceType {
+		name := 'Main';
+	};
+	
+	staticThreads := Set{};
 	
 	//This is easy, because all of these things we will refer to later and not the other way around
 	instanceTypes+=defaultInstanceType;
@@ -44,38 +42,46 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 	//Make a list of all method parameters that were used
 	methodParameters += BasicModel::InterruptableThread.allInstances().resolveIn(BasicModel::Thread::interruptableThread2thread, EnrichedModel::Thread);
 	
-	end {
-		//Create extra method call states for the Join objects that need them
-		//We do this here because creating extra states while iterating over them results in errors
-		BasicModel::Join.allInstances()->forEach(basicJoin) {
-			if (basicJoin.canJumpTo(basicJoin.nextActivity)) then {
-				if (basicJoin.nextActivity.thread != basicJoin.thread) {
-					var enrichedJoin := basicJoin.resolveone(EnrichedModel::JoinState);
+	//Create extra method call states for the Join objects that need them
+	//We do this here because creating extra states while iterating over them results in errors
+	BasicModel::Join.allInstances()->forEach(basicJoin) {
+		if (basicJoin.canJumpTo(basicJoin.nextActivity)) then {
+			if (basicJoin.nextActivity.thread != basicJoin.thread) {
+				var enrichedJoin := basicJoin.resolveone(EnrichedModel::JoinState);
+				
+				var methodCallState := object EnrichedModel::MethodCallState {
+					method := enrichedJoin.method; 
+					jumps := OrderedSet{};
 					
-					var methodCallState := object EnrichedModel::MethodCallState {
-						method := enrichedJoin.method; 
-						jumps := OrderedSet{};
-						
-						//We would not be able to resolve this in the mapping for Joins,
-						//and we need its value in order to set calledMethod
-						firstState := basicJoin.nextActivity.resolveone(EnrichedModel::State);
-						targetInstance := basicJoin.nextActivity.instance.resolveone(EnrichedModel::Instance);
-						calledMethod := firstState.method; //Do this after firstState has been resolved!
-					};
-					
-					enrichedJoin.method.states += methodCallState;
-					enrichedJoin.jumps := Sequence{object EnrichedModel::Jump {
-						nextState := methodCallState;
-					}};
-				} endif;
+					//We would not be able to resolve this in the mapping for Joins,
+					//and we need its value in order to set calledMethod
+					firstState := basicJoin.nextActivity.resolveone(EnrichedModel::State);
+					targetInstance := basicJoin.nextActivity.instance.resolveone(EnrichedModel::Instance);
+					calledMethod := firstState.method; //Do this after firstState has been resolved!
+				};
+				
+				enrichedJoin.method.states += methodCallState;
+				enrichedJoin.jumps := Sequence{object EnrichedModel::Jump {
+					nextState := methodCallState;
+				}};
 			} endif;
-		};
-		
-		//Mark threads that are accessed statically by a Join/Interrupt at least once as static
-		staticThreads->forEach(t) {
-			t.resolveone(EnrichedModel::Thread).isUsedAsParameter := false;
-		};
-	}
+		} endif;
+	};
+	
+	//Mark threads that are accessed statically by a Join/Interrupt at least once as static
+	staticThreads->forEach(t) {
+		t.resolveone(EnrichedModel::Thread).isStatic := true;
+	};
+	
+	//Eliminate method parameters that are not to be EXCLUSIVELY used (such as statically accessed threads)
+	EnrichedModel::Method.allInstances()->forEach(m) {
+		m.parameters := m.parameters->select(e | not e.isStatic);
+	};
+	
+	//Sort the lockedResources of all methods in the same order as they occur in methodParameters
+	EnrichedModel::Method.allInstances()->forEach(m) {
+		m.lockedResources->sortedBy(e | Sequence{1..methodParameters->size()}->select(i | methodParameters->at(i) = e)->first());
+	};
 }
 
 mapping BasicModel::BasicModel::createMainMethod() : EnrichedModel::Method {
@@ -108,7 +114,7 @@ query BasicModel::Activity::getInstanceType() : EnrichedModel::InstanceType {
 //Instance
 mapping BasicModel::Instance::instance2instance() : EnrichedModel::Instance {
 	name := self.name;
-	isUsedAsParameter := true; //In the future, the user may want to specify this
+	isStatic := false; //In the future, the user may want to specify this
 	
 	//Instances are placed in the instance type (= class) equal to the type that they have.
 	instanceType := self.instanceType.resolveone(EnrichedModel::InstanceType);
@@ -117,7 +123,7 @@ mapping BasicModel::Instance::instance2instance() : EnrichedModel::Instance {
 //Shared resource
 mapping BasicModel::SharedResource::sharedResource2sharedResource() : EnrichedModel::SharedResource {
 	name := self.name;
-	isUsedAsParameter := true; //In the future, the user may want to specify this
+	isStatic := false; //In the future, the user may want to specify this
 	
 	//Shared resources are placed in the default instance type.
 	instanceType := defaultInstanceType;
@@ -184,8 +190,8 @@ mapping BasicModel::SimpleActivity::simpleActivity2state(m : EnrichedModel::Meth
 			firstState := null;
 			states := OrderedSet{};
 			hasDynamicFirstState := false;
-			parameters := self.accessedReferences->late resolve(EnrichedModel::MethodParameter);
-			lockedResources := self.sharedResources->resolve(EnrichedModel::SharedResource);
+			parameters := self.lockedResources->resolve(EnrichedModel::SharedResource);
+			lockedResources := self.lockedResources->resolve(EnrichedModel::SharedResource);
 			isStatic := self.instanceType = null;
 		};
 		it.methods += calledMethod;
@@ -219,8 +225,8 @@ mapping BasicModel::NestedThread::nestedThread2method() : EnrichedModel::Method 
 	defaultFirstState := self.startActivity.late resolveone(EnrichedModel::State);
 	hasDynamicFirstState := false;
 	states := self.activities->map activity2state(result);
-	parameters := self.startActivity.accessedReferences->late resolve(EnrichedModel::MethodParameter);
-	lockedResources := self.sharedResources->late resolve(EnrichedModel::SharedResource);
+	parameters := self.futureReferences->late resolve(EnrichedModel::MethodParameter);
+	lockedResources := self.lockedResources->resolve(EnrichedModel::SharedResource);
 	isStatic := self.startActivity.instanceType = null;
 	
 	//Place the method in the instance type with the starting activity
@@ -315,7 +321,8 @@ mapping BasicModel::ForkedThread::forkedThread2method() : EnrichedModel::Method 
 	name := self.name;
 	defaultFirstState := self.startActivity.late resolveone(EnrichedModel::State);
 	states := self.activities->map activity2state(result);
-	parameters := self.startActivity.accessedReferences->late resolve(EnrichedModel::MethodParameter);
+	parameters := self.startActivity.futureReferences->late resolve(EnrichedModel::MethodParameter);
+	lockedResources := self.startActivity.lockedResources->resolve(EnrichedModel::SharedResource);
 	isStatic := self.startActivity.instanceType = null;
 }
 
@@ -327,7 +334,7 @@ mapping BasicModel::Thread::interruptableThread2thread(enclosingInstanceType : E
 	name := self.name;
 	instanceType := enclosingInstanceType;
 	isMultiple := not isVisitedOnce;
-	isUsedAsParameter := true; //May be set to false at the end of the transformation
+	isStatic := false; //May be set to TRUE at the end of the transformation
 }
 
 //Join

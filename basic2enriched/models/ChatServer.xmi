@@ -9,7 +9,8 @@
     startActivity="//@activities.0">
   <activities
       xsi:type="ad:Fork"
-      name="fork1">
+      name="fork1"
+      maxThreadCount="0">
     <forkedThreads
         name="guiThread"
         startActivity="//@activities.0/@forkedThreads.0/@activities.0">
@@ -64,7 +65,8 @@
       <activities
           xsi:type="ad:Fork"
           name="fork2"
-          instance="//@instances.2">
+          instance="//@instances.2"
+          maxThreadCount="0">
         <forkedThreads
             name="goBackThread"
             startActivity="//@activities.0/@forkedThreads.1/@activities.0"/>
@@ -112,6 +114,8 @@
   </activities>
   <resources
       name="clientList"/>
+  <resources
+      name="bla"/>
   <instances
       name="gui"
       instanceType="//@instanceTypes.0"/>
@@ -130,7 +134,8 @@
   <nestedThreads
       name="broadcastMsg"
       startActivity="//@nestedThreads.0/@activities.0"
-      activityName="broadcastMsg">
+      activityName="broadcastMsg"
+      sharedResources="//@resources.0">
     <activities
         xsi:type="ad:SimpleActivity"
         name="logMsg"
@@ -143,7 +148,7 @@
         instance="//@instances.1"
         nextActivity="//@nestedThreads.0/@activities.2"
         activityName="sendMsg"
-        sharedResources="//@resources.0"/>
+        sharedResources="//@resources.1 //@resources.0"/>
     <activities
         xsi:type="ad:End"
         name="end3"/>

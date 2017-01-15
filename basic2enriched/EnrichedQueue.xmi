@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<em:EnrichedModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:em="enrichedModel" xsi:schemaLocation="enrichedModel metamodels/EnrichedModel.ecore">
+  <instanceTypes name="Main">
+    <methods name="main" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.0/@states.0">
+      <states xsi:type="em:MethodCallState" method="//@instanceTypes.0/@methods.0" calledMethod="//@instanceTypes.0/@methods.8" firstState="//@instanceTypes.0/@methods.8/@states.0"/>
+    </methods>
+    <methods name="doSetup" isStatic="true"/>
+    <methods name="readInput" isStatic="true"/>
+    <methods name="enqueue" isStatic="true" parameters="//@methodParameters.0" lockedResources="//@methodParameters.0"/>
+    <methods name="inputThread" isStatic="true" parameters="//@methodParameters.0" defaultFirstState="//@instanceTypes.0/@methods.4/@states.0">
+      <states xsi:type="em:MethodCallState" method="//@instanceTypes.0/@methods.4" calledMethod="//@instanceTypes.0/@methods.2">
+        <jumps nextState="//@instanceTypes.0/@methods.4/@states.1"/>
+      </states>
+      <states xsi:type="em:MethodCallState" method="//@instanceTypes.0/@methods.4" calledMethod="//@instanceTypes.0/@methods.3">
+        <jumps nextState="//@instanceTypes.0/@methods.4/@states.0"/>
+      </states>
+    </methods>
+    <methods name="dequeue" isStatic="true"/>
+    <methods name="writeOutput" isStatic="true"/>
+    <methods name="outputThread" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.7/@states.0">
+      <states xsi:type="em:MethodCallState" method="//@instanceTypes.0/@methods.7" calledMethod="//@instanceTypes.0/@methods.5">
+        <jumps nextState="//@instanceTypes.0/@methods.7/@states.2"/>
+      </states>
+      <states method="//@instanceTypes.0/@methods.7">
+        <jumps condition="[output]" nextState="//@instanceTypes.0/@methods.7/@states.2"/>
+        <jumps nextState="//@instanceTypes.0/@methods.7/@states.3"/>
+      </states>
+      <states xsi:type="em:MethodCallState" method="//@instanceTypes.0/@methods.7" calledMethod="//@instanceTypes.0/@methods.6">
+        <jumps nextState="//@instanceTypes.0/@methods.7/@states.0"/>
+      </states>
+      <states xsi:type="em:SleepState" method="//@instanceTypes.0/@methods.7" duration="1"/>
+    </methods>
+    <methods name="queueExample" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.8/@states.0">
+      <states xsi:type="em:MethodCallState" method="//@instanceTypes.0/@methods.8" calledMethod="//@instanceTypes.0/@methods.1">
+        <jumps nextState="//@instanceTypes.0/@methods.8/@states.1"/>
+      </states>
+      <states xsi:type="em:ForkState" method="//@instanceTypes.0/@methods.8">
+        <threadInits calledMethod="//@instanceTypes.0/@methods.4" isAdopted="true" thread="//@methodParameters.1"/>
+        <threadInits calledMethod="//@instanceTypes.0/@methods.7" thread="//@methodParameters.3"/>
+      </states>
+    </methods>
+  </instanceTypes>
+  <methodParameters xsi:type="em:SharedResource" name="queue" instanceType="//@instanceTypes.0"/>
+  <methodParameters xsi:type="em:Thread" name="inputThread" instanceType="//@instanceTypes.0"/>
+  <methodParameters xsi:type="em:Thread" name="queueExample" instanceType="//@instanceTypes.0"/>
+  <methodParameters xsi:type="em:Thread" name="outputThread" instanceType="//@instanceTypes.0"/>
+</em:EnrichedModel>
