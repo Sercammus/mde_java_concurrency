@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/basic2enriched/src" modelPluginID="basic2enriched"
+    modelName="EnrichedModel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>EnrichedModel.ecore</foreignModel>
+  <genPackages prefix="EnrichedModel" disposableProviderFactory="true" ecorePackage="EnrichedModel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="EnrichedModel.ecore#//MethodInterruption">
+      <genEnumLiterals ecoreEnumLiteral="EnrichedModel.ecore#//MethodInterruption/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="EnrichedModel.ecore#//MethodInterruption/CATCHES"/>
+      <genEnumLiterals ecoreEnumLiteral="EnrichedModel.ecore#//MethodInterruption/THROWS"/>
+    </genEnums>
+    <genClasses ecoreClass="EnrichedModel.ecore#//EnrichedModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//EnrichedModel/instanceTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//EnrichedModel/methodParameters"/>
+    </genClasses>
+    <genClasses ecoreClass="EnrichedModel.ecore#//Method">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//Method/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//Method/isStatic"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Method/parameters"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Method/variables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Method/states"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Method/lockedResources"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Method/defaultFirstState"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//Method/hasDynamicFirstState"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//Method/interruption"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Method/stateOnInterruption"/>
+    </genClasses>
+    <genClasses ecoreClass="EnrichedModel.ecore#//InstanceType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//InstanceType/methods"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//InstanceType/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="EnrichedModel.ecore#//MethodParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//MethodParameter/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//MethodParameter/instanceType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//MethodParameter/isStatic"/>
+    </genClasses>
+    <genClasses ecoreClass="EnrichedModel.ecore#//SharedResource"/>
+    <genClasses ecoreClass="EnrichedModel.ecore#//Thread">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//Thread/isMultiple"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Thread/calledMethod"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Thread/firstState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Thread/targetInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="EnrichedModel.ecore#//Instance"/>
+    <genClasses ecoreClass="EnrichedModel.ecore#//State">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//State/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//State/jumps"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//State/method"/>
+    </genClasses>
+    <genClasses ecoreClass="EnrichedModel.ecore#//Jump">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//Jump/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Jump/nextState"/>
+    </genClasses>
+    <genClasses ecoreClass="EnrichedModel.ecore#//ForkState">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//ForkState/threadCount"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//ForkState/threadInits"/>
+    </genClasses>
+    <genClasses ecoreClass="EnrichedModel.ecore#//MethodCallState">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//MethodCallState/calledMethod"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//MethodCallState/targetInstance"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//MethodCallState/firstState"/>
+    </genClasses>
+    <genClasses ecoreClass="EnrichedModel.ecore#//InterruptState">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//InterruptState/interruptedThread"/>
+    </genClasses>
+    <genClasses ecoreClass="EnrichedModel.ecore#//ThreadInit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//ThreadInit/isAdopted"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//ThreadInit/thread"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//ThreadInit/isDaemon"/>
+    </genClasses>
+    <genClasses ecoreClass="EnrichedModel.ecore#//SleepState">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//SleepState/duration"/>
+    </genClasses>
+    <genClasses ecoreClass="EnrichedModel.ecore#//YieldState"/>
+    <genClasses ecoreClass="EnrichedModel.ecore#//JoinState">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//JoinState/joinedThreads"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
