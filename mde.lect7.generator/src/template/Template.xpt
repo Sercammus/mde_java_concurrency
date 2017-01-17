@@ -1,0 +1,102 @@
+«IMPORT EnrichedModel»
+
+«DEFINE main FOR EnrichedModel»
+«EXPAND javaClass FOREACH instanceTypes»
+«ENDDEFINE»
+
+«DEFINE javaClass FOR InstanceType»
+    «FILE name+".java"»
+        public class «name» {
+            «EXPAND method FOREACH methods»
+        }
+    «ENDFILE»
+«ENDDEFINE»
+
+«DEFINE method FOR Method»
+public «IF isStatic»static «ENDIF»void «name»(«IF hasDynamicFirstState»int initialState, «ENDIF» «EXPAND methodParameter FOREACH parameters SEPARATOR ', '») {
+    «IF hasDynamicFirstState»
+    int state = initialState;
+    «ELSEIF states.size > 0»
+    int state = «defaultFirstState.id»;
+    «ENDIF»
+    «EXPAND synchronizationBegin FOREACH lockedResources»
+    «IF states.size > 0»
+    while (state > 0) {
+        switch (state) {
+		    «EXPAND state FOREACH states»
+		}
+    }
+    «ENDIF»
+    «EXPAND synchronizationEnd FOREACH lockedResources»
+}
+«ENDDEFINE»
+
+«DEFINE methodParameter FOR MethodParameter»«ERROR "Should not happen!"» «ENDDEFINE»
+«DEFINE methodParameter FOR Thread»Thread «this.name»«ENDDEFINE»
+«DEFINE methodParameter FOR Instance»«this.instanceType.name» «this.name»«ENDDEFINE»
+«DEFINE methodParameter FOR SharedResource»Object «this.name»«ENDDEFINE»
+
+«DEFINE synchronizationBegin FOR SharedResource»
+    synchronized («this.name») {
+«ENDDEFINE»
+«DEFINE synchronizationEnd FOR SharedResource»
+    }
+«ENDDEFINE»
+
+«DEFINE state FOR State»
+case «this.id»:
+	«EXPAND stateImpl FOR this»
+	«IF jumps.size>1»
+	«EXPAND jump FOREACH jumps.remove(jumps.last())» state = «jumps.last().nextState.id»;
+	«ELSEIF jumps.size==1»
+	state = «jumps.first().nextState.id»;
+	«ELSE»
+	state = 0;
+	«ENDIF»
+	break;
+«ENDDEFINE»
+«DEFINE jump FOR Jump»if (eval("«condition»")) state = «nextState.id»;
+else 
+«ENDDEFINE»
+
+«DEFINE stateImpl FOR State»
+«ENDDEFINE»
+«DEFINE stateImpl FOR MethodCallState»
+«this.calledMethod.name»(); //TODO parameters!
+«ENDDEFINE»
+«DEFINE stateImpl FOR YieldState»
+Thread.yield();
+«ENDDEFINE»
+«DEFINE stateImpl FOR SleepState»
+Thread.sleep(«this.duration»);
+«ENDDEFINE»
+«DEFINE stateImpl FOR ForkState»
+//Fork states here
+«ENDDEFINE»
+
+«DEFINE stateImpl FOR JoinState»
+«EXPAND joinThread FOREACH joinedThreads»
+«ENDDEFINE»
+«DEFINE joinThread FOR Thread»
+«this.name».join();
+«ENDDEFINE»
+
+«DEFINE stateImpl FOR InterruptState»
+«interruptedThread.name».interrupt();
+«ENDDEFINE»
+
+«REM»
+«DEFINE InstanceVar FOR Feature»
+    private «this.type.name» «this.name»;
+«ENDDEFINE»
+
+«DEFINE AccessorMethods FOR Feature»
+    public void «setter()»(«type.name» «name») {
+        this.«name» = «name»;
+    }
+
+    public «type.name» «getter()»() {
+        return «name»;
+    }
+«ENDDEFINE»
+«ENDREM»
