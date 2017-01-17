@@ -20,12 +20,22 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//MethodParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+        eType="#//MethodParameter"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
         eType="#//State" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lockedResources" upperBound="-1"
         eType="#//SharedResource"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultFirstState" eType="#//State"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasDynamicFirstState" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interruption" lowerBound="1"
+        eType="#//MethodInterruption"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateOnInterruption" eType="#//State"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MethodInterruption">
+    <eLiterals name="NONE"/>
+    <eLiterals name="CATCHES" value="1"/>
+    <eLiterals name="THROWS" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InstanceType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
@@ -41,13 +51,23 @@
   <eClassifiers xsi:type="ecore:EClass" name="SharedResource" eSuperTypes="#//MethodParameter"/>
   <eClassifiers xsi:type="ecore:EClass" name="Thread" eSuperTypes="#//MethodParameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMultiple" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="calledMethod" lowerBound="1"
+        eType="#//Method"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstState" lowerBound="1"
+        eType="#//State"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetInstance" eType="#//Instance"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//MethodParameter"/>
   <eClassifiers xsi:type="ecore:EClass" name="State">
+    <eOperations name="GetId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="OrderedSet{1..method.states->size()}->select(i | method.states->at(i) = self)->first()"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         volatile="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="OrderedSet{1..method.states->size()}->select(i | method.states->at(i) = self)->first()"/>
+        <details key="derivation" value="GetId()"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="jumps" upperBound="-1"
@@ -75,10 +95,6 @@
         eType="#//Thread"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ThreadInit">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="calledMethod" lowerBound="1"
-        eType="#//Method"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetInstance" eType="#//Instance"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="firstState" eType="#//State"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAdopted" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="thread" lowerBound="1"
         eType="#//Thread"/>
