@@ -153,6 +153,12 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 			} endif;
 		} endif;
 	};
+	
+	//Set all states IDs
+	//Tried doing this in EnrichedModel as a derived property, but Xpand did not like it
+	EnrichedModel::State.allInstances()->forEach(s) {
+		s.id := Sequence{1..s.method.states->size()}->select(i | s.method.states->at(i) = s)->first();
+	};
 }
 
 //Instance type

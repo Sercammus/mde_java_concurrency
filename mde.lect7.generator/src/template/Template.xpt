@@ -17,7 +17,7 @@ public «IF isStatic»static «ENDIF»void «name»(«IF hasDynamicFirstState»int initi
     «IF hasDynamicFirstState»
     int state = initialState;
     «ELSEIF states.size > 0»
-    int state = «defaultFirstState.id»;
+    int state = «defaultFirstState.id2»;
     «ENDIF»
     «EXPAND synchronizationBegin FOREACH lockedResources»
     «IF states.size > 0»
@@ -44,18 +44,18 @@ public «IF isStatic»static «ENDIF»void «name»(«IF hasDynamicFirstState»int initi
 «ENDDEFINE»
 
 «DEFINE state FOR State»
-case «this.id»:
+case «this.id2»:
 	«EXPAND stateImpl FOR this»
 	«IF jumps.size>1»
-	«EXPAND jump FOREACH jumps.remove(jumps.last())» state = «jumps.last().nextState.id»;
+	«EXPAND jump FOREACH jumps.remove(jumps.last())» state = «jumps.last().nextState.id2»;
 	«ELSEIF jumps.size==1»
-	state = «jumps.first().nextState.id»;
+	state = «jumps.first().nextState.id2»;
 	«ELSE»
 	state = 0;
 	«ENDIF»
 	break;
 «ENDDEFINE»
-«DEFINE jump FOR Jump»if (eval("«condition»")) state = «nextState.id»;
+«DEFINE jump FOR Jump»if (eval("«condition»")) state = «nextState.id2»;
 else 
 «ENDDEFINE»
 

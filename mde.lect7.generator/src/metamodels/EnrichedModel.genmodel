@@ -6,6 +6,11 @@
     operationReflection="true" importOrganizing="true">
   <foreignModel>EnrichedModel.ecore</foreignModel>
   <genPackages prefix="EnrichedModel" disposableProviderFactory="true" ecorePackage="EnrichedModel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="EnrichedModel.ecore#//MethodInterruption">
+      <genEnumLiterals ecoreEnumLiteral="EnrichedModel.ecore#//MethodInterruption/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="EnrichedModel.ecore#//MethodInterruption/CATCHES"/>
+      <genEnumLiterals ecoreEnumLiteral="EnrichedModel.ecore#//MethodInterruption/THROWS"/>
+    </genEnums>
     <genClasses ecoreClass="EnrichedModel.ecore#//EnrichedModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//EnrichedModel/instanceTypes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//EnrichedModel/methodParameters"/>
@@ -14,10 +19,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//Method/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//Method/isStatic"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Method/parameters"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Method/variables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Method/states"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Method/lockedResources"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Method/defaultFirstState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//Method/hasDynamicFirstState"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//Method/interruption"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Method/stateOnInterruption"/>
     </genClasses>
     <genClasses ecoreClass="EnrichedModel.ecore#//InstanceType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//InstanceType/methods"/>
@@ -31,12 +39,16 @@
     <genClasses ecoreClass="EnrichedModel.ecore#//SharedResource"/>
     <genClasses ecoreClass="EnrichedModel.ecore#//Thread">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//Thread/isMultiple"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Thread/calledMethod"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Thread/firstState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//Thread/targetInstance"/>
     </genClasses>
     <genClasses ecoreClass="EnrichedModel.ecore#//Instance"/>
     <genClasses ecoreClass="EnrichedModel.ecore#//State">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//State/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//State/id2"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//State/jumps"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//State/method"/>
+      <genOperations ecoreOperation="EnrichedModel.ecore#//State/GetId"/>
     </genClasses>
     <genClasses ecoreClass="EnrichedModel.ecore#//Jump">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//Jump/condition"/>
@@ -55,9 +67,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//InterruptState/interruptedThread"/>
     </genClasses>
     <genClasses ecoreClass="EnrichedModel.ecore#//ThreadInit">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//ThreadInit/calledMethod"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//ThreadInit/targetInstance"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//ThreadInit/firstState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//ThreadInit/isAdopted"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EnrichedModel.ecore#//ThreadInit/thread"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EnrichedModel.ecore#//ThreadInit/isDaemon"/>

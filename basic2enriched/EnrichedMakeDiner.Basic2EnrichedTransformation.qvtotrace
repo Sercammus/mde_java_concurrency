@@ -137,7 +137,7 @@
     <context>
       <context name="self" type="ForkedThread">
         <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0"/>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1"/>
         </value>
       </context>
     </context>
@@ -161,219 +161,6 @@
     <context>
       <context name="self" type="InterruptableThread">
         <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="enclosingInstanceType" type="InstanceType">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0"/>
-        </value>
-      </parameters>
-      <parameters name="isVisitedOnce" type="Boolean">
-        <value primitiveValue="false" collectionType="Boolean"/>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="Thread">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.1"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="interruptableThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="InterruptableThread">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0"/>
-        </value>
-      </context>
-    </context>
-    <parameters/>
-    <result>
-      <result kind="OUT" name="result" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="sleepActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Sleep">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.0"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="SleepState">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2/@states.0"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="LinearActivity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.0"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2/@states.0"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Activity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.0"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2/@states.0"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="SimpleActivity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.1"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="MethodCallState">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2/@states.1"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="LinearActivity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.1"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2/@states.1"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Activity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.1"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.2/@states.1"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="forkedThread2threadInit" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="ForkedThread">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="fork" type="Fork">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="ThreadInit">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.4/@states.1/@threadInits.0"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="interruptableThread2thread" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="InterruptableThread">
-        <value>
           <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1"/>
         </value>
       </context>
@@ -385,13 +172,13 @@
         </value>
       </parameters>
       <parameters name="isVisitedOnce" type="Boolean">
-        <value primitiveValue="false" collectionType="Boolean"/>
+        <value primitiveValue="true" collectionType="Boolean"/>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="Thread">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.9"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.4"/>
         </value>
       </result>
     </result>
@@ -409,7 +196,7 @@
     <result>
       <result kind="OUT" name="result" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1"/>
         </value>
       </result>
     </result>
@@ -426,14 +213,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="YieldState">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1/@states.0"/>
         </value>
       </result>
     </result>
@@ -450,14 +237,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1/@states.0"/>
         </value>
       </result>
     </result>
@@ -474,14 +261,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1/@states.0"/>
         </value>
       </result>
     </result>
@@ -498,14 +285,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.1"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1/@states.1"/>
         </value>
       </result>
     </result>
@@ -529,7 +316,7 @@
     <result>
       <result kind="OUT" name="result" type="Jump">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.1/@jumps.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1/@states.1/@jumps.0"/>
         </value>
       </result>
     </result>
@@ -540,6 +327,315 @@
       <context name="self" type="Activity">
         <value>
           <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1/@states.1"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="interruptActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Interrupt">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.2"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="InterruptState">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1/@states.2"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="LinearActivity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.2"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1/@states.2"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.2"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1/@states.2"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="endActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="End">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.3"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1/@states.3"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.3"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.1/@states.3"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="forkedThread2threadInit" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="ForkedThread">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="fork" type="Fork">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="ThreadInit">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.4/@states.1/@threadInits.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="interruptableThread2thread" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="InterruptableThread">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="enclosingInstanceType" type="InstanceType">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0"/>
+        </value>
+      </parameters>
+      <parameters name="isVisitedOnce" type="Boolean">
+        <value primitiveValue="true" collectionType="Boolean"/>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="Thread">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.9"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="interruptableThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="InterruptableThread">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="sleepActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Sleep">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="SleepState">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="LinearActivity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="SimpleActivity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="MethodCallState">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.1"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="LinearActivity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.1"/>
         </value>
       </context>
     </context>
@@ -559,59 +655,11 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="interruptActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Interrupt">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.2"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="InterruptState">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.2"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="LinearActivity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.2"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.2"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
     <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
     <context>
       <context name="self" type="Activity">
         <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.2"/>
+          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.1"/>
         </value>
       </context>
     </context>
@@ -625,55 +673,7 @@
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.2"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="endActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="End">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.3"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.3"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Activity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.3"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.3"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.3/@states.1"/>
         </value>
       </result>
     </result>
@@ -724,7 +724,7 @@
     <result>
       <result kind="OUT" name="result" type="Thread">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.5"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.1"/>
         </value>
       </result>
     </result>
@@ -776,7 +776,7 @@
     <context>
       <context name="self" type="ForkedThread">
         <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.1"/>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0"/>
         </value>
       </context>
     </context>
@@ -791,6 +791,483 @@
       <result kind="OUT" name="result" type="ThreadInit">
         <value>
           <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.21/@states.0/@threadInits.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="interruptableThread2thread" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="InterruptableThread">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="enclosingInstanceType" type="InstanceType">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0"/>
+        </value>
+      </parameters>
+      <parameters name="isVisitedOnce" type="Boolean">
+        <value primitiveValue="true" collectionType="Boolean"/>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="Thread">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.3"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="interruptableThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="InterruptableThread">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters/>
+    <result>
+      <result kind="OUT" name="result" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="SimpleActivity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="MethodCallState">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="LinearActivity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.0"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.0"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="sleepActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Sleep">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="SleepState">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.1"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="LinearActivity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.1"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.1"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="SimpleActivity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.2"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="MethodCallState">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.2"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="LinearActivity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.2"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.2"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.2"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.2"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="sleepActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Sleep">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.3"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="SleepState">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.3"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="LinearActivity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.3"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.3"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.3"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.3"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="SimpleActivity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.4"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="MethodCallState">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.4"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="LinearActivity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.4"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.4"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.4"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.4"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="joinActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Join">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.5"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="JoinState">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.5"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="Activity">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.5"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="m" type="Method">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="State">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.8/@states.5"/>
+        </value>
+      </result>
+    </result>
+  </traceRecords>
+  <traceRecords>
+    <mappingOperation name="forkedThread2threadInit" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <context>
+      <context name="self" type="ForkedThread">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.1"/>
+        </value>
+      </context>
+    </context>
+    <parameters>
+      <parameters name="fork" type="Fork">
+        <value>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0"/>
+        </value>
+      </parameters>
+    </parameters>
+    <result>
+      <result kind="OUT" name="result" type="ThreadInit">
+        <value>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.21/@states.0/@threadInits.1"/>
         </value>
       </result>
     </result>
@@ -817,7 +1294,7 @@
     <result>
       <result kind="OUT" name="result" type="Thread">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.6"/>
         </value>
       </result>
     </result>
@@ -835,7 +1312,7 @@
     <result>
       <result kind="OUT" name="result" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
         </value>
       </result>
     </result>
@@ -852,14 +1329,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="ForkState">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.0"/>
         </value>
       </result>
     </result>
@@ -883,7 +1360,7 @@
     <result>
       <result kind="OUT" name="result" type="ThreadInit">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.0/@threadInits.1"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.0/@threadInits.1"/>
         </value>
       </result>
     </result>
@@ -928,7 +1405,7 @@
     <result>
       <result kind="OUT" name="result" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.6"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.10"/>
         </value>
       </result>
     </result>
@@ -945,14 +1422,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.6"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.10"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="MethodCallState">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.6/@states.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.10/@states.0"/>
         </value>
       </result>
     </result>
@@ -969,14 +1446,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.6"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.10"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.6/@states.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.10/@states.0"/>
         </value>
       </result>
     </result>
@@ -993,14 +1470,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.6"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.10"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.6/@states.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.10/@states.0"/>
         </value>
       </result>
     </result>
@@ -1017,14 +1494,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.6"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.10"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="JoinState">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.6/@states.1"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.10/@states.1"/>
         </value>
       </result>
     </result>
@@ -1041,14 +1518,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.6"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.10"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.6/@states.1"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.10/@states.1"/>
         </value>
       </result>
     </result>
@@ -1072,7 +1549,7 @@
     <result>
       <result kind="OUT" name="result" type="ThreadInit">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.0/@threadInits.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.0/@threadInits.0"/>
         </value>
       </result>
     </result>
@@ -1099,7 +1576,7 @@
     <result>
       <result kind="OUT" name="result" type="Thread">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.3"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.5"/>
         </value>
       </result>
     </result>
@@ -1117,7 +1594,7 @@
     <result>
       <result kind="OUT" name="result" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.7"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.11"/>
         </value>
       </result>
     </result>
@@ -1134,14 +1611,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.7"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.11"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="MethodCallState">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.7/@states.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.11/@states.0"/>
         </value>
       </result>
     </result>
@@ -1158,14 +1635,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.7"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.11"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.7/@states.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.11/@states.0"/>
         </value>
       </result>
     </result>
@@ -1182,14 +1659,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.7"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.11"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.7/@states.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.11/@states.0"/>
         </value>
       </result>
     </result>
@@ -1206,14 +1683,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.0"/>
         </value>
       </result>
     </result>
@@ -1230,14 +1707,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="MethodCallState">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.1"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.1"/>
         </value>
       </result>
     </result>
@@ -1254,14 +1731,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.1"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.1"/>
         </value>
       </result>
     </result>
@@ -1278,14 +1755,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.1"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.1"/>
         </value>
       </result>
     </result>
@@ -1302,14 +1779,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="YieldState">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.2"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.2"/>
         </value>
       </result>
     </result>
@@ -1326,14 +1803,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.2"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.2"/>
         </value>
       </result>
     </result>
@@ -1350,14 +1827,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.2"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.2"/>
         </value>
       </result>
     </result>
@@ -1374,14 +1851,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.3"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.3"/>
         </value>
       </result>
     </result>
@@ -1405,7 +1882,7 @@
     <result>
       <result kind="OUT" name="result" type="Jump">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.3/@jumps.0"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.3/@jumps.0"/>
         </value>
       </result>
     </result>
@@ -1422,14 +1899,14 @@
     <parameters>
       <parameters name="m" type="Method">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
         </value>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="State">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.9/@states.3"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.3"/>
         </value>
       </result>
     </result>
@@ -1439,7 +1916,7 @@
     <context>
       <context name="self" type="ForkedThread">
         <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0"/>
+          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.2"/>
         </value>
       </context>
     </context>
@@ -1463,483 +1940,6 @@
     <context>
       <context name="self" type="InterruptableThread">
         <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="enclosingInstanceType" type="InstanceType">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0"/>
-        </value>
-      </parameters>
-      <parameters name="isVisitedOnce" type="Boolean">
-        <value primitiveValue="true" collectionType="Boolean"/>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="Thread">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.4"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="interruptableThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="InterruptableThread">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0"/>
-        </value>
-      </context>
-    </context>
-    <parameters/>
-    <result>
-      <result kind="OUT" name="result" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="SimpleActivity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.0"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="MethodCallState">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.0"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="LinearActivity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.0"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.0"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Activity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.0"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.0"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="sleepActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Sleep">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.1"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="SleepState">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.1"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="LinearActivity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.1"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.1"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Activity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.1"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.1"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="SimpleActivity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.2"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="MethodCallState">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.2"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="LinearActivity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.2"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.2"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Activity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.2"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.2"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="sleepActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Sleep">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.3"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="SleepState">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.3"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="LinearActivity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.3"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.3"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Activity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.3"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.3"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="SimpleActivity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.4"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="MethodCallState">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.4"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="LinearActivity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.4"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.4"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Activity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.4"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.4"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="joinActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Join">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.5"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="JoinState">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.5"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="Activity">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.0/@activities.5"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="m" type="Method">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="State">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.13/@states.5"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="forkedThread2threadInit" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="ForkedThread">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.2"/>
-        </value>
-      </context>
-    </context>
-    <parameters>
-      <parameters name="fork" type="Fork">
-        <value>
-          <modelElement href="models/MakeDiner.xmi#//@activities.0"/>
-        </value>
-      </parameters>
-    </parameters>
-    <result>
-      <result kind="OUT" name="result" type="ThreadInit">
-        <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@instanceTypes.0/@methods.21/@states.0/@threadInits.1"/>
-        </value>
-      </result>
-    </result>
-  </traceRecords>
-  <traceRecords>
-    <mappingOperation name="interruptableThread2thread" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
-    <context>
-      <context name="self" type="InterruptableThread">
-        <value>
           <modelElement href="models/MakeDiner.xmi#//@activities.0/@forkedThreads.2"/>
         </value>
       </context>
@@ -1957,7 +1957,7 @@
     <result>
       <result kind="OUT" name="result" type="Thread">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.8"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.7"/>
         </value>
       </result>
     </result>
@@ -2188,13 +2188,13 @@
         </value>
       </parameters>
       <parameters name="isVisitedOnce" type="Boolean">
-        <value primitiveValue="false" collectionType="Boolean"/>
+        <value primitiveValue="true" collectionType="Boolean"/>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="Thread">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.6"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.0"/>
         </value>
       </result>
     </result>
@@ -2497,13 +2497,13 @@
         </value>
       </parameters>
       <parameters name="isVisitedOnce" type="Boolean">
-        <value primitiveValue="false" collectionType="Boolean"/>
+        <value primitiveValue="true" collectionType="Boolean"/>
       </parameters>
     </parameters>
     <result>
       <result kind="OUT" name="result" type="Thread">
         <value>
-          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.7"/>
+          <modelElement href="EnrichedMakeDiner.xmi#//@methodParameters.8"/>
         </value>
       </result>
     </result>
