@@ -18,9 +18,7 @@ public class Main {
 
 					serverThread = new Thread(new Runnable() {
 						public void run() {
-
 							s2.serverThread(bla2, c2, clientList2);
-
 						}
 					});
 					serverThread.start();
@@ -36,9 +34,7 @@ public class Main {
 
 					guiThread = new Thread(new Runnable() {
 						public void run() {
-
 							gui2.guiThread(serverThread2, bla2, c2, clientList2, s2);
-
 						}
 					});
 					guiThread.start();
@@ -47,29 +43,24 @@ public class Main {
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void main(String[] args) {
 		int state = 1;
-		Object clientList = null;
-		Object bla = null;
-		GUI gui = null;
-		Client c = null;
-		Server s = null;
+		Object clientList = new Object();
+		Object bla = new Object();
+		GUI gui = new GUI();
+		Client c = new Client();
+		Server s = new Server();
 		while (state > 0) {
 			switch (state) {
 				case 1 :
 					Main.chatServer(gui, bla, c, clientList, s);
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 }

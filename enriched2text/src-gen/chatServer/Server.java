@@ -23,13 +23,10 @@ public class Server {
 							state = 3;
 							break;
 						case 3 :
-
 							state = 0;
 							break;
 					}
-
 				}
-
 			}
 		}
 	}
@@ -79,9 +76,7 @@ public class Server {
 
 					clientThread = new Thread(new Runnable() {
 						public void run() {
-
 							c2.clientThread(bla2, clientList2, s2);
-
 						}
 					});
 					clientThread.start();
@@ -95,13 +90,10 @@ public class Server {
 					state = 5;
 					break;
 				case 5 :
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 }

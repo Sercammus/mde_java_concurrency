@@ -21,8 +21,12 @@ public «IF isStatic»static «ENDIF»void «name»(«IF this.name == 'main'»String[] a
     «ELSEIF states.size > 0-»
     int state = «defaultFirstState.id-»;
     «ENDIF-»
+    «IF this.name == 'main'-»
+    «EXPAND methodParameterMain FOREACH this.variables-»
+    «ELSE-»
     «IF this.variables.size > 0 -»
     «EXPAND methodParameter FOREACH this.variables SEPARATOR '=null;' -»=null;
+    «ENDIF-»
     «ENDIF-»
     «EXPAND synchronizationBegin FOREACH lockedResources-»
     «IF states.size > 0 -»
@@ -37,17 +41,23 @@ public «IF isStatic»static «ENDIF»void «name»(«IF this.name == 'main'»String[] a
 		} catch (InterruptedException e) {
 		  state = «this.stateOnInterruption.id»;
 		}
-		«ENDIF»
-    }
-    «ELSE»//TODO stub«ENDIF»
-    «EXPAND synchronizationEnd FOREACH lockedResources-»
-}
+		«ENDIF-»
+    }«ELSE-»//TODO stub«ENDIF»
+    «EXPAND synchronizationEnd FOREACH lockedResources-»}
 «ENDDEFINE»
 
 «DEFINE methodParameter FOR MethodParameter»«ERROR "Should not happen!"» «ENDDEFINE»
 «DEFINE methodParameter FOR Thread»Thread «this.name»«ENDDEFINE»
 «DEFINE methodParameter FOR Instance»«this.instanceType.name» «this.name»«ENDDEFINE»
 «DEFINE methodParameter FOR SharedResource»Object «this.name»«ENDDEFINE»
+
+«DEFINE methodParameterMain FOR MethodParameter»«ERROR "Should not happen!"» «ENDDEFINE»
+«DEFINE methodParameterMain FOR Thread»Thread «this.name» = null;«ENDDEFINE»
+«DEFINE methodParameterMain FOR Instance»«this.instanceType.name» «this.name» = new «this.instanceType.name»();«ENDDEFINE»
+«DEFINE methodParameterMain FOR SharedResource»Object «this.name» = new Object();«ENDDEFINE»
+
+
+
 
 «DEFINE synchronizationBegin FOR SharedResource -»
     synchronized («this.name») {
@@ -59,15 +69,15 @@ public «IF isStatic»static «ENDIF»void «name»(«IF this.name == 'main'»String[] a
 «DEFINE state(Method method) FOR State-»
 case «this.id-»:
 	«EXPAND stateImpl(method) FOR this-»
-	«IF jumps.size>1»
-	«EXPAND jump FOREACH jumps.select(e|e != jumps.last())» state = «IF jumps.last().nextState != null»«jumps.last().nextState.id»«ELSE»0«ENDIF»;
+	«IF jumps.size>1-»
+	«EXPAND jump FOREACH jumps.select(e|e != jumps.last())» state = «IF jumps.last().nextState != null-»«jumps.last().nextState.id»«ELSE»0«ENDIF-»;
 	«ELSEIF jumps.size==1»
 	state = «IF jumps.first().nextState != null»«jumps.first().nextState.id»«ELSE»0«ENDIF»;
-	«ELSE»
+	«ELSE-»
 	state = 0;
 	«ENDIF-»
 	break;
-«ENDDEFINE»
+«ENDDEFINE-»
 «DEFINE jump FOR Jump»if (true /*TODO "«condition»"*/) state = «IF nextState != null»«nextState.id»«ELSE»0«ENDIF»;
 else 
 «ENDDEFINE»
@@ -87,9 +97,9 @@ this.«ENDIF»
 Thread.yield();
 «ENDDEFINE»
 «DEFINE stateImpl(Method method) FOR SleepState-»
-«IF method.interruption == 2»
+«IF method.interruption == 2-»
 Thread.sleep(«this.duration»);
-«ELSE»
+«ELSE-»
 try{
 	Thread.sleep(«this.duration»);
 } catch (InterruptedException e) {
@@ -97,7 +107,7 @@ try{
 }
 «ENDIF»
 «ENDDEFINE»
-«DEFINE stateImpl(Method method) FOR ForkState»
+«DEFINE stateImpl(Method method) FOR ForkState-»
 «EXPAND forkThread(method) FOREACH this.threadInits»
 «ENDDEFINE»
 
@@ -107,8 +117,7 @@ try{
 «EXPAND finalThreadParam(method) FOR thread.targetInstance-»
 «ENDIF»
 «this.thread.name»= new Thread(new Runnable(){
-public void run(){
-«EXPAND threadInit(method) FOR this»
+public void run(){«EXPAND threadInit(method) FOR this-»
 }});
 «this.thread.name».start();
 }
@@ -118,8 +127,7 @@ public void run(){
 «IF method.interruption == 2»
 «EXPAND joinThread FOREACH joinedThreads»
 «ELSE»
-try{
-	«EXPAND joinThread FOREACH joinedThreads»
+try{«EXPAND joinThread FOREACH joinedThreads-»
 } catch (InterruptedException e) {
 	e.printStackTrace();
 }
@@ -146,7 +154,7 @@ this«ENDIF-»
 
 
 «DEFINE threadInit(Method method) FOR ThreadInit»
-«IF this.thread.targetInstance == null»
+«IF this.thread.targetInstance == null-»
 Main.«ELSE-»
 «this.thread.targetInstance.name+'2'».
 «ENDIF-»

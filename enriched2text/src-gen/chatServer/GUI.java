@@ -16,7 +16,6 @@ public class GUI {
 					state = 2;
 					break;
 				case 2 :
-
 					if (true /*TODO "[message]"*/)
 						state = 3;
 					else
@@ -33,13 +32,10 @@ public class GUI {
 					state = 5;
 					break;
 				case 5 :
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 }

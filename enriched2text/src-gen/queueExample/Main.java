@@ -31,9 +31,7 @@ public class Main {
 					state = 1;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void dequeue() {
@@ -54,7 +52,6 @@ public class Main {
 					state = 3;
 					break;
 				case 2 :
-
 					if (true /*TODO "[output]"*/)
 						state = 3;
 					else
@@ -66,7 +63,6 @@ public class Main {
 					state = 1;
 					break;
 				case 4 :
-
 					try {
 						Thread.sleep(1);
 					} catch (InterruptedException e) {
@@ -76,9 +72,7 @@ public class Main {
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void queueExample(Object queue) {
@@ -97,9 +91,7 @@ public class Main {
 				{
 					outputThread = new Thread(new Runnable() {
 						public void run() {
-
 							Main.outputThread();
-
 						}
 					});
 					outputThread.start();
@@ -110,9 +102,7 @@ public class Main {
 
 					inputThread = new Thread(new Runnable() {
 						public void run() {
-
 							Main.inputThread(queue2);
-
 						}
 					});
 					inputThread.start();
@@ -121,25 +111,20 @@ public class Main {
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void main(String[] args) {
 		int state = 1;
-		Object queue = null;
+		Object queue = new Object();
 		while (state > 0) {
 			switch (state) {
 				case 1 :
 					Main.queueExample(queue);
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 }

@@ -15,7 +15,6 @@ public class Client {
 		while (state > 0) {
 			switch (state) {
 				case 1 :
-
 					if (true /*TODO "[no msg]"*/)
 						state = 2;
 					else if (true /*TODO "[disconnect]"*/)
@@ -24,7 +23,6 @@ public class Client {
 						state = 3;
 					break;
 				case 2 :
-
 					try {
 						Thread.sleep(1);
 					} catch (InterruptedException e) {
@@ -44,17 +42,13 @@ public class Client {
 					state = 5;
 					break;
 				case 5 :
-
 					state = 0;
 					break;
 				case 6 :
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 }

@@ -16,7 +16,6 @@ public class Main {
 					state = 2;
 					break;
 				case 2 :
-
 					if (true /*TODO "[meat is done]"*/)
 						state = 3;
 					else
@@ -28,13 +27,10 @@ public class Main {
 					state = 4;
 					break;
 				case 4 :
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void turnMeat() {
@@ -46,7 +42,6 @@ public class Main {
 		while (state > 0) {
 			switch (state) {
 				case 1 :
-
 					try {
 						Thread.sleep(10);
 					} catch (InterruptedException e) {
@@ -61,13 +56,10 @@ public class Main {
 					state = 1;
 					break;
 				case 3 :
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void prepareMeatThread() {
@@ -88,9 +80,7 @@ public class Main {
 
 					waitForMeatThread = new Thread(new Runnable() {
 						public void run() {
-
 							Main.waitForMeatThread(turnMeatThread2);
-
 						}
 					});
 					waitForMeatThread.start();
@@ -99,9 +89,7 @@ public class Main {
 				{
 					turnMeatThread = new Thread(new Runnable() {
 						public void run() {
-
 							Main.turnMeatThread();
-
 						}
 					});
 					turnMeatThread.start();
@@ -110,9 +98,7 @@ public class Main {
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void meatThread(Thread cookThread, Thread meatThread) {
@@ -121,13 +107,10 @@ public class Main {
 			switch (state) {
 				case 1 :
 					Main.prepareMeatThread();
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void cutVegetables() {
@@ -146,9 +129,7 @@ public class Main {
 				case 2 :
 
 					try {
-
 						meatThread.join();
-
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -157,13 +138,10 @@ public class Main {
 					break;
 				case 3 :
 					Main.cookThread(cookThread);
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void addVegetablesToMeat() {
@@ -184,9 +162,7 @@ public class Main {
 
 					meatThread = new Thread(new Runnable() {
 						public void run() {
-
 							Main.meatThread(cookThread2, meatThread2);
-
 						}
 					});
 					meatThread.start();
@@ -198,9 +174,7 @@ public class Main {
 
 					vegetablesThread = new Thread(new Runnable() {
 						public void run() {
-
 							Main.vegetablesThread(cookThread2, meatThread2);
-
 						}
 					});
 					vegetablesThread.start();
@@ -219,16 +193,13 @@ public class Main {
 					state = 4;
 					break;
 				case 4 :
-
 					if (true /*TODO "[vegetables are done]"*/)
 						state = 0;
 					else
 						state = 3;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void makeTable() {
@@ -245,13 +216,10 @@ public class Main {
 					state = 2;
 					break;
 				case 2 :
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void cookWater() {
@@ -276,7 +244,6 @@ public class Main {
 					state = 2;
 					break;
 				case 2 :
-
 					try {
 						Thread.sleep(600);
 					} catch (InterruptedException e) {
@@ -291,7 +258,6 @@ public class Main {
 					state = 4;
 					break;
 				case 4 :
-
 					try {
 						Thread.sleep(600);
 					} catch (InterruptedException e) {
@@ -308,9 +274,7 @@ public class Main {
 				case 6 :
 
 					try {
-
 						cookThread.join();
-
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -319,13 +283,10 @@ public class Main {
 					break;
 				case 7 :
 					Main.makeDinerThread();
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void addHerbs() {
@@ -338,13 +299,10 @@ public class Main {
 			switch (state) {
 				case 1 :
 					Main.addHerbs();
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void addRice() {
@@ -367,9 +325,7 @@ public class Main {
 				case 2 :
 
 					try {
-
 						addHerbsThread.join();
-
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -382,13 +338,10 @@ public class Main {
 					state = 4;
 					break;
 				case 4 :
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void makeDinerThread() {
@@ -405,9 +358,7 @@ public class Main {
 				{
 					makeTableThread = new Thread(new Runnable() {
 						public void run() {
-
 							Main.makeTableThread();
-
 						}
 					});
 					makeTableThread.start();
@@ -418,9 +369,7 @@ public class Main {
 
 					cookThread = new Thread(new Runnable() {
 						public void run() {
-
 							Main.cookThread(cookThread2);
-
 						}
 					});
 					cookThread.start();
@@ -431,9 +380,7 @@ public class Main {
 
 					riceThread = new Thread(new Runnable() {
 						public void run() {
-
 							Main.riceThread(cookThread2);
-
 						}
 					});
 					riceThread.start();
@@ -448,9 +395,7 @@ public class Main {
 
 					addHerbsThread = new Thread(new Runnable() {
 						public void run() {
-
 							Main.addHerbsThread(addHerbsThread2);
-
 						}
 					});
 					addHerbsThread.start();
@@ -461,9 +406,7 @@ public class Main {
 
 					addRiceThread = new Thread(new Runnable() {
 						public void run() {
-
 							Main.addRiceThread(addHerbsThread2);
-
 						}
 					});
 					addRiceThread.start();
@@ -472,9 +415,7 @@ public class Main {
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 	public static void main(String[] args) {
@@ -483,13 +424,10 @@ public class Main {
 			switch (state) {
 				case 1 :
 					Main.makeDinerThread();
-
 					state = 0;
 					break;
 			}
-
 		}
-
 	}
 
 }
