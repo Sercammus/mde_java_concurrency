@@ -48,10 +48,15 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 			calledMethod := mainThread.calledMethod;
 			firstState := mainThread.firstState;
 		};
+		variables := self.resources->resolve(EnrichedModel::SharedResource)->select(e| not e.isStatic);
+		variables += self.instances->resolve(EnrichedModel::Instance)->select(e| not e.isStatic);
 		states += defaultFirstState;
 		isStatic := true;
 	};
 	defaultInstanceType.methods += mainMethod;
+	
+	//Add package name
+	packageName := self.name;
 	
 	//Finally add the (interruptable) threads, now that we have them all
 	methodParameters += BasicModel::InterruptableThread.allInstances().resolve(EnrichedModel::Thread);

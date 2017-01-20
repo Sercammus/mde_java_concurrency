@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <trace:Trace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:trace="http:///www.eclipse.org/m2m/qvt/operational/trace.ecore">
   <traceRecords>
-    <mappingOperation name="model2model" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="model2model" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//model2model"/>
+    </mappingOperation>
     <context>
       <context name="self" type="BasicModel">
         <value>
@@ -19,7 +21,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="instanceType2instanceType" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="instanceType2instanceType" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//instanceType2instanceType"/>
+    </mappingOperation>
     <context>
       <context name="self" type="InstanceType">
         <value>
@@ -37,7 +41,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="instanceType2instanceType" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="instanceType2instanceType" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//instanceType2instanceType"/>
+    </mappingOperation>
     <context>
       <context name="self" type="InstanceType">
         <value>
@@ -55,7 +61,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="instanceType2instanceType" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="instanceType2instanceType" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//instanceType2instanceType"/>
+    </mappingOperation>
     <context>
       <context name="self" type="InstanceType">
         <value>
@@ -73,7 +81,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="instance2instance" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="instance2instance" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//instance2instance"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Instance">
         <value>
@@ -91,7 +101,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="instance2instance" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="instance2instance" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//instance2instance"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Instance">
         <value>
@@ -109,7 +121,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="instance2instance" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="instance2instance" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//instance2instance"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Instance">
         <value>
@@ -127,7 +141,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="sharedResource2sharedResource" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="sharedResource2sharedResource" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//sharedResource2sharedResource"/>
+    </mappingOperation>
     <context>
       <context name="self" type="SharedResource">
         <value>
@@ -145,7 +161,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="sharedResource2sharedResource" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="sharedResource2sharedResource" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//sharedResource2sharedResource"/>
+    </mappingOperation>
     <context>
       <context name="self" type="SharedResource">
         <value>
@@ -163,7 +181,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="nestedThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="nestedThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//nestedThread2method"/>
+    </mappingOperation>
     <context>
       <context name="self" type="NestedThread">
         <value>
@@ -181,7 +201,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//simpleActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="SimpleActivity">
         <value>
@@ -205,7 +227,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//linearActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="LinearActivity">
         <value>
@@ -229,7 +253,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -253,7 +279,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//simpleActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="SimpleActivity">
         <value>
@@ -277,7 +305,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//linearActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="LinearActivity">
         <value>
@@ -301,7 +331,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -325,7 +357,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="endActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="endActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//endActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="End">
         <value>
@@ -349,7 +383,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -373,7 +409,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="interruptableThread2thread" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="interruptableThread2thread" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//interruptableThread2thread"/>
+    </mappingOperation>
     <context>
       <context name="self" type="InterruptableThread">
         <value>
@@ -400,7 +438,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="interruptableThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="interruptableThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//interruptableThread2method"/>
+    </mappingOperation>
     <context>
       <context name="self" type="InterruptableThread">
         <value>
@@ -418,7 +458,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="forkActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="forkActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//forkActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Fork">
         <value>
@@ -442,7 +484,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="forkedThread2threadInit" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="forkedThread2threadInit" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//forkedThread2threadInit"/>
+    </mappingOperation>
     <context>
       <context name="self" type="ForkedThread">
         <value>
@@ -466,7 +510,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="interruptableThread2thread" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="interruptableThread2thread" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//interruptableThread2thread"/>
+    </mappingOperation>
     <context>
       <context name="self" type="InterruptableThread">
         <value>
@@ -487,13 +533,15 @@
     <result>
       <result kind="OUT" name="result" type="Thread">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@methodParameters.7"/>
+          <modelElement href="EnrichedChatServer.xmi#//@methodParameters.6"/>
         </value>
       </result>
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="interruptableThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="interruptableThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//interruptableThread2method"/>
+    </mappingOperation>
     <context>
       <context name="self" type="InterruptableThread">
         <value>
@@ -511,7 +559,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//simpleActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="SimpleActivity">
         <value>
@@ -535,7 +585,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//linearActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="LinearActivity">
         <value>
@@ -559,7 +611,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -583,7 +637,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//simpleActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="SimpleActivity">
         <value>
@@ -607,7 +663,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//linearActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="LinearActivity">
         <value>
@@ -631,7 +689,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -655,7 +715,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="forkActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="forkActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//forkActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Fork">
         <value>
@@ -679,7 +741,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="forkedThread2threadInit" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="forkedThread2threadInit" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//forkedThread2threadInit"/>
+    </mappingOperation>
     <context>
       <context name="self" type="ForkedThread">
         <value>
@@ -703,7 +767,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="interruptableThread2thread" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="interruptableThread2thread" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//interruptableThread2thread"/>
+    </mappingOperation>
     <context>
       <context name="self" type="InterruptableThread">
         <value>
@@ -724,13 +790,15 @@
     <result>
       <result kind="OUT" name="result" type="Thread">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@methodParameters.6"/>
+          <modelElement href="EnrichedChatServer.xmi#//@methodParameters.8"/>
         </value>
       </result>
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="interruptableThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="interruptableThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//interruptableThread2method"/>
+    </mappingOperation>
     <context>
       <context name="self" type="InterruptableThread">
         <value>
@@ -748,7 +816,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="decisionActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="decisionActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//decisionActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Decision">
         <value>
@@ -772,7 +842,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="branch2jump" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="branch2jump" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//branch2jump"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Branch">
         <value>
@@ -796,7 +868,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="branch2jump" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="branch2jump" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//branch2jump"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Branch">
         <value>
@@ -820,7 +894,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -844,7 +920,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="sleepActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="sleepActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//sleepActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Sleep">
         <value>
@@ -868,7 +946,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//linearActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="LinearActivity">
         <value>
@@ -892,7 +972,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -916,7 +998,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="nestedActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="nestedActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//nestedActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="NestedActivity">
         <value>
@@ -940,7 +1024,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//linearActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="LinearActivity">
         <value>
@@ -964,7 +1050,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -988,7 +1076,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//simpleActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="SimpleActivity">
         <value>
@@ -1012,7 +1102,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//linearActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="LinearActivity">
         <value>
@@ -1036,7 +1128,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -1060,7 +1154,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="endActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="endActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//endActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="End">
         <value>
@@ -1084,7 +1180,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -1108,7 +1206,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="forkedThread2jump" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="forkedThread2jump" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//forkedThread2jump"/>
+    </mappingOperation>
     <context>
       <context name="self" type="ForkedThread">
         <value>
@@ -1126,7 +1226,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -1150,7 +1252,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="forkedThread2threadInit" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="forkedThread2threadInit" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//forkedThread2threadInit"/>
+    </mappingOperation>
     <context>
       <context name="self" type="ForkedThread">
         <value>
@@ -1174,7 +1278,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="interruptableThread2thread" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="interruptableThread2thread" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//interruptableThread2thread"/>
+    </mappingOperation>
     <context>
       <context name="self" type="InterruptableThread">
         <value>
@@ -1195,13 +1301,15 @@
     <result>
       <result kind="OUT" name="result" type="Thread">
         <value>
-          <modelElement href="EnrichedChatServer.xmi#//@methodParameters.8"/>
+          <modelElement href="EnrichedChatServer.xmi#//@methodParameters.7"/>
         </value>
       </result>
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="interruptableThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="interruptableThread2method" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//interruptableThread2method"/>
+    </mappingOperation>
     <context>
       <context name="self" type="InterruptableThread">
         <value>
@@ -1219,7 +1327,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="simpleActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//simpleActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="SimpleActivity">
         <value>
@@ -1243,7 +1353,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//linearActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="LinearActivity">
         <value>
@@ -1267,7 +1379,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -1291,7 +1405,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="decisionActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="decisionActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//decisionActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Decision">
         <value>
@@ -1315,7 +1431,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="branch2jump" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="branch2jump" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//branch2jump"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Branch">
         <value>
@@ -1339,7 +1457,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -1363,7 +1483,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="nestedActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="nestedActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//nestedActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="NestedActivity">
         <value>
@@ -1387,7 +1509,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//linearActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="LinearActivity">
         <value>
@@ -1411,7 +1535,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -1435,7 +1561,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="interruptActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="interruptActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//interruptActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Interrupt">
         <value>
@@ -1459,7 +1587,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="linearActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//linearActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="LinearActivity">
         <value>
@@ -1483,7 +1613,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -1507,7 +1639,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="endActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="endActivity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//endActivity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="End">
         <value>
@@ -1531,7 +1665,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
@@ -1555,7 +1691,9 @@
     </result>
   </traceRecords>
   <traceRecords>
-    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation"/>
+    <mappingOperation name="activity2state" package="Basic2EnrichedTransformation" module="Basic2EnrichedTransformation">
+      <runtimeMappingOperation href="qvto:/module.env#//activity2state"/>
+    </mappingOperation>
     <context>
       <context name="self" type="Activity">
         <value>
