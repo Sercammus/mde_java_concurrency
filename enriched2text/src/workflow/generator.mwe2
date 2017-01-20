@@ -9,9 +9,12 @@ import org.eclipse.xpand2.Generator
 import org.eclipse.xpand2.output.JavaBeautifier
 import org.eclipse.xtend.expression.ResourceManagerDefaultImpl
 
-var modelUri  = "platform:/resource/enriched2text/src/models/EnrichedChatServer.xmi"
-var dirSrcGen = "src-gen"
-
+var modelChat  = "platform:/resource/enriched2text/src/models/EnrichedChatServer.xmi"
+var modelDiner = "platform:/resource/enriched2text/src/models/EnrichedMakeDiner.xmi"
+var modelQueue = "platform:/resource/enriched2text/src/models/EnrichedQueue.xmi"
+var dirSrcGenChat = "src-gen/chatServer"
+var dirSrcGenDiner = "src-gen/makeDinerThread"
+var dirSrcGenQueue = "src-gen/queueExample"
 
 Workflow {
 	/* set up EMF for standalone execution */
@@ -24,7 +27,7 @@ Workflow {
 
 	/* load model and store it in slot 'model' */
 	component = Reader {
-		uri = modelUri
+		uri = modelChat
 		modelSlot = "model"
 	}
 
@@ -37,7 +40,7 @@ Workflow {
 */
 	/** Clear output directory */
 	component = DirectoryCleaner {
-		directory = dirSrcGen
+		directory = dirSrcGenChat
 	}
 
 	/* generate code */
@@ -45,7 +48,75 @@ Workflow {
 		metaModel = mm_emf
 		expand = "template::Template::main FOR model"
 		outlet = {
-			path = dirSrcGen
+			path = dirSrcGenChat
+			postprocessor = formatter_java
+			fileEncoding = "ISO-8859-1" // this is the encoding for files written the outlet
+		}
+		// configure Xpand resource encoding (check project resource setting)
+		resourceManager = ResourceManagerDefaultImpl {
+			fileEncoding = "ISO-8859-1"
+		}
+	}
+	
+	
+	/* load model and store it in slot 'model' */
+	component = Reader {
+		uri = modelDiner
+		modelSlot = "model"
+	}
+
+	/* check model */
+/* 	component = CheckComponent {
+		metaModel = mm_emf
+		checkFile = "metamodel::Checks"
+		emfAllChildrenSlot = "model"
+	}
+*/
+	/** Clear output directory */
+	component = DirectoryCleaner {
+		directory = dirSrcGenDiner
+	}
+
+	/* generate code */
+	component = Generator {
+		metaModel = mm_emf
+		expand = "template::Template::main FOR model"
+		outlet = {
+			path = dirSrcGenDiner
+			postprocessor = formatter_java
+			fileEncoding = "ISO-8859-1" // this is the encoding for files written the outlet
+		}
+		// configure Xpand resource encoding (check project resource setting)
+		resourceManager = ResourceManagerDefaultImpl {
+			fileEncoding = "ISO-8859-1"
+		}
+	}
+	
+	
+	/* load model and store it in slot 'model' */
+	component = Reader {
+		uri = modelQueue
+		modelSlot = "model"
+	}
+
+	/* check model */
+/* 	component = CheckComponent {
+		metaModel = mm_emf
+		checkFile = "metamodel::Checks"
+		emfAllChildrenSlot = "model"
+	}
+*/
+	/** Clear output directory */
+	component = DirectoryCleaner {
+		directory = dirSrcGenQueue
+	}
+
+	/* generate code */
+	component = Generator {
+		metaModel = mm_emf
+		expand = "template::Template::main FOR model"
+		outlet = {
+			path = dirSrcGenQueue
 			postprocessor = formatter_java
 			fileEncoding = "ISO-8859-1" // this is the encoding for files written the outlet
 		}

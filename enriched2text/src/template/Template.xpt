@@ -1,11 +1,12 @@
 «IMPORT EnrichedModel»
 
 «DEFINE main FOR EnrichedModel»
-«EXPAND javaClass FOREACH instanceTypes»
+«EXPAND javaClass(this) FOREACH instanceTypes»
 «ENDDEFINE»
 
-«DEFINE javaClass FOR InstanceType»
-    «FILE name+".java"»
+«DEFINE javaClass(EnrichedModel model) FOR InstanceType»
+«FILE name+".java"»package «model.packageName»;
+    
         public class «name» {
             «EXPAND method FOREACH methods»
         }
@@ -13,21 +14,33 @@
 «ENDDEFINE»
 
 «DEFINE method FOR Method»
-public «IF isStatic»static «ENDIF»void «name»(«IF hasDynamicFirstState»int initialState, «ENDIF» «EXPAND methodParameter FOREACH parameters SEPARATOR ', '») {
-    «IF hasDynamicFirstState»
+public «IF isStatic»static «ENDIF»void «name»(«IF this.name == 'main'»String[] args«ELSE»«IF hasDynamicFirstState»int initialState, «ENDIF»«EXPAND methodParameter FOREACH parameters SEPARATOR ', '»«ENDIF»)
+	«IF interruption == 2» throws InterruptedException «ENDIF-»{
+    «IF hasDynamicFirstState-»
     int state = initialState;
-    «ELSEIF states.size > 0»
-    int state = «defaultFirstState.id»;
-    «ENDIF»
-    «EXPAND synchronizationBegin FOREACH lockedResources»
-    «IF states.size > 0»
+    «ELSEIF states.size > 0-»
+    int state = «defaultFirstState.id-»;
+    «ENDIF-»
+    «IF this.variables.size > 0 -»
+    «EXPAND methodParameter FOREACH this.variables SEPARATOR '=null;' -»=null;
+    «ENDIF-»
+    «EXPAND synchronizationBegin FOREACH lockedResources-»
+    «IF states.size > 0 -»
     while (state > 0) {
+    	«IF interruption == 1-»
+		try{
+		«ENDIF-»
         switch (state) {
-		    «EXPAND state FOREACH states»
+		    «EXPAND state(this) FOREACH states-»
 		}
+		«IF interruption == 1»
+		} catch (InterruptedException e) {
+		  state = «this.stateOnInterruption.id»;
+		}
+		«ENDIF»
     }
-    «ENDIF»
-    «EXPAND synchronizationEnd FOREACH lockedResources»
+    «ELSE»//TODO stub«ENDIF»
+    «EXPAND synchronizationEnd FOREACH lockedResources-»
 }
 «ENDDEFINE»
 
@@ -36,67 +49,123 @@ public «IF isStatic»static «ENDIF»void «name»(«IF hasDynamicFirstState»int initi
 «DEFINE methodParameter FOR Instance»«this.instanceType.name» «this.name»«ENDDEFINE»
 «DEFINE methodParameter FOR SharedResource»Object «this.name»«ENDDEFINE»
 
-«DEFINE synchronizationBegin FOR SharedResource»
+«DEFINE synchronizationBegin FOR SharedResource -»
     synchronized («this.name») {
 «ENDDEFINE»
-«DEFINE synchronizationEnd FOR SharedResource»
+«DEFINE synchronizationEnd FOR SharedResource -»
     }
 «ENDDEFINE»
 
-«DEFINE state FOR State»
-case «this.id»:
-	«EXPAND stateImpl FOR this»
+«DEFINE state(Method method) FOR State-»
+case «this.id-»:
+	«EXPAND stateImpl(method) FOR this-»
 	«IF jumps.size>1»
-	«EXPAND jump FOREACH jumps.remove(jumps.last())» state = «jumps.last().nextState.id»;
+	«EXPAND jump FOREACH jumps.select(e|e != jumps.last())» state = «IF jumps.last().nextState != null»«jumps.last().nextState.id»«ELSE»0«ENDIF»;
 	«ELSEIF jumps.size==1»
-	state = «jumps.first().nextState.id»;
+	state = «IF jumps.first().nextState != null»«jumps.first().nextState.id»«ELSE»0«ENDIF»;
 	«ELSE»
 	state = 0;
-	«ENDIF»
+	«ENDIF-»
 	break;
 «ENDDEFINE»
-«DEFINE jump FOR Jump»if (eval("«condition»")) state = «nextState.id»;
+«DEFINE jump FOR Jump»if (true /*TODO "«condition»"*/) state = «IF nextState != null»«nextState.id»«ELSE»0«ENDIF»;
 else 
 «ENDDEFINE»
 
-«DEFINE stateImpl FOR State»
+«DEFINE stateImpl(Method method) FOR State-»
 «ENDDEFINE»
-«DEFINE stateImpl FOR MethodCallState»
-«this.calledMethod.name»(); //TODO parameters!
+«DEFINE stateImpl(Method method) FOR MethodCallState-»
+«IF this.targetInstance == null-»
+Main.«ELSEIF method.parameters.contains(this.targetInstance)-»
+«this.targetInstance.name».«ELSE-»
+this.«ENDIF»
+«this.calledMethod.name-»
+(«IF this.calledMethod.hasDynamicFirstState»«this.firstState.id», «ENDIF-»
+«EXPAND methodCallParameter(method) FOREACH this.calledMethod.parameters SEPARATOR ', '»);
 «ENDDEFINE»
-«DEFINE stateImpl FOR YieldState»
+«DEFINE stateImpl(Method method) FOR YieldState-»
 Thread.yield();
 «ENDDEFINE»
-«DEFINE stateImpl FOR SleepState»
+«DEFINE stateImpl(Method method) FOR SleepState-»
+«IF method.interruption == 2»
 Thread.sleep(«this.duration»);
+«ELSE»
+try{
+	Thread.sleep(«this.duration»);
+} catch (InterruptedException e) {
+	e.printStackTrace();
+}
+«ENDIF»
 «ENDDEFINE»
-«DEFINE stateImpl FOR ForkState»
-//Fork states here
+«DEFINE stateImpl(Method method) FOR ForkState»
+«EXPAND forkThread(method) FOREACH this.threadInits»
 «ENDDEFINE»
 
-«DEFINE stateImpl FOR JoinState»
-«EXPAND joinThread FOREACH joinedThreads»
+«DEFINE forkThread(Method method) FOR ThreadInit»
+	{«EXPAND finalThreadParam(method) FOREACH thread.calledMethod.parameters-»
+«IF this.thread.targetInstance != null-»
+«EXPAND finalThreadParam(method) FOR thread.targetInstance-»
+«ENDIF»
+«this.thread.name»= new Thread(new Runnable(){
+public void run(){
+«EXPAND threadInit(method) FOR this»
+}});
+«this.thread.name».start();
+}
 «ENDDEFINE»
+
+«DEFINE stateImpl(Method method) FOR JoinState-»
+«IF method.interruption == 2»
+«EXPAND joinThread FOREACH joinedThreads»
+«ELSE»
+try{
+	«EXPAND joinThread FOREACH joinedThreads»
+} catch (InterruptedException e) {
+	e.printStackTrace();
+}
+«ENDIF»
+«ENDDEFINE»
+
 «DEFINE joinThread FOR Thread»
 «this.name».join();
 «ENDDEFINE»
 
-«DEFINE stateImpl FOR InterruptState»
+«DEFINE stateImpl(Method method) FOR InterruptState-»
 «interruptedThread.name».interrupt();
 «ENDDEFINE»
 
-«REM»
-«DEFINE InstanceVar FOR Feature»
-    private «this.type.name» «this.name»;
+«DEFINE methodCallParameter(Method method) FOR MethodParameter-»
+«IF method.parameters.contains(this) || method.variables.contains(this)»
+«this.name»«ELSE»
+this«ENDIF-»
 «ENDDEFINE»
 
-«DEFINE AccessorMethods FOR Feature»
-    public void «setter()»(«type.name» «name») {
-        this.«name» = «name»;
-    }
+«DEFINE methodCallParameterTwo(Method method) FOR MethodParameter-»
+«this.name+ '2'»«ENDDEFINE»
 
-    public «type.name» «getter()»() {
-        return «name»;
-    }
+
+
+«DEFINE threadInit(Method method) FOR ThreadInit»
+«IF this.thread.targetInstance == null»
+Main.«ELSE-»
+«this.thread.targetInstance.name+'2'».
+«ENDIF-»
+«this.thread.calledMethod.name-»
+(«IF this.thread.calledMethod.hasDynamicFirstState»«this.thread.firstState.id», «ENDIF-»
+«EXPAND methodCallParameterTwo(method) FOREACH this.thread.calledMethod.parameters SEPARATOR ', '-»);
 «ENDDEFINE»
-«ENDREM»
+
+«DEFINE finalThreadParam(Method method) FOR MethodParameter-»
+«ERROR 'Should not happen'» 
+«ENDDEFINE»
+«DEFINE finalThreadParam(Method method) FOR SharedResource-»
+final Object «this.name + '2'» = «this.name»; 
+«ENDDEFINE»
+«DEFINE finalThreadParam(Method method) FOR Thread-»
+final Thread «this.name + '2'» = «this.name»;
+«ENDDEFINE»
+«DEFINE finalThreadParam(Method method) FOR Instance-»
+final «this.instanceType.name» «this.name + '2'» = «IF method.parameters.contains(this) || method.variables.contains(this)»«this.name»«ELSE»this«ENDIF»;
+«ENDDEFINE»
+
+
