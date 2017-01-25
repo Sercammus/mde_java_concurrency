@@ -6,14 +6,35 @@
 
 «DEFINE javaClass(EnrichedModel model) FOR InstanceType»
 «FILE name+".java"»package «model.packageName»;
-    
+		«IF model.methodParameters.typeSelect(Thread).exists(e|e.instanceType==this && e.isMultiple)»
+		import java.util.*;
+		
+		«ENDIF-»
         public class «name» {
-            «EXPAND method FOREACH methods»
+        	«EXPAND staticField FOREACH model.methodParameters.select(e|e.isStatic && e.instanceType==this)»
+            «EXPAND method(model) FOREACH methods»
         }
     «ENDFILE»
 «ENDDEFINE»
 
-«DEFINE method FOR Method»
+«DEFINE staticField FOR MethodParameter»
+«ERROR 'Should not happen'»
+«ENDDEFINE»
+«DEFINE staticField FOR Thread»
+«IF this.isMultiple-»
+public static List<Thread> «this.name» = new LinkedList<Thread>();
+«ELSE-»
+public static Thread «this.name» = null;
+«ENDIF-»
+«ENDDEFINE»
+«DEFINE staticField FOR Instance»
+public static «this.instanceType.name» «this.name» = new «this.instanceType.name»();
+«ENDDEFINE»
+«DEFINE staticField FOR SharedResource»
+public static Object «this.name» = new Object();
+«ENDDEFINE»
+
+«DEFINE method(EnrichedModel model) FOR Method»
 public «IF isStatic»static «ENDIF»void «name»(«IF this.name == 'main'»String[] args«ELSE»«IF hasDynamicFirstState»int initialState, «ENDIF»«EXPAND methodParameter FOREACH parameters SEPARATOR ', '»«ENDIF»)
 	«IF interruption == 2» throws InterruptedException «ENDIF-»{
     «IF hasDynamicFirstState-»
@@ -35,9 +56,12 @@ public «IF isStatic»static «ENDIF»void «name»(«IF this.name == 'main'»String[] a
 		}
 		«IF interruption == 1»
 		} catch (InterruptedException e) {
-		  state = «this.stateOnInterruption.id»;
+			«IF model.methodParameters.typeSelect(Thread).exists(e|e.name == this.name && e.isMultiple)»synchronized («model.methodParameters.selectFirst(e|e.name == this.name).instanceType.name».«this.name») {
+				«model.methodParameters.selectFirst(e|e.name == this.name).instanceType.name».«this.name».remove(this);
+			}«ENDIF-»
+			state = «this.stateOnInterruption.id»;
 		}
-		«ENDIF»
+		«ENDIF-»
     }
     «ELSE»//TODO stub«ENDIF»
     «EXPAND synchronizationEnd FOREACH lockedResources-»
@@ -81,7 +105,7 @@ Main.«ELSEIF method.parameters.contains(this.targetInstance)-»
 this.«ENDIF»
 «this.calledMethod.name-»
 («IF this.calledMethod.hasDynamicFirstState»«this.firstState.id», «ENDIF-»
-«EXPAND methodCallParameter(method) FOREACH this.calledMethod.parameters SEPARATOR ', '»);
+«EXPAND parameterInMethodCall(method) FOREACH this.calledMethod.parameters SEPARATOR ', '»);
 «ENDDEFINE»
 «DEFINE stateImpl(Method method) FOR YieldState-»
 Thread.yield();
@@ -103,21 +127,41 @@ try{
 
 «DEFINE forkThread(Method method) FOR ThreadInit»
 	{«EXPAND finalThreadParam(method) FOREACH thread.calledMethod.parameters-»
-«IF this.thread.targetInstance != null-»
-«EXPAND finalThreadParam(method) FOR thread.targetInstance-»
-«ENDIF»
-«this.thread.name»= new Thread(new Runnable(){
-public void run(){
-«EXPAND threadInit(method) FOR this»
-}});
-«this.thread.name».start();
-}
+	«IF this.thread.targetInstance != null-»
+	«EXPAND finalThreadParam(method) FOR thread.targetInstance-»
+	«ENDIF-»
+	«IF this.thread.isStatic-»
+	«IF this.thread.isMultiple-»
+	Thread $t = new Thread(new Runnable(){
+		public void run(){
+		«EXPAND threadInit(method) FOR this»
+		}
+	});
+	
+	synchronized («this.thread.instanceType.name».«this.thread.name») {
+		«this.thread.instanceType.name».«this.thread.name».add($t);
+	}
+	
+	$t.start();«ELSE»
+	«this.thread.instanceType.name».«this.thread.name»= new Thread(new Runnable(){
+	public void run(){
+	«EXPAND threadInit(method) FOR this»
+	}});
+	«ENDIF»
+	«ELSE»
+	«this.thread.name»= new Thread(new Runnable(){
+	public void run(){
+	«EXPAND threadInit(method) FOR this»
+	}});
+	«this.thread.name».start();
+	«ENDIF-»
+	}
 «ENDDEFINE»
 
 «DEFINE stateImpl(Method method) FOR JoinState-»
 «IF method.interruption == 2»
 «EXPAND joinThread FOREACH joinedThreads»
-«ELSE»
+«ELSE-»
 try{
 	«EXPAND joinThread FOREACH joinedThreads»
 } catch (InterruptedException e) {
@@ -126,46 +170,71 @@ try{
 «ENDIF»
 «ENDDEFINE»
 
-«DEFINE joinThread FOR Thread»
+«DEFINE joinThread FOR Thread-»
+«IF this.isStatic-»
+«IF this.isMultiple-»{
+	Thread $t;
+	synchronized («this.instanceType.name».«this.name») {
+		$t = «this.instanceType.name».«this.name».get(«this.instanceType.name».«this.name».size() - 1);
+	}
+	$t.join();
+}«ELSE-»
+«this.instanceType.name».«this.name».join();
+«ENDIF-»
+«ELSE-»
 «this.name».join();
+«ENDIF-»
 «ENDDEFINE»
 
 «DEFINE stateImpl(Method method) FOR InterruptState-»
-«interruptedThread.name».interrupt();
+«IF interruptedThread.isStatic-»
+«IF interruptedThread.isMultiple-»
+synchronized («interruptedThread.instanceType.name».«interruptedThread.name») {
+	for (Thread $t : «interruptedThread.instanceType.name».«interruptedThread.name») {
+		$t.interrupt();
+	}
+	«interruptedThread.name».clear();
+}
+«ELSE-»
+if («interruptedThread.instanceType.name».«interruptedThread.name» != null) {
+	«interruptedThread.instanceType.name».«interruptedThread.name».interrupt();
+}«ENDIF-»
+«ELSE»if («interruptedThread.name» != null) {
+	«interruptedThread.name».interrupt();
+}«ENDIF-»
 «ENDDEFINE»
 
-«DEFINE methodCallParameter(Method method) FOR MethodParameter-»
+«DEFINE parameterInMethodCall(Method method) FOR MethodParameter-»
 «IF method.parameters.contains(this) || method.variables.contains(this)»
-«this.name»«ELSE»
+«this.name»«ELSEIF this.isStatic-»
+«this.instanceType.name».«this.name-»
+«ELSE-»
 this«ENDIF-»
 «ENDDEFINE»
 
-«DEFINE methodCallParameterTwo(Method method) FOR MethodParameter-»
-«this.name+ '2'»«ENDDEFINE»
-
-
-
-«DEFINE threadInit(Method method) FOR ThreadInit»
-«IF this.thread.targetInstance == null»
+«DEFINE threadInit(Method method) FOR ThreadInit-»
+«IF this.thread.targetInstance == null-»
 Main.«ELSE-»
-«this.thread.targetInstance.name+'2'».
+«this.thread.targetInstance.name+'$final'».
 «ENDIF-»
 «this.thread.calledMethod.name-»
 («IF this.thread.calledMethod.hasDynamicFirstState»«this.thread.firstState.id», «ENDIF-»
-«EXPAND methodCallParameterTwo(method) FOREACH this.thread.calledMethod.parameters SEPARATOR ', '-»);
-«ENDDEFINE»
+«EXPAND finalParameterInThreadInit(method) FOREACH this.thread.calledMethod.parameters SEPARATOR ', '-»);«ENDDEFINE»
+
+«DEFINE finalParameterInThreadInit(Method method) FOR MethodParameter-»
+«this.name+ '$final'»«ENDDEFINE»
 
 «DEFINE finalThreadParam(Method method) FOR MethodParameter-»
-«ERROR 'Should not happen'» 
+«ERROR 'Should not happen'»
 «ENDDEFINE»
 «DEFINE finalThreadParam(Method method) FOR SharedResource-»
-final Object «this.name + '2'» = «this.name»; 
+final Object «this.name + '$final'» = «this.name»; 
 «ENDDEFINE»
 «DEFINE finalThreadParam(Method method) FOR Thread-»
-final Thread «this.name + '2'» = «this.name»;
+final Thread «this.name + '$final'» = «this.name»;
 «ENDDEFINE»
 «DEFINE finalThreadParam(Method method) FOR Instance-»
-final «this.instanceType.name» «this.name + '2'» = «IF method.parameters.contains(this) || method.variables.contains(this)»«this.name»«ELSE»this«ENDIF»;
+final «this.instanceType.name» «this.name + '$final'» = «IF method.parameters.contains(this) || method.variables.contains(this)»«this.name»«ELSEIF this.isStatic»«this.instanceType.name».«this.name»«ELSE»this«ENDIF»;
 «ENDDEFINE»
 
 

@@ -1,5 +1,7 @@
 package chatServer;
 
+import java.util.*;
+
 public class Server {
 
 	public void logMsg() {
@@ -27,7 +29,6 @@ public class Server {
 							state = 0;
 							break;
 					}
-
 				}
 
 			}
@@ -72,16 +73,14 @@ public class Server {
 				case 3 :
 
 				{
-					final Object bla2 = bla;
-					final Object clientList2 = clientList;
-					final Server s2 = this;
-					final Client c2 = c;
+					final Object bla$final = bla;
+					final Object clientList$final = clientList;
+					final Server s$final = this;
+					final Client c$final = c;
 
 					clientThread = new Thread(new Runnable() {
 						public void run() {
-
-							c2.clientThread(bla2, clientList2, s2);
-
+							c$final.clientThread(bla$final, clientList$final, s$final);
 						}
 					});
 					clientThread.start();
@@ -90,8 +89,9 @@ public class Server {
 					state = 1;
 					break;
 				case 4 :
-					clientThread.interrupt();
-
+					if (clientThread != null) {
+						clientThread.interrupt();
+					}
 					state = 5;
 					break;
 				case 5 :
@@ -99,7 +99,6 @@ public class Server {
 					state = 0;
 					break;
 			}
-
 		}
 
 	}

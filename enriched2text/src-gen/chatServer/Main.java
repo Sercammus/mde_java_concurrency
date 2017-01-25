@@ -1,5 +1,4 @@
 package chatServer;
-
 public class Main {
 
 	public static void chatServer(GUI gui, Object bla, Client c, Object clientList, Server s) {
@@ -11,34 +10,30 @@ public class Main {
 				case 1 :
 
 				{
-					final Object bla2 = bla;
-					final Client c2 = c;
-					final Object clientList2 = clientList;
-					final Server s2 = s;
+					final Object bla$final = bla;
+					final Client c$final = c;
+					final Object clientList$final = clientList;
+					final Server s$final = s;
 
 					serverThread = new Thread(new Runnable() {
 						public void run() {
-
-							s2.serverThread(bla2, c2, clientList2);
-
+							s$final.serverThread(bla$final, c$final, clientList$final);
 						}
 					});
 					serverThread.start();
 				}
 
 				{
-					final Thread serverThread2 = serverThread;
-					final Object bla2 = bla;
-					final Client c2 = c;
-					final Object clientList2 = clientList;
-					final Server s2 = s;
-					final GUI gui2 = gui;
+					final Thread serverThread$final = serverThread;
+					final Object bla$final = bla;
+					final Client c$final = c;
+					final Object clientList$final = clientList;
+					final Server s$final = s;
+					final GUI gui$final = gui;
 
 					guiThread = new Thread(new Runnable() {
 						public void run() {
-
-							gui2.guiThread(serverThread2, bla2, c2, clientList2, s2);
-
+							gui$final.guiThread(serverThread$final, bla$final, c$final, clientList$final, s$final);
 						}
 					});
 					guiThread.start();
@@ -47,7 +42,6 @@ public class Main {
 					state = 0;
 					break;
 			}
-
 		}
 
 	}
@@ -67,7 +61,6 @@ public class Main {
 					state = 0;
 					break;
 			}
-
 		}
 
 	}

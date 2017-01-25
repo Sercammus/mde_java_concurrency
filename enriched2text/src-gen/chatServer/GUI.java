@@ -1,5 +1,4 @@
 package chatServer;
-
 public class GUI {
 
 	public void getUserInput() {
@@ -28,8 +27,9 @@ public class GUI {
 					state = 1;
 					break;
 				case 4 :
-					serverThread.interrupt();
-
+					if (serverThread != null) {
+						serverThread.interrupt();
+					}
 					state = 5;
 					break;
 				case 5 :
@@ -37,7 +37,6 @@ public class GUI {
 					state = 0;
 					break;
 			}
-
 		}
 
 	}

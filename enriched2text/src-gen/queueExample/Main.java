@@ -1,5 +1,4 @@
 package queueExample;
-
 public class Main {
 
 	public static void doSetup() {
@@ -31,7 +30,6 @@ public class Main {
 					state = 1;
 					break;
 			}
-
 		}
 
 	}
@@ -76,7 +74,6 @@ public class Main {
 					state = 0;
 					break;
 			}
-
 		}
 
 	}
@@ -97,22 +94,18 @@ public class Main {
 				{
 					outputThread = new Thread(new Runnable() {
 						public void run() {
-
 							Main.outputThread();
-
 						}
 					});
 					outputThread.start();
 				}
 
 				{
-					final Object queue2 = queue;
+					final Object queue$final = queue;
 
 					inputThread = new Thread(new Runnable() {
 						public void run() {
-
-							Main.inputThread(queue2);
-
+							Main.inputThread(queue$final);
 						}
 					});
 					inputThread.start();
@@ -121,7 +114,6 @@ public class Main {
 					state = 0;
 					break;
 			}
-
 		}
 
 	}
@@ -137,7 +129,6 @@ public class Main {
 					state = 0;
 					break;
 			}
-
 		}
 
 	}

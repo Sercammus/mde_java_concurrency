@@ -1,5 +1,4 @@
 package chatServer;
-
 public class Client {
 
 	public void sendMsg(Object bla, Object clientList) {
@@ -52,7 +51,6 @@ public class Client {
 					state = 0;
 					break;
 			}
-
 		}
 
 	}

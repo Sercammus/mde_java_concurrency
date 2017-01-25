@@ -4,6 +4,7 @@ modeltype EnrichedModel uses EnrichedModel;
 transformation Basic2EnrichedTransformation(in basicModel : BasicModel, out enrichedModel: EnrichedModel);
 
 property defaultInstanceType: EnrichedModel::InstanceType;
+property multipleThreads: Set(BasicModel::Thread);
 property staticThreads: Set(BasicModel::Thread);
 
 main() {
@@ -11,9 +12,13 @@ main() {
 }
 
 mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
-	//Clear list in which we store threads that are static
+	//Initialize list in which we store threads that are static
 	//This list is used post-process
 	staticThreads := Set{};
+	
+	//Initialize list in which we store threads of which multiple instances may be spawned
+	//This list is used post-process
+	multipleThreads := Set{};
 	
 	//---------------------------------------------------------------------------------------------
 	// Do the main chunk of the transformation from BasicModel to EnrichedModel
@@ -72,9 +77,23 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 		t.resolveone(EnrichedModel::Thread).isStatic := true;
 	};
 	
-	//Eliminate static method parameters (no need to use them as method parameters anymore)
-	EnrichedModel::Method.allInstances()->forEach(m) {
-		m.parameters := m.parameters->select(e | not e.isStatic);
+	multipleThreads->forEach(t) {
+		t.resolveone(EnrichedModel::Thread).isMultiple := true;
+		t.resolveone(EnrichedModel::Thread).isStatic := true;
+	};
+	
+	//Initialize method parameters and variables
+	//We skip any method parameters that is static
+	BasicModel::InterruptableThread.allInstances()->forEach(t) {
+		var m := t.resolveone(EnrichedModel::Method);
+		m.parameters := t.startActivity.futureReferences->resolve(EnrichedModel::MethodParameter)->select(e | not e.isStatic);
+		m.variables := t.providedReferences.resolve(EnrichedModel::MethodParameter)->select(e | not e.isStatic);
+	};
+	
+	BasicModel::NestedThread.allInstances()->forEach(t) {
+		var m := t.resolveone(EnrichedModel::Method);
+		m.parameters := t.futureReferences->resolve(EnrichedModel::MethodParameter)->select(e | not e.isStatic);
+		m.variables := t.providedReferences.resolve(EnrichedModel::MethodParameter)->select(e | not e.isStatic);
 	};
 	
 	//Sort the lockedResources of all methods in the same order as they occur in methodParameters
@@ -286,10 +305,8 @@ mapping BasicModel::NestedThread::nestedThread2method() : EnrichedModel::Method 
 	defaultFirstState := self.startActivity.late resolveone(EnrichedModel::State);
 	hasDynamicFirstState := false;
 	states := self.activities->map activity2state(result);
-	parameters := self.futureReferences->late resolve(EnrichedModel::MethodParameter);
 	lockedResources := self.lockedResources->resolve(EnrichedModel::SharedResource);
 	interruption := EnrichedModel::MethodInterruption::NONE;
-	variables := self.providedReferences->late resolve(EnrichedModel::MethodParameter);
 	isStatic := self.startActivity.instanceType = null;
 	
 	//Place the method in the instance type with the starting activity
@@ -384,6 +401,10 @@ mapping BasicModel::ForkedThread::forkedThread2threadInit(fork : BasicModel::For
 	isAdopted := fork.adoptedForkedThread = self;
 	isDaemon := self.daemon;
 	thread := self.map interruptableThread2thread(fork.getInstanceType(), fork.isVisitedOnce);
+	
+	if (not fork.isVisitedOnce) {
+		multipleThreads := multipleThreads->including(self);
+	} endif;
 }
 
 mapping BasicModel::ForkedThread::forkedThread2jump() : EnrichedModel::Jump {
@@ -411,10 +432,8 @@ mapping BasicModel::InterruptableThread::interruptableThread2method() : Enriched
 	name := self.name;
 	defaultFirstState := self.startActivity.late resolveone(EnrichedModel::State);
 	states := self.activities->map activity2state(result);
-	parameters := self.startActivity.futureReferences->late resolve(EnrichedModel::MethodParameter);
 	lockedResources := Set{};
 	interruption := EnrichedModel::MethodInterruption::NONE;
-	variables := self.providedReferences.late resolve(EnrichedModel::MethodParameter);
 	isStatic := self.startActivity.instanceType = null;
 }
 
