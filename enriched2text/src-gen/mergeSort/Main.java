@@ -1,35 +1,24 @@
 package mergeSort;
 
-import java.util.*;
-
 public class Main {
-
-	public static List<Thread> sortSecondHalfThread = new LinkedList<Thread>();
-
-	public static List<Thread> sortFirstHalfThread = new LinkedList<Thread>();
 
 	public static void split() {
 		//TODO stub
 	}
 
-	public static void sortSecondHalfThread() {
+	public static void sortSecondHalfThread(Thread sortFirstHalfThread) {
 		int state = 1;
 		while (state > 0) {
 			switch (state) {
 				case 1 :
-					Main.mergeSortThread();
+					Main.mergeSortThread(1);
 
 					state = 2;
 					break;
 				case 2 :
 					try {
-						{
-							Thread $t;
-							synchronized (Main.sortFirstHalfThread) {
-								$t = Main.sortFirstHalfThread.remove(Main.sortFirstHalfThread.size() - 1);
-							}
-							$t.join();
-						}
+						sortFirstHalfThread.join();
+
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -37,7 +26,7 @@ public class Main {
 					state = 3;
 					break;
 				case 3 :
-					Main.mergeSortThread();
+					Main.mergeSortThread(3);
 
 					state = 0;
 					break;
@@ -46,12 +35,12 @@ public class Main {
 
 	}
 
-	public static void sortFirstHalfThread() {
+	public static void sortFirstHalfThread(Thread sortFirstHalfThread) {
 		int state = 1;
 		while (state > 0) {
 			switch (state) {
 				case 1 :
-					Main.mergeSortThread();
+					Main.mergeSortThread(1);
 
 					state = 0;
 					break;
@@ -64,8 +53,10 @@ public class Main {
 		//TODO stub
 	}
 
-	public static void mergeSortThread() {
-		int state = 1;
+	public static void mergeSortThread(int $initialState) {
+		int state = $initialState;
+		Thread sortSecondHalfThread = null;
+		Thread sortFirstHalfThread = null;
 		while (state > 0) {
 			switch (state) {
 				case 1 :
@@ -76,31 +67,25 @@ public class Main {
 				case 2 :
 
 				{
-					Thread $t = new Thread(new Runnable() {
+					final Thread sortFirstHalfThread$final = sortFirstHalfThread;
+					sortFirstHalfThread = new Thread(new Runnable() {
 						public void run() {
-							Main.sortFirstHalfThread();
+							Main.sortFirstHalfThread(sortFirstHalfThread$final);
 						}
 					});
 
-					synchronized (Main.sortFirstHalfThread) {
-						Main.sortFirstHalfThread.add($t);
-					}
-
-					$t.start();
+					sortFirstHalfThread.start();
 				}
 
 				{
-					Thread $t = new Thread(new Runnable() {
+					final Thread sortFirstHalfThread$final = sortFirstHalfThread;
+					sortSecondHalfThread = new Thread(new Runnable() {
 						public void run() {
-							Main.sortSecondHalfThread();
+							Main.sortSecondHalfThread(sortFirstHalfThread$final);
 						}
 					});
 
-					synchronized (Main.sortSecondHalfThread) {
-						Main.sortSecondHalfThread.add($t);
-					}
-
-					$t.start();
+					sortSecondHalfThread.start();
 				}
 
 					state = 0;
@@ -124,7 +109,7 @@ public class Main {
 		while (state > 0) {
 			switch (state) {
 				case 1 :
-					Main.mergeSortThread();
+					Main.mergeSortThread(1);
 
 					state = 2;
 					break;

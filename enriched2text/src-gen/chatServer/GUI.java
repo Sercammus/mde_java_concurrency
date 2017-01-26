@@ -1,11 +1,12 @@
 package chatServer;
+
 public class GUI {
 
 	public void getUserInput() {
 		//TODO stub
 	}
 
-	public void guiThread(Thread serverThread, Object bla, Client c, Object clientList, Server s) {
+	public void guiThread(Thread serverThread, Server s, Object bla, Client c, Object clientList) {
 		int state = 1;
 		while (state > 0) {
 			switch (state) {
@@ -22,14 +23,13 @@ public class GUI {
 						state = 4;
 					break;
 				case 3 :
-					s.broadcastMsg(c, bla, clientList);
+					s.broadcastMsg(bla, c, clientList);
 
 					state = 1;
 					break;
 				case 4 :
-					if (serverThread != null) {
-						serverThread.interrupt();
-					}
+					serverThread.interrupt();
+
 					state = 5;
 					break;
 				case 5 :

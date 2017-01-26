@@ -27,13 +27,13 @@
       </states>
       <states xsi:type="em:SleepState" id="4" method="//@instanceTypes.0/@methods.6" duration="1"/>
     </methods>
-    <methods name="queueExample" isStatic="true" parameters="//@methodParameters.0" variables="//@methodParameters.2 //@methodParameters.3" defaultFirstState="//@instanceTypes.0/@methods.7/@states.0">
+    <methods name="queueExample" isStatic="true" parameters="//@methodParameters.0" variables="//@methodParameters.4 //@methodParameters.5" defaultFirstState="//@instanceTypes.0/@methods.7/@states.0">
       <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.7" calledMethod="//@instanceTypes.0/@methods.0">
         <jumps nextState="//@instanceTypes.0/@methods.7/@states.1"/>
       </states>
       <states xsi:type="em:ForkState" id="2" method="//@instanceTypes.0/@methods.7">
-        <threadInits thread="//@methodParameters.3"/>
-        <threadInits isAdopted="true" thread="//@methodParameters.2"/>
+        <threadInits isAdopted="true" thread="//@methodParameters.4"/>
+        <threadInits thread="//@methodParameters.5"/>
       </states>
     </methods>
     <methods name="main" isStatic="true" variables="//@methodParameters.0" defaultFirstState="//@instanceTypes.0/@methods.8/@states.0">
@@ -41,6 +41,8 @@
     </methods>
   </instanceTypes>
   <methodParameters xsi:type="em:SharedResource" name="queue" instanceType="//@instanceTypes.0"/>
+  <methodParameters xsi:type="em:ChildThreadsParameter" name="$childThreads"/>
+  <methodParameters xsi:type="em:InitialStateParameter" name="$initialState"/>
   <methodParameters xsi:type="em:Thread" name="queueExample" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.7" firstState="//@instanceTypes.0/@methods.7/@states.0"/>
   <methodParameters xsi:type="em:Thread" name="inputThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.3" firstState="//@instanceTypes.0/@methods.3/@states.0"/>
   <methodParameters xsi:type="em:Thread" name="outputThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.6" firstState="//@instanceTypes.0/@methods.6/@states.0"/>

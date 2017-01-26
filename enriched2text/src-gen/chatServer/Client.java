@@ -1,4 +1,7 @@
 package chatServer;
+
+import java.util.*;
+
 public class Client {
 
 	public void sendMsg(Object bla, Object clientList) {
@@ -9,47 +12,53 @@ public class Client {
 		}
 	}
 
-	public void clientThread(Object bla, Object clientList, Server s) {
+	public void clientThread(Server s, Object bla, Object clientList, final Set<Thread> $childThreads) {
 		int state = 1;
 		while (state > 0) {
-			switch (state) {
-				case 1 :
+			try {
+				switch (state) {
+					case 1 :
 
-					if (true /*TODO "[no msg]"*/)
-						state = 2;
-					else if (true /*TODO "[disconnect]"*/)
-						state = 4;
-					else
-						state = 3;
-					break;
-				case 2 :
+						if (true /*TODO "[no msg]"*/)
+							state = 2;
+						else if (true /*TODO "[disconnect]"*/)
+							state = 4;
+						else
+							state = 3;
+						break;
+					case 2 :
 
-					try {
 						Thread.sleep(1);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+
+						state = 1;
+						break;
+					case 3 :
+						s.broadcastMsg(bla, this, clientList);
+
+						state = 1;
+						break;
+					case 4 :
+						s.removeClient(bla, clientList);
+
+						state = 5;
+						break;
+					case 5 :
+
+						state = 0;
+						break;
+				}
+			} catch (InterruptedException e) {
+
+				if ($childThreads != null) {
+					synchronized ($childThreads) {
+						for (Thread $t : $childThreads) {
+							$t.interrupt();
+						}
+						$childThreads.clear();
 					}
+				}
 
-					state = 1;
-					break;
-				case 3 :
-					s.broadcastMsg(this, bla, clientList);
-
-					state = 1;
-					break;
-				case 4 :
-					s.removeClient(bla, clientList);
-
-					state = 5;
-					break;
-				case 5 :
-
-					state = 0;
-					break;
-				case 6 :
-
-					state = 0;
-					break;
+				state = 0;
 			}
 		}
 
