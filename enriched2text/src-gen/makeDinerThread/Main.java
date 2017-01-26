@@ -354,7 +354,7 @@ public class Main {
 						{
 							Thread $t;
 							synchronized (Main.addHerbsThread) {
-								$t = Main.addHerbsThread.get(Main.addHerbsThread.size() - 1);
+								$t = Main.addHerbsThread.remove(Main.addHerbsThread.size() - 1);
 							}
 							$t.join();
 						}

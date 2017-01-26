@@ -12,9 +12,11 @@ import org.eclipse.xtend.expression.ResourceManagerDefaultImpl
 var modelChat  = "platform:/resource/enriched2text/src/models/EnrichedChatServer.xmi"
 var modelDiner = "platform:/resource/enriched2text/src/models/EnrichedMakeDiner.xmi"
 var modelQueue = "platform:/resource/enriched2text/src/models/EnrichedQueue.xmi"
+var mergeSort = "platform:/resource/enriched2text/src/models/EnrichedMergeSort.xmi"
 var dirSrcGenChat = "src-gen/chatServer"
 var dirSrcGenDiner = "src-gen/makeDinerThread"
 var dirSrcGenQueue = "src-gen/queueExample"
+var dirSrcGenMerge = "src-gen/mergeSort"
 
 Workflow {
 	/* set up EMF for standalone execution */
@@ -117,6 +119,39 @@ Workflow {
 		expand = "template::Template::main FOR model"
 		outlet = {
 			path = dirSrcGenQueue
+			postprocessor = formatter_java
+			fileEncoding = "ISO-8859-1" // this is the encoding for files written the outlet
+		}
+		// configure Xpand resource encoding (check project resource setting)
+		resourceManager = ResourceManagerDefaultImpl {
+			fileEncoding = "ISO-8859-1"
+		}
+	}
+	
+	/* load model and store it in slot 'model' */
+	component = Reader {
+		uri = mergeSort
+		modelSlot = "model"
+	}
+
+	/* check model */
+/* 	component = CheckComponent {
+		metaModel = mm_emf
+		checkFile = "metamodel::Checks"
+		emfAllChildrenSlot = "model"
+	}
+*/
+	/** Clear output directory */
+	component = DirectoryCleaner {
+		directory = dirSrcGenMerge
+	}
+
+	/* generate code */
+	component = Generator {
+		metaModel = mm_emf
+		expand = "template::Template::main FOR model"
+		outlet = {
+			path = dirSrcGenMerge
 			postprocessor = formatter_java
 			fileEncoding = "ISO-8859-1" // this is the encoding for files written the outlet
 		}

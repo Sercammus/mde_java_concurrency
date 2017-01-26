@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<em:EnrichedModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:em="enrichedModel" xsi:schemaLocation="enrichedModel ../metamodels/EnrichedModel.ecore" packageName="mergeSort">
+  <instanceTypes name="Main">
+    <methods name="split" isStatic="true"/>
+    <methods name="sortSecondHalfThread" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.1/@states.0">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.1" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.0">
+        <jumps nextState="//@instanceTypes.0/@methods.1/@states.1"/>
+      </states>
+      <states xsi:type="em:JoinState" id="2" method="//@instanceTypes.0/@methods.1" joinedThreads="//@methodParameters.1">
+        <jumps nextState="//@instanceTypes.0/@methods.1/@states.2"/>
+      </states>
+      <states xsi:type="em:MethodCallState" id="3" method="//@instanceTypes.0/@methods.1" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.2"/>
+    </methods>
+    <methods name="sortFirstHalfThread" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.2/@states.0">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.2" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.0"/>
+    </methods>
+    <methods name="merge" isStatic="true"/>
+    <methods name="mergeSortThread" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.4/@states.0">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.4" calledMethod="//@instanceTypes.0/@methods.0">
+        <jumps nextState="//@instanceTypes.0/@methods.4/@states.1"/>
+      </states>
+      <states xsi:type="em:ForkState" id="2" method="//@instanceTypes.0/@methods.4">
+        <threadInits thread="//@methodParameters.1"/>
+        <threadInits thread="//@methodParameters.0"/>
+      </states>
+      <states xsi:type="em:MethodCallState" id="3" method="//@instanceTypes.0/@methods.4" calledMethod="//@instanceTypes.0/@methods.3">
+        <jumps nextState="//@instanceTypes.0/@methods.4/@states.3"/>
+      </states>
+      <states id="4" method="//@instanceTypes.0/@methods.4"/>
+    </methods>
+    <methods name="mergeSort" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.5/@states.0">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.5" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.0">
+        <jumps nextState="//@instanceTypes.0/@methods.5/@states.1"/>
+      </states>
+      <states id="2" method="//@instanceTypes.0/@methods.5"/>
+    </methods>
+    <methods name="main" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.6/@states.0">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.6" calledMethod="//@instanceTypes.0/@methods.5"/>
+    </methods>
+  </instanceTypes>
+  <methodParameters xsi:type="em:Thread" name="sortSecondHalfThread" instanceType="//@instanceTypes.0" isStatic="true" isMultiple="true" calledMethod="//@instanceTypes.0/@methods.1" firstState="//@instanceTypes.0/@methods.1/@states.0"/>
+  <methodParameters xsi:type="em:Thread" name="sortFirstHalfThread" instanceType="//@instanceTypes.0" isStatic="true" isMultiple="true" calledMethod="//@instanceTypes.0/@methods.2" firstState="//@instanceTypes.0/@methods.2/@states.0"/>
+  <methodParameters xsi:type="em:Thread" name="mergeSort" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.5" firstState="//@instanceTypes.0/@methods.5/@states.0"/>
+</em:EnrichedModel>
