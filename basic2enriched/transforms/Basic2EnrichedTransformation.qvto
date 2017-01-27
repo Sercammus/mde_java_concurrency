@@ -4,6 +4,8 @@ modeltype EnrichedModel uses EnrichedModel;
 transformation Basic2EnrichedTransformation(in basicModel : BasicModel, out enrichedModel: EnrichedModel);
 
 property defaultInstanceType: EnrichedModel::InstanceType;
+property childThreadsParam: EnrichedModel::ChildThreadsParameter;
+property initialStateParam: EnrichedModel::InitialStateParameter;
 property staticThreads: Set(BasicModel::Thread);
 
 main() {
@@ -25,11 +27,11 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 		name := 'Main';
 	};
 	
-	var childThreadsParam := object EnrichedModel::ChildThreadsParameter {
+	childThreadsParam := object EnrichedModel::ChildThreadsParameter {
 		name := "$childThreads";
 	};
 	
-	var initialStateParam := object EnrichedModel::InitialStateParameter {
+	initialStateParam := object EnrichedModel::InitialStateParameter {
 		name := "$initialState";
 	};
 	
@@ -78,7 +80,12 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 	
 	//Mark threads that are accessed statically by a Join/Interrupt at least once as static
 	staticThreads->forEach(t) {
-		t.resolveone(EnrichedModel::Thread).isStatic := true;
+		var enrichedT := t.resolveone(EnrichedModel::Thread);
+		
+		//Not all BasicModel::Threads have to be transformed into EnrichedModel::Threads
+		if (enrichedT != null) {
+			enrichedT.isStatic := true;
+		}
 	};
 	
 	//Initialize method parameters and variables
@@ -140,32 +147,14 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 			var enrichedThread := basicThread.resolveone(EnrichedModel::Thread);
 			
 			if (enrichedThread != null) {
-				var calledMethods := enrichedThread.calledMethod.GetCalledMethods(Set{});
-				
-				if (calledMethods->notEmpty() or enrichedThread.calledMethod.states->exists(s | s.oclIsTypeOf(EnrichedModel::SleepState) or s.oclIsTypeOf(EnrichedModel::JoinState))) {
-					enrichedThread.calledMethod.catchesInterruptedException := true;
-					enrichedThread.calledMethod.GetCalledMethods(Set{})->forEach(e) {
-						if (enrichedThread.calledMethod != e) { 
-							e.throwsInterruptedException := true;
-						}
-					};
-				} endif; 
-				
-				if (basicThread.interruptedChildThreads->notEmpty()) {
-					enrichedThread.calledMethod.hasChildThreadsVar := true;
-					
-					basicThread.interruptedChildThreads->forEach(basicInterruptedChild) {
-						var enrichedInterruptedChild := basicInterruptedChild.resolveone(EnrichedModel::Thread);
-						
-						if (enrichedInterruptedChild != null) {
-							if (not enrichedInterruptedChild.calledMethod.hasChildThreadsParam) {
-								enrichedInterruptedChild.calledMethod.hasChildThreadsParam := true;
-								enrichedInterruptedChild.calledMethod.parameters := enrichedInterruptedChild.calledMethod.parameters->including(childThreadsParam);
-							} endif;
-						} endif;
-					};
-				} endif;
+				makeInterruptable(enrichedThread.calledMethod, basicThread);
 			} endif;
+		} endif;
+	};
+	
+	BasicModel::NestedThread.allInstances()->forEach(basicThread) {
+		if (basicThread.isInterrupted) {
+			makeInterruptable(basicThread.resolveone(EnrichedModel::Method), basicThread);
 		} endif;
 	};
 	
@@ -184,6 +173,41 @@ mapping BasicModel::BasicModel::model2model() : EnrichedModel::EnrichedModel {
 			} endif;
 		} endif;
 	};
+}
+
+helper makeInterruptable(inout calledMethod : EnrichedModel::Method, thread : BasicModel::Thread) {
+	var calledMethods := calledMethod.GetCalledMethods(Set{})->excluding(calledMethod);
+	
+	if (calledMethods->notEmpty() or calledMethod.states->exists(s | s.oclIsTypeOf(EnrichedModel::SleepState) or s.oclIsTypeOf(EnrichedModel::JoinState))) {
+		calledMethod.catchesInterruptedException := true;
+		calledMethod.GetCalledMethods(Set{})->forEach(e) {
+			e.throwsInterruptedException := true;
+		};
+	} endif; 
+	
+	if (thread.interruptedChildThreads->notEmpty()) {
+		calledMethod.hasChildThreadsVar := true;
+		
+		thread.interruptedChildThreads->forEach(basicInterruptedChild) {
+			var interruptedThread := basicInterruptedChild.resolveone(EnrichedModel::Thread);
+			
+			if (interruptedThread != null) {
+				if (not interruptedThread.calledMethod.hasChildThreadsParam) {
+					interruptedThread.calledMethod.hasChildThreadsParam := true;
+					interruptedThread.calledMethod.parameters := interruptedThread.calledMethod.parameters->including(childThreadsParam);
+				} endif;
+			} else {
+				var interruptedMethod := basicInterruptedChild.resolveone(EnrichedModel::Method);
+				
+				if (interruptedMethod != null) {
+					if (not interruptedMethod.hasChildThreadsParam) {
+						interruptedMethod.hasChildThreadsParam := true;
+						interruptedMethod.parameters := interruptedMethod.parameters->including(childThreadsParam);
+					} endif;
+				} endif;
+			} endif;
+		};
+	} endif;
 }
 
 //Instance type

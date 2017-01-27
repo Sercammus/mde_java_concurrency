@@ -8,15 +8,41 @@
     name="mergeSort"
     startActivity="//@activities.0">
   <activities
-      xsi:type="ad:NestedActivity"
-      name="doMergeSort1"
-      nextActivity="//@activities.1"
-      nestedThread="//@nestedThreads.0"/>
-  <activities
-      xsi:type="ad:End"
-      name="end1"/>
+      xsi:type="ad:Fork"
+      name="fork2"
+      maxThreadCount="0">
+    <forkedThreads
+        name="mergeSortThread"
+        startActivity="//@activities.0/@forkedThreads.0/@activities.0">
+      <activities
+          xsi:type="ad:NestedActivity"
+          name="doMergeSort1"
+          nextActivity="//@activities.0/@forkedThreads.0/@activities.1"
+          nestedThread="//@nestedThreads.0"/>
+      <activities
+          xsi:type="ad:End"
+          name="end1"/>
+    </forkedThreads>
+    <forkedThreads
+        name="timeoutThread"
+        startActivity="//@activities.0/@forkedThreads.1/@activities.0">
+      <activities
+          xsi:type="ad:Sleep"
+          name="sleep"
+          nextActivity="//@activities.0/@forkedThreads.1/@activities.1"
+          duration="5000"/>
+      <activities
+          xsi:type="ad:Interrupt"
+          name="interrupt"
+          nextActivity="//@activities.0/@forkedThreads.1/@activities.2"
+          interruptedThread="//@activities.0/@forkedThreads.0"/>
+      <activities
+          xsi:type="ad:End"
+          name="end2"/>
+    </forkedThreads>
+  </activities>
   <nestedThreads
-      name="mergeSortThread"
+      name="subProcessThread"
       startActivity="//@nestedThreads.0/@activities.0"
       activityName="doMergeSort">
     <activities

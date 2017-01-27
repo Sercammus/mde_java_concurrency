@@ -2,7 +2,7 @@
 <em:EnrichedModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:em="enrichedModel" xsi:schemaLocation="enrichedModel ../metamodels/EnrichedModel.ecore" packageName="makeDinerThread">
   <instanceTypes name="Main">
     <methods name="putMeatInPan" isStatic="true"/>
-    <methods name="waitForMeatThread" isStatic="true" parameters="//@methodParameters.7" defaultFirstState="//@instanceTypes.0/@methods.1/@states.0">
+    <methods name="waitForMeatThread" isStatic="true" parameters="//@methodParameters.6" defaultFirstState="//@instanceTypes.0/@methods.1/@states.0">
       <states xsi:type="em:YieldState" id="1" method="//@instanceTypes.0/@methods.1">
         <jumps nextState="//@instanceTypes.0/@methods.1/@states.1"/>
       </states>
@@ -10,13 +10,13 @@
         <jumps condition="[meat is done]" nextState="//@instanceTypes.0/@methods.1/@states.2"/>
         <jumps nextState="//@instanceTypes.0/@methods.1/@states.0"/>
       </states>
-      <states xsi:type="em:InterruptState" id="3" method="//@instanceTypes.0/@methods.1" interruptedThread="//@methodParameters.7">
+      <states xsi:type="em:InterruptState" id="3" method="//@instanceTypes.0/@methods.1" interruptedThread="//@methodParameters.6">
         <jumps nextState="//@instanceTypes.0/@methods.1/@states.3"/>
       </states>
       <states id="4" method="//@instanceTypes.0/@methods.1"/>
     </methods>
-    <methods name="turnMeat" isStatic="true"/>
-    <methods name="turnMeatThread" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.3/@states.0" catchesInterruptedException="true">
+    <methods name="turnMeat" isStatic="true" throwsInterruptedException="true"/>
+    <methods name="turnMeatThread" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.3/@states.0" throwsInterruptedException="true" catchesInterruptedException="true">
       <states xsi:type="em:SleepState" id="1" method="//@instanceTypes.0/@methods.3" duration="10">
         <jumps nextState="//@instanceTypes.0/@methods.3/@states.1"/>
       </states>
@@ -24,78 +24,78 @@
         <jumps nextState="//@instanceTypes.0/@methods.3/@states.0"/>
       </states>
     </methods>
-    <methods name="prepareMeatThread" isStatic="true" variables="//@methodParameters.6 //@methodParameters.7" defaultFirstState="//@instanceTypes.0/@methods.4/@states.0">
+    <methods name="prepareMeatThread" isStatic="true" variables="//@methodParameters.2 //@methodParameters.6" defaultFirstState="//@instanceTypes.0/@methods.4/@states.0">
       <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.4" calledMethod="//@instanceTypes.0/@methods.0">
         <jumps nextState="//@instanceTypes.0/@methods.4/@states.1"/>
       </states>
       <states xsi:type="em:ForkState" id="2" method="//@instanceTypes.0/@methods.4">
-        <threadInits thread="//@methodParameters.7"/>
-        <threadInits isAdopted="true" thread="//@methodParameters.6"/>
+        <threadInits thread="//@methodParameters.6"/>
+        <threadInits isAdopted="true" thread="//@methodParameters.2"/>
       </states>
+    </methods>
+    <methods name="meatThread" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.5/@states.0">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.5" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.0"/>
+    </methods>
+    <methods name="cutVegetables" isStatic="true"/>
+    <methods name="vegetablesThread" isStatic="true" parameters="//@methodParameters.4" defaultFirstState="//@instanceTypes.0/@methods.7/@states.0">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.7" calledMethod="//@instanceTypes.0/@methods.6">
+        <jumps nextState="//@instanceTypes.0/@methods.7/@states.1"/>
+      </states>
+      <states xsi:type="em:JoinState" id="2" method="//@instanceTypes.0/@methods.7" joinedThreads="//@methodParameters.4">
+        <jumps nextState="//@instanceTypes.0/@methods.7/@states.2"/>
+      </states>
+      <states xsi:type="em:MethodCallState" id="3" method="//@instanceTypes.0/@methods.7" calledMethod="//@instanceTypes.0/@methods.9" firstState="//@instanceTypes.0/@methods.9/@states.1"/>
+    </methods>
+    <methods name="addVegetablesToMeat" isStatic="true"/>
+    <methods name="cookThread" isStatic="true" parameters="//@methodParameters.1" variables="//@methodParameters.4 //@methodParameters.7" defaultFirstState="//@instanceTypes.0/@methods.9/@states.0" hasDynamicFirstState="true">
+      <states xsi:type="em:ForkState" id="1" method="//@instanceTypes.0/@methods.9">
+        <threadInits isAdopted="true" thread="//@methodParameters.4"/>
+        <threadInits thread="//@methodParameters.7"/>
+      </states>
+      <states xsi:type="em:MethodCallState" id="2" method="//@instanceTypes.0/@methods.9" calledMethod="//@instanceTypes.0/@methods.8">
+        <jumps nextState="//@instanceTypes.0/@methods.9/@states.2"/>
+      </states>
+      <states xsi:type="em:YieldState" id="3" method="//@instanceTypes.0/@methods.9">
+        <jumps nextState="//@instanceTypes.0/@methods.9/@states.3"/>
+      </states>
+      <states id="4" method="//@instanceTypes.0/@methods.9">
+        <jumps condition="[vegetables are done]"/>
+        <jumps nextState="//@instanceTypes.0/@methods.9/@states.2"/>
+      </states>
+    </methods>
+    <methods name="makeTable" isStatic="true"/>
+    <methods name="makeTableThread" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.11/@states.0">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.11" calledMethod="//@instanceTypes.0/@methods.10">
+        <jumps nextState="//@instanceTypes.0/@methods.11/@states.1"/>
+      </states>
+      <states id="2" method="//@instanceTypes.0/@methods.11"/>
     </methods>
     <methods name="cookWater" isStatic="true"/>
     <methods name="putRiceInWater" isStatic="true"/>
     <methods name="takeRiceFromWater" isStatic="true"/>
-    <methods name="riceThread" isStatic="true" parameters="//@methodParameters.11" defaultFirstState="//@instanceTypes.0/@methods.8/@states.0">
-      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.8" calledMethod="//@instanceTypes.0/@methods.5">
-        <jumps nextState="//@instanceTypes.0/@methods.8/@states.1"/>
+    <methods name="riceThread" isStatic="true" parameters="//@methodParameters.5" defaultFirstState="//@instanceTypes.0/@methods.15/@states.0">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.15" calledMethod="//@instanceTypes.0/@methods.12">
+        <jumps nextState="//@instanceTypes.0/@methods.15/@states.1"/>
       </states>
-      <states xsi:type="em:SleepState" id="2" method="//@instanceTypes.0/@methods.8" duration="600">
-        <jumps nextState="//@instanceTypes.0/@methods.8/@states.2"/>
-      </states>
-      <states xsi:type="em:MethodCallState" id="3" method="//@instanceTypes.0/@methods.8" calledMethod="//@instanceTypes.0/@methods.6">
-        <jumps nextState="//@instanceTypes.0/@methods.8/@states.3"/>
-      </states>
-      <states xsi:type="em:SleepState" id="4" method="//@instanceTypes.0/@methods.8" duration="600">
-        <jumps nextState="//@instanceTypes.0/@methods.8/@states.4"/>
-      </states>
-      <states xsi:type="em:MethodCallState" id="5" method="//@instanceTypes.0/@methods.8" calledMethod="//@instanceTypes.0/@methods.7">
-        <jumps nextState="//@instanceTypes.0/@methods.8/@states.5"/>
-      </states>
-      <states xsi:type="em:JoinState" id="6" method="//@instanceTypes.0/@methods.8" joinedThreads="//@methodParameters.11">
-        <jumps nextState="//@instanceTypes.0/@methods.8/@states.6"/>
-      </states>
-      <states xsi:type="em:MethodCallState" id="7" method="//@instanceTypes.0/@methods.8" calledMethod="//@instanceTypes.0/@methods.21" firstState="//@instanceTypes.0/@methods.21/@states.1"/>
-    </methods>
-    <methods name="makeTable" isStatic="true"/>
-    <methods name="makeTableThread" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.10/@states.0">
-      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.10" calledMethod="//@instanceTypes.0/@methods.9">
-        <jumps nextState="//@instanceTypes.0/@methods.10/@states.1"/>
-      </states>
-      <states id="2" method="//@instanceTypes.0/@methods.10"/>
-    </methods>
-    <methods name="meatThread" isStatic="true" parameters="//@methodParameters.4 //@methodParameters.11" defaultFirstState="//@instanceTypes.0/@methods.11/@states.0">
-      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.11" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.0"/>
-    </methods>
-    <methods name="cutVegetables" isStatic="true"/>
-    <methods name="vegetablesThread" isStatic="true" parameters="//@methodParameters.4 //@methodParameters.11" defaultFirstState="//@instanceTypes.0/@methods.13/@states.0">
-      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.13" calledMethod="//@instanceTypes.0/@methods.12">
-        <jumps nextState="//@instanceTypes.0/@methods.13/@states.1"/>
-      </states>
-      <states xsi:type="em:JoinState" id="2" method="//@instanceTypes.0/@methods.13" joinedThreads="//@methodParameters.4">
-        <jumps nextState="//@instanceTypes.0/@methods.13/@states.2"/>
-      </states>
-      <states xsi:type="em:MethodCallState" id="3" method="//@instanceTypes.0/@methods.13" calledMethod="//@instanceTypes.0/@methods.15" firstState="//@instanceTypes.0/@methods.15/@states.1"/>
-    </methods>
-    <methods name="addVegetablesToMeat" isStatic="true"/>
-    <methods name="cookThread" isStatic="true" parameters="//@methodParameters.11 //@methodParameters.1" variables="//@methodParameters.4 //@methodParameters.5" defaultFirstState="//@instanceTypes.0/@methods.15/@states.0" hasDynamicFirstState="true">
-      <states xsi:type="em:ForkState" id="1" method="//@instanceTypes.0/@methods.15">
-        <threadInits isAdopted="true" thread="//@methodParameters.4"/>
-        <threadInits thread="//@methodParameters.5"/>
-      </states>
-      <states xsi:type="em:MethodCallState" id="2" method="//@instanceTypes.0/@methods.15" calledMethod="//@instanceTypes.0/@methods.14">
+      <states xsi:type="em:SleepState" id="2" method="//@instanceTypes.0/@methods.15" duration="600">
         <jumps nextState="//@instanceTypes.0/@methods.15/@states.2"/>
       </states>
-      <states xsi:type="em:YieldState" id="3" method="//@instanceTypes.0/@methods.15">
+      <states xsi:type="em:MethodCallState" id="3" method="//@instanceTypes.0/@methods.15" calledMethod="//@instanceTypes.0/@methods.13">
         <jumps nextState="//@instanceTypes.0/@methods.15/@states.3"/>
       </states>
-      <states id="4" method="//@instanceTypes.0/@methods.15">
-        <jumps condition="[vegetables are done]"/>
-        <jumps nextState="//@instanceTypes.0/@methods.15/@states.2"/>
+      <states xsi:type="em:SleepState" id="4" method="//@instanceTypes.0/@methods.15" duration="600">
+        <jumps nextState="//@instanceTypes.0/@methods.15/@states.4"/>
       </states>
+      <states xsi:type="em:MethodCallState" id="5" method="//@instanceTypes.0/@methods.15" calledMethod="//@instanceTypes.0/@methods.14">
+        <jumps nextState="//@instanceTypes.0/@methods.15/@states.5"/>
+      </states>
+      <states xsi:type="em:JoinState" id="6" method="//@instanceTypes.0/@methods.15" joinedThreads="//@methodParameters.5">
+        <jumps nextState="//@instanceTypes.0/@methods.15/@states.6"/>
+      </states>
+      <states xsi:type="em:MethodCallState" id="7" method="//@instanceTypes.0/@methods.15" calledMethod="//@instanceTypes.0/@methods.21" firstState="//@instanceTypes.0/@methods.21/@states.1"/>
     </methods>
     <methods name="addHerbs" isStatic="true"/>
-    <methods name="addHerbsThread" isStatic="true" parameters="//@methodParameters.9" defaultFirstState="//@instanceTypes.0/@methods.17/@states.0">
+    <methods name="addHerbsThread" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.17/@states.0">
       <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.17" calledMethod="//@instanceTypes.0/@methods.16"/>
     </methods>
     <methods name="addRice" isStatic="true"/>
@@ -112,15 +112,15 @@
       </states>
       <states id="4" method="//@instanceTypes.0/@methods.20"/>
     </methods>
-    <methods name="makeDinerThread" isStatic="true" parameters="//@methodParameters.1" variables="//@methodParameters.2 //@methodParameters.3 //@methodParameters.9 //@methodParameters.10 //@methodParameters.11" defaultFirstState="//@instanceTypes.0/@methods.21/@states.0" hasDynamicFirstState="true">
+    <methods name="makeDinerThread" isStatic="true" parameters="//@methodParameters.1" variables="//@methodParameters.5 //@methodParameters.8 //@methodParameters.9 //@methodParameters.10 //@methodParameters.11" defaultFirstState="//@instanceTypes.0/@methods.21/@states.0" hasDynamicFirstState="true">
       <states xsi:type="em:ForkState" id="1" method="//@instanceTypes.0/@methods.21">
-        <threadInits thread="//@methodParameters.11"/>
-        <threadInits thread="//@methodParameters.3"/>
-        <threadInits isAdopted="true" thread="//@methodParameters.2"/>
+        <threadInits thread="//@methodParameters.10"/>
+        <threadInits thread="//@methodParameters.8"/>
+        <threadInits isAdopted="true" thread="//@methodParameters.5"/>
       </states>
       <states xsi:type="em:ForkState" id="2" method="//@instanceTypes.0/@methods.21">
         <threadInits isAdopted="true" thread="//@methodParameters.9"/>
-        <threadInits thread="//@methodParameters.10"/>
+        <threadInits thread="//@methodParameters.11"/>
       </states>
     </methods>
     <methods name="main" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.22/@states.0">
@@ -129,14 +129,14 @@
   </instanceTypes>
   <methodParameters xsi:type="em:ChildThreadsParameter" name="$childThreads"/>
   <methodParameters xsi:type="em:InitialStateParameter" name="$initialState"/>
-  <methodParameters xsi:type="em:Thread" name="riceThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.8" firstState="//@instanceTypes.0/@methods.8/@states.0"/>
-  <methodParameters xsi:type="em:Thread" name="makeTableThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.10" firstState="//@instanceTypes.0/@methods.10/@states.0"/>
-  <methodParameters xsi:type="em:Thread" name="meatThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.11" firstState="//@instanceTypes.0/@methods.11/@states.0"/>
-  <methodParameters xsi:type="em:Thread" name="vegetablesThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.13" firstState="//@instanceTypes.0/@methods.13/@states.0"/>
   <methodParameters xsi:type="em:Thread" name="waitForMeatThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.1" firstState="//@instanceTypes.0/@methods.1/@states.0"/>
-  <methodParameters xsi:type="em:Thread" name="turnMeatThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.3" firstState="//@instanceTypes.0/@methods.3/@states.0"/>
   <methodParameters xsi:type="em:Thread" name="makeDinerThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.21" firstState="//@instanceTypes.0/@methods.21/@states.0"/>
+  <methodParameters xsi:type="em:Thread" name="meatThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.5" firstState="//@instanceTypes.0/@methods.5/@states.0"/>
+  <methodParameters xsi:type="em:Thread" name="cookThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.9" firstState="//@instanceTypes.0/@methods.9/@states.0"/>
+  <methodParameters xsi:type="em:Thread" name="turnMeatThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.3" firstState="//@instanceTypes.0/@methods.3/@states.0"/>
+  <methodParameters xsi:type="em:Thread" name="vegetablesThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.7" firstState="//@instanceTypes.0/@methods.7/@states.0"/>
+  <methodParameters xsi:type="em:Thread" name="makeTableThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.11" firstState="//@instanceTypes.0/@methods.11/@states.0"/>
   <methodParameters xsi:type="em:Thread" name="addHerbsThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.17" firstState="//@instanceTypes.0/@methods.17/@states.0"/>
+  <methodParameters xsi:type="em:Thread" name="riceThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.15" firstState="//@instanceTypes.0/@methods.15/@states.0"/>
   <methodParameters xsi:type="em:Thread" name="addRiceThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.20" firstState="//@instanceTypes.0/@methods.20/@states.0"/>
-  <methodParameters xsi:type="em:Thread" name="cookThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.15" firstState="//@instanceTypes.0/@methods.15/@states.0"/>
 </em:EnrichedModel>

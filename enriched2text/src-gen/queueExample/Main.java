@@ -79,8 +79,8 @@ public class Main {
 
 	}
 
-	public static void queueExample(Object queue) {
-		int state = 1;
+	public static void queueExample(Object queue, int $initialState) {
+		int state = $initialState;
 		Thread inputThread = null;
 		Thread outputThread = null;
 		while (state > 0) {
@@ -92,26 +92,13 @@ public class Main {
 					break;
 				case 2 :
 
-				{
-					final Object queue$final = queue;
-					inputThread = new Thread(new Runnable() {
-						public void run() {
-							Main.inputThread(queue$final);
-						}
-					});
+					inputThread = new Main.HelperClass$inputThread();
 
+					outputThread = new Main.HelperClass$outputThread();
+
+					((Main.HelperClass$inputThread) inputThread).queue = queue;
 					inputThread.start();
-				}
-
-				{
-					outputThread = new Thread(new Runnable() {
-						public void run() {
-							Main.outputThread();
-						}
-					});
-
 					outputThread.start();
-				}
 
 					state = 0;
 					break;
@@ -126,13 +113,37 @@ public class Main {
 		while (state > 0) {
 			switch (state) {
 				case 1 :
-					Main.queueExample(queue);
+					Main.queueExample(queue, 1);
 
 					state = 0;
 					break;
 			}
 		}
 
+	}
+
+	public static class HelperClass$queueExample extends Thread {
+		public Object queue;
+		public int $initialState;
+
+		public void run() {
+			Main.queueExample(queue, $initialState);
+		}
+	}
+
+	public static class HelperClass$inputThread extends Thread {
+		public Object queue;
+
+		public void run() {
+			Main.inputThread(queue);
+		}
+	}
+
+	public static class HelperClass$outputThread extends Thread {
+
+		public void run() {
+			Main.outputThread();
+		}
 	}
 
 }

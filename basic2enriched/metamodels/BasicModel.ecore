@@ -91,7 +91,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="interruptedChildThreads"
         ordered="false" upperBound="-1" eType="#//Thread" volatile="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="GetChildThreads()->excluding(self)->select(t | t.oclIsKindOf(InterruptableThread))"/>
+        <details key="derivation" value="GetChildThreads()->excluding(self)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
@@ -214,10 +214,19 @@
         <details key="nullFree" value="false"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="GetNextActivitiesForReferences" ordered="false" upperBound="-1"
+        eType="#//Activity">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="GetNextActivities()->select(e | self.oclIsTypeOf(Fork) or self.oclIsTypeOf(Join) or e.thread = self.thread or e.thread.oclIsTypeOf(NestedThread))->asSet()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="GetReferencesToNextActivities" ordered="false" upperBound="-1"
         eType="#//Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="GetNextActivities()->iterate(e, result : Set(Reference) = Set{} | if e.instance &lt;> null and e.instance &lt;> instance then result->including(e.instance) else result endif)"/>
+        <details key="body" value="GetNextActivitiesForReferences()->iterate(e, result : Set(Reference) = Set{} | if e.instance &lt;> instance then result->including(e.instance) else result endif)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
@@ -225,7 +234,7 @@
     </eOperations>
     <eOperations name="GetFutureReferences" ordered="false" upperBound="-1" eType="#//Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if beenHere->includes(self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;      else let bh : Set(Activity) = beenHere->including(self) in&#xA;&#x9;&#x9;&#x9;           let sf : Set(Reference) = soFar->union(GetUsedReferences()->union(GetLockedResources(GetUsedResources()))->union(GetReferencesToNextActivities())) in&#xA;&#x9;&#x9;&#x9;           let ar : Set(Reference) = GetNextActivities()->iterate(e, result : Set(Reference) = sf | result->union(e.GetFutureReferences(sf, bh)))->asSet() - GetProvidedReferences() in&#xA;&#x9;&#x9;&#x9;               if instance &lt;> null&#xA;&#x9;&#x9;&#x9;               then ar->excluding(instance)&#xA;&#x9;&#x9;&#x9;               else ar&#xA;&#x9;&#x9;&#x9;               endif&#xA;&#x9;&#x9;&#x9;      endif"/>
+        <details key="body" value="if beenHere->includes(self) -- Activity has already been checked&#xA;&#x9;&#x9;&#x9;      then soFar&#xA;&#x9;&#x9;&#x9;      else let bh : Set(Activity) = beenHere->including(self) in&#xA;&#x9;&#x9;&#x9;           let sf : Set(Reference) = soFar->union(GetUsedReferences()->union(GetLockedResources(GetUsedResources()))->union(GetReferencesToNextActivities())) in&#xA;&#x9;&#x9;&#x9;           let ar : Set(Reference) = GetNextActivitiesForReferences()->iterate(e, result : Set(Reference) = sf | result->union(e.GetFutureReferences(sf, bh)))->asSet() - GetProvidedReferences() in&#xA;&#x9;&#x9;&#x9;               if instance &lt;> null&#xA;&#x9;&#x9;&#x9;               then ar->excluding(instance)&#xA;&#x9;&#x9;&#x9;               else ar&#xA;&#x9;&#x9;&#x9;               endif&#xA;&#x9;&#x9;&#x9;      endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
@@ -317,6 +326,15 @@
         <details key="body" value="if thread.oclIsTypeOf(BasicModel) or thread.oclIsTypeOf(NestedThread)&#xA;&#x9;&#x9;&#x9;      then thread&#xA;&#x9;&#x9;&#x9;      else let forks: Set(Fork) = Fork.allInstances()->select(f | f.forkedThreads->includes(thread)) in&#xA;&#x9;&#x9;&#x9;               if forks->notEmpty()&#xA;&#x9;&#x9;&#x9;               then forks->asOrderedSet()->first().GetRootThread()&#xA;&#x9;&#x9;&#x9;               else null&#xA;&#x9;&#x9;&#x9;               endif&#xA;&#x9;&#x9;&#x9;      endif"/>
       </eAnnotations>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="providedReferences" ordered="false"
+        upperBound="-1" eType="#//Reference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="GetProvidedReferences()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVisitedOnce" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         volatile="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -375,7 +393,7 @@
     </eAnnotations>
     <eOperations name="GetNextActivities" ordered="false" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="Set{nextActivity}"/>
+        <details key="body" value="if nextActivity.oclIsUndefined() then Set{} else Set{nextActivity} endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
@@ -389,7 +407,7 @@
       <details key="constraints" value="NonNegativeMaxThreadCount ForkedThreadConsistency"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="NonNegativeMaxThreadCount" value="maxThreadCount >= 0"/>
+      <details key="NonNegativeMaxThreadCount" value="true"/>
       <details key="ForkedThreadConsistency" value="let availableRefs: Set(Reference) = GetFutureReferences(Set{}, Set{})->union(self.GetProvidedReferences()) in&#xA;&#x9;&#x9;&#x9;&#x9;                                       forkedThreads->forAll(t | availableRefs->includesAll(t.startActivity.GetFutureReferences(Set{}, Set{})))"/>
     </eAnnotations>
     <eOperations name="GetProvidedReferences" ordered="false" upperBound="-1" eType="#//Reference">
@@ -508,7 +526,7 @@
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="JoinLocatedInIncomingThread" value="GetIncomingThreads()->includes(thread)"/>
-      <details key="IncomingThreadsAreAllSiblingThreads" value="GetSiblingThreads()->includesAll(GetIncomingThreads())"/>
+      <details key="IncomingThreadsAreAllSiblingThreads" value="thread.GetSiblingThreads()->includesAll(GetIncomingThreads())"/>
       <details key="JoinGoesToSameThreadHierarchy" value="GetRootThread() = nextActivity.GetRootThread()"/>
     </eAnnotations>
     <eOperations name="GetUsedReferences" ordered="false" upperBound="-1" eType="#//Reference">
@@ -570,7 +588,7 @@
     </eOperations>
     <eOperations name="GetNextActivities" ordered="false" upperBound="-1" eType="#//Activity">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="Set{nextActivity}"/>
+        <details key="body" value="if nextActivity.oclIsUndefined() then Set{} else Set{nextActivity} endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
@@ -661,7 +679,7 @@
     </eOperations>
     <eOperations name="GetUsedReferences" ordered="false" upperBound="-1" eType="#//Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="nestedThread.sharedResources"/>
+        <details key="body" value="if nestedThread.oclIsUndefined() then Set{} else nestedThread.sharedResources endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>

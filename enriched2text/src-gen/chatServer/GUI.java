@@ -6,7 +6,7 @@ public class GUI {
 		//TODO stub
 	}
 
-	public void guiThread(Thread serverThread, Server s, Object bla, Client c, Object clientList) {
+	public void guiThread(Client c, Server s, Object clientList, Object bla, Thread serverThread) {
 		int state = 1;
 		while (state > 0) {
 			switch (state) {
@@ -23,7 +23,7 @@ public class GUI {
 						state = 4;
 					break;
 				case 3 :
-					s.broadcastMsg(bla, c, clientList);
+					s.broadcastMsg(c, clientList, bla);
 
 					state = 1;
 					break;

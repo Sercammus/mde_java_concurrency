@@ -8,10 +8,10 @@ public class Server {
 		//TODO stub
 	}
 
-	public void broadcastMsg(Object bla, Client c, Object clientList) {
+	public void broadcastMsg(Client c, Object clientList, Object bla) {
 		int state = 1;
-		synchronized (bla) {
-			synchronized (clientList) {
+		synchronized (clientList) {
+			synchronized (bla) {
 				while (state > 0) {
 					switch (state) {
 						case 1 :
@@ -20,7 +20,7 @@ public class Server {
 							state = 2;
 							break;
 						case 2 :
-							c.sendMsg(bla, clientList);
+							c.sendMsg(clientList, bla);
 
 							state = 3;
 							break;
@@ -39,23 +39,23 @@ public class Server {
 		//TODO stub
 	}
 
-	public void addClient(Object bla, Object clientList) throws InterruptedException {
-		synchronized (bla) {
-			synchronized (clientList) {
+	public void addClient(Object clientList, Object bla) throws InterruptedException {
+		synchronized (clientList) {
+			synchronized (bla) {
 				//TODO stub
 			}
 		}
 	}
 
-	public void removeClient(Object bla, Object clientList) {
-		synchronized (bla) {
-			synchronized (clientList) {
+	public void removeClient(Object clientList, Object bla) {
+		synchronized (clientList) {
+			synchronized (bla) {
 				//TODO stub
 			}
 		}
 	}
 
-	public void serverThread(Object bla, Client c, Object clientList) {
+	public void serverThread(Client c, Object clientList, Object bla) {
 		int state = 1;
 		Thread clientThread = null;
 		final Set<Thread> $childThreads = new HashSet<Thread>();
@@ -68,29 +68,24 @@ public class Server {
 						state = 2;
 						break;
 					case 2 :
-						this.addClient(bla, clientList);
+						this.addClient(clientList, bla);
 
 						state = 3;
 						break;
 					case 3 :
 
-					{
-						final Server s$final = this;
-						final Object bla$final = bla;
-						final Object clientList$final = clientList;
-						final Client c$final = c;
-						clientThread = new Thread(new Runnable() {
-							public void run() {
-								c$final.clientThread(s$final, bla$final, clientList$final, $childThreads);
-							}
-						});
+						clientThread = new Server.HelperClass$clientThread();
 
 						synchronized ($childThreads) {
 							$childThreads.add(clientThread);
 						}
 
+						((Server.HelperClass$clientThread) clientThread).c = c;
+						((Server.HelperClass$clientThread) clientThread).s = this;
+						((Server.HelperClass$clientThread) clientThread).clientList = clientList;
+						((Server.HelperClass$clientThread) clientThread).bla = bla;
+						((Server.HelperClass$clientThread) clientThread).$childThreads = $childThreads;
 						clientThread.start();
-					}
 
 						state = 1;
 						break;
@@ -108,6 +103,18 @@ public class Server {
 			}
 		}
 
+	}
+
+	public static class HelperClass$clientThread extends Thread {
+		public Server s;
+		public Object clientList;
+		public Object bla;
+		public Set<Thread> $childThreads;
+
+		public Client c;
+		public void run() {
+			c.clientThread(s, clientList, bla, $childThreads);
+		}
 	}
 
 }

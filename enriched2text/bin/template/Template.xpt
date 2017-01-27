@@ -12,9 +12,50 @@
         public class «name» {
         	«EXPAND staticField FOREACH model.methodParameters.select(e|e.isStatic && e.instanceType == this)»
             «EXPAND method(model) FOREACH methods»
+            «EXPAND helperClassForThread FOREACH model.methodParameters.typeSelect(Thread).select(e|e.instanceType == this)»
         }
     «ENDFILE»
 «ENDDEFINE»
+
+«DEFINE helperClassForThread FOR Thread»
+public static class «'HelperClass$' + this.name» extends Thread {
+	«EXPAND helperClassField FOREACH this.calledMethod.parameters»
+	«IF this.targetInstance != null-»
+	public «this.targetInstance.instanceType.name» «this.targetInstance.name»;
+	«ENDIF-»
+	public void run() {
+		«IF this.targetInstance == null-»
+		Main.«ELSE-»
+		«this.targetInstance.name».
+		«ENDIF-»
+		«this.calledMethod.name-»
+		(«EXPAND helperClassRunParam FOREACH this.calledMethod.parameters SEPARATOR ', '-»);
+	}
+}
+«ENDDEFINE»
+
+«DEFINE helperClassField FOR MethodParameter-»
+«ERROR 'Should not happen'»
+«ENDDEFINE»
+«DEFINE helperClassField FOR SharedResource-»
+public Object «this.name»; 
+«ENDDEFINE»
+«DEFINE helperClassField FOR Thread-»
+public Thread «this.name»;
+«ENDDEFINE»
+«DEFINE helperClassField FOR Instance-»
+public «this.instanceType.name» «this.name»;
+«ENDDEFINE»
+«DEFINE helperClassField FOR InitialStateParameter-»
+public int $initialState;
+«ENDDEFINE»
+«DEFINE helperClassField FOR ChildThreadsParameter-»
+public Set<Thread> $childThreads;
+«ENDDEFINE»
+
+«DEFINE helperClassRunParam FOR MethodParameter»«this.name»«ENDDEFINE»
+«DEFINE helperClassRunParam FOR InitialStateParameter»$initialState«ENDDEFINE»
+«DEFINE helperClassRunParam FOR ChildThreadsParameter»$childThreads«ENDDEFINE»
 
 «DEFINE staticField FOR MethodParameter»
 «ERROR 'Should not happen'»
@@ -22,16 +63,16 @@
 «DEFINE staticField FOR Thread»
 public static List<Thread> «this.name»$threads = new LinkedList<Thread>();
 «ENDDEFINE»
-«DEFINE staticField FOR Instance»
+«DEFINE staticField FOR Instance» «REM» For future use. «ENDREM»
 public static «this.instanceType.name» «this.name» = new «this.instanceType.name»();
 «ENDDEFINE»
-«DEFINE staticField FOR SharedResource»
+«DEFINE staticField FOR SharedResource» «REM» For future use. «ENDREM»
 public static Object «this.name» = new Object();
 «ENDDEFINE»
 
 «DEFINE method(EnrichedModel model) FOR Method»
 public «IF isStatic»static «ENDIF»void «name»(«IF this.name == 'main'»String[] args«ELSE»«EXPAND methodParameter FOREACH parameters SEPARATOR ', '»«ENDIF»)
-	«IF this.throwsInterruptedException» throws InterruptedException «ENDIF-»{
+	«IF this.throwsInterruptedException && !this.catchesInterruptedException» throws InterruptedException «ENDIF-»{
     «IF hasDynamicFirstState-»
     int state = $initialState;
     «ELSEIF states.size > 0-»
@@ -122,6 +163,18 @@ this.«ENDIF»
 («EXPAND parameterInMethodCall(method, this.firstState) FOREACH this.calledMethod.parameters SEPARATOR ', '»);
 «ENDDEFINE»
 
+«DEFINE parameterInMethodCall(Method method, State firstState) FOR MethodParameter-»
+«IF method.parameters.contains(this) || method.variables.contains(this)»
+«this.name»«ELSEIF this.isStatic-»
+«this.instanceType.name».«this.name-»
+«ELSE-»
+this«ENDIF-»
+«ENDDEFINE»
+«DEFINE parameterInMethodCall(Method method, State firstState) FOR InitialStateParameter-»
+«firstState.id»«ENDDEFINE»
+«DEFINE parameterInMethodCall(Method method, State firstState) FOR ChildThreadsParameter-»
+«IF method.hasChildThreadsVar || method.hasChildThreadsParam»$childThreads«ELSE»null«ENDIF-»«ENDDEFINE»
+
 «DEFINE stateImpl(Method method) FOR YieldState-»
 Thread.yield();
 «ENDDEFINE»
@@ -139,33 +192,50 @@ try{
 «ENDDEFINE»
 
 «DEFINE stateImpl(Method method) FOR ForkState»
-«EXPAND forkThread(method) FOREACH this.threadInits»
+«EXPAND createHelperClass(method) FOREACH this.threadInits»
+«EXPAND populateHelperClass(method) FOREACH this.threadInits»
+«EXPAND startHelperClass FOREACH this.threadInits»
 «ENDDEFINE»
 
-«DEFINE forkThread(Method method) FOR ThreadInit»
-	{«EXPAND finalParameterDecl(method) FOREACH thread.calledMethod.parameters-»
-	«IF this.thread.targetInstance != null-»
-	«EXPAND finalParameterDecl(method) FOR thread.targetInstance-»
-	«ENDIF-»
-	«this.thread.name» = new Thread(new Runnable(){
-	public void run(){
-	«EXPAND threadInit(method) FOR this»
-	}});
-	«IF this.isDaemon-»
-	«this.thread.name».setDaemon(true);
-	«ENDIF»
-	«IF this.thread.isStatic-»
-	synchronize («this.thread.instanceType.name».«this.thread.name»$threads) {
-		«this.thread.instanceType.name».«this.thread.name»$threads.add(«this.thread.name»);
-	}«ENDIF»
-	«IF method.hasChildThreadsParam || method.hasChildThreadsVar»
-	synchronized ($childThreads) {
-		$childThreads.add(«this.thread.name»);
-	}
-	«ENDIF»
-	«this.thread.name».start();
-	}
+«DEFINE createHelperClass(Method method) FOR ThreadInit-»
+«this.thread.name» = new «this.thread.instanceType.name».HelperClass$«this.thread.name»();
+«IF this.isDaemon-»
+«this.thread.name».setDaemon(true);
+«ENDIF»
+«IF this.thread.isStatic-»
+synchronize («this.thread.instanceType.name».«this.thread.name»$threads) {
+	«this.thread.instanceType.name».«this.thread.name»$threads.add(«this.thread.name»);
+}«ENDIF»
+«IF method.hasChildThreadsParam || method.hasChildThreadsVar»
+synchronized ($childThreads) {
+	$childThreads.add(«this.thread.name»);
+}
+«ENDIF»
 «ENDDEFINE»
+
+«DEFINE populateHelperClass(Method method) FOR ThreadInit-»
+«IF this.thread.targetInstance != null-»
+((«this.thread.instanceType.name + '.HelperClass$' + this.thread.name»)«this.thread.name»).«this.thread.targetInstance.name» = «this.thread.targetInstance.name»;
+«ENDIF-»
+«EXPAND initializeHelperClassField(method, this) FOREACH this.thread.calledMethod.parameters-»
+«ENDDEFINE»
+
+«DEFINE initializeHelperClassField(Method method, ThreadInit threadInit) FOR MethodParameter-»
+«ERROR 'Should not happen'»
+«ENDDEFINE»
+«DEFINE initializeHelperClassField(Method method, ThreadInit threadInit) FOR SharedResource-»
+((«threadInit.thread.instanceType.name + '.HelperClass$' + threadInit.thread.name»)«threadInit.thread.name»).«this.name» = «this.name»;«ENDDEFINE»
+«DEFINE initializeHelperClassField(Method method, ThreadInit threadInit) FOR Thread-»
+((«threadInit.thread.instanceType.name + '.HelperClass$' + threadInit.thread.name»)«threadInit.thread.name»).«this.name» = «this.name»;«ENDDEFINE»
+«DEFINE initializeHelperClassField(Method method, ThreadInit threadInit) FOR Instance-»
+((«threadInit.thread.instanceType.name + '.HelperClass$' + threadInit.thread.name»)«threadInit.thread.name»).«this.name» = «IF method.parameters.contains(this) || method.variables.contains(this)»«this.name»«ELSEIF this.isStatic»«this.instanceType.name».«this.name»«ELSE»this«ENDIF»;«ENDDEFINE»
+«DEFINE initializeHelperClassField(Method method, ThreadInit threadInit) FOR InitialStateParameter-»
+((«threadInit.thread.instanceType.name + '.HelperClass$' + threadInit.thread.name»)«threadInit.thread.name»).$initialState = «threadInit.thread.firstState.id»;«ENDDEFINE»
+«DEFINE initializeHelperClassField(Method method, ThreadInit threadInit) FOR ChildThreadsParameter-»
+((«threadInit.thread.instanceType.name + '.HelperClass$' + threadInit.thread.name»)«threadInit.thread.name»).$childThreads = «IF method.hasChildThreadsVar || method.hasChildThreadsParam»$childThreads«ELSE»null«ENDIF-»;«ENDDEFINE»
+
+«DEFINE startHelperClass FOR ThreadInit-»
+«this.thread.name».start();«ENDDEFINE»
 
 «DEFINE stateImpl(Method method) FOR JoinState-»
 «IF method.catchesInterruptedException || method.throwsInterruptedException»
@@ -176,7 +246,7 @@ try{
 } catch (InterruptedException e) {
 	e.printStackTrace();
 }
-«ENDIF»
+«ENDIF-»
 «ENDDEFINE»
 
 «DEFINE joinThread FOR Thread-»
@@ -196,47 +266,4 @@ synchronized («interruptedThread.instanceType.name».«interruptedThread.name»$thr
 «ENDIF-»
 «ENDDEFINE»
 
-«DEFINE parameterInMethodCall(Method method, State firstState) FOR MethodParameter-»
-«IF method.parameters.contains(this) || method.variables.contains(this)»
-«this.name»«ELSEIF this.isStatic-»
-«this.instanceType.name».«this.name-»
-«ELSE-»
-this«ENDIF-»
-«ENDDEFINE»
-«DEFINE parameterInMethodCall(Method method, State firstState) FOR InitialStateParameter-»
-«firstState.id»«ENDDEFINE»
-«DEFINE parameterInMethodCall(Method method, State firstState) FOR ChildThreadsParameter-»
-«IF method.hasChildThreadsVar»$childThreads«ELSE»null«ENDIF-»«ENDDEFINE»
-
-«DEFINE threadInit(Method method) FOR ThreadInit-»
-«IF this.thread.targetInstance == null-»
-Main.«ELSE-»
-«this.thread.targetInstance.name+'$final'».
-«ENDIF-»
-«this.thread.calledMethod.name-»
-(«EXPAND finalParameterInThreadInit(method, thread) FOREACH this.thread.calledMethod.parameters SEPARATOR ', '-»);«ENDDEFINE»
-
-«DEFINE finalParameterInThreadInit(Method method, Thread thread) FOR MethodParameter-»
-«this.name+ '$final'»«ENDDEFINE»
-«DEFINE finalParameterInThreadInit(Method method, Thread thread) FOR InitialStateParameter-»
-«thread.firstState.id»«ENDDEFINE»
-«DEFINE finalParameterInThreadInit(Method method, Thread thread) FOR ChildThreadsParameter-»
-«IF method.hasChildThreadsVar»$childThreads«ELSE»null«ENDIF-»«ENDDEFINE»
-
-«DEFINE finalParameterDecl(Method method) FOR MethodParameter-»
-«ERROR 'Should not happen'»
-«ENDDEFINE»
-«DEFINE finalParameterDecl(Method method) FOR SharedResource-»
-final Object «this.name + '$final'» = «this.name»; 
-«ENDDEFINE»
-«DEFINE finalParameterDecl(Method method) FOR Thread-»
-final Thread «this.name + '$final'» = «this.name»;
-«ENDDEFINE»
-«DEFINE finalParameterDecl(Method method) FOR Instance-»
-final «this.instanceType.name» «this.name + '$final'» = «IF method.parameters.contains(this) || method.variables.contains(this)»«this.name»«ELSEIF this.isStatic»«this.instanceType.name».«this.name»«ELSE»this«ENDIF»;
-«ENDDEFINE»
-«DEFINE finalParameterDecl(Method method) FOR InitialStateParameter-»
-«ENDDEFINE»
-«DEFINE finalParameterDecl(Method method) FOR ChildThreadsParameter-»
-«ENDDEFINE»
 

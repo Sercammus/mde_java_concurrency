@@ -4,15 +4,15 @@ import java.util.*;
 
 public class Client {
 
-	public void sendMsg(Object bla, Object clientList) {
-		synchronized (bla) {
-			synchronized (clientList) {
+	public void sendMsg(Object clientList, Object bla) {
+		synchronized (clientList) {
+			synchronized (bla) {
 				//TODO stub
 			}
 		}
 	}
 
-	public void clientThread(Server s, Object bla, Object clientList, final Set<Thread> $childThreads) {
+	public void clientThread(Server s, Object clientList, Object bla, final Set<Thread> $childThreads) {
 		int state = 1;
 		while (state > 0) {
 			try {
@@ -33,12 +33,12 @@ public class Client {
 						state = 1;
 						break;
 					case 3 :
-						s.broadcastMsg(bla, this, clientList);
+						s.broadcastMsg(this, clientList, bla);
 
 						state = 1;
 						break;
 					case 4 :
-						s.removeClient(bla, clientList);
+						s.removeClient(clientList, bla);
 
 						state = 5;
 						break;
