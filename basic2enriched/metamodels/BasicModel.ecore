@@ -326,15 +326,6 @@
         <details key="body" value="if thread.oclIsTypeOf(BasicModel) or thread.oclIsTypeOf(NestedThread)&#xA;&#x9;&#x9;&#x9;      then thread&#xA;&#x9;&#x9;&#x9;      else let forks: Set(Fork) = Fork.allInstances()->select(f | f.forkedThreads->includes(thread)) in&#xA;&#x9;&#x9;&#x9;               if forks->notEmpty()&#xA;&#x9;&#x9;&#x9;               then forks->asOrderedSet()->first().GetRootThread()&#xA;&#x9;&#x9;&#x9;               else null&#xA;&#x9;&#x9;&#x9;               endif&#xA;&#x9;&#x9;&#x9;      endif"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="providedReferences" ordered="false"
-        upperBound="-1" eType="#//Reference">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="GetProvidedReferences()"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-        <details key="nullFree" value="false"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVisitedOnce" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         volatile="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">

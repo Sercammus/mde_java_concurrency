@@ -1,63 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <em:EnrichedModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:em="enrichedModel" xsi:schemaLocation="enrichedModel ../metamodels/EnrichedModel.ecore" packageName="mergeSort">
   <instanceTypes name="Main">
-    <methods name="split" isStatic="true" throwsInterruptedException="true"/>
-    <methods name="sortSecondHalfThread" isStatic="true" parameters="//@methodParameters.5 //@methodParameters.0" defaultFirstState="//@instanceTypes.0/@methods.1/@states.0" catchesInterruptedException="true" hasChildThreadsParam="true" hasChildThreadsVar="true">
-      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.1" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.0">
+    <methods name="split" isStatic="true" parameters="//@methodParameters.0 //@methodParameters.2 //@methodParameters.1" lockedResources="//@methodParameters.0 //@methodParameters.2 //@methodParameters.1" throwsInterruptedException="true"/>
+    <methods name="sortSecondHalfThread" isStatic="true" parameters="//@methodParameters.0 //@methodParameters.2 //@methodParameters.8 //@methodParameters.1 //@methodParameters.3" defaultFirstState="//@instanceTypes.0/@methods.1/@states.0" catchesInterruptedException="true" hasChildThreadsParam="true" hasChildThreadsVar="true">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.1" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.1">
         <jumps nextState="//@instanceTypes.0/@methods.1/@states.1"/>
       </states>
-      <states xsi:type="em:JoinState" id="2" method="//@instanceTypes.0/@methods.1" joinedThreads="//@methodParameters.5">
+      <states xsi:type="em:JoinState" id="2" method="//@instanceTypes.0/@methods.1" joinedThreads="//@methodParameters.8">
         <jumps nextState="//@instanceTypes.0/@methods.1/@states.2"/>
       </states>
-      <states xsi:type="em:MethodCallState" id="3" method="//@instanceTypes.0/@methods.1" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.2"/>
+      <states xsi:type="em:MethodCallState" id="3" method="//@instanceTypes.0/@methods.1" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.3"/>
     </methods>
-    <methods name="sortFirstHalfThread" isStatic="true" parameters="//@methodParameters.0" defaultFirstState="//@instanceTypes.0/@methods.2/@states.0" hasChildThreadsParam="true" hasChildThreadsVar="true">
-      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.2" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.0"/>
+    <methods name="sortFirstHalfThread" isStatic="true" parameters="//@methodParameters.0 //@methodParameters.2 //@methodParameters.1 //@methodParameters.3" defaultFirstState="//@instanceTypes.0/@methods.2/@states.0" hasChildThreadsParam="true" hasChildThreadsVar="true">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.2" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.1"/>
     </methods>
-    <methods name="merge" isStatic="true" throwsInterruptedException="true"/>
-    <methods name="subProcessThread" isStatic="true" parameters="//@methodParameters.0 //@methodParameters.1" variables="//@methodParameters.3 //@methodParameters.5" defaultFirstState="//@instanceTypes.0/@methods.4/@states.0" hasDynamicFirstState="true" throwsInterruptedException="true" catchesInterruptedException="true" hasChildThreadsParam="true" hasChildThreadsVar="true">
-      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.4" calledMethod="//@instanceTypes.0/@methods.0">
-        <jumps nextState="//@instanceTypes.0/@methods.4/@states.1"/>
+    <methods name="merge" isStatic="true" parameters="//@methodParameters.0 //@methodParameters.2 //@methodParameters.1" lockedResources="//@methodParameters.0 //@methodParameters.2 //@methodParameters.1" throwsInterruptedException="true"/>
+    <methods name="subProcessThread" isStatic="true" parameters="//@methodParameters.0 //@methodParameters.2 //@methodParameters.1 //@methodParameters.3 //@methodParameters.4" variables="//@methodParameters.7 //@methodParameters.8" defaultFirstState="//@instanceTypes.0/@methods.4/@states.1" hasDynamicFirstState="true" throwsInterruptedException="true" catchesInterruptedException="true" hasChildThreadsParam="true" hasChildThreadsVar="true">
+      <states id="1" method="//@instanceTypes.0/@methods.4">
+        <jumps condition="[size() > 1]" nextState="//@instanceTypes.0/@methods.4/@states.1"/>
+        <jumps nextState="//@instanceTypes.0/@methods.4/@states.4"/>
       </states>
-      <states xsi:type="em:ForkState" id="2" method="//@instanceTypes.0/@methods.4">
-        <threadInits thread="//@methodParameters.5"/>
-        <threadInits thread="//@methodParameters.3"/>
+      <states xsi:type="em:MethodCallState" id="2" method="//@instanceTypes.0/@methods.4" calledMethod="//@instanceTypes.0/@methods.0">
+        <jumps nextState="//@instanceTypes.0/@methods.4/@states.2"/>
       </states>
-      <states xsi:type="em:MethodCallState" id="3" method="//@instanceTypes.0/@methods.4" calledMethod="//@instanceTypes.0/@methods.3">
-        <jumps nextState="//@instanceTypes.0/@methods.4/@states.3"/>
+      <states xsi:type="em:ForkState" id="3" method="//@instanceTypes.0/@methods.4">
+        <threadInits thread="//@methodParameters.8"/>
+        <threadInits thread="//@methodParameters.7"/>
       </states>
-      <states id="4" method="//@instanceTypes.0/@methods.4"/>
+      <states xsi:type="em:MethodCallState" id="4" method="//@instanceTypes.0/@methods.4" calledMethod="//@instanceTypes.0/@methods.3">
+        <jumps nextState="//@instanceTypes.0/@methods.4/@states.4"/>
+      </states>
+      <states id="5" method="//@instanceTypes.0/@methods.4"/>
     </methods>
-    <methods name="mergeSortThread" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.5/@states.0" hasChildThreadsVar="true">
-      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.5" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.0">
+    <methods name="timeoutThread" isStatic="true" parameters="//@methodParameters.9" defaultFirstState="//@instanceTypes.0/@methods.5/@states.0">
+      <states xsi:type="em:SleepState" id="1" method="//@instanceTypes.0/@methods.5" duration="5000">
         <jumps nextState="//@instanceTypes.0/@methods.5/@states.1"/>
       </states>
-      <states id="2" method="//@instanceTypes.0/@methods.5"/>
-    </methods>
-    <methods name="timeoutThread" isStatic="true" parameters="//@methodParameters.2" defaultFirstState="//@instanceTypes.0/@methods.6/@states.0">
-      <states xsi:type="em:SleepState" id="1" method="//@instanceTypes.0/@methods.6" duration="5000">
-        <jumps nextState="//@instanceTypes.0/@methods.6/@states.1"/>
+      <states xsi:type="em:InterruptState" id="2" method="//@instanceTypes.0/@methods.5" interruptedThread="//@methodParameters.9">
+        <jumps nextState="//@instanceTypes.0/@methods.5/@states.2"/>
       </states>
-      <states xsi:type="em:InterruptState" id="2" method="//@instanceTypes.0/@methods.6" interruptedThread="//@methodParameters.2">
-        <jumps nextState="//@instanceTypes.0/@methods.6/@states.2"/>
-      </states>
-      <states id="3" method="//@instanceTypes.0/@methods.6"/>
+      <states id="3" method="//@instanceTypes.0/@methods.5"/>
     </methods>
-    <methods name="mergeSort" isStatic="true" parameters="//@methodParameters.1" variables="//@methodParameters.2 //@methodParameters.6" defaultFirstState="//@instanceTypes.0/@methods.7/@states.0" hasDynamicFirstState="true">
-      <states xsi:type="em:ForkState" id="1" method="//@instanceTypes.0/@methods.7">
-        <threadInits thread="//@methodParameters.6"/>
-        <threadInits isAdopted="true" thread="//@methodParameters.2"/>
+    <methods name="printResult" isStatic="true"/>
+    <methods name="mergeSortThread" isStatic="true" parameters="//@methodParameters.0 //@methodParameters.2 //@methodParameters.1" defaultFirstState="//@instanceTypes.0/@methods.7/@states.0" hasChildThreadsVar="true">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.7" calledMethod="//@instanceTypes.0/@methods.4" firstState="//@instanceTypes.0/@methods.4/@states.1">
+        <jumps nextState="//@instanceTypes.0/@methods.7/@states.1"/>
+      </states>
+      <states xsi:type="em:MethodCallState" id="2" method="//@instanceTypes.0/@methods.7" calledMethod="//@instanceTypes.0/@methods.6">
+        <jumps nextState="//@instanceTypes.0/@methods.4/@states.4"/>
+      </states>
+      <states id="3" method="//@instanceTypes.0/@methods.7"/>
+    </methods>
+    <methods name="mergeSort" isStatic="true" parameters="//@methodParameters.0 //@methodParameters.2 //@methodParameters.1 //@methodParameters.4" variables="//@methodParameters.5 //@methodParameters.9" defaultFirstState="//@instanceTypes.0/@methods.8/@states.0" hasDynamicFirstState="true">
+      <states xsi:type="em:ForkState" id="1" method="//@instanceTypes.0/@methods.8">
+        <threadInits isAdopted="true" thread="//@methodParameters.5"/>
+        <threadInits thread="//@methodParameters.9"/>
       </states>
     </methods>
-    <methods name="main" isStatic="true" defaultFirstState="//@instanceTypes.0/@methods.8/@states.0">
-      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.8" calledMethod="//@instanceTypes.0/@methods.7" firstState="//@instanceTypes.0/@methods.7/@states.0"/>
+    <methods name="main" isStatic="true" variables="//@methodParameters.0 //@methodParameters.1 //@methodParameters.2" defaultFirstState="//@instanceTypes.0/@methods.9/@states.0">
+      <states xsi:type="em:MethodCallState" id="1" method="//@instanceTypes.0/@methods.9" calledMethod="//@instanceTypes.0/@methods.8" firstState="//@instanceTypes.0/@methods.8/@states.0"/>
     </methods>
   </instanceTypes>
+  <methodParameters xsi:type="em:SharedResource" name="list" instanceType="//@instanceTypes.0"/>
+  <methodParameters xsi:type="em:SharedResource" name="firstHalf" instanceType="//@instanceTypes.0"/>
+  <methodParameters xsi:type="em:SharedResource" name="secondHalf" instanceType="//@instanceTypes.0"/>
   <methodParameters xsi:type="em:ChildThreadsParameter" name="$childThreads"/>
   <methodParameters xsi:type="em:InitialStateParameter" name="$initialState"/>
-  <methodParameters xsi:type="em:Thread" name="mergeSortThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.5" firstState="//@instanceTypes.0/@methods.5/@states.0"/>
+  <methodParameters xsi:type="em:Thread" name="timeoutThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.5" firstState="//@instanceTypes.0/@methods.5/@states.0"/>
+  <methodParameters xsi:type="em:Thread" name="mergeSort" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.8" firstState="//@instanceTypes.0/@methods.8/@states.0"/>
   <methodParameters xsi:type="em:Thread" name="sortSecondHalfThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.1" firstState="//@instanceTypes.0/@methods.1/@states.0"/>
-  <methodParameters xsi:type="em:Thread" name="mergeSort" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.7" firstState="//@instanceTypes.0/@methods.7/@states.0"/>
   <methodParameters xsi:type="em:Thread" name="sortFirstHalfThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.2" firstState="//@instanceTypes.0/@methods.2/@states.0"/>
-  <methodParameters xsi:type="em:Thread" name="timeoutThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.6" firstState="//@instanceTypes.0/@methods.6/@states.0"/>
+  <methodParameters xsi:type="em:Thread" name="mergeSortThread" instanceType="//@instanceTypes.0" calledMethod="//@instanceTypes.0/@methods.7" firstState="//@instanceTypes.0/@methods.7/@states.0"/>
 </em:EnrichedModel>

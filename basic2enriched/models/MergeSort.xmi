@@ -20,6 +20,11 @@
           nextActivity="//@activities.0/@forkedThreads.0/@activities.1"
           nestedThread="//@nestedThreads.0"/>
       <activities
+          xsi:type="ad:SimpleActivity"
+          name="printResult"
+          nextActivity="//@nestedThreads.0/@activities.4"
+          activityName="printResult"/>
+      <activities
           xsi:type="ad:End"
           name="end1"/>
     </forkedThreads>
@@ -41,47 +46,63 @@
           name="end2"/>
     </forkedThreads>
   </activities>
+  <resources
+      name="list"/>
+  <resources
+      name="firstHalf"/>
+  <resources
+      name="secondHalf"/>
   <nestedThreads
       name="subProcessThread"
-      startActivity="//@nestedThreads.0/@activities.0"
+      startActivity="//@nestedThreads.0/@activities.1"
       activityName="doMergeSort">
+    <activities
+        xsi:type="ad:Decision"
+        name="decision"
+        nextActivity="//@nestedThreads.0/@activities.4">
+      <branches
+          nextActivity="//@nestedThreads.0/@activities.1"
+          condition="[size() > 1]"/>
+    </activities>
     <activities
         xsi:type="ad:SimpleActivity"
         name="split"
-        nextActivity="//@nestedThreads.0/@activities.1"
-        activityName="split"/>
+        nextActivity="//@nestedThreads.0/@activities.2"
+        activityName="split"
+        sharedResources="//@resources.0 //@resources.1 //@resources.2"/>
     <activities
         xsi:type="ad:Fork"
         name="fork1"
         maxThreadCount="0">
       <forkedThreads
           name="sortFirstHalfThread"
-          startActivity="//@nestedThreads.0/@activities.1/@forkedThreads.0/@activities.0">
+          startActivity="//@nestedThreads.0/@activities.2/@forkedThreads.0/@activities.0">
         <activities
             xsi:type="ad:NestedActivity"
             name="doMergeSort2"
-            nextActivity="//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.1"
+            nextActivity="//@nestedThreads.0/@activities.2/@forkedThreads.1/@activities.1"
             nestedThread="//@nestedThreads.0"/>
       </forkedThreads>
       <forkedThreads
           name="sortSecondHalfThread"
-          startActivity="//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.0">
+          startActivity="//@nestedThreads.0/@activities.2/@forkedThreads.1/@activities.0">
         <activities
             xsi:type="ad:NestedActivity"
             name="doMergeSort3"
-            nextActivity="//@nestedThreads.0/@activities.1/@forkedThreads.1/@activities.1"
+            nextActivity="//@nestedThreads.0/@activities.2/@forkedThreads.1/@activities.1"
             nestedThread="//@nestedThreads.0"/>
         <activities
             xsi:type="ad:Join"
             name="join1"
-            nextActivity="//@nestedThreads.0/@activities.2"/>
+            nextActivity="//@nestedThreads.0/@activities.3"/>
       </forkedThreads>
     </activities>
     <activities
         xsi:type="ad:SimpleActivity"
         name="merge"
-        nextActivity="//@nestedThreads.0/@activities.3"
-        activityName="merge"/>
+        nextActivity="//@nestedThreads.0/@activities.4"
+        activityName="merge"
+        sharedResources="//@resources.0 //@resources.1 //@resources.2"/>
     <activities
         xsi:type="ad:End"
         name="end2"/>
